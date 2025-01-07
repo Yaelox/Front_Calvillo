@@ -1,13 +1,70 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>eventos</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">eventos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="store-info">
+    <!-- Imagen de la tienda -->
+    <img class="store-image" src="assets/images/Logo.png" alt="Imagen de la tienda" />
+
+    <!-- Título y descripción -->
+    <h1>Bienvenidos a nuestra tienda</h1>
+    <p>Descubre los mejores eventos que tenemos para ti, además de nuestras increíbles promociones y actividades. ¡No te los pierdas!</p>
+
+    <!-- Sección de información (tarjetas en fila) -->
+    <div class="info-sections">
+      <!-- Tarjeta de información 1 -->
+      <div class="info-card">
+        <ion-card-header>
+          <ion-card-title>Evento Especial</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Participa en nuestro evento exclusivo con promociones especiales solo para este mes. ¡No faltes!</p>
+        </ion-card-content>
+      </div>
+
+      <!-- Tarjeta de información 2 -->
+      <div class="info-card">
+        <ion-card-header>
+          <ion-card-title>Promoción de la Semana</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Aprovecha las ofertas de la semana en todos nuestros productos. ¡Ven y ahorra!</p>
+        </ion-card-content>
+      </div>
+    </div>
+
+    <!-- Card centrada para el formulario -->
+    <div class="form-card">
+      <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label position="stacked">Nombre del Evento</ion-label>
+          <ion-input type="text" formControlName="eventName" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Descripción del Evento</ion-label>
+          <ion-textarea formControlName="eventDescription" required></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Fecha del Evento</ion-label>
+          <ion-input type="date" formControlName="eventDate" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Ubicación</ion-label>
+          <ion-input type="text" formControlName="eventLocation" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Capacidad</ion-label>
+          <ion-input type="number" formControlName="eventCapacity" required></ion-input>
+        </ion-item><br><br>
+
+        <ion-button expand="full" type="submit" [disabled]="!eventForm.valid" class="submit-button">
+          Registrar Evento
+        </ion-button>
+        
+      </form>
+    </div>
+  </div>
 </ion-content>

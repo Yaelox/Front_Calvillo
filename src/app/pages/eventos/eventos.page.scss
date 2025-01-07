@@ -1,0 +1,120 @@
+.store-info {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: linear-gradient(to bottom, #ffe1e7, #ffffff);
+    min-height: 100vh; /* Asegura que el contenedor ocupe al menos el 100% de la altura de la pantalla */
+  
+    .store-image {
+      width: 120px;
+      height: auto;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+  
+    h1 {
+      font-size: 2rem;
+      color: #d6336c;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+  
+    p {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+  
+    .info-sections {
+      display: flex;
+      justify-content: space-between; /* Asegura que las tarjetas estén distribuidas en fila */
+      gap: 1rem;
+      flex-wrap: wrap; /* Permite que las tarjetas se ajusten en pantallas más pequeñas */
+  
+      .info-card {
+        width: 48%; /* Ajusta el tamaño de las tarjetas a un máximo de 2 por fila */
+        background-color: #fff;
+        border-radius: 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+        ion-card-header {
+          background: #ffccd5;
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+          text-align: center;
+        }
+  
+        ion-card-title {
+          font-size: 1.5rem;
+          color: #d6336c;
+          font-weight: bold;
+        }
+  
+        ion-card-content {
+          font-size: 1rem;
+          color: #555;
+          line-height: 1.4;
+          padding: 1rem 1.5rem;
+        }
+  
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+  
+    .form-card {
+      width: 100%;
+      max-width: 600px;
+      margin: 3rem auto;
+      background-color: #fff;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+  
+    ion-button {
+      background-color: #d6336c;
+      color: white;
+      font-weight: bold;
+      border-radius: 20px;
+      padding: 0.8rem;
+      transition: background-color 0.3s ease;
+  
+      &:hover {
+        background-color: #c32e5a;
+      }
+    }
+  }
+  
+  /* Ajustes responsivos para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .info-sections {
+      flex-direction: column;
+      align-items: center; /* Centra las tarjetas */
+    }
+  
+    .info-card {
+      width: 90%; /* Las tarjetas ocupan el 90% del ancho en pantallas pequeñas */
+    }
+  }
+  .submit-button {
+    background-color: #d6336c;  /* Color principal para el fondo */
+    color: white;  /* Color del texto */
+    font-weight: bold;  /* Aumenta el peso de la fuente para hacerlo más visible */
+    border-radius: 20px;  /* Borde redondeado */
+    padding: 1rem;  /* Espaciado interno */
+    transition: background-color 0.3s ease;  /* Transición suave al pasar el mouse */
+  
+    &:hover {
+      background-color: #c32e5a;  /* Color del fondo cuando se pasa el mouse por encima */
+    }
+  
+    &:disabled {
+      background-color: #f0a7b3;  /* Color de fondo cuando el botón está deshabilitado */
+      color: #e0e0e0;  /* Color del texto cuando está deshabilitado */
+    }
+  }  

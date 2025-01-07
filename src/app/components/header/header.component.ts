@@ -13,6 +13,10 @@ export class HeaderComponent {
 
   constructor(private navCtrl: NavController) { }
 
+  goToHome() {
+    this.navCtrl.navigateForward('/home');
+  }
+
   goToPreventa() {
     this.navCtrl.navigateForward('/preventa');
   }
@@ -34,7 +38,7 @@ export class HeaderComponent {
   }
 
   goToTienda() {
-    this.navCtrl.navigateForward('/tienda');
+    this.navCtrl.navigateForward('/tienda-online');
   }
 
   goToEnviosLocales() {
