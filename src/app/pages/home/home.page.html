@@ -1,20 +1,42 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="store-info">
+    <img src="assets/images/Logo.png" alt="Mi Crush de Calvillo" class="store-image" />
+    
+    <h1>Bienvenido a Mi Crush de Calvillo</h1>
+    <p>
+      ¡Descubre los dulces más deliciosos y tradicionales de Calvillo! 
+      En nuestra tienda encontrarás productos únicos que te encantarán.
+    </p>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <div class="info-sections">
+      <ion-card class="info-card">
+        <ion-card-header>
+          <ion-card-title>Preventa</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Ofrecemos preventas exclusivas de los productos más populares.
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="info-card">
+        <ion-card-header>
+          <ion-card-title>Reparto a domicilio</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Hacemos entregas a domicilio en redes sociales y tiendas locales.
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card class="info-card">
+        <ion-card-header>
+          <ion-card-title>Tienda Online</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          Compra fácilmente a través de nuestra tienda en línea con envíos locales, nacionales e internacionales.
+        </ion-card-content>
+      </ion-card>
+    </div>
   </div>
 </ion-content>

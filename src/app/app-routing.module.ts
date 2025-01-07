@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+
 const routes: Routes = [
   {
     path: 'home',
@@ -22,6 +23,42 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'preventa',
+    loadChildren: () => import('./pages/preventa/preventa.module').then( m => m.PreventaPageModule)
+  },
+  {
+    path: 'reparto-domicilio',
+    loadChildren: () => import('./pages/reparto-domicilio/reparto-domicilio.module').then( m => m.RepartoDomicilioPageModule)
+  },
+  {
+    path: 'rutas-foraneas',
+    loadChildren: () => import('./pages/rutas-foraneas/rutas-foraneas.module').then( m => m.RutasForaneasPageModule)
+  },
+  {
+    path: 'puntosdeventa',
+    loadChildren: () => import('./pages/puntosdeventa/puntosdeventa.module').then( m => m.PuntosdeventaPageModule)
+  },
+  {
+    path: 'eventos',
+    loadChildren: () => import('./pages/eventos/eventos.module').then( m => m.EventosPageModule)
+  },
+  {
+    path: 'tienda-online',
+    loadChildren: () => import('./pages/tienda-online/tienda-online.module').then( m => m.TiendaOnlinePageModule)
+  },
+  {
+    path: 'envios-locales',
+    loadChildren: () => import('./pages/envios-locales/envios-locales.module').then( m => m.EnviosLocalesPageModule)
+  },
+  {
+    path: 'envios-nacionales',
+    loadChildren: () => import('./pages/envios-nacionales/envios-nacionales.module').then( m => m.EnviosNacionalesPageModule)
+  },
+  {
+    path: 'envios-internacionales',
+    loadChildren: () => import('./pages/envios-internacionales/envios-internacionales.module').then( m => m.EnviosInternacionalesPageModule)
   },
 ];
 

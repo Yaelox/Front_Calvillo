@@ -1,0 +1,46 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+
+    <!-- Contenedor del logo y título -->
+    <div class="header-left">
+      <img src="assets/images/Logo.png" alt="Mi Crush de Calvillo" class="logo-img" />
+      <ion-title class="header-title">
+        Mi Crush de Calvillo
+      </ion-title>
+    </div>
+
+    <!-- Botones en el header -->
+    <div class="header-right">
+      <ion-buttons slot="end">
+        <ion-button fill="clear" (click)="goToPreventa()" class="header-button">
+          <ion-icon name="cart" slot="start"></ion-icon> Preventa
+        </ion-button>
+        <ion-button fill="clear" (click)="goToReparto()" class="header-button">
+          <ion-icon name="car" slot="start"></ion-icon> Reparto
+        </ion-button>
+        <ion-button fill="clear" (click)="goToRutas()" class="header-button">
+          <ion-icon name="map" slot="start"></ion-icon> Rutas
+        </ion-button>
+        <ion-button fill="clear" (click)="goToPuntos()" class="header-button">
+          <ion-icon name="location" slot="start"></ion-icon> Puntos
+        </ion-button>
+        <ion-button fill="clear" (click)="goToEventos()" class="header-button">
+          <ion-icon name="calendar" slot="start"></ion-icon> Eventos
+        </ion-button>
+        <ion-button fill="clear" (click)="goToTienda()" class="header-button">
+          <ion-icon name="storefront" slot="start"></ion-icon> Tienda
+        </ion-button>
+        <ion-button fill="clear" (click)="goToEnviosLocales()" class="header-button">
+          <ion-icon name="boat" slot="start"></ion-icon> Envíos Locales
+        </ion-button>
+        <ion-button fill="clear" (click)="goToEnviosNacionales()" class="header-button">
+          <ion-icon name="airplane" slot="start"></ion-icon> Envíos Nacionales
+        </ion-button>
+        <ion-button fill="clear" (click)="goToEnviosInternacionales()" class="header-button">
+          <ion-icon name="globe" slot="start"></ion-icon> Envíos Internacionales
+        </ion-button>
+      </ion-buttons>
+    </div>
+
+  </ion-toolbar>
+</ion-header>
