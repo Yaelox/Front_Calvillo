@@ -7,6 +7,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  standalone: true
 })
 export class HeaderComponent {
 

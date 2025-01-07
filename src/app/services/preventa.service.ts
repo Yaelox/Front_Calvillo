@@ -7,17 +7,17 @@ import { Observable } from 'rxjs';
 })
 export class PreventaService {
 
-  private apiUrl = 'http://localhost:3000'; // Cambia esto con la URL de tu backend
+  private apiUrl = 'https://api.mistore.com';  // Reemplaza con tu URL real
 
-  constructor(private http: HttpClient) { }
-
-  // Obtener la mejor ruta
-  getBestRoute(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/best-route`);
-  }
+  constructor(private http: HttpClient) {}
 
   // Obtener los puntos de venta
-  getPoints(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/points`);
+  getPoints(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/points`);
+  }
+
+  // Obtener la mejor ruta
+  getBestRoute(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/bestRoute`);
   }
 }

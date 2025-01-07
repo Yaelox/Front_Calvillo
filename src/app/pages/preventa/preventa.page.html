@@ -1,28 +1,26 @@
 <app-header></app-header>
 
-<ion-content>
-  <div class="preventa-info">
-    <!-- Sección de rutas y tiendas -->
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Rutas Geográficas</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Selecciona la ruta más corta a las tiendas cercanas.</p>
-        <button ion-button (click)="findBestRoute()">Encontrar Ruta</button>
-      </ion-card-content>
-    </ion-card>
+<ion-content class="content">
+  <!-- Contenedor de la vista principal -->
+  <div class="main-container">
+    
+    <!-- Título y descripción -->
+    <section class="title-section">
+      <h2>Preventa: Encontrar la Mejor Ruta</h2>
+      <p>Encuentra la mejor ruta a seguir y organiza las tiendas en orden geográfico.</p>
+    </section>
 
-    <!-- Sección de puntos de venta -->
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Puntos de Venta</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Verifica la disponibilidad y el estado de los puntos de venta cercanos.</p>
-        <button ion-button (click)="viewPoints()">Ver Puntos de Venta</button>
-      </ion-card-content>
-    </ion-card>
+    <!-- Botón para encontrar la mejor ruta -->
+    <section class="button-section">
+      <ion-button expand="full" (click)="findBestRoute()" class="find-route-button">
+        <ion-icon name="navigate" slot="start"></ion-icon>
+        Encontrar Mejor Ruta
+      </ion-button>
+    </section>
+
+    <!-- Contenedor del mapa -->
+    <section class="map-section">
+      <div id="map" class="map-container"></div>
+    </section>
   </div>
 </ion-content>
-

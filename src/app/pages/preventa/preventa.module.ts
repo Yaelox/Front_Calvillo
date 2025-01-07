@@ -6,14 +6,12 @@ import { IonicModule } from '@ionic/angular';
 
 import { PreventaPageRoutingModule } from './preventa-routing.module';
 
-import { PreventaPage } from './preventa.page';
-
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PreventaPageRoutingModule
+    PreventaPageRoutingModule,
   ],
   declarations: []
 })
