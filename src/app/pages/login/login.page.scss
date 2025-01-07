@@ -1,0 +1,73 @@
+ion-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c); /* Fondo degradado */
+}
+
+.form-container {
+  width: 90%;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 20px;
+  background: #ffffff; /* Fondo del formulario */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-container {
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espaciado entre los elementos */
+}
+
+ion-item {
+  --highlight-color-focused: #ff758c; /* Color del foco */
+}
+
+ion-button {
+  --background: #ff7eb3;
+  --background-focused: #ff758c;
+  --background-activated: #ff758c;
+  --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  font-size: 16px;
+}
+
+ion-text {
+  font-size: 12px;
+  color: #e63946; /* Color del texto de error */
+}
+
+.register-link {
+  margin-top: 10px;
+  text-align: center;
+
+  p {
+    font-size: 14px;
+    color: #555;
+  }
+
+  a {
+    color: #ff758c;
+    font-weight: bold;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
