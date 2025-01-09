@@ -1,33 +1,137 @@
+/* Diseño de la cuadrícula */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
 
-      .info-card {
-        width: 48%; /* Ajusta el tamaño de las tarjetas a un máximo de 2 por fila */
-        background-color: #fff;
-        border-radius: 20px;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-        ion-card-header {
-          background: #ffccd5;
-          border-top-left-radius: 20px;
-          border-top-right-radius: 20px;
-          text-align: center;
-        }
-  
-        ion-card-title {
-          font-size: 1.5rem;
-          color: #d6336c;
-          font-weight: bold;
-        }
-  
-        ion-card-content {
-          font-size: 1rem;
-          color: #555;
-          line-height: 1.4;
-          padding: 1rem 1.5rem;
-        }
-  
-        &:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-    }
+/* Tarjetas */
+ion-card {
+  background: linear-gradient(135deg, #ffc1e3, #ffd6e8); /* Degradado en tonos de rosa */
+  color: #4a4a4a; /* Texto en gris oscuro para contraste */
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1); /* Sombras suaves */
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: auto; /* Ajuste automático */
+  width: 100%; /* Tamaño responsive */
+}
+
+ion-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.15); /* Sombras más profundas en hover */
+}
+
+/* Imagen dentro de la tarjeta */
+ion-card img {
+  width: 100%;
+  height: 200px; /* Tamaño consistente y compacto */
+  object-fit: cover; /* Ajuste sin deformar la imagen */
+  border-bottom: 2px solid rgba(255, 255, 255, 0.6); /* Línea decorativa */
+}
+
+/* Encabezado de la tarjeta */
+ion-card-header {
+  text-align: center;
+  padding: 0.6rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+ion-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: black;
+}
+
+/* Contenido de la tarjeta */
+ion-card-content {
+  padding: 0.8rem;
+  font-family: 'Roboto', sans-serif;
+  color: black;
+  text-align: justify;
+  align-items:center;
+
+}
+
+ion-card-content p {
+  margin: 0.5rem 0;
+  font-size: 1.3rem; /* Texto legible */
+}
+
+ion-card-content p strong {
+  color: #333; /* Mayor contraste para énfasis */
+}
+
+/* Banner de la página */
+.page-banner {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #f9a8d4, #fddde6); /* Degradado rosa brillante */
+  color: white;
+  border-radius: 0 0 20px 20px; /* Bordes redondeados inferiores */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  animation: fadeInDown 1s ease-in-out;
+
+  h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    margin: 0;
+    font-weight: bold;
+  }
+
+  p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0;
+  }
+}
+
+/* Animación de entrada */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Estilos responsivos */
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  ion-card-title {
+    font-size: 1rem; /* Ajuste para títulos */
+  }
+
+  ion-card-content p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  ion-card-title {
+    font-size: 0.9rem;
+  }
+
+  ion-card-content p {
+    font-size: 0.8rem;
+  }
+}
+

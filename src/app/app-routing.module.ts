@@ -52,6 +52,10 @@ const routes: Routes = [
     path: 'envios',
     loadChildren: () => import('./pages/envios/envios.module').then( m => m.EnviosPageModule)
   },
+  {
+    path: 'product-details/:id',
+    loadChildren: () => import('./pages/product-details/product-details.module').then( m => m.ProductDetailsPageModule)
+  },
 ];
 
 @NgModule({

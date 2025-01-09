@@ -1,0 +1,73 @@
+<ion-content>
+  <!-- Encabezado -->
+  <app-header></app-header>
+
+  <!-- Barra de herramientas -->
+  <ion-toolbar class="product-toolbar">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Detalles del Producto</ion-title>
+  </ion-toolbar>
+
+  <!-- Contenido principal -->
+  <div class="details-container" *ngIf="producto && !isLoading && !errorMessage">
+    <ion-grid>
+      <ion-row>
+        <!-- Imagen destacada del producto (lado izquierdo) -->
+        <ion-col size="4">
+          <div class="product-image">
+            <img [src]="producto.imagen" alt="{{ producto.nombre }}" />
+          </div>
+        </ion-col>
+
+        <!-- Información del producto (lado derecho) -->
+        <ion-col size="8">
+          <div class="product-info">
+            <h2 class="product-title">{{ producto.nombre }}</h2>
+            <p class="price"><strong>Precio:</strong> ${{ producto.precio }}</p>
+            <p class="description">{{ producto.descripcion }}</p>
+
+            <!-- Disponibilidad -->
+            <div class="availability">
+              <strong>Disponibilidad:</strong>
+              <ion-badge color="success" *ngIf="producto.disponible">¡Disponible!</ion-badge>
+              <ion-badge color="danger" *ngIf="!producto.disponible">No disponible</ion-badge>
+            </div>
+
+            <!-- Selector de cantidad y botón de comprar -->
+            <div class="purchase-section">
+              <div class="quantity-selector">
+                <ion-button (click)="decreaseQuantity()" [disabled]="quantity <= 1">
+                  <ion-icon name="remove-outline"></ion-icon>
+                </ion-button>
+                <span class="quantity-value">{{ quantity }}</span>
+                <ion-button (click)="increaseQuantity()">
+                  <ion-icon name="add-outline"></ion-icon>
+                </ion-button>
+              </div>
+              <ion-button class="buy-now" expand="block" (click)="comprar()">
+                <ion-icon slot="start" name="cart-outline"></ion-icon>
+                COMPRAR
+              </ion-button>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="loading">
+    <ion-spinner name="dots"></ion-spinner>
+    <p>Cargando producto...</p>
+  </div>
+
+  <!-- Error -->
+  <div *ngIf="errorMessage" class="error">
+    <ion-icon name="alert-circle-outline"></ion-icon>
+    <p>{{ errorMessage }}</p>
+  </div>
+</ion-content>

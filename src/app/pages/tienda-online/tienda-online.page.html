@@ -1,3 +1,30 @@
-  <ion-header>
-    <app-header></app-header> <!-- Usar el componente Header -->
-  </ion-header>
+<ion-header>
+  <app-header></app-header> <!-- Usar el componente Header -->
+</ion-header>
+
+<ion-content>
+  <!-- Banner de bienvenida -->
+  <div class="page-banner">
+    <h1>Tienda Online</h1>
+    <p>Encuentra los mejores productos en nuestra tienda virtual</p>
+  </div>
+
+  <!-- Lista de productos -->
+  <div class="product-grid">
+    <ion-card *ngFor="let producto of productos" (click)="goToDetails(producto.id_producto)">
+      <img [src]="producto.imagen" alt="Imagen del producto" />
+      <ion-card-header>
+        <ion-card-title>{{ producto.nombre }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{ producto.descripcion }}</p>
+        <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Mensaje si no hay productos -->
+  <div *ngIf="productos.length === 0" class="no-products">
+    <p>No hay productos disponibles en este momento.</p>
+  </div>
+</ion-content>
