@@ -41,15 +41,7 @@ export class HeaderComponent {
     this.navCtrl.navigateForward('/tienda-online');
   }
 
-  goToEnviosLocales() {
-    this.navCtrl.navigateForward('/envios-locales');
-  }
-
-  goToEnviosNacionales() {
-    this.navCtrl.navigateForward('/envios-nacionales');
-  }
-
-  goToEnviosInternacionales() {
-    this.navCtrl.navigateForward('/envios-internacionales');
+  goToEnvios() {
+    this.navCtrl.navigateForward('/envios');
   }
 }

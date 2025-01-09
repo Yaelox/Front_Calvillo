@@ -49,16 +49,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tienda-online/tienda-online.module').then( m => m.TiendaOnlinePageModule)
   },
   {
-    path: 'envios-locales',
-    loadChildren: () => import('./pages/envios-locales/envios-locales.module').then( m => m.EnviosLocalesPageModule)
-  },
-  {
-    path: 'envios-nacionales',
-    loadChildren: () => import('./pages/envios-nacionales/envios-nacionales.module').then( m => m.EnviosNacionalesPageModule)
-  },
-  {
-    path: 'envios-internacionales',
-    loadChildren: () => import('./pages/envios-internacionales/envios-internacionales.module').then( m => m.EnviosInternacionalesPageModule)
+    path: 'envios',
+    loadChildren: () => import('./pages/envios/envios.module').then( m => m.EnviosPageModule)
   },
 ];
 

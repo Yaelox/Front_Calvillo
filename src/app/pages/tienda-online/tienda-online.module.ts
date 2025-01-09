@@ -5,8 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { TiendaOnlinePageRoutingModule } from './tienda-online-routing.module';
+import { ProductListComponent } from 'src/app/components/product-list/product-list.component';
 
-import { TiendaOnlinePage } from './tienda-online.page';
 
 @NgModule({
   imports: [

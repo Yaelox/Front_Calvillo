@@ -1,0 +1,33 @@
+
+      .info-card {
+        width: 48%; /* Ajusta el tamaño de las tarjetas a un máximo de 2 por fila */
+        background-color: #fff;
+        border-radius: 20px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+        ion-card-header {
+          background: #ffccd5;
+          border-top-left-radius: 20px;
+          border-top-right-radius: 20px;
+          text-align: center;
+        }
+  
+        ion-card-title {
+          font-size: 1.5rem;
+          color: #d6336c;
+          font-weight: bold;
+        }
+  
+        ion-card-content {
+          font-size: 1rem;
+          color: #555;
+          line-height: 1.4;
+          padding: 1rem 1.5rem;
+        }
+  
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+    }
