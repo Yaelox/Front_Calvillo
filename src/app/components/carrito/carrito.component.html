@@ -1,28 +1,31 @@
-<div class="cart">
-  <h2>Tu Carrito</h2>
-  <div class="cart-items" *ngIf="cartItems.length > 0">
-    <div class="cart-item" *ngFor="let item of cartItems">
-      <div class="item-details">
-        <img [src]="item.imagen" alt="{{ item.nombre }}" />
-        <div>
-          <h3>{{ item.nombre }}</h3>
-          <p><strong>Precio:</strong> ${{ item.precio }}</p>
-          <p><strong>Cantidad:</strong> {{ item.cantidad }}</p>
-        </div>
-      </div>
-      <ion-button color="danger" fill="outline" (click)="removeFromCart(item.id)">
-        Eliminar
-      </ion-button>
-    </div>
-    <div class="cart-summary">
+
+<ion-content>
+  <div *ngIf="cartItems.length; else emptyCart">
+    <ion-list>
+      <ion-item *ngFor="let item of cartItems">
+        <ion-thumbnail slot="start">
+          <img [src]="item.imagen" alt="{{ item.nombre }}" />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ item.nombre }}</h2>
+          <p>Precio: ${{ item.precio }}</p>
+          <p>Cantidad: {{ item.cantidad }}</p>
+        </ion-label>
+        <ion-button fill="clear" color="danger" (click)="removeItem(item.id)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+
+    <div class="total-container">
       <h3>Total: ${{ totalPrice }}</h3>
-      <ion-button expand="block" color="primary" (click)="clearCart()">
-        Vaciar Carrito
-      </ion-button>
+      <ion-button expand="block" color="success" (click)="checkout()">Finalizar Compra</ion-button>
     </div>
   </div>
-  <div *ngIf="cartItems.length === 0" class="empty-cart">
-    <ion-icon name="cart-outline"></ion-icon>
-    <p>Tu carrito está vacío.</p>
-  </div>
-</div>
+
+  <ng-template #emptyCart>
+    <div class="empty-cart">
+      <h2>Tu carrito está vacío</h2>
+    </div>
+  </ng-template>
+</ion-content>

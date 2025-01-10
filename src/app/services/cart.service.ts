@@ -16,33 +16,29 @@ export class CartService {
   private cartItemsSubject = new BehaviorSubject<CartItem[]>([]);
   cartItems$ = this.cartItemsSubject.asObservable();
 
-  get cartItems(): CartItem[] {
-    return this.cartItemsSubject.getValue();
-  }
+  private items: CartItem[] = [];
 
   get totalPrice(): number {
-    return this.cartItems.reduce((total, item) => total + item.precio * item.cantidad, 0);
+    return this.items.reduce((total, item) => total + item.precio * item.cantidad, 0);
   }
 
-  addToCart(product: CartItem) {
-    const items = this.cartItems;
-    const existingItem = items.find((item) => item.id === product.id);
-
+  addToCart(item: CartItem) {
+    const existingItem = this.items.find((i) => i.id === item.id);
     if (existingItem) {
-      existingItem.cantidad += product.cantidad;
+      existingItem.cantidad += item.cantidad;
     } else {
-      items.push(product);
+      this.items.push(item);
     }
-
-    this.cartItemsSubject.next([...items]);
+    this.cartItemsSubject.next(this.items);
   }
 
-  removeFromCart(productId: number) {
-    const items = this.cartItems.filter((item) => item.id !== productId);
-    this.cartItemsSubject.next(items);
+  removeFromCart(itemId: number) {
+    this.items = this.items.filter((item) => item.id !== itemId);
+    this.cartItemsSubject.next(this.items);
   }
 
   clearCart() {
-    this.cartItemsSubject.next([]);
+    this.items = [];
+    this.cartItemsSubject.next(this.items);
   }
 }

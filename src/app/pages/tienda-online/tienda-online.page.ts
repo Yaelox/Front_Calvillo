@@ -4,6 +4,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-tienda-online',
@@ -17,8 +18,12 @@ export class TiendaOnlinePage implements OnInit {
   isLoading: boolean = true;
   errorMessage: string | null = null;
 
-  constructor(private productService: ProductService, private router: Router) {}
-
+  constructor(private productService: ProductService, private router: Router, private cartService: CartService) {}
+  
+  addToCart(product: any) {
+    this.cartService.addToCart({ ...product, cantidad: 1 });
+  }
+  
   goToDetails(productId: number) {
     this.router.navigate(['/product-details', productId]);
   }

@@ -16,18 +16,18 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit() {
-    // Suscribirse a los cambios en los ítems del carrito
     this.cartService.cartItems$.subscribe((items) => {
       this.cartItems = items;
       this.totalPrice = this.cartService.totalPrice;
     });
   }
 
-  removeFromCart(itemId: number) {
+  removeItem(itemId: number) {
     this.cartService.removeFromCart(itemId);
   }
 
-  clearCart() {
+  checkout() {
+    alert('¡Compra realizada con éxito!');
     this.cartService.clearCart();
   }
 }

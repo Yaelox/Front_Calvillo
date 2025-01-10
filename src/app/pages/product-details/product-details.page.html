@@ -30,13 +30,6 @@
             <p class="price"><strong>Precio:</strong> ${{ producto.precio }}</p>
             <p class="description">{{ producto.descripcion }}</p>
 
-            <!-- Disponibilidad -->
-            <div class="availability">
-              <strong>Disponibilidad:</strong>
-              <ion-badge color="success" *ngIf="producto.disponible">¡Disponible!</ion-badge>
-              <ion-badge color="danger" *ngIf="!producto.disponible">No disponible</ion-badge>
-            </div>
-
             <!-- Selector de cantidad y botón de comprar -->
             <div class="purchase-section">
               <div class="quantity-selector">
