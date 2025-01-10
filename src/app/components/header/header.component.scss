@@ -107,3 +107,42 @@ ion-button {
     width: 30px;
   }
 }
+
+/* Estilos para el botón del carrito */
+.cart-button {
+  position: relative; /* Necesario para posicionar la insignia */
+  color: #4a90e2; /* Color del icono del carrito */
+  font-size: 1.2rem;
+
+  ion-icon {
+    font-size: 1.5rem; /* Tamaño del icono */
+  }
+
+  &:hover {
+    color: #3578e5; /* Cambia el color al pasar el mouse */
+  }
+}
+
+/* Estilos para la insignia del carrito */
+.cart-badge {
+  position: absolute;
+  top: -5px; /* Ajustar la posición en la parte superior del botón */
+  right: -10px; /* Ajustar la posición hacia la derecha del botón */
+  background-color: #ff3b30; /* Color rojo para resaltar */
+  color: white; /* Texto blanco */
+  font-size: 0.75rem; /* Tamaño pequeño */
+  font-weight: bold; /* Texto en negrita */
+  padding: 2px 6px; /* Espaciado interno */
+  border-radius: 10px; /* Redondeo para formar una burbuja */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+  text-align: center;
+  line-height: 1; /* Ajusta la alineación del texto */
+}
+
+/* Estilos responsivos para dispositivos pequeños */
+@media (max-width: 480px) {
+  .cart-badge {
+    font-size: 0.6rem; /* Reducir el tamaño en pantallas pequeñas */
+    padding: 1px 4px;
+  }
+}

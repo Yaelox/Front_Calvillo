@@ -5,24 +5,42 @@ import { HeaderComponent } from 'src/app/components/header/header.component';
 import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
+import { ToastController } from '@ionic/angular';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-tienda-online',
   templateUrl: './tienda-online.page.html',
   styleUrls: ['./tienda-online.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports:[HeaderComponent,CommonModule],
+  imports:[HeaderComponent,CommonModule,NgIf],
 })
 export class TiendaOnlinePage implements OnInit {
   productos: any[] = []; // Array para almacenar los productos
   isLoading: boolean = true;
   errorMessage: string | null = null;
 
-  constructor(private productService: ProductService, private router: Router, private cartService: CartService) {}
-  
+  constructor(
+     private productService: ProductService,
+     private router: Router, 
+     private cartService: CartService,
+     private toastController: ToastController
+    ) {}
+    
+    async presentToast(message: string) {
+      const toast = await this.toastController.create({
+        message,
+        duration: 2000,
+        position: 'bottom',
+        color: 'success',
+      });
+      await toast.present();
+    }
+
   addToCart(product: any) {
-    this.cartService.addToCart({ ...product, cantidad: 1 });
-  }
+  this.cartService.addToCart(product);
+  this.presentToast('Producto agregado al carrito.');
+}
   
   goToDetails(productId: number) {
     this.router.navigate(['/product-details', productId]);
@@ -32,14 +50,16 @@ export class TiendaOnlinePage implements OnInit {
     this.loadProductos(); // Cargar los productos al inicializar la página
   }
 
-  // Método para obtener los productos desde el servicio
   loadProductos() {
+    this.isLoading = true; // Mostrar indicador de carga
     this.productService.getProducts().subscribe(
       (data) => {
-        console.log('Productos obtenidos:', data);
-        this.productos = data; // Asignar los productos obtenidos al array
+        this.productos = data;
+        this.isLoading = false; // Ocultar indicador de carga
       },
       (error) => {
+        this.errorMessage = 'Error al cargar los productos. Inténtalo más tarde.';
+        this.isLoading = false; // Ocultar indicador de carga incluso si hay error
         console.error('Error al obtener los productos:', error);
       }
     );

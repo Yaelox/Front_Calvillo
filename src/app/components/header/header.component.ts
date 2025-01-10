@@ -1,18 +1,24 @@
-import { Component } from '@angular/core';
+import { Component,OnInit} from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  standalone: true
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
+  cartCount: number = 0;
 
-  constructor(private navCtrl: NavController) { }
+  constructor(
+    private navCtrl: NavController,
+    private router: Router
+  ) { }
 
+  ngOnInit() {
+  }
   goToHome() {
     this.navCtrl.navigateForward('/home');
   }
