@@ -1,28 +1,28 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject,Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  private cartItems: any[] = []; // Array para los productos del carrito
-  private cartCountSubject = new BehaviorSubject<number>(0); // Observable para el contador
+  private cartItemsSubject = new BehaviorSubject<any[]>([]); // Usando un Subject para emitir cambios
+  cartItems$ = this.cartItemsSubject.asObservable();
 
   constructor() {}
 
-  // Agregar un producto al carrito
-  addToCart(product: any) {
-    this.cartItems.push(product);
-    this.cartCountSubject.next(this.cartItems.length); // Actualiza el contador
+  // Obtener los items del carrito como un Observable
+  getCartItems(): Observable<any[]> {
+    return this.cartItems$;
   }
 
-  // Obtener el contador de productos en el carrito
+  // Agregar un item al carrito
+  addToCart(item: any) {
+    const currentItems = this.cartItemsSubject.value;
+    this.cartItemsSubject.next([...currentItems, item]);
+  }
+
+  // Obtener el contador de productos en el carrito como un Observable
   getCartCount() {
-    return this.cartCountSubject.asObservable(); // Devuelve un observable
-  }
-
-  // Obtener los productos en el carrito
-  getCartItems() {
-    return this.cartItems;
+    return new BehaviorSubject<number>(this.cartItemsSubject.value.length).asObservable();
   }
 }

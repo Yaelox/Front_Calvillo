@@ -35,6 +35,13 @@
         <ion-button fill="clear" (click)="goToEnvios()" class="header-button">
           <ion-icon name="boat" slot="start"></ion-icon> Envíos
         </ion-button>
+
+        <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+          <ion-fab-button (click)="goToCart()">
+            <ion-icon name="cart"></ion-icon>
+            <ion-badge *ngIf="cartCount > 0" color="danger">{{ cartCount }}</ion-badge>
+          </ion-fab-button>
+        </ion-fab>
       </ion-buttons>
     </div>
   </ion-toolbar>
