@@ -123,9 +123,31 @@ ion-button {
   }
 }
 
-ion-fab-button {
-  position: fixed;
-  bottom: 20px; /* Distancia desde el fondo */
-  right: 20px;  /* Distancia desde la derecha */
-  z-index: 999; /* Asegúrate de que esté por encima de otros elementos */
+.cart-badge {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background-color: #ff3b30;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  line-height: 1;
+  z-index: 1; /* Asegura que el badge esté por encima de otros elementos */
+}
+
+@media (max-width: 480px) {
+  .cart-badge {
+    font-size: 0.6rem;
+    padding: 1px 4px;
+    top: -3px; /* Ajustar la posición para pantallas más pequeñas */
+    right: -8px; 
+  }
+}
+ion-button:focus {
+  outline: 2px solid #ff3b30; /* Resaltar con un borde cuando esté enfocado */
+  outline-offset: 4px; /* Para separar un poco el borde del elemento */
 }

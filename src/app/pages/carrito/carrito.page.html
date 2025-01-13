@@ -3,32 +3,30 @@
 </ion-header>
 
 <ion-content>
-  <!-- Carrito de compras -->
-  <div *ngIf="cartItems.length === 0" class="empty-cart">
+  <ion-list *ngIf="groupedItems.length > 0">
+    <ion-item *ngFor="let item of groupedItems">
+      <ion-thumbnail slot="start">
+        <img [src]="item.imagen" alt="{{ item.nombre }}">
+      </ion-thumbnail>
+      <ion-list *ngIf="groupedItems.length > 0">
+        <ion-item *ngFor="let item of groupedItems">
+          {{ item.nombre }} - ${{ item.precio }}
+        </ion-item>
+      </ion-list>
+      <ion-buttons slot="end">
+        <ion-button color="primary" (click)="increaseQuantity(item)">+</ion-button>
+        <ion-button color="danger" (click)="decreaseQuantity(item)">-</ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <div *ngIf="groupedItems.length === 0" class="empty-cart">
     <p>No tienes productos en el carrito.</p>
+    <ion-button expand="block" (click)="goToTienda()">Ir a la tienda</ion-button>
   </div>
 
-  <div *ngIf="cartItems.length > 0">
-    <ion-button fill="clear" (click)="goToTienda()" class="back-button">
-      <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
-      Volver a la tienda
-    </ion-button>
-
-    <ion-list>
-      <ion-item *ngFor="let item of cartItems">
-        <ion-label>
-          <h2>{{ item.nombre }}</h2>
-          <p>Precio: ${{ item.precio }}</p>
-        </ion-label>
-      </ion-item>
-    </ion-list>
-
-    <!-- Total -->
-    <div class="total">
-      <p><strong>Total:</strong> ${{ total }}</p>
-    </div>
-
-    <!-- Botón de checkout -->
-    <ion-button expand="full" (click)="goToCheckout()">Ir a pagar</ion-button>
+  <div class="cart-summary" *ngIf="groupedItems.length > 0">
+    <h2>Total: ${{ total }}</h2>
+    <ion-button expand="block" color="success" (click)="goToCheckout()">Ir al Checkout</ion-button>
   </div>
 </ion-content>

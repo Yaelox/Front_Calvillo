@@ -13,6 +13,7 @@ import { NgIf } from '@angular/common';
 })
 export class HeaderComponent implements OnInit {
   cartCount: number = 0;
+  isDisabled = false;
 
   constructor(
     private navCtrl: NavController,

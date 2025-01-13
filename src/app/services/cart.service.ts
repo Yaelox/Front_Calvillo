@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject,Observable } from 'rxjs';
+import { CartItem } from '../pages/carrito/carrito.page';
 
 @Injectable({
   providedIn: 'root',
@@ -7,6 +8,7 @@ import { BehaviorSubject,Observable } from 'rxjs';
 export class CartService {
   private cartItemsSubject = new BehaviorSubject<any[]>([]); // Usando un Subject para emitir cambios
   cartItems$ = this.cartItemsSubject.asObservable();
+  private cart: CartItem[] = JSON.parse(localStorage.getItem('cart') ?? '[]');
 
   constructor() {}
 
@@ -15,14 +17,33 @@ export class CartService {
     return this.cartItems$;
   }
 
-  // Agregar un item al carrito
-  addToCart(item: any) {
-    const currentItems = this.cartItemsSubject.value;
-    this.cartItemsSubject.next([...currentItems, item]);
+  addToCart(product: CartItem) {
+    const existingProduct = this.cart.find(item => item.id === product.id);
+    
+    if (existingProduct) {
+      existingProduct.quantity++;
+    } else {
+      this.cart.push({ ...product, quantity: 1 });
+    }
+  
+    // Actualizar el Subject y emitir los cambios
+    this.cartItemsSubject.next(this.cart);
+    
+    // Actualizar el contador de productos en el carrito
+    const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+    this.cartItemsSubject.next(this.cart);  // Emitir los cambios del carrito
+    
+    console.log(this.cart); // Para depuración
   }
+
+  getCart() {
+    return this.cart;  // Retornar los productos en el carrito
+  }
+
 
   // Obtener el contador de productos en el carrito como un Observable
   getCartCount() {
-    return new BehaviorSubject<number>(this.cartItemsSubject.value.length).asObservable();
-  }
+  const totalItems = this.cart.reduce((sum, item) => sum + item.quantity, 0);
+  return new BehaviorSubject<number>(totalItems).asObservable();
+}
 }
