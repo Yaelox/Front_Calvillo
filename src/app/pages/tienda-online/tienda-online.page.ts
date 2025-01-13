@@ -13,53 +13,49 @@ import { NgIf } from '@angular/common';
   templateUrl: './tienda-online.page.html',
   styleUrls: ['./tienda-online.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports:[HeaderComponent,CommonModule,NgIf],
+  imports:[HeaderComponent, CommonModule, NgIf],
 })
 export class TiendaOnlinePage implements OnInit {
-  productos: any[] = []; // Array para almacenar los productos
+  productos: any[] = [];  // Array para almacenar los productos
   isLoading: boolean = true;
   errorMessage: string | null = null;
 
   constructor(
-     private productService: ProductService,
-     private router: Router, 
-     private cartService: CartService,
-     private toastController: ToastController
-    ) {}
-    
-    async presentToast(message: string) {
-      const toast = await this.toastController.create({
-        message,
-        duration: 2000,
-        position: 'bottom',
-        color: 'success',
-      });
-      await toast.present();
-    }
+    private productService: ProductService,
+    private router: Router, 
+    private cartService: CartService,
+    private toastController: ToastController
+  ) {}
+
+  async presentToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      position: 'bottom',
+      color: 'success',
+    });
+    await toast.present();
+  }
 
   addToCart(product: any) {
-  this.cartService.addToCart(product);
-  this.presentToast('Producto agregado al carrito.');
-}
-  
-  goToDetails(productId: number) {
-    this.router.navigate(['/product-details', productId]);
+    this.cartService.addToCart(product);  // Llamada al servicio para agregar el producto al carrito
+    this.presentToast('Producto agregado al carrito');
   }
 
   ngOnInit() {
-    this.loadProductos(); // Cargar los productos al inicializar la página
+    this.loadProductos();  // Cargar los productos al inicializar la página
   }
 
   loadProductos() {
-    this.isLoading = true; // Mostrar indicador de carga
+    this.isLoading = true;
     this.productService.getProducts().subscribe(
       (data) => {
         this.productos = data;
-        this.isLoading = false; // Ocultar indicador de carga
+        this.isLoading = false;
       },
       (error) => {
         this.errorMessage = 'Error al cargar los productos. Inténtalo más tarde.';
-        this.isLoading = false; // Ocultar indicador de carga incluso si hay error
+        this.isLoading = false;
         console.error('Error al obtener los productos:', error);
       }
     );

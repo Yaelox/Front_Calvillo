@@ -9,7 +9,6 @@ import { NgIf } from '@angular/common';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports:[NgIf]
 })
 export class HeaderComponent implements OnInit {
   cartCount: number = 0;
@@ -23,10 +22,6 @@ export class HeaderComponent implements OnInit {
 
  
   ngOnInit() {
-    // Suscribirse al contador del carrito
-    this.cartService.getCartCount().subscribe((count) => {
-      this.cartCount = count;
-    });
   }
 
   // Navegar al carrito
@@ -64,5 +59,9 @@ export class HeaderComponent implements OnInit {
 
   goToEnvios() {
     this.navCtrl.navigateForward('/envios');
+  }
+
+  goToCarrito() {
+    this.router.navigate(['/carrito']); // Navega a la página del carrito
   }
 }

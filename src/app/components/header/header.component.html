@@ -35,13 +35,12 @@
         <ion-button fill="clear" (click)="goToEnvios()" class="header-button">
           <ion-icon name="boat" slot="start"></ion-icon> Envíos
         </ion-button>
-
-        <!-- Botón para ir al carrito -->
-        <ion-button fill="clear" (click)="goToCart()" class="header-button" [attr.inert]="isDisabled ? true : null">
-          <ion-icon name="cart" slot="icon-only"></ion-icon>
-          <ion-badge *ngIf="cartCount > 0" color="danger">{{ cartCount }}</ion-badge>
-        </ion-button>
       </ion-buttons>
+      
+      <!-- Botón de carrito de supermercado siempre visible -->
+      <ion-button fill="clear" (click)="goToCarrito()" class="cart-button">
+        <ion-icon name="cart-outline" slot="icon-only"></ion-icon>
+      </ion-button>
     </div>
   </ion-toolbar>
 </ion-header>

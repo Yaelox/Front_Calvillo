@@ -108,46 +108,24 @@ ion-button {
   }
 }
 
-/* Estilos para el botón del carrito */
+
+// Estilos para el botón de carrito
 .cart-button {
-  position: relative; /* Necesario para posicionar la insignia */
-  color: #4a90e2; /* Color del icono del carrito */
-  font-size: 1.2rem;
-
+  position: absolute; // Asegura que esté fijo en la parte superior derecha
+  right: 20px; // Ajusta la distancia desde el borde derecho
+  top: 50%; // Centra el ícono verticalmente
+  transform: translateY(-50%); // Alinea el ícono verticalmente
+  z-index: 10; // Asegura que esté encima de otros elementos
+  
   ion-icon {
-    font-size: 1.5rem; /* Tamaño del icono */
+    font-size: 30px; // Ajusta el tamaño del ícono
+    color: var(#000); // Color del ícono (puedes cambiar el color según el diseño)
   }
 
+  // Puedes agregar efectos hover para mejorar la interacción
   &:hover {
-    color: #3578e5; /* Cambia el color al pasar el mouse */
+    ion-icon {
+      color: var(#000); // Cambia el color al pasar el ratón por encima
+    }
   }
-}
-
-.cart-badge {
-  position: absolute;
-  top: -5px;
-  right: -10px;
-  background-color: #ff3b30;
-  color: white;
-  font-size: 0.75rem;
-  font-weight: bold;
-  padding: 2px 6px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  line-height: 1;
-  z-index: 1; /* Asegura que el badge esté por encima de otros elementos */
-}
-
-@media (max-width: 480px) {
-  .cart-badge {
-    font-size: 0.6rem;
-    padding: 1px 4px;
-    top: -3px; /* Ajustar la posición para pantallas más pequeñas */
-    right: -8px; 
-  }
-}
-ion-button:focus {
-  outline: 2px solid #ff3b30; /* Resaltar con un borde cuando esté enfocado */
-  outline-offset: 4px; /* Para separar un poco el borde del elemento */
 }

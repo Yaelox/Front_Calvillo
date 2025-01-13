@@ -3,30 +3,45 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="groupedItems.length > 0">
-    <ion-item *ngFor="let item of groupedItems">
-      <ion-thumbnail slot="start">
-        <img [src]="item.imagen" alt="{{ item.nombre }}">
-      </ion-thumbnail>
-      <ion-list *ngIf="groupedItems.length > 0">
-        <ion-item *ngFor="let item of groupedItems">
-          {{ item.nombre }} - ${{ item.precio }}
-        </ion-item>
-      </ion-list>
-      <ion-buttons slot="end">
-        <ion-button color="primary" (click)="increaseQuantity(item)">+</ion-button>
-        <ion-button color="danger" (click)="decreaseQuantity(item)">-</ion-button>
-      </ion-buttons>
-    </ion-item>
-  </ion-list>
+  <!-- Mostrar productos si hay elementos en el carrito -->
+  <div *ngIf="cartItems.length > 0; else emptyCart">
+    <ion-list>
+      <!-- Iterar sobre cartItems -->
+      <ion-item *ngFor="let item of cartItems">
+        <ion-thumbnail slot="start">
+          <img [src]="item.imagen" alt="{{ item.nombre }}" />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ item.nombre }}</h2>
+          <p>Precio: {{ item.precio | currency }}</p>
+          <p>Cantidad: {{ item.quantity }}</p>
+        </ion-label>
+        
+        <!-- Botones para aumentar o disminuir cantidad -->
+        <ion-button (click)="increaseQuantity(item)" color="primary">+</ion-button>
+        <ion-button (click)="decreaseQuantity(item)" color="secondary">-</ion-button>
+        <!-- Botón para eliminar el producto -->
+        <ion-button (click)="removeItem(item)" color="danger">Eliminar</ion-button>
+      </ion-item>
+    </ion-list>
 
-  <div *ngIf="groupedItems.length === 0" class="empty-cart">
-    <p>No tienes productos en el carrito.</p>
-    <ion-button expand="block" (click)="goToTienda()">Ir a la tienda</ion-button>
+    <!-- Mostrar el total -->
+    <div class="total">
+      <h3>Total: {{ total | currency }}</h3>
+    </div>
+
+    <!-- Botón para proceder al pago -->
+    <ion-button expand="full" (click)="goToCheckout()">Proceder al pago</ion-button>
+
+    <!-- Botón para volver a la tienda -->
+    <ion-button expand="full" color="light" (click)="goToTienda()">Volver a la tienda</ion-button>
   </div>
 
-  <div class="cart-summary" *ngIf="groupedItems.length > 0">
-    <h2>Total: ${{ total }}</h2>
-    <ion-button expand="block" color="success" (click)="goToCheckout()">Ir al Checkout</ion-button>
-  </div>
+  <!-- Plantilla para carrito vacío -->
+  <ng-template #emptyCart>
+    <div class="empty-cart">
+      <h2>Tu carrito está vacío</h2>
+      <ion-button expand="full" (click)="goToTienda()">Volver a la tienda</ion-button>
+    </div>
+  </ng-template>
 </ion-content>
