@@ -11,7 +11,10 @@
 
   <!-- Lista de productos -->
   <div class="product-grid">
-    <ion-card *ngFor="let producto of productos">
+    <ion-card 
+      *ngFor="let producto of productos" 
+      (click)="goToDetails(producto.id_producto)" 
+      class="clickable-card">
       <img [src]="producto.imagen" alt="Imagen del producto" />
       <ion-card-header>
         <ion-card-title>{{ producto.nombre }}</ion-card-title>
@@ -19,9 +22,13 @@
       <ion-card-content>
         <p><strong>Precio:</strong> ${{ producto.precio }}</p>
       </ion-card-content>
-
-      <!-- Botón para agregar al carrito -->
-      <ion-button expand="full" color="primary" (click)="addToCart(producto)">
+    
+      <!-- Botón para agregar al carrito con un margen adicional -->
+      <ion-button 
+        expand="full" 
+        color="primary" 
+        (click)="addToCart(producto); $event.stopPropagation();" 
+        class="add-to-cart-button">
         Agregar al carrito
       </ion-button>
     </ion-card>

@@ -30,7 +30,8 @@ export class ProductDetailsPage implements OnInit {
 
   ngOnInit() {
     const productId = this.route.snapshot.paramMap.get('id');
-
+    console.log('ID del producto:', productId);  // Verifica que el ID esté llegando correctamente
+    
     if (productId) {
       this.productService.getProductById(productId).subscribe({
         next: (data) => {
