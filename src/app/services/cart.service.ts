@@ -17,6 +17,10 @@ export class CartService {
     return this.cartSubject.asObservable();
   }
 
+  getCartItems() {
+    return this.cart; // Retorna directamente el carrito actual
+  }
+  
   addToCart(product: any) {
     // Convertir el precio a número si es una cadena
     const precio = parseFloat(product.precio);
@@ -35,10 +39,10 @@ export class CartService {
   
     if (existingItem) {
       // Si el producto ya está, aumentamos la cantidad
-      existingItem.quantity += 1;
+      existingItem.cantidad += 1;
     } else {
       // Si el producto no está, lo agregamos al carrito con cantidad 1
-      this.cart.push({ ...product, quantity: 1, uniqueId, precio });
+      this.cart.push({ ...product, cantidad: 1, uniqueId, precio });
     }
     // Actualizamos el carrito
     this.updateCart();
@@ -51,12 +55,12 @@ removeFromCart(uniqueId: string) {
   this.updateCart();
 }
 
-updateQuantity(productId: number | string, quantity: number) {
+updateQuantity(productId: number | string, cantidad: number) {
   const id = productId.toString(); // Convertimos a string si es necesario
   const item = this.cart.find(cartItem => cartItem.uniqueId === id); // Usamos uniqueId como string
-  if (item && quantity > 0) {
-    item.quantity = quantity;
-  } else if (item && quantity === 0) {
+  if (item && cantidad > 0) {
+    item.cantidad = cantidad;
+  } else if (item && cantidad === 0) {
     this.removeFromCart(id); // Eliminamos usando el uniqueId como string
   }
   this.updateCart();
@@ -75,6 +79,6 @@ updateQuantity(productId: number | string, quantity: number) {
 
   // Obtener el total del carrito
   getTotal() {
-    return this.cart.reduce((sum, item) => sum + item.precio * item.quantity, 0);
+    return this.cart.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
   }
 }

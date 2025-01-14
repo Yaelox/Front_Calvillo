@@ -1,0 +1,135 @@
+/* Checkout Container */
+.checkout-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .checkout-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .checkout-header ion-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .checkout-header .subtitle {
+    font-size: 16px;
+    color: #777;
+  }
+  
+  .product-summary {
+    margin-bottom: 30px;
+  }
+  
+  .product-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .product-image img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 15px;
+  }
+  
+  .product-details h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .product-details .quantity {
+    font-size: 14px;
+    color: #888;
+  }
+  
+  .product-details .price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #f39c12;
+  }
+  
+  .total {
+    text-align: right;
+    margin-top: 10px;
+  }
+  
+  .total p {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  .total h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f39c12;
+  }
+  
+  .shipping-info ion-item,
+  .payment-method ion-item {
+    margin-bottom: 15px;
+  }
+  
+  .shipping-info ion-label,
+  .payment-method ion-label {
+    color: #333;
+  }
+  
+  .checkout-actions ion-button {
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+  
+  /* Botones */
+  .checkout-actions ion-button {
+    font-size: 16px;
+    padding: 10px;
+  }
+  
+  .checkout-actions ion-button.color-medium {
+    background-color: #e5e5e5;
+    color: #333;
+  }
+  
+  .checkout-actions ion-button.color-primary {
+    background-color: #f39c12;
+    color: white;
+  }
+  
+  .checkout-actions ion-icon {
+    margin-right: 10px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .checkout-header ion-title {
+      font-size: 20px;
+    }
+  
+    .product-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .product-image img {
+      width: 60px;
+      height: 60px;
+    }
+  
+    .product-details h3 {
+      font-size: 16px;
+    }
+  
+    .total h2 {
+      font-size: 20px;
+    }
+  }
+  

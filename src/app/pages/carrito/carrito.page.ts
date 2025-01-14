@@ -8,7 +8,7 @@ export interface CartItem {
   id: number;
   nombre: string;
   precio: number;
-  quantity: number;
+  cantidad: number;
   imagen: string; // URL de la imagen
   uniqueId: string;
 }
@@ -41,9 +41,9 @@ export class CarritoPage implements OnInit {
     return this.cartService.getTotal();
   }
 
-  updateQuantity(item: CartItem, quantity: number) {
+  updateQuantity(item: CartItem, cantidad: number) {
     if (item && item.uniqueId) {
-      this.cartService.updateQuantity(item.uniqueId, quantity);
+      this.cartService.updateQuantity(item.uniqueId, cantidad);
     } else {
       console.error('No se pudo actualizar cantidad. Producto inválido:', item);
     }
@@ -62,7 +62,7 @@ removeItem(product: CartItem) {
 
 increaseQuantity(item: CartItem) {
   if (item && item.uniqueId) {
-    this.cartService.updateQuantity(item.uniqueId, item.quantity + 1);
+    this.cartService.updateQuantity(item.uniqueId, item.cantidad + 1);
   } else {
     console.error('Producto no válido para incrementar cantidad:', item);
   }
@@ -70,8 +70,8 @@ increaseQuantity(item: CartItem) {
 
 decreaseQuantity(item: CartItem) {
   if (item && item.uniqueId) {
-    if (item.quantity > 1) {
-      this.cartService.updateQuantity(item.uniqueId, item.quantity - 1);
+    if (item.cantidad > 1) {
+      this.cartService.updateQuantity(item.uniqueId, item.cantidad - 1);
     } else {
       this.cartService.removeFromCart(item.uniqueId);
     }
@@ -88,6 +88,10 @@ decreaseQuantity(item: CartItem) {
 
   // Ir al checkout
   goToCheckout() {
-    this.router.navigate(['/checkout']);
-  }
+    const cartItems = this.cartService.getCartItems(); // Obtén todos los elementos del carrito
+
+    this.router.navigate(['/checkout'], {
+      queryParams: { productos: JSON.stringify(cartItems), fromCart: true },
+    });
+  }  
 }

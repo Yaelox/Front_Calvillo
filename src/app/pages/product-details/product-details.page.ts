@@ -4,6 +4,8 @@ import { HeaderComponent } from 'src/app/components/header/header.component';
 import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { CheckoutService } from 'src/app/services/checkout.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-details',
@@ -21,12 +23,15 @@ export class ProductDetailsPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private checkoutService: CheckoutService, 
+    private router: Router
   ) {}
 
   goBack() {
-    this.navCtrl.back(); // Navegar a la página anterior
+    this.router.navigate(['/tienda-online'])// Navegar a la página anterior
   }
+
 
   ngOnInit() {
     const productId = this.route.snapshot.paramMap.get('id');
@@ -57,10 +62,23 @@ export class ProductDetailsPage implements OnInit {
     }
   }
 
+  // Comprar producto
   comprar() {
-    console.log(
-      `Producto comprado: ${this.producto.nombre}, Cantidad: ${this.quantity}`
-    );
-    // Aquí puedes agregar lógica adicional para la compra
+    if (!this.producto) {
+      console.error('No se ha cargado el producto correctamente.');
+      return;
+    }
+  
+    const productoConCantidad = {
+      ...this.producto,
+      cantidad: this.quantity, // Usar la cantidad seleccionada
+    };
+  
+    this.router.navigate(['/checkout'], {
+      queryParams: {
+        producto: JSON.stringify(productoConCantidad),
+        fromCart: false,
+      },
+    });
   }
 }
