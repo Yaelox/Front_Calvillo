@@ -1,6 +1,13 @@
 <app-header></app-header>
 
 <ion-content>
+<!-- Encabezado de la página -->
+<div class="page-banner">
+  <h1>Eventos</h1>
+  <p>!!Conoce nuestros proximos eventos y registra tu evento!!</p>
+</div>
+
+
   <div class="store-info">
     <!-- Imagen de la tienda -->
     <img class="store-image" src="assets/images/Logo.png" alt="Imagen de la tienda" />
@@ -12,28 +19,29 @@
     <!-- Sección de información (tarjetas en fila) -->
     <div class="info-sections">
       <!-- Tarjeta de información 1 -->
-      <div class="info-card">
+      <ion-card class="info-card">
         <ion-card-header>
           <ion-card-title>Evento Especial</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <p>Participa en nuestro evento exclusivo con promociones especiales solo para este mes. ¡No faltes!</p>
         </ion-card-content>
-      </div>
+      </ion-card>
 
       <!-- Tarjeta de información 2 -->
-      <div class="info-card">
+      <ion-card class="info-card">
         <ion-card-header>
           <ion-card-title>Promoción de la Semana</ion-card-title>
         </ion-card-header>
         <ion-card-content>
           <p>Aprovecha las ofertas de la semana en todos nuestros productos. ¡Ven y ahorra!</p>
         </ion-card-content>
-      </div>
+      </ion-card>
     </div>
 
     <!-- Card centrada para el formulario -->
     <div class="form-card">
+      <h2>Registrar Nuevo Evento</h2>
       <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
         <ion-item>
           <ion-label position="stacked">Nombre del Evento</ion-label>
@@ -58,12 +66,11 @@
         <ion-item>
           <ion-label position="stacked">Capacidad</ion-label>
           <ion-input type="number" formControlName="eventCapacity" required></ion-input>
-        </ion-item><br><br>
+        </ion-item>
 
-        <ion-button expand="full" type="submit" [disabled]="!eventForm.valid" class="submit-button">
+        <ion-button expand="block" type="submit" [disabled]="!eventForm.valid" class="submit-button">
           Registrar Evento
         </ion-button>
-        
       </form>
     </div>
   </div>

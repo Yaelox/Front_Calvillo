@@ -1,8 +1,6 @@
-<ion-header>
-  <app-header></app-header>
-</ion-header>
-
 <ion-content>
+  <app-header></app-header>
+
   <!-- Mostrar productos si hay elementos en el carrito -->
   <div *ngIf="cartItems.length > 0; else emptyCart">
     <ion-list>

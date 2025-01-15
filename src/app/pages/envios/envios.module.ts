@@ -6,7 +6,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { EnviosPageRoutingModule } from './envios-routing.module';
 
-import { EnviosPage } from './envios.page';
 
 @NgModule({
   imports: [
