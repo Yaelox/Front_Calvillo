@@ -20,7 +20,7 @@ export class CheckoutPage implements OnInit {
     city: '',
     postalCode: '',
   }; // Información de envío
-  selectedPaymentMethod: string = ''; // Método de pago seleccionado
+  metodoPagoSeleccionado: string = ''; 
 
   constructor(
     private route: ActivatedRoute,
@@ -72,25 +72,12 @@ export class CheckoutPage implements OnInit {
    * Maneja el evento de finalizar la compra.
    */
   finalizarCompra() {
-    console.log('Finalizando compra...');
-    if (!this.validateShippingInfo()) {
-      alert('Por favor, completa toda la información de envío.');
-      return;
+    if (!this.metodoPagoSeleccionado) {
+      console.log('Por favor selecciona un método de pago.');
+    } else {
+      console.log('Método de pago seleccionado:', this.metodoPagoSeleccionado);
     }
-
-    if (!this.selectedPaymentMethod) {
-      alert('Por favor, selecciona un método de pago.');
-      return;
-    }
-
-    // Procesar la compra (aquí puedes añadir lógica para enviar los datos a un backend)
-    console.log('Compra finalizada:', {
-      productos: this.productos,
-      envio: this.shippingInfo,
-      metodoPago: this.selectedPaymentMethod,
-      total: this.total,
-    });
-
+  
     // Limpiar el carrito si la compra proviene del carrito
     const fromCart = this.route.snapshot.queryParamMap.get('fromCart') === 'true';
     console.log('Compra proveniente del carrito:', fromCart);
