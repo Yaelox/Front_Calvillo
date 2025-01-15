@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { HeaderComponent } from "../../components/header/header.component";
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-envios',
   templateUrl: './envios.page.html',
   styleUrls: ['./envios.page.scss'],
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class EnviosPage {

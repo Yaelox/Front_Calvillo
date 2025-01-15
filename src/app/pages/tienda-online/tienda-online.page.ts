@@ -7,13 +7,14 @@ import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { ToastController } from '@ionic/angular';
 import { NgIf } from '@angular/common';
+import { FooterComponent } from 'src/app/components/footer/footer.component';
 
 @Component({
   selector: 'app-tienda-online',
   templateUrl: './tienda-online.page.html',
   styleUrls: ['./tienda-online.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports:[HeaderComponent, CommonModule, NgIf],
+  imports:[HeaderComponent, CommonModule, NgIf,FooterComponent],
 })
 export class TiendaOnlinePage implements OnInit {
   productos: any[] = [];  // Array para almacenar los productos

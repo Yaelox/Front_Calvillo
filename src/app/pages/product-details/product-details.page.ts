@@ -6,12 +6,13 @@ import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { CheckoutService } from 'src/app/services/checkout.service';
 import { Router } from '@angular/router';
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.page.html',
   styleUrls: ['./product-details.page.scss'],
-  imports:[CommonModule,HeaderComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ProductDetailsPage implements OnInit {

@@ -4,12 +4,13 @@ import { CartService } from '../../services/cart.service';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { Router } from '@angular/router';
+import { FooterComponent } from 'src/app/components/footer/footer.component';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.page.html',
   styleUrls: ['./checkout.page.scss'],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
-  imports:[CommonModule,HeaderComponent]
+  imports:[CommonModule,HeaderComponent,FooterComponent]
 })
 export class CheckoutPage implements OnInit {
   productos: any[] = []; // Lista de productos a comprar

@@ -1,0 +1,39 @@
+/* Banner de la página */
+.page-banner {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, #f9a8d4, #fddde6); /* Degradado rosa brillante */
+    color: white;
+    border-radius: 0 0 20px 20px; /* Bordes redondeados inferiores */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    animation: fadeInDown 1s ease-in-out;
+  
+    h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.2rem;
+      margin: 0;
+      font-weight: bold;
+    }
+  
+    p {
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.2rem;
+      margin: 0.5rem 0 0;
+    }
+  }
+  
+  /* Animación de entrada */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  app-footer {
+    margin-top: 4rem;
+  }

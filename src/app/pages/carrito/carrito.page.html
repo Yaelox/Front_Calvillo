@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content [fullscreen]="true">
   <app-header></app-header>
 
   <!-- Mostrar productos si hay elementos en el carrito -->
@@ -42,4 +42,7 @@
       <ion-button expand="full" (click)="goToTienda()">Volver a la tienda</ion-button>
     </div>
   </ng-template>
+
+
+  <app-footer></app-footer>
 </ion-content>

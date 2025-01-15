@@ -5,13 +5,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EventService } from '../../services/event.service';
 import { Router } from '@angular/router';
 import { HeaderComponent } from 'src/app/components/header/header.component';
+import { FooterComponent } from "../../components/footer/footer.component";
 
 @Component({
   selector: 'app-eventos',
   templateUrl: './eventos.page.html',
   styleUrls: ['./eventos.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports:[ReactiveFormsModule,HeaderComponent]
+  imports: [ReactiveFormsModule, HeaderComponent, FooterComponent]
 })
 export class EventosPage implements OnInit {
   eventForm: FormGroup;

@@ -3,6 +3,7 @@ import { CartService } from 'src/app/services/cart.service';
 import { Router } from '@angular/router';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from 'src/app/components/footer/footer.component';
 
 export interface CartItem {
   id: number;
@@ -18,7 +19,7 @@ export interface CartItem {
   selector: 'app-carrito',
   templateUrl: './carrito.page.html',
   styleUrls: ['./carrito.page.scss'],
-  imports: [HeaderComponent, CommonModule],
+  imports: [HeaderComponent, CommonModule,FooterComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CarritoPage implements OnInit {
