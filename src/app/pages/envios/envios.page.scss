@@ -1,120 +1,17 @@
-/* Estilos específicos para la página de Envíos */
-:host {
-  display: block;
-  padding: 10px;
-}
-
-/* Estilo de los ion-card en cada sección */
-ion-card {
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-  transition: transform 0.2s ease-in-out;
-}
-
-ion-card:hover {
-  transform: translateY(-5px);
-}
-
-/* Encabezado de las tarjetas */
-ion-card-header {
-  background-color: #fce4ec; /* Rosa claro */
-  color: #d81b60; /* Rosa oscuro */
-  font-weight: bold;
-  padding: 15px;
-  text-align: center;
-}
-
-/* Estilo para el título de cada sección */
-ion-card-title {
-  font-size: 20px;
-  font-weight: 600;
-}
-
-/* Estilo para las listas dentro de ion-card */
-ion-list {
-  margin: 0;
-}
-
-ion-item {
-  padding: 15px;
-  border-bottom: 1px solid #ddd;
-}
-
-ion-item:last-child {
-  border-bottom: none;
-}
-
-ion-item ion-label {
-  font-size: 14px;
-}
-
-/* Botones dentro de la sección de administración */
-ion-button {
-  margin-top: 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
-}
-
-ion-button:hover {
-  transform: scale(1.05);
-}
-
-/* Colores personalizados para los botones */
-ion-button[color="secondary"] {
-  --background: #ff80ab;
-}
-
-ion-button[color="success"] {
-  --background: #66bb6a;
-}
-
-ion-button[color="warning"] {
-  --background: #ffb74d;
-}
-  ion-card {
-    margin-bottom: 15px;
-  }
-
-  ion-card-header {
-    font-size: 16px;
-  }
-
-  ion-item {
-    padding: 12px;
-  }
-/* Estilo del ion-row en pantallas medianas y grandes */
-ion-row {
-  display: flex;
-  justify-content: space-between;
-}
-
-/* Estilo de las columnas para las tarjetas */
-ion-col {
-  padding: 10px;
-}
-
-ion-col[size="12"] {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-
-/* Estilos para el banner de la página */
+/* Banner de la página */
 .page-banner {
   text-align: center;
   padding: 2rem 1rem;
-  background: #ffccd5; /* Fondo degradado cálido */
-  color: black;
-  border-radius: 0 0 16px 16px; /* Bordes redondeados inferiores */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #f9a8d4, #fddde6); /* Degradado rosa brillante */
+  color: white;
+  border-radius: 0 0 20px 20px; /* Bordes redondeados inferiores */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
   margin-bottom: 1.5rem;
   animation: fadeInDown 1s ease-in-out;
 
   h1 {
     font-family: 'Poppins', sans-serif;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     margin: 0;
     font-weight: bold;
   }
@@ -137,6 +34,7 @@ ion-col[size="12"] {
     transform: translateY(0);
   }
 }
+
 app-footer {
   margin-top: 4rem;
 }

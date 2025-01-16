@@ -6,5 +6,25 @@
       <p>Descubre quiénes somos y qué nos inspira...</p>
     </div>
 
+    <div class="preventa-container">
+      <h1 class="title">Productos en Preventa</h1>
+  
+      <!-- Lista de Productos -->
+      <ion-list>
+        <ion-item *ngFor="let producto of productos">
+          <ion-thumbnail slot="start">
+            <img [src]="producto.imagen" alt="Imagen del producto">
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{ producto.nombre }}</h2>
+            <p>{{ producto.descripcion }}</p>
+            <h3>${{ producto.precio }}</h3>
+          </ion-label>
+          <ion-button slot="end" color="success" (click)="reservarProducto(producto)">
+            Reservar
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </div>
     <app-footer></app-footer>
     </ion-content>

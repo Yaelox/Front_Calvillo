@@ -1,59 +1,91 @@
 .footer-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 1.5rem;
-    background-color: #f9f9f9;
-    border-radius: 20px 20px 0 0;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-  
-    .footer-section {
-      width: 30%;
-      text-align: center;
-  
-      h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap; /* Permite que los elementos pasen a una nueva línea si es necesario */
+
+  .footer-section {
+    width: 30%;
+    text-align: center;
+    margin-bottom: 1rem; /* Espaciado entre las secciones en pantallas pequeñas */
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: #ff3c83;
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      ion-icon {
+        margin-right: 0.5rem;
+        font-size: 1.2rem;
         color: #ff3c83;
       }
-  
-      p {
-        font-size: 1rem;
-        margin: 0.5rem 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-  
-        ion-icon {
-          margin-right: 0.5rem;
-          font-size: 1.2rem;
-          color: #ff3c83;
-        }
-      }
-  
-      .social-icons {
-        margin-top: 1rem;
-  
-        ion-icon {
-          font-size: 2rem;
-          margin: 0 0.5rem;
-          color: #ff3c83;
-          cursor: pointer;
-  
-          &:hover {
-            color: #ff7b54;
-          }
-        }
-      }
     }
-  
-    .footer-section.hours {
-      p {
-        font-size: 1rem;
-        strong {
-          font-weight: bold;
-          color: #ff3c83;
+
+    .social-icons {
+      margin-top: 1rem;
+
+      ion-icon {
+        font-size: 2rem;
+        margin: 0 0.5rem;
+        color: #ff3c83;
+        cursor: pointer;
+
+        &:hover {
+          color: #ff7b54;
         }
       }
     }
   }
-  
+
+  .footer-section.hours {
+    p {
+      font-size: 1rem;
+      strong {
+        font-weight: bold;
+        color: #ff3c83;
+      }
+    }
+  }
+
+  /* Media Query para pantallas más pequeñas */
+  @media (max-width: 768px) {
+    flex-direction: column; /* Cambia el diseño a una columna */
+    align-items: center; /* Centra las secciones */
+
+    .footer-section {
+      width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+
+    .footer-section h2 {
+      font-size: 1.25rem;
+    }
+
+    .footer-section p {
+      font-size: 0.9rem;
+
+      ion-icon {
+        font-size: 1rem;
+      }
+    }
+
+    .social-icons ion-icon {
+      font-size: 1.5rem;
+    }
+  }
+}
