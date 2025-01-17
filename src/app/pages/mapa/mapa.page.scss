@@ -1,3 +1,28 @@
+// General styles for the map page
+:host {
+    display: block;
+    height: 100%;
+  }
+  
+  .map-container {
+    position: relative;
+    height: calc(100vh - 60px); // Adjust based on your header/footer height
+    width: 100%;
+  }
+  
+  leaflet {
+    display: block;
+    height: 80%;
+    width: 80%;
+  }
+    
+  ion-icon {
+    color: white; // White icon color
+    font-size: 24px; // Icon size
+  }
+
+  
+
 /* Banner de la página */
 .page-banner {
   text-align: center;
@@ -33,13 +58,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-ion-fab {
-  z-index: 10; /* Asegura que el botón esté por encima de otros elementos */
-}
-
-ion-fab-button {
-  --background: #ff6f91; /* Cambia el color de fondo a un rosa leve */
-  --color: white; /* Cambia el color del ícono */
 }

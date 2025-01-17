@@ -4,16 +4,16 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PreventaPageRoutingModule } from './preventa-routing.module';
-import { AgregarTiendaComponent } from 'src/app/components/agrega-tienda/agrega-tienda.component';
+import { MapaPageRoutingModule } from './mapa-routing.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PreventaPageRoutingModule,
+    MapaPageRoutingModule
   ],
-  declarations: [],
+  declarations: []
 })
-export class PreventaPageModule {}
+export class MapaPageModule {}
