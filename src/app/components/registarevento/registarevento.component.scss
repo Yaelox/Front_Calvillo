@@ -1,0 +1,83 @@
+.register-event {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);  /* Efecto de cristal */
+  padding: 30px;
+  margin: 40px auto;
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+
+  h2 {
+    font-size: 2rem;
+    color: #ec407a;  /* Rosa suave */
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #757575;
+    margin-bottom: 30px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  ion-item {
+    background: rgba(255, 255, 255, 0.4);  /* Fondo transparente con ligero color blanco */
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  ion-label {
+    font-size: 1rem;
+    color: #d81b60;  /* Rosa suave */
+    font-weight: bold;
+  }
+
+  ion-input, ion-textarea {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+    
+    &:focus {
+      background-color: #f1f1f1;
+    }
+  }
+
+  ion-button.submit-button {
+    background-color: #ec407a;  /* Rosa fuerte */
+    color: white;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    padding: 15px;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    
+    &:hover {
+      background-color: #d81b60;  /* Rosa más oscuro */
+      transform: scale(1.05);
+    }
+
+    &:disabled {
+      background-color: #f1f1f1;
+      color: #bdbdbd;
+      cursor: not-allowed;
+    }
+  }
+}

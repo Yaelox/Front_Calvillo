@@ -1,0 +1,28 @@
+<div class="carousel-container">
+  <!-- Evento actual -->
+  <div class="carousel-item">
+    <div class="event-image-container">
+      <img [src]="events[currentIndex].imageUrl" alt="Event image" class="event-image" />
+    </div>
+    <div class="event-info">
+      <h2 class="event-title">{{ events[currentIndex].title }}</h2>
+      <p class="event-description">{{ events[currentIndex].description }}</p>
+      <p class="event-date">{{ events[currentIndex].date | date: 'longDate' }}</p>
+    </div>
+  </div>
+
+  <!-- Indicadores de posición -->
+  <div class="carousel-indicators">
+    <!-- Indicador de posición basado en el índice actual -->
+    <span *ngIf="currentIndex === 0" class="indicator-dot active" (click)="setCurrentEvent(0)"></span>
+    <span *ngIf="currentIndex === 1" class="indicator-dot active" (click)="setCurrentEvent(1)"></span>
+    <span *ngIf="currentIndex === 2" class="indicator-dot active" (click)="setCurrentEvent(2)"></span>
+    <!-- Puedes añadir más indicadores según el número de eventos -->
+  </div>
+
+  <!-- Botones de navegación -->
+  <div class="carousel-buttons">
+    <button (click)="prevEvent()" class="carousel-button" [disabled]="currentIndex === 0" aria-label="Previous Event">‹</button>
+    <button (click)="nextEvent()" class="carousel-button" [disabled]="currentIndex === events.length - 1" aria-label="Next Event">›</button>
+  </div>
+</div>

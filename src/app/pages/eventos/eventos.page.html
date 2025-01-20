@@ -1,80 +1,23 @@
 <ion-content [fullscreen]="true">
-<app-header></app-header>
+  <app-header></app-header>
 
-<!-- Encabezado de la página -->
-<div class="page-banner">
-  <h1>Eventos</h1>
-  <p>!!Conoce nuestros proximos eventos y registra tu evento!!</p>
-</div>
-
-
-  <div class="store-info">
-    <!-- Imagen de la tienda -->
-    <img class="store-image" src="assets/images/Logo.png" alt="Imagen de la tienda" />
-
-    <!-- Título y descripción -->
-    <h1>Bienvenidos a nuestra tienda</h1>
-    <p>Descubre los mejores eventos que tenemos para ti, además de nuestras increíbles promociones y actividades. ¡No te los pierdas!</p>
-
-    <!-- Sección de información (tarjetas en fila) -->
-    <div class="info-sections">
-      <!-- Tarjeta de información 1 -->
-      <ion-card class="info-card">
-        <ion-card-header>
-          <ion-card-title>Evento Especial</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <p>Participa en nuestro evento exclusivo con promociones especiales solo para este mes. ¡No faltes!</p>
-        </ion-card-content>
-      </ion-card>
-
-      <!-- Tarjeta de información 2 -->
-      <ion-card class="info-card">
-        <ion-card-header>
-          <ion-card-title>Promoción de la Semana</ion-card-title>
-        </ion-card-header>
-        <ion-card-content>
-          <p>Aprovecha las ofertas de la semana en todos nuestros productos. ¡Ven y ahorra!</p>
-        </ion-card-content>
-      </ion-card>
-    </div>
-
-    <!-- Card centrada para el formulario -->
-    <div class="form-card">
-      <h2>Registrar Nuevo Evento</h2>
-      <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
-        <ion-item>
-          <ion-label position="stacked">Nombre del Evento</ion-label>
-          <ion-input type="text" formControlName="eventName" required></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Descripción del Evento</ion-label>
-          <ion-textarea formControlName="eventDescription" required></ion-textarea>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Fecha del Evento</ion-label>
-          <ion-input type="date" formControlName="eventDate" required></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Ubicación</ion-label>
-          <ion-input type="text" formControlName="eventLocation" required></ion-input>
-        </ion-item>
-
-        <ion-item>
-          <ion-label position="stacked">Capacidad</ion-label>
-          <ion-input type="number" formControlName="eventCapacity" required></ion-input>
-        </ion-item>
-
-        <ion-button expand="block" type="submit" [disabled]="!eventForm.valid" class="submit-button">
-          Registrar Evento
-        </ion-button>
-      </form>
-    </div>
+  <!-- Encabezado de la página -->
+  <div class="page-banner">
+    <h1>Eventos</h1>
+    <p>¡Conoce nuestros próximos eventos y regístralos!</p>
   </div>
 
+  <!-- Carrusel de Eventos -->
+  <section>
+    <app-event-carousel></app-event-carousel>
+  </section>
+
+  <!-- Formulario de Registro de Evento -->
+  <section class="event-registration-section">
+    <h2>Quieres tener tu propio evento</h2>
+    <p>Llena el siguiente formulario para agendar un nuevo con nosotros.</p>
+    <app-registarevento (formSubmitted)="handleEventForm($event)"></app-registarevento>
+  </section>
 
   <app-footer></app-footer>
 </ion-content>

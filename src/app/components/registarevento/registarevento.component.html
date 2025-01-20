@@ -1,0 +1,34 @@
+<section class="register-event">
+  <h2>Registrar Nuevo Evento</h2>
+  <p>Llena el siguiente formulario para agregar un nuevo evento a nuestra lista.</p>
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="stacked">Nombre del Evento</ion-label>
+      <ion-input type="text" formControlName="eventName" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Descripción del Evento</ion-label>
+      <ion-textarea formControlName="eventDescription" required></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Fecha del Evento</ion-label>
+      <ion-input type="date" formControlName="eventDate" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Ubicación</ion-label>
+      <ion-input type="text" formControlName="eventLocation" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Capacidad</ion-label>
+      <ion-input type="number" formControlName="eventCapacity" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="!eventForm.valid" class="submit-button">
+      Registrar Evento
+    </ion-button>
+  </form>
+</section>

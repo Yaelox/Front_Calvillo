@@ -1,109 +1,9 @@
-.store-info {
-  text-align: center;
-  padding: 1.5rem;
-  background-color: #fdf5f8;
-
-  .store-image {
-    width: 120px;
-    height: auto;
-    margin: 0 auto 1rem;
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  h1 {
-    font-size: 2rem;
-    color: #d63384;
-    margin-bottom: 0.5rem;
-  }
-
-  p {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-  }
+/* General Styling */
+ion-content {
+  --background: linear-gradient(135deg, #f9f6f8, #ffe6f2);
+  color: #333;
 }
-
-.info-sections {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-
-  .info-card {
-    flex: 1 1 calc(50% - 1rem);
-    max-width: 350px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    ion-card-title {
-      text-align: center;
-      color: #d63384;
-      font-size: 1.4rem;
-      font-weight: bold;
-    }
-
-    ion-card-content {
-      font-size: 1rem;
-      color: #333;
-      text-align: justify;
-      padding: 0.8rem;
-    }
-  }
-}
-
-.form-card {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  max-width: 600px;
-  margin: 0 auto;
-
-  h2 {
-    text-align: center;
-    font-size: 1.8rem;
-    color: #d63384;
-    margin-bottom: 1.5rem;
-  }
-
-  ion-item {
-    margin-bottom: 1rem;
-
-    ion-label {
-      font-size: 1rem;
-      color: #555;
-    }
-
-    ion-input,
-    ion-textarea {
-      font-size: 1rem;
-    }
-  }
-
-  .submit-button {
-    background-color: #d63384;
-    color: #fff;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-radius: 5px;
-    margin-top: 1rem;
-
-    &:hover {
-      background-color: #c22c77;
-    }
-  }
-}
-/* Banner de la página */
+  /* Banner de la página */
 .page-banner {
   text-align: center;
   padding: 2rem 1rem;
@@ -128,17 +28,24 @@
   }
 }
 
-/* Animación de entrada */
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
+.event-registration-section {
+  background: rgba(255, 255, 255, 0.9);  /* Fondo blanco semitransparente */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  margin-bottom: 40px;
+
+  h2 {
+    font-size: 2rem;
+    color: #d81b60;  /* Rosa suave */
+    font-weight: bold;
+    margin-bottom: 20px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  p {
+    font-size: 1.1rem;
+    color: #757575;
+    margin-bottom: 30px;
   }
-}
-app-footer {
-  margin-top: 4rem;
 }
