@@ -34,12 +34,8 @@
     transform: translateY(0);
   }
 }
-
-ion-fab {
-  z-index: 10; /* Asegura que el botón esté por encima de otros elementos */
-}
-
-ion-fab-button {
-  --background: #ff6f91; /* Cambia el color de fondo a un rosa leve */
-  --color: white; /* Cambia el color del ícono */
+.button-container {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
 }

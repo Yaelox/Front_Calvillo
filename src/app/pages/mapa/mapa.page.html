@@ -1,13 +1,25 @@
 <ion-content [fullscreen]="true">
+  <!-- Header Section -->
   <app-header></app-header>
 
-  <!-- Banner de la Página -->
+  <!-- Page Banner Section -->
   <div class="page-banner">
-    <h1>Mapa</h1>
-    <p>En esta sección visualiza las tiendas disponibles</p>
+    <h1>Mapa de Tiendas</h1>
+    <p>Visualiza las tiendas disponibles en tu área</p>
   </div>
 
-  <app-preventa-map [markers]="markersArray"></app-preventa-map>
+  <!-- Map Section with Custom Styling -->
+  <div class="map-container">
+    <app-preventa-map [markers]="markersArray"></app-preventa-map>
+  </div>
 
+  <!-- Floating Action Button for Adding Store -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="addStoree()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Footer Section -->
   <app-footer></app-footer>
 </ion-content>

@@ -1,28 +1,3 @@
-// General styles for the map page
-:host {
-    display: block;
-    height: 100%;
-  }
-  
-  .map-container {
-    position: relative;
-    height: calc(100vh - 60px); // Adjust based on your header/footer height
-    width: 100%;
-  }
-  
-  leaflet {
-    display: block;
-    height: 80%;
-    width: 80%;
-  }
-    
-  ion-icon {
-    color: white; // White icon color
-    font-size: 24px; // Icon size
-  }
-
-  
-
 /* Banner de la página */
 .page-banner {
   text-align: center;
@@ -58,4 +33,33 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Map Container Styling */
+.map-container {
+  position: relative;
+  height: 500px; /* Adjust height as necessary */
+  margin-bottom: 30px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: none;
+}
+
+/* Floating Action Button Styling */
+ion-fab-button {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+ion-fab-button:hover {
+  transform: scale(1.1);
+}
+
+/* Footer Styling */
+app-footer {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 14px;
+  color: #888;
 }

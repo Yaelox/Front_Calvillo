@@ -22,7 +22,7 @@ export class MapaPage implements OnInit {
     ngOnInit() {}
   
     // Función para abrir el modal de agregar tienda
-    async openAddStoreModal() {
+    async addStoree() {
       const modal = await this.modalController.create({
         component: AgregarTiendaComponent,
       });

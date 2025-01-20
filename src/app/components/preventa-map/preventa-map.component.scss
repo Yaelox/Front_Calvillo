@@ -1,41 +1,21 @@
-/* Estilo para el contenedor del mapa */
-#map {
-  height: 500px; /* Altura del mapa, ajusta según tus necesidades */
-  width: 100%; /* Ancho completo */
-  border-radius: 10px; /* Bordes redondeados para un diseño más atractivo */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para darle un efecto flotante */
-  margin: 20px auto; /* Separación del mapa con otros elementos */
-  background-color: #e0e0e0; /* Color de fondo para casos donde los tiles no se carguen */
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
-/* Estilo para los marcadores personalizados */
-.custom-marker div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid white; /* Borde blanco alrededor del marcador */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+map {
+  width: 100%;     /* Asegura que el mapa ocupe todo el ancho disponible */
+  height: 500px;    /* Asegura que el mapa ocupe toda la altura disponible */
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para darle un toque más atractivo */
+  position: absolute;  /* Asegura que el mapa ocupe todo el espacio disponible */
+  top: 0;
+  left: 0;
 }
 
-/* Opcional: Estilo del popup de Leaflet */
-.leaflet-popup-content {
-  font-family: 'Arial', sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.leaflet-popup-tip {
-  background: #fff;
-}
-
-/* Opcional: Personaliza el zoom control */
-.leaflet-control-zoom {
-  border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.leaflet-control-zoom a {
-  color: #333;
-  font-weight: bold;
+@media (max-width: 768px) {
+  map {
+    border-radius: 10px;  /* Ajuste de bordes en pantallas pequeñas */
+  }
 }

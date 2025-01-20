@@ -7,13 +7,14 @@
     <p>Descubre quiénes somos y qué nos inspira...</p>
   </div>
 
-    <!-- Floating Button -->
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button color="danger" (click)="navigateToMapa()">
-        <ion-icon name="map"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-    
+  <!-- Botón integrado -->
+  <div class="button-container">
+    <ion-button expand="block" color="danger" (click)="navigateToMapa()">
+      <ion-icon name="map" slot="start"></ion-icon>
+      Ver Mapa
+    </ion-button>
+  </div>
+  
   <!-- Footer -->
   <app-footer></app-footer>
 </ion-content>

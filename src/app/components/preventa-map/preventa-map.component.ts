@@ -5,76 +5,109 @@ interface Marker {
   lat: number;
   lon: number;
   name: string;
-  state:string;
-  frecuencia: 'Recurrente'| 'Poco recurrente'|'Nada recurrentes';
+  state: string;
+  frecuencia: 'Recurrente' | 'Poco recurrente' | 'Nada recurrentes';
 }
 
 @Component({
   selector: 'app-preventa-map',
   templateUrl: './preventa-map.component.html',
-  styleUrls: ['./preventa-map.component.scss']
+  styleUrls: ['./preventa-map.component.scss'],
 })
 export class PreventaMapComponent implements OnInit, OnChanges {
-
   @Input() markers: Marker[] = [];
+  private map: L.Map | null = null;
 
-  map: any;
+  // Centro predeterminado: Calvillo, Aguascalientes
+  private defaultLocation = { lat: 21.845076, lon: -102.719628, zoom: 20 };
 
   ngOnInit() {
-    // Inicializar el mapa
-    this.map = L.map('map').setView([19.4326, -99.1332], 12);  // Ubicación predeterminada en Ciudad de México
-
-    // Añadir capa de tiles (mapa de OpenStreetMap)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(this.map);
+    this.initializeMap();
+    this.addDefaultMarker();
   }
+  
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['markers'] && changes['markers'].currentValue) {  // Acceder a markers usando ['markers']
+    if (changes['markers']?.currentValue) {
       this.updateMarkers();
     }
   }
+  
 
-  updateMarkers() {
-    // Eliminar los marcadores anteriores
-    this.map.eachLayer((layer: L.Layer) => {  // Aquí definimos el tipo correcto de `layer`
-      if (layer instanceof L.Marker) {
-        this.map.removeLayer(layer);
+  private initializeMap(): void {
+    // Evitar inicializar el mapa más de una vez
+    if (this.map) return;
+
+    // Crear el mapa centrado en Calvillo, Aguascalientes
+    this.map = L.map('map').setView(
+      [this.defaultLocation.lat, this.defaultLocation.lon],
+      this.defaultLocation.zoom
+    );
+
+    // Agregar capa de tiles ligera de OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 19,
+    }).addTo(this.map);
+  }
+
+  private addDefaultMarker(): void {
+    if (!this.map) return;
+  
+    // Crear el marcador dorado para la tienda matriz
+    const defaultMarker = L.marker(
+      [this.defaultLocation.lat, this.defaultLocation.lon],
+      {
+        icon: L.divIcon({
+          className: 'custom-icon gold', // Clase CSS personalizada para dorado
+          html: '<div style="background-color: gold; width: 20px; height: 20px; border-radius: 50%; border: 2px solid #DAA520;"></div>',
+          iconSize: [20, 20], // Tamaño del icono
+          popupAnchor: [0, -10],
+        }),
+      }
+    )
+      .addTo(this.map)
+      .bindPopup(
+        `<b>Tienda Crush de Calvillo</b><br>Matriz principal ubicada aquí.`
+      );
+  
+    defaultMarker.openPopup(); // Abre el popup por defecto
+  }
+
+  private updateMarkers(): void {
+    if (!this.map) return;
+
+    // Eliminar marcadores existentes (excepto el marcador predeterminado)
+    this.map.eachLayer((layer: L.Layer) => {
+      if (layer instanceof L.Marker && !layer.getPopup()?.getContent()) {
+        this.map?.removeLayer(layer);
       }
     });
 
-     // Añadir los nuevos marcadores
-     this.markers.forEach(marker => {
-      // Definir el color según la frecuencia
-      let markerColor: string;
+    // Agregar nuevos marcadores
+    this.markers.forEach((marker) => {
+      const markerIcon = this.getMarkerDivIcon(marker.frecuencia);
 
-      switch (marker.frecuencia) {
-        case 'Recurrente':
-          markerColor = 'green';  // Marcador verde para frecuente
-          break;
-        case 'Poco recurrente':
-          markerColor = 'yellow';  // Marcador amarillo para poco frecuente
-          break;
-        case 'Nada recurrentes':
-          markerColor = 'red';  // Marcador rojo para nada frecuente
-          break;
-        default:
-          markerColor = 'blue';  // Por defecto azul
-          break;
-      }
+      L.marker([marker.lat, marker.lon], { icon: markerIcon })
+        .addTo(this.map!)
+        .bindPopup(
+          `<b>${marker.name}</b><br>Lat: ${marker.lat.toFixed(4)}, Lon: ${marker.lon.toFixed(4)}`
+        );
+    });
+  }
 
-      // Crear un marcador con el color determinado
-      const markerIcon = L.icon({
-        iconUrl: `https://www.iconfinder.com/icons/1976607/marker_${markerColor}.png`,  // Puedes usar imágenes de iconos con el color
-        iconSize: [32, 32],
-        iconAnchor: [16, 32],
-        popupAnchor: [0, -32]
-      });
+  private getMarkerDivIcon(frecuencia: Marker['frecuencia']): L.DivIcon {
+    const colorMap = {
+      Recurrente: 'green',
+      'Poco recurrente': 'yellow',
+      'Nada recurrentes': 'red',
+    };
+    const color = colorMap[frecuencia] || 'blue';
 
-      // Añadir el marcador al mapa con su icono
-      L.marker([marker.lat, marker.lon], { icon: markerIcon }).addTo(this.map)
-        .bindPopup(`<b>${marker.name}</b><br>Lat: ${marker.lat}, Lon: ${marker.lon}`);
+    return L.divIcon({
+      className: `custom-icon ${color}`, // Clase CSS para colores
+      iconSize: [16, 16], // Tamaño del icono
+      popupAnchor: [0, -8],
     });
   }
 }
