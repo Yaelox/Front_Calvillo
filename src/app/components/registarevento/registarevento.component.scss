@@ -4,7 +4,7 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(5px);  /* Efecto de cristal */
   padding: 30px;
-  margin: 40px auto;
+  margin: 60px auto;
   width: 100%;
   max-width: 800px;
   text-align: center;
@@ -13,14 +13,13 @@
     font-size: 2rem;
     color: #ec407a;  /* Rosa suave */
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     text-transform: capitalize;
   }
 
   p {
     font-size: 1.1rem;
-    color: #757575;
-    margin-bottom: 30px;
+    color: #000;
   }
 
   form {
@@ -42,16 +41,18 @@
   }
 
   ion-label {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: #d81b60;  /* Rosa suave */
     font-weight: bold;
+    margin-bottom: 10px;
   }
 
   ion-input, ion-textarea {
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 8px;
     font-size: 1rem;
-    color: #333;
+    margin-bottom: 2px;
+    color:#000;
     padding: 10px;
     transition: background-color 0.3s ease;
     

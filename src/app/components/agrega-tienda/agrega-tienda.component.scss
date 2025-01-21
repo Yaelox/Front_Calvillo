@@ -32,13 +32,15 @@
       margin: 12px 0; /* Mayor separación entre los elementos */
 
       ion-label {
-        color: black; /* Letras negras */
+        color: var(--ion-color-dark); /* Letras negras */
         font-weight: 600;
         font-size: 0.95rem;
         margin-bottom: 8px; /* Espacio entre la etiqueta y el campo */
       }
 
-      ion-input,
+      ion-input {
+        color:#000;
+      }
       ion-select {
         color: var(--ion-color-primary);
         --placeholder-color: var(--ion-color-medium);

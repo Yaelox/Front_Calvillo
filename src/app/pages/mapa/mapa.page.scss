@@ -48,8 +48,10 @@
 
 /* Floating Action Button Styling */
 ion-fab-button {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease;
+  color: white;
+  background-color: #f9a8d4;
 }
 
 ion-fab-button:hover {
