@@ -21,9 +21,9 @@ export class ContactoPage {
   constructor(private formBuilder: FormBuilder, private contactoService: ContactoService) {
     // Inicialización del formulario reactivo
     this.contactoForm = this.formBuilder.group({
-      nombre: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      descripcion: ['', [Validators.required, Validators.minLength(10)]],
+      nombre: ['', [Validators.required]],
+      email: ['', [Validators.required]],
+      descripcion: ['', [Validators.required]],
     });
   }
 

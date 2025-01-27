@@ -39,7 +39,7 @@
       }
 
       ion-input {
-        color:#000;
+        color: #000;
       }
       ion-select {
         color: var(--ion-color-primary);
@@ -91,5 +91,49 @@
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    ion-header {
+      ion-title {
+        font-size: 1.2rem; /* Ajustar tamaño de fuente en dispositivos más pequeños */
+      }
+    }
+
+    ion-content {
+      padding: 10px; /* Ajustar padding para pantallas pequeñas */
+      
+      ion-item {
+        margin: 8px 0; /* Reducir espacio entre los items en pantallas pequeñas */
+      }
+
+      ion-button {
+        font-size: 0.9rem; /* Ajustar tamaño de fuente de los botones */
+        padding: 12px 18px; /* Reducir el padding de los botones */
+      }
+
+      form {
+        padding: 15px; /* Ajustar padding del formulario */
+      }
+    }
+  }
+
+  /* Para pantallas muy pequeñas (móviles) */
+  @media (max-width: 480px) {
+    ion-header {
+      ion-title {
+        font-size: 1rem; /* Reducir aún más el tamaño de fuente */
+      }
+    }
+
+    ion-button {
+      font-size: 0.8rem; /* Reducir tamaño de fuente de los botones */
+      padding: 10px 15px; /* Reducir padding de los botones */
+    }
+
+    form {
+      padding: 10px; /* Ajustar padding del formulario */
+    }
   }
 }

@@ -34,8 +34,171 @@
     transform: translateY(0);
   }
 }
+
 .button-container {
   margin: 20px;
   display: flex;
   justify-content: center;
+}
+
+/* Map Container Styling */
+.map-container {
+  position: relative;
+  height: 500px; /* Adjust height as necessary */
+  margin-bottom: 30px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background: none;
+}
+
+/* Floating Action Button Styling */
+ion-fab-button {
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  margin: 0 0 10px 0;
+}
+
+ion-fab-button:hover {
+  transform: scale(1.1);
+}
+
+/* Contenedor para el botón de reset */
+.reset-map-button-container {
+  bottom: 80px; /* Ajusta la distancia desde el fondo */
+  left: 20px; /* Ajusta la distancia desde el borde izquierdo */
+  z-index: 10; /* Asegura que el botón esté por encima de otros elementos */
+  width: auto;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+
+  ion-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+}
+
+/* Estilo del mapa contenedor */
+.map-container {
+  height: 800px; /* Altura del contenedor */
+  width: 1800px; /* Ancho del contenedor */
+  margin: 1rem auto; /* Margen superior/inferior y centrado horizontal */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex; /* Flexbox para centrar el mapa dentro */
+  justify-content: center;
+  align-items: center;
+  z-index: 1; /* Establece un índice bajo para el mapa */
+  position: relative;
+}
+
+#map {
+  height: 100%; /* Llenar todo el contenedor */
+  width: 100%;
+}
+
+/* Centrar todo el contenedor en la pantalla */
+ion-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Responsive Design */
+
+/* Pantallas pequeñas (móviles) */
+@media (max-width: 480px) {
+  .page-banner {
+    padding: 1.5rem 1rem; /* Reducir el padding en móviles */
+  }
+
+  .page-banner h1 {
+    font-size: 1.5rem; /* Reducir el tamaño de la fuente del título */
+  }
+
+  .page-banner p {
+    font-size: 1rem; /* Reducir el tamaño de la fuente del párrafo */
+  }
+
+  .button-container {
+    margin: 10px;
+  }
+
+  .map-container {
+    height: 300px; /* Reducir la altura del mapa */
+    width: 100%; /* Hacer que el mapa ocupe el 100% del ancho */
+    margin-bottom: 15px;
+  }
+
+  .reset-map-button-container {
+    bottom: 10px; /* Ajustar la distancia del botón de reset */
+    left: 10px; /* Ajustar la posición del botón */
+  }
+
+  ion-fab-button {
+    margin: 0 0 5px 0; /* Ajustar margen para botones flotantes */
+  }
+}
+
+/* Pantallas medianas (tabletas) */
+@media (max-width: 768px) {
+  .page-banner {
+    padding: 1.8rem 1rem; /* Ajustar el padding en tabletas */
+  }
+
+  .page-banner h1 {
+    font-size: 1.8rem; /* Ajustar el tamaño de la fuente del título */
+  }
+
+  .page-banner p {
+    font-size: 1.1rem; /* Ajustar el tamaño de la fuente del párrafo */
+  }
+
+  .map-container {
+    height: 500px; /* Ajustar altura del mapa */
+    width: 100%; /* Hacer que el mapa ocupe el 100% del ancho */
+  }
+
+  .reset-map-button-container {
+    bottom: 15px; /* Ajustar la posición del botón */
+  }
+
+  ion-fab-button {
+    margin: 0 0 8px 0; /* Ajustar margen para botones flotantes */
+  }
+}
+
+/* Pantallas grandes (escritorios) */
+@media (min-width: 1024px) {
+  .page-banner {
+    padding: 2rem 1.5rem; /* Aumentar padding en pantallas grandes */
+  }
+
+  .page-banner h1 {
+    font-size: 2.5rem; /* Aumentar tamaño de fuente en pantallas grandes */
+  }
+
+  .page-banner p {
+    font-size: 1.3rem; /* Aumentar tamaño de fuente del párrafo */
+  }
+
+  .map-container {
+    height: 600px; /* Ajustar altura del mapa */
+    width: 100%; /* Mantener mapa a 100% del ancho */
+  }
+
+  .reset-map-button-container {
+    bottom: 20px; /* Ajustar la posición del botón de reset */
+  }
+
+  ion-fab-button {
+    margin: 0 0 12px 0; /* Ajustar el margen para botones flotantes */
+  }
 }

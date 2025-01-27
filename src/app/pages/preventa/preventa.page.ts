@@ -1,29 +1,149 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,AfterViewInit,OnInit} from '@angular/core';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HeaderComponent } from "../../components/header/header.component";
 import { FooterComponent } from "../../components/footer/footer.component";
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-
+import * as L from 'leaflet';
+import { AgregaTiendaComponent } from "../../components/agrega-tienda/agrega-tienda.component";
+import { ModalController } from '@ionic/angular';
+import { TiendaService, Tienda} from 'src/app/services/tienda.service';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-preventa',
   templateUrl: './preventa.page.html',
   styleUrls: ['./preventa.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [HeaderComponent, 
+  imports: [HeaderComponent,
     FooterComponent,
-     CommonModule,
-     ],
+    CommonModule],
 })
-export class PreventaPage {
+export class PreventaPage   implements OnInit {
+  tiendas: Tienda[] = [];
+  private map: L.Map | undefined;
 
+   // Coordenadas de Aguascalientes Centro
+   private aguascalientesCoords: [number, number] = [21.8818, -102.291];
+
+   // Coordenadas de Calvillo (Matriz)
+   private calvilloCoords: [number, number] = [21.845, -102.720];
 
   constructor(
-    private router: Router
+    private modalController : ModalController,
+    private tiendaService: TiendaService,
+    private userService: UserService
   ) {}
 
-  navigateToMapa() {
-    this.router.navigate(['/mapa']);
+  ngOnInit(): void {
+    this.cargarTiendas();
   }
 
+  ngAfterViewInit(): void {
+    this.initMap();
+  }
+
+  cargarTiendas(): void {
+    this.tiendaService.getTiendas().subscribe(
+      (tiendas) => {
+        this.tiendas = tiendas;
+        this.tiendas.forEach((tienda) => this.agregarMarcadorPorDireccion(tienda));
+      },
+      (error) => {
+        console.error('Error al cargar las tiendas:', error);
+      }
+    );
+  }
+
+  agregarMarcador(lat: number, lon: number, tienda: Tienda): void {
+    if (this.map) {
+      // Obtener el nombre del propietario de la tienda
+      this.userService.getUserById(tienda.id_usuario).subscribe(
+        (usuario) => {
+          const popupContent = `
+            <strong>${tienda.nombre_tienda}</strong><br>
+            Dirección: ${tienda.direccion || 'No disponible'}<br>
+            Teléfono: ${tienda.telefono || 'No disponible'}<br>
+            Email: ${tienda.email || 'No disponible'}<br>
+            Propietario: ${usuario.usuario || 'No disponible'}<br>
+          `;
+          
+          // Crear marcador con el nombre del propietario
+          L.marker([lat, lon])
+            .addTo(this.map!)
+            .bindPopup(popupContent)
+            .openPopup();
+        },
+        (error) => {
+          console.error('Error al obtener el nombre del propietario:', error);
+        }
+      );
+    }
+  }
+
+  agregarMarcadorPorDireccion(tienda: Tienda): void {
+    if (tienda.direccion) {
+      this.geocodificarDireccion(tienda.direccion).then((coords) => {
+        if (coords) {
+          this.agregarMarcador(coords.lat, coords.lon, tienda);
+        }
+      });
+    }
+  }
+
+  async geocodificarDireccion(direccion: string): Promise<{ lat: number; lon: number } | null> {
+    const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(direccion)}`;
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      if (data && data.length > 0) {
+        const { lat, lon } = data[0];
+        return { lat: parseFloat(lat), lon: parseFloat(lon) };
+      }
+      return null;
+    } catch (error) {
+      console.error('Error al geocodificar la dirección:', error);
+      return null;
+    }
+  } 
+  private initMap(): void {
+    // Inicializar el mapa
+    this.map = L.map('map', { zoomControl: true }).setView(this.aguascalientesCoords, 12);
+
+    // Cargar el mapa base
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+    }).addTo(this.map);
+
+    // Agregar el marcador dorado en Calvillo
+    L.marker(this.calvilloCoords)
+      .addTo(this.map)
+      .bindPopup('<b>Matriz</b><br>Mi Crush de Calvillo');
+
+    // Recalcular el tamaño del mapa después de cargar
+    setTimeout(() => {
+      this.map?.invalidateSize();
+    }, 100);
+  }
+
+   // Función para resetear el mapa a las coordenadas iniciales
+   resetMap(): void {
+    if (this.map) {
+      this.map.setView(this.aguascalientesCoords, 12); // Regresar a Aguascalientes Centro
+    }
+  }
+
+  async openAddStoreModal() {
+    const modal = await this.modalController.create({
+      component: AgregaTiendaComponent,
+    });
+  
+    await modal.present();
+  
+    // Escuchar el evento cuando el modal se cierra
+    const { data } = await modal.onDidDismiss();
+    
+    if (data && data.tiendaAgregada) {
+      // Si una tienda fue agregada, recargar toda la página
+      window.location.reload();
+    }
+  }
 }

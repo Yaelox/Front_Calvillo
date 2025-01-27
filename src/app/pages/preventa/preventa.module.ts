@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
 import { PreventaPageRoutingModule } from './preventa-routing.module';
-import { AgregarTiendaComponent } from 'src/app/components/agrega-tienda/agrega-tienda.component';
+import { AgregaTiendaComponent } from 'src/app/components/agrega-tienda/agrega-tienda.component';
 
 @NgModule({
   imports: [
@@ -13,6 +13,8 @@ import { AgregarTiendaComponent } from 'src/app/components/agrega-tienda/agrega-
     FormsModule,
     IonicModule,
     PreventaPageRoutingModule,
+    AgregaTiendaComponent,
+    ReactiveFormsModule
   ],
   declarations: [],
 })

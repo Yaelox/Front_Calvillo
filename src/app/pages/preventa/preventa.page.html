@@ -7,14 +7,25 @@
     <p>Descubre quiénes somos y qué nos inspira...</p>
   </div>
 
-  <!-- Botón integrado -->
-  <div class="button-container">
-    <ion-button expand="block" color="danger" (click)="navigateToMapa()">
-      <ion-icon name="map" slot="start"></ion-icon>
-      Ver Mapa
-    </ion-button>
+  <!-- Map Section -->
+  <div class="map-container">
+    <div id="map"></div> <!-- Contenedor del mapa -->
   </div>
-  
+
+  <!-- Floating Action Button para Agregar Tienda -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openAddStoreModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- Botón Normal para Resetear el Mapa -->
+  <div class="reset-map-button-container">
+    <ion-button color="danger"(click)="resetMap()">
+      <ion-icon name="refresh"></ion-icon> Resetear Mapa
+    </ion-button>
+  </div><br><br>
+
   <!-- Footer -->
   <app-footer></app-footer>
 </ion-content>

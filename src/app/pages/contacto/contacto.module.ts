@@ -11,6 +11,7 @@ import { ContactoPageRoutingModule } from './contacto-routing.module';
     FormsModule,
     IonicModule,
     ContactoPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [],
   

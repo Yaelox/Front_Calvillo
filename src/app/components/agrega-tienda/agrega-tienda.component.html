@@ -2,33 +2,52 @@
   <ion-toolbar>
     <ion-title>Agregar Tienda</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="closeModal()">Cerrar</ion-button>
+      <ion-button (click)="cerrarModal()">Cerrar</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <form>
+<ion-content class="ion-padding">
+  <form [formGroup]="tiendaForm" (ngSubmit)="onSubmit()">
     <ion-item>
       <ion-label position="floating">Nombre de la Tienda</ion-label>
-      <ion-input [(ngModel)]="name" placeholder="Nombre de la tienda"></ion-input>
+      <ion-input type="text" id="nombre_tienda" formControlName="nombre_tienda" required></ion-input>
     </ion-item>
+
     <ion-item>
-      <ion-label position="floating">Latitud</ion-label>
-      <ion-input [(ngModel)]="lat" type="number" placeholder="Latitud"></ion-input>
+      <ion-label position="floating">Dirección (Calle y numero, ciudad, codigo postal)</ion-label>
+      <ion-input type="text" id="direccion" formControlName="direccion" placeholder="Calle y numero, ciudad, codigo postal" required></ion-input>
     </ion-item>
+
     <ion-item>
-      <ion-label position="floating">Longitud</ion-label>
-      <ion-input [(ngModel)]="lon" type="number" placeholder="Longitud"></ion-input>
+      <ion-label position="floating">Teléfono</ion-label>
+      <ion-input type="tel" id="telefono" formControlName="telefono"></ion-input>
     </ion-item>
+
     <ion-item>
-      <ion-label position="floating">Estado</ion-label>
-      <ion-select [(ngModel)]="state">
-        <ion-select-option value="Recurrente">Recurrente</ion-select-option>
-        <ion-select-option value="Poco recurrente">Poco recurrente</ion-select-option>
-        <ion-select-option value="Nada recurrente">Nada recurrente</ion-select-option>
+      <ion-label position="floating">Correo Electrónico</ion-label>
+      <ion-input type="email" id="email" formControlName="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Propietario (Usuario)</ion-label>
+      <ion-select formControlName="id_usuario" placeholder="Seleccionar Usuario">
+        <ion-select-option *ngFor="let usuario of usuarios" [value]="usuario.id_usuario">
+          {{ usuario.id_usuario }} - {{ usuario.usuario }}
+        </ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-button expand="full" (click)="saveStore()">Guardar</ion-button>
+
+    <!-- Nuevo campo para seleccionar recurrencia -->
+    <ion-item>
+      <ion-label>Frecuencia de Visitas</ion-label>
+      <ion-select formControlName="frecuencia_visitas" placeholder="Seleccionar Frecuencia">
+        <ion-select-option value="muy_recurrente">Muy Recurrente</ion-select-option>
+        <ion-select-option value="poco_recurrente">Poco Recurrente</ion-select-option>
+        <ion-select-option value="nada_recurrente">Nada Recurrente</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="tiendaForm.invalid">Registrar Tienda</ion-button>
   </form>
 </ion-content>
