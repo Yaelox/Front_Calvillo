@@ -33,6 +33,27 @@ export class PreventaPage   implements OnInit {
     private userService: UserService
   ) {}
 
+  private icono = {
+    alta: L.icon({
+      iconUrl: 'assets/images/verde.png',
+      iconSize: [40, 50],
+      iconAnchor: [20, 50],
+      popupAnchor: [1, -40]
+    }),
+    media: L.icon({
+      iconUrl: 'assets/images/amarillo.png',
+      iconSize: [40, 50],
+      iconAnchor: [20, 50],
+      popupAnchor: [1, -40]
+    }),
+    baja: L.icon({
+      iconUrl: 'assets/images/rojo.png',
+      iconSize: [40, 50],
+      iconAnchor: [20, 50],
+      popupAnchor: [1, -40]
+    }),
+  };
+
   ngOnInit(): void {
     this.cargarTiendas();
   }
@@ -55,7 +76,6 @@ export class PreventaPage   implements OnInit {
 
   agregarMarcador(lat: number, lon: number, tienda: Tienda): void {
     if (this.map) {
-      // Obtener el nombre del propietario de la tienda
       this.userService.getUserById(tienda.id_usuario).subscribe(
         (usuario) => {
           const popupContent = `
@@ -64,16 +84,31 @@ export class PreventaPage   implements OnInit {
             Teléfono: ${tienda.telefono || 'No disponible'}<br>
             Email: ${tienda.email || 'No disponible'}<br>
             Propietario: ${usuario.usuario || 'No disponible'}<br>
+            Frecuencia de visitas: ${tienda.frecuencia_visitas || 'No especificada'}
           `;
-          
-          // Crear marcador con el nombre del propietario
-          L.marker([lat, lon])
+  
+          // Asignar el icono según la frecuencia
+          let icono;
+          switch (tienda.frecuencia_visitas?.toLowerCase()) {
+            case "muy_recurrente":
+              icono = this.icono.alta; // Verde
+              break;
+            case "poco_recurrente":
+              icono = this.icono.media; // Amarillo
+              break;
+            case "nada_recurrente":
+              icono = this.icono.baja; // Rojo
+              break;
+            default:
+              return;  // No agregar marcador si no hay frecuencia
+          }
+  
+          L.marker([lat, lon], { icon: icono })
             .addTo(this.map!)
-            .bindPopup(popupContent)
-            .openPopup();
+            .bindPopup(popupContent);
         },
         (error) => {
-          console.error('Error al obtener el nombre del propietario:', error);
+          console.error('Error al obtener el propietario:', error);
         }
       );
     }
