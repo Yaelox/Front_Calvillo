@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { MenuController } from '@ionic/angular';
 import { EditarUsersComponent } from 'src/app/components/editar-users/editar-users.component';
 import { AgregarUsuarioComponent } from 'src/app/components/agregar-usuario/agregar-usuario.component';
-import { HeaderConfigComponent } from '../../components/header-config/header-config.component';
+
 
 @Component({
   selector: 'app-usuarios',
