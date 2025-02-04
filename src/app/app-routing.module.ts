@@ -63,6 +63,34 @@ const routes: Routes = [
   {
     path: 'checkout',
     loadChildren: () => import('./pages/checkout/checkout.module').then( m => m.CheckoutPageModule)
+  },
+  {
+    path: 'configuracion',
+    loadChildren: () => import('./pages/configuracion/configuracion.module').then( m => m.ConfiguracionPageModule)
+  },
+  {
+    path: 'usuarios',
+    loadChildren: () => import('./pages/usuarios/usuarios.module').then( m => m.UsuariosPageModule)
+  },
+  {
+    path: 'tiendas',
+    loadChildren: () => import('./pages/tiendas/tiendas.module').then( m => m.TiendasPageModule)
+  },
+  {
+    path: 'pedidos',
+    loadChildren: () => import('./pages/pedidos/pedidos.module').then( m => m.PedidosPageModule)
+  },
+  {
+    path: 'check-eventos',
+    loadChildren: () => import('./pages/check-eventos/check-eventos.module').then( m => m.CheckEventosPageModule)
+  },
+  {
+    path: 'check-envios',
+    loadChildren: () => import('./pages/check-envios/check-envios.module').then( m => m.CheckEnviosPageModule)
+  },
+  {
+    path: 'check-contactos',
+    loadChildren: () => import('./pages/check-contactos/check-contactos.module').then( m => m.CheckContactosPageModule)
   }
 ];
 

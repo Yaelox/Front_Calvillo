@@ -8,8 +8,15 @@
       </ion-title>
     </div>
 
-    <!-- Botones en el header -->
+    <!-- Botón de configuración alineado a la derecha del logo -->
     <div class="header-right">
+      <ion-buttons slot="end">
+        <ion-button fill="clear" (click)="goToConfig()" class="header-button">
+          <ion-icon name="settings" slot="start"></ion-icon> Configuración
+        </ion-button>
+      </ion-buttons>
+      
+      <!-- Botones en el header -->
       <ion-buttons slot="end">
         <ion-button fill="clear" (click)="goToHome()" class="header-button">
           <ion-icon name="home" slot="start"></ion-icon> Home
@@ -39,7 +46,6 @@
           <ion-icon name="person" slot="start"></ion-icon> Contactanos
         </ion-button>
       </ion-buttons>
-      
       
       <!-- Botón de carrito de supermercado siempre visible -->
       <ion-button fill="clear" (click)="goToCarrito()" class="cart-button">

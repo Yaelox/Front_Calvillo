@@ -4,12 +4,12 @@ import { Observable } from 'rxjs';
 
 // Define la interfaz para un usuario
 export interface User {
-  id_usuario: number;
+  id_usuario?: number;
   usuario: string;
   email: string;
   password: string;
   tipo_usuario: string;
-  fecha_registro: string;
+  fecha_registro?: string;
 }
 
 @Injectable({
@@ -31,8 +31,8 @@ export class UserService {
   }
 
   // Actualizar un usuario
-  updateUser(id: number, user: Partial<User>): Observable<User> {
-    return this.http.put<User>(`${this.baseUrl}/${id}`, user);
+  updateUser(id: number, user: any) {
+    return this.http.put(`${this.baseUrl}/${id}`, user);
   }
 
   // Eliminar un usuario

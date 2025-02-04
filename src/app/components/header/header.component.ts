@@ -2,28 +2,27 @@ import { Component,OnInit} from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Router } from '@angular/router';
-import { CartService } from 'src/app/services/cart.service';
-import { NgIf } from '@angular/common';
+import { CommonModule} from '@angular/common';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  imports:[CommonModule]
 })
 export class HeaderComponent implements OnInit {
   cartCount: number = 0;
   isDisabled = false;
 
+
   constructor(
     private navCtrl: NavController,
-    private router: Router,
-    private cartService: CartService
+    private router: Router
   ) { }
 
  
   ngOnInit() {
   }
-
   // Navegar al carrito
   goToCart() {
     this.router.navigate(['/carrito']);
@@ -67,5 +66,9 @@ export class HeaderComponent implements OnInit {
 
   goToCarrito() {
     this.router.navigate(['/carrito']); // Navega a la página del carrito
+  }
+
+  goToConfig(){
+    this.router.navigate(['/configuracion']);
   }
 }

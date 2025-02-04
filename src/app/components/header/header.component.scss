@@ -110,23 +110,32 @@ ion-button {
 }
 
 
-// Estilos para el botón de carrito
 .cart-button {
-  position: absolute; // Asegura que esté fijo en la parte superior derecha
-  right: 20px; // Ajusta la distancia desde el borde derecho
-  top: 50%; // Centra el ícono verticalmente
-  transform: translateY(-50%); // Alinea el ícono verticalmente
-  z-index: 10; // Asegura que esté encima de otros elementos
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
   
   ion-icon {
-    font-size: 30px; // Ajusta el tamaño del ícono
-    color: var(#000); // Color del ícono (puedes cambiar el color según el diseño)
+    font-size: 30px;
+    color: var(--color-black); /* Cambié a --color-black para usar variables CSS */
   }
 
-  // Puedes agregar efectos hover para mejorar la interacción
   &:hover {
     ion-icon {
-      color: var(#000); // Cambia el color al pasar el ratón por encima
+      color: var(--color-black); /* Ajusta el color del ícono al pasar el ratón por encima */
     }
+  }
+
+  /* Estilos responsive */
+  @media (max-width: 768px) {
+    right: 10px; /* Ajusta la distancia en pantallas más pequeñas */
+    font-size: 25px; /* Disminuye el tamaño del ícono en pantallas pequeñas */
+  }
+
+  @media (max-width: 480px) {
+    right: 5px; /* Alinea el ícono más cerca del borde en pantallas muy pequeñas */
+    font-size: 20px; /* Ajusta aún más el tamaño del ícono */
   }
 }

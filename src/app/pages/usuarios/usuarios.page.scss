@@ -1,0 +1,121 @@
+// Variables de colores
+:host {
+  --soft-pink: #f7c6d8;
+  --dark-pink: #e39cb3;
+  --rose-gold: #cfa08e;
+  --background: #fff5f8;
+  --card-bg: #ffeaf1;
+  --text-color: #5a3e4b;
+  --shadow-color: rgba(255, 192, 203, 0.4);
+  --primary-gradient: linear-gradient(135deg, #f7c6d8, #e39cb3);
+}
+
+ion-header {
+  background: var(--primary-gradient);
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+ion-title {
+  text-align: center;
+  font-size: 1.3rem;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 1px;
+}
+
+ion-content {
+  background: var(--background);
+  color: var(--text-color);
+}
+
+// Tarjetas de usuario más pequeñas
+ion-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0px 6px 16px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 70%;
+  margin: auto;
+  padding: 12px;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 10px 24px var(--shadow-color);
+  }
+
+  ion-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  ion-card-title {
+    color: #000;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    font-family: "Playfair Display", serif;
+  }
+
+  ion-card-content {
+    padding: 10px;
+    font-size: 25px;
+    color: #000;
+    p {
+      margin: 4px 0;
+      font-size: 25px;
+      color:#000;
+    }
+  }
+
+  ion-card-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+  }
+}
+
+// Imagen de perfil más pequeña
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid var(--rose-gold);
+    box-shadow: 0px 3px 8px var(--shadow-color);
+  }
+}
+
+// Botón flotante de agregar usuario
+ion-fab-button {
+  color: white;
+  box-shadow: 0px 4px 12px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 8px 20px var(--shadow-color);
+  }
+}
+
+// Botones de acción con un diseño premium y sofisticado
+ion-button {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size:20px;
+  padding: 8px 14px;
+  border-radius: 10px;
+
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

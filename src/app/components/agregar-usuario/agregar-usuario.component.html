@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Agregar Tienda</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input type="text" id="usuario" formControlName="usuario" placeholder="Escribe tu usuario" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" id="email" formControlName="email" placeholder="Registra tu email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" id="password" formControlName="password"></ion-input>
+    </ion-item>
+
+    <!-- Nuevo campo para seleccionar recurrencia -->
+    <ion-item>
+      <ion-label>Tipo de Usuario</ion-label>
+      <ion-select formControlName="tipo_usuario" placeholder="Seleccionar el tipo de usuario">
+        <ion-select-option value="administrador">Administrador</ion-select-option>
+        <ion-select-option value="cliente">Cliente</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="usuarioForm.invalid">Registrar Usuario</ion-button>
+  </form>
+</ion-content>
