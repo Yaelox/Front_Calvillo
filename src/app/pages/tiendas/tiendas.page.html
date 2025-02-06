@@ -1,4 +1,3 @@
-
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -8,12 +7,10 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- Contenido de la página -->
 <ion-content id="main-content">
-
-  <!-- Botón flotante para agregar usuario -->
+  <!-- Botón flotante para agregar tienda -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="primary" (click)="openAddTiendaModal()">
+    <ion-fab-button color="danger" (click)="openAddTiendaModal()">
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -23,6 +20,7 @@
       <ion-col size="12" size-md="6" size-lg="4" *ngFor="let tienda of tiendas">
         <ion-card>
           <ion-card-header>
+            <!-- Imagen de perfil -->
             <div class="profile-image-container">
               <img *ngIf="tienda.imagen_perfil; else defaultProfileImage" [src]="tienda.imagen_perfil" alt="Imagen de perfil" class="profile-image">
               <ng-template #defaultProfileImage>
@@ -33,14 +31,16 @@
           </ion-card-header>
 
           <ion-card-content>
-            <p><strong>ID_Tienda:</strong> {{ tienda.id_tienda }}</p>
-            <p><strong>Direccion:</strong> {{ tienda.direccion }}</p>
-            <p><strong>Telefono:</strong> {{ tienda.telefono }}</p>
-            <p><strong>Email:</strong> {{ tienda.email }}</p>
-            <p><strong>Propietario:</strong> {{ tienda.nombre_usuario }}</p>
-            <p><b>Frecuencia de Visitas:</b> {{ tienda.frecuencia_visitas || 'No disponible' }}</p>
-            <p><b>Registrado el:</b> {{ tienda.fecha_registro |date: 'medium'}}</p>
+            <p><ion-icon name="id-card-outline"></ion-icon> <strong>ID:</strong> {{ tienda.id_tienda }}</p>
+            <p><ion-icon name="location-outline"></ion-icon> <strong>Dirección:</strong> {{ tienda.direccion }}</p>
+            <p><ion-icon name="call-outline"></ion-icon> <strong>Teléfono:</strong> {{ tienda.telefono }}</p>
+            <p><ion-icon name="mail-outline"></ion-icon> <strong>Email:</strong> {{ tienda.email }}</p>
+            <p><ion-icon name="person-outline"></ion-icon> <strong>Propietario:</strong> {{ tienda.nombre_usuario }}</p>
+            <p><ion-icon name="calendar-outline"></ion-icon> <b>Frecuencia Visitas:</b> {{ tienda.frecuencia_visitas || 'No disponible' }}</p>
+            <p><ion-icon name="time-outline"></ion-icon> <b>Registrado el:</b> {{ tienda.fecha_registro |date: 'medium'}}</p>
           </ion-card-content>
+
+          <div class="divider"></div>
 
           <ion-card-footer>
             <ion-button fill="clear" color="primary" (click)="openEditTiendaModal(tienda, tienda.nombre_usuario)">
