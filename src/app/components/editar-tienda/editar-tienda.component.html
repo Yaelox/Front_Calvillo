@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar Tienda</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="updateTienda()">
+    <ion-item>
+      <ion-label position="floating">Nombre de la tienda</ion-label>
+      <ion-input [(ngModel)]="tienda.nombre_tienda" name="name" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Direccion</ion-label>
+      <ion-input [(ngModel)]="tienda.direccion" name="direccion" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Telefono</ion-label>
+      <ion-input [(ngModel)]="tienda.telefono" name="telefono" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input [(ngModel)]="tienda.email" name="email" type="email" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Propietario (Usuario)</ion-label>
+      <ion-select [(ngModel)]="tienda.id_usuario" name="id_usuario" placeholder="Seleccionar Usuario">
+        <ion-select-option *ngFor="let usuario of usuarios" [value]="usuario.id_usuario">
+          {{ usuario.id_usuario }} - {{ usuario.usuario }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating" >Frecuencia de Visitas</ion-label>
+      <ion-select [(ngModel)]="tienda.frecuencia_visitas" name="frecuencia_visitas" placeholder="Seleccionar Frecuencia">
+        <ion-select-option value="muy_recurrente">Muy Recurrente</ion-select-option>
+        <ion-select-option value="poco_recurrente">Poco Recurrente</ion-select-option>
+        <ion-select-option value="nada_recurrente">Nada Recurrente</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+    <ion-button expand="full" color="primary" type="submit">Guardar Cambios</ion-button>
+  </form>
+</ion-content>

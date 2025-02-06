@@ -57,7 +57,8 @@ export class AgregaTiendaComponent implements OnInit {
           console.log('Tienda registrada:', response);
           this.mostrarMensaje('Tienda registrada exitosamente.');
           this.tiendaForm.reset();
-          // Cierra el modal indicando que se agregó una tienda
+          
+          // Cerrar el modal e indicar que se agregó una tienda
           this.modalController.dismiss({
             tiendaAgregada: true, // Indicar que se agregó una tienda
           });

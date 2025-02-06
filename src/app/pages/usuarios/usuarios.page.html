@@ -1,4 +1,3 @@
-
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -21,34 +20,48 @@
   <ion-grid>
     <ion-row>
       <ion-col size="12" size-md="6" size-lg="4" *ngFor="let usuario of usuarios">
-        <ion-card>
-          <ion-card-header>
+        <div class="ticket-card">
+
+          <!-- Imagen y título -->
+          <div class="ticket-header">
             <div class="profile-image-container">
-              <img *ngIf="usuario.imagen_perfil; else defaultProfileImage" [src]="usuario.imagen_perfil" alt="Imagen de perfil" class="profile-image">
+              <img *ngIf="usuario.imagen_perfil; else defaultProfileImage" 
+                   [src]="usuario.imagen_perfil" 
+                   alt="Imagen de perfil" 
+                   class="profile-image">
               <ng-template #defaultProfileImage>
-                <img src="assets/images/user.png" alt="Imagen por defecto" class="profile-image">
+                <img src="assets/images/user.png" 
+                     alt="Imagen por defecto" 
+                     class="profile-image">
               </ng-template>
             </div>
-            <ion-card-title>{{ usuario.usuario }}</ion-card-title>
-          </ion-card-header>
+            <div class="ticket-title">{{ usuario.usuario }}</div>
+          </div>
 
-          <ion-card-content>
-            <p><strong>ID:</strong> {{ usuario.id_usuario }}</p>
-            <p><strong>Email:</strong> {{ usuario.email }}</p>
-            <p><strong>Tipo de Usuario:</strong> {{ usuario.tipo_usuario }}</p>
-            <p><strong>Registrado el:</strong> {{ usuario.fecha_registro | date: 'medium' }}</p>
-          </ion-card-content>
+          <!-- Línea decorativa de corte -->
+          <div class="ticket-divider"></div>
 
-          <ion-card-footer>
+          <!-- Información en lista -->
+          <ul class="ticket-info">
+            <li><strong>ID:</strong> {{ usuario.id_usuario }}</li>
+            <li><strong>Email:</strong> {{ usuario.email }}</li>
+            <li><strong>Tipo:</strong> {{ usuario.tipo_usuario }}</li>
+            <li><strong>Registrado:</strong> {{ usuario.fecha_registro | date: 'medium' }}</li>
+          </ul>
+
+          <!-- Botones de acción -->
+          <div class="ticket-actions">
             <ion-button fill="clear" color="primary" (click)="openEditModal(usuario)">
               <ion-icon name="create-outline" slot="start"></ion-icon> Editar
             </ion-button>
             <ion-button fill="clear" color="danger" (click)="confirmDeleteUser(usuario.id_usuario)">
               <ion-icon name="trash-outline" slot="start"></ion-icon> Eliminar
             </ion-button>
-          </ion-card-footer>
-        </ion-card>
+          </div>
+
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
+
 </ion-content>

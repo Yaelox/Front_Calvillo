@@ -1,4 +1,3 @@
-// Variables de colores
 :host {
   --soft-pink: #f7c6d8;
   --dark-pink: #e39cb3;
@@ -8,6 +7,7 @@
   --text-color: #5a3e4b;
   --shadow-color: rgba(255, 192, 203, 0.4);
   --primary-gradient: linear-gradient(135deg, #f7c6d8, #e39cb3);
+  --ticket-border: #e39cb3;
 }
 
 ion-header {
@@ -20,7 +20,7 @@ ion-header {
 
 ion-title {
   text-align: center;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-family: "Playfair Display", serif;
   letter-spacing: 1px;
 }
@@ -28,94 +28,122 @@ ion-title {
 ion-content {
   background: var(--background);
   color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
 }
 
-// Tarjetas de usuario más pequeñas
-ion-card {
+.ticket-card {
+  position: relative;
   background: var(--card-bg);
-  border-radius: 12px;
-  box-shadow: 0px 6px 16px var(--shadow-color);
+  border-radius: 16px;
+  box-shadow: 0px 8px 20px var(--shadow-color);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 70%;
-  margin: auto;
-  padding: 12px;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0px 10px 24px var(--shadow-color);
-  }
-
-  ion-card-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-  }
-
-  ion-card-title {
-    color: #000;
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-    font-family: "Playfair Display", serif;
-  }
-
-  ion-card-content {
-    padding: 10px;
-    font-size: 25px;
-    color: #000;
-    p {
-      margin: 4px 0;
-      font-size: 25px;
-      color:#000;
-    }
-  }
-
-  ion-card-footer {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-  }
+  width: 90%;
+  max-width: 450px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px dashed var(--ticket-border);
+  font-family: "Playfair Display", serif;
+  text-align: center;
 }
 
-// Imagen de perfil más pequeña
+.ticket-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 12px 30px var(--shadow-color);
+}
+
+.ticket-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 2px dashed var(--ticket-border);
+}
+
+.ticket-title {
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--text-color);
+  text-transform: uppercase;
+}
+
+.ticket-icon {
+  font-size: 28px;
+  color: var(--dark-pink);
+}
+
+.ticket-divider {
+  width: 100%;
+  height: 2px;
+  background: var(--dark-pink);
+  margin: 12px 0;
+}
+
+/* Información en lista */
+.ticket-info {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.ticket-info li {
+  font-size: 20px;
+  padding: 8px 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  border-bottom: 1px solid var(--ticket-border);
+  display: flex;
+  justify-content: space-between;
+}
+
 .profile-image-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 12px;
-
-  .profile-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    border: 2px solid var(--rose-gold);
-    box-shadow: 0px 3px 8px var(--shadow-color);
-  }
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--rose-gold);
 }
 
-// Botón flotante de agregar usuario
-ion-fab-button {
-  color: white;
-  box-shadow: 0px 4px 12px var(--shadow-color);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    transform: scale(1.1);
-    box-shadow: 0px 8px 20px var(--shadow-color);
-  }
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
-// Botones de acción con un diseño premium y sofisticado
+.ticket-actions {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 15px;
+}
+
 ion-button {
   font-weight: bold;
   text-transform: uppercase;
-  font-size:20px;
+  font-size: 16px;
   padding: 8px 14px;
   border-radius: 10px;
-
-  letter-spacing: 0.5px;
+  background: var(--primary-gradient);
+  color: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .ticket-card {
+    width: 100%;
+  }
+
+  .ticket-info li {
+    font-size: 14px;
+    padding: 6px 0;
+  }
+
+  ion-button {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
 }

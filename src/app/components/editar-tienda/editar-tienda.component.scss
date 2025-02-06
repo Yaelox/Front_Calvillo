@@ -1,0 +1,144 @@
+:host {
+    --ion-background-color: #fff5f7; /* Fondo suave en tonos rosas pálidos */
+    --ion-color-primary: #f8a5c2; /* Rosa suave para elementos destacados */
+    --ion-color-secondary: #ffe3e8; /* Rosa pastel claro para acentos */
+    --ion-color-medium: #fddde6; /* Rosa medio claro para bordes o fondos secundarios */
+    --ion-color-light: #fff9fb; /* Blanco rosado para fondos */
+    --ion-color-dark: #f38181; /* Rosa apagado para textos importantes */
+  
+    ion-header {
+      background: var(--ion-color-primary);
+      color: white;
+      ion-title {
+        font-weight: bold;
+        font-size: 20px;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      }
+      ion-button {
+        color: white;
+        font-size: 20px;
+        --background: var(--ion-color-dark);
+        --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+        --border-radius: 10px;
+        &:hover {
+          filter: brightness(1.1);
+        }
+      }
+    }
+  
+    ion-content {
+      ion-item {
+        --background: var(--ion-color-light);
+        --border-radius: 8px;
+        font-size: 20px;
+        margin: 12px 0; /* Mayor separación entre los elementos */
+  
+        ion-label {
+          color: var(--ion-color-dark); /* Letras negras */
+          font-weight: 600;
+          margin-bottom: 8px; /* Espacio entre la etiqueta y el campo */
+          font-size: 25px;
+        }
+  
+        ion-input {
+          color: #000;
+
+        }
+        ion-select {
+          color: #000;
+          --placeholder-color: #000;
+          --padding-start: 12px;
+          font-size: 20px;
+          --padding-end: 12px;
+          --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          border-radius: 6px;
+          background-color: var(--ion-color-light);
+          margin-top: 8px; /* Espacio entre el campo y la etiqueta */
+        }
+  
+        ion-select {
+          ion-select-option {
+            color: var(--ion-color-dark);
+            &:hover {
+              background: var(--ion-color-secondary);
+            }
+          }
+        }
+      }
+  
+      ion-button {
+        margin-top: 16px;
+        background: var(--ion-color-primary);
+        color: white;
+        font-weight: bold;
+        font-size: 1rem;
+        --border-radius: 8px;
+        --box-shadow: 0 4px 8px rgba(248, 165, 194, 0.3);
+        &:hover {
+          filter: brightness(1.05);
+        }
+      }
+    }
+  
+    /* Animaciones para entradas y etiquetas */
+    ion-item {
+      transition: transform 0.2s ease-in-out, background-color 0.2s;
+      &:hover {
+        transform: translateY(-2px);
+        background-color: var(--ion-color-medium);
+      }
+    }
+  
+    /* Fondo del formulario con un efecto delicado */
+    form {
+      background: linear-gradient(135deg, #fff9fb, #ffe3e8);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+  
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      ion-header {
+        ion-title {
+          font-size: 1.2rem; /* Ajustar tamaño de fuente en dispositivos más pequeños */
+        }
+      }
+  
+      ion-content {
+        padding: 10px; /* Ajustar padding para pantallas pequeñas */
+        
+        ion-item {
+          margin: 8px 0; /* Reducir espacio entre los items en pantallas pequeñas */
+        }
+  
+        ion-button {
+          font-size: 0.9rem; /* Ajustar tamaño de fuente de los botones */
+          padding: 12px 18px; /* Reducir el padding de los botones */
+        }
+  
+        form {
+          padding: 15px; /* Ajustar padding del formulario */
+        }
+      }
+    }
+  
+    /* Para pantallas muy pequeñas (móviles) */
+    @media (max-width: 480px) {
+      ion-header {
+        ion-title {
+          font-size: 1rem; /* Reducir aún más el tamaño de fuente */
+        }
+      }
+  
+      ion-button {
+        font-size: 0.8rem; /* Reducir tamaño de fuente de los botones */
+        padding: 10px 15px; /* Reducir padding de los botones */
+      }
+  
+      form {
+        padding: 10px; /* Ajustar padding del formulario */
+      }
+    }
+  }
+  

@@ -1,0 +1,123 @@
+// Variables de colores
+:host {
+  --soft-pink: #f7c6d8;
+  --dark-pink: #e39cb3;
+  --rose-gold: #cfa08e;
+  --background: #fff5f8;
+  --card-bg: #ffeaf1;
+  --text-color: #5a3e4b;
+  --shadow-color: rgba(255, 192, 203, 0.4);
+  --primary-gradient: linear-gradient(135deg, #f7c6d8, #e39cb3);
+}
+
+ion-header {
+  background: var(--primary-gradient);
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+ion-title {
+  text-align: center;
+  font-size: 1.5rem;  /* Tamaño de fuente mediano */
+  font-family: "Playfair Display", serif;
+  letter-spacing: 1px;
+}
+
+ion-content {
+  background: var(--background);
+  color: var(--text-color);
+}
+
+// Tarjetas de usuario de tamaño mediano
+ion-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0px 6px 16px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 600px;  /* Tamaño fijo mediano */
+  height: 600px;  /* Tamaño fijo mediano */
+  margin: 10px auto;
+  padding: 20px;
+
+  &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0px 10px 24px var(--shadow-color);
+  }
+
+  ion-card-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px;
+  }
+
+  ion-card-title {
+      color: #000;
+      font-size: 28px;  /* Tamaño de fuente mediano */
+      font-weight: bold;
+      text-align: center;
+      font-family: "Playfair Display", serif;
+  }
+
+  ion-card-content {
+      padding: 8px;
+      font-size: 30px;  /* Tamaño de fuente mediano */
+      color: #000;
+      p {
+          margin: 4px 0;
+          font-size: 22px;  /* Tamaño de fuente mediano */
+          color: #000;
+      }
+  }
+
+  ion-card-footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+  }
+}
+
+// Imagen de perfil de tamaño mediano
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 12px;
+
+  .profile-image {
+      width: 120px;  /* Tamaño fijo mediano */
+      height: 120px;  /* Tamaño fijo mediano */
+      border-radius: 50%;
+      border: 2px solid var(--rose-gold);
+      box-shadow: 0px 3px 8px var(--shadow-color);
+  }
+}
+
+// Botón flotante de agregar usuario de tamaño mediano
+ion-fab-button {
+  color: white;
+  box-shadow: 0px 4px 12px var(--shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 64px;  /* Tamaño fijo mediano */
+  height: 64px;  /* Tamaño fijo mediano */
+
+  &:hover {
+      transform: scale(1.1);
+      box-shadow: 0px 8px 20px var(--shadow-color);
+  }
+}
+
+// Botones de acción de tamaño mediano con diseño premium y sofisticado
+ion-button {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 16px;  /* Tamaño de fuente mediano */
+  padding: 10px 18px;  /* Tamaño de padding mediano */
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

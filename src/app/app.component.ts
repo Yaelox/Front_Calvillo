@@ -40,7 +40,7 @@ export class AppComponent {
    }
  
    goToTienda() {
-     this.router.navigate(['/tienda']);
+     this.router.navigate(['/tiendas']);
    }
  
    goToEnvios() {

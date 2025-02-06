@@ -1,13 +1,57 @@
+
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>tiendas</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Tiendas Registradas</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tiendas</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<!-- Contenido de la página -->
+<ion-content id="main-content">
+
+  <!-- Botón flotante para agregar usuario -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="primary" (click)="openAddTiendaModal()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6" size-lg="4" *ngFor="let tienda of tiendas">
+        <ion-card>
+          <ion-card-header>
+            <div class="profile-image-container">
+              <img *ngIf="tienda.imagen_perfil; else defaultProfileImage" [src]="tienda.imagen_perfil" alt="Imagen de perfil" class="profile-image">
+              <ng-template #defaultProfileImage>
+                <img src="assets/images/tienda.jpg" alt="Imagen por defecto" class="profile-image">
+              </ng-template>
+            </div>
+            <ion-card-title>{{ tienda.nombre_tienda }}</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <p><strong>ID_Tienda:</strong> {{ tienda.id_tienda }}</p>
+            <p><strong>Direccion:</strong> {{ tienda.direccion }}</p>
+            <p><strong>Telefono:</strong> {{ tienda.telefono }}</p>
+            <p><strong>Email:</strong> {{ tienda.email }}</p>
+            <p><strong>Propietario:</strong> {{ tienda.nombre_usuario }}</p>
+            <p><b>Frecuencia de Visitas:</b> {{ tienda.frecuencia_visitas || 'No disponible' }}</p>
+            <p><b>Registrado el:</b> {{ tienda.fecha_registro |date: 'medium'}}</p>
+          </ion-card-content>
+
+          <ion-card-footer>
+            <ion-button fill="clear" color="primary" (click)="openEditTiendaModal(tienda, tienda.nombre_usuario)">
+              <ion-icon name="create-outline" slot="start"></ion-icon> Editar
+            </ion-button>
+            <ion-button fill="clear" color="danger" (click)="confirmDeleteTienda(tienda.id_tienda)">
+              <ion-icon name="trash-outline" slot="start"></ion-icon> Eliminar
+            </ion-button>
+          </ion-card-footer>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

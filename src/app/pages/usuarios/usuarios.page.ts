@@ -2,7 +2,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { ModalController, AlertController } from '@ionic/angular'; 
 import { UserService } from '../../services/user.service'; 
 import { CommonModule } from '@angular/common';
-import { MenuController } from '@ionic/angular';
+
 import { EditarUsersComponent } from 'src/app/components/editar-users/editar-users.component';
 import { AgregarUsuarioComponent } from 'src/app/components/agregar-usuario/agregar-usuario.component';
 
@@ -21,12 +21,11 @@ export class UsuariosPage implements OnInit {
     private userService: UserService,
     private modalController: ModalController,
     private alertController: AlertController,
-    private menuCtrl: MenuController// Asegurar que está bien inyectado
+
   ) {}
 
   ngOnInit() {
     this.getUsers();
-    this.menuCtrl.enable(true);
   }
 
   getUsers() {

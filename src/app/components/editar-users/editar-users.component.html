@@ -1,34 +1,48 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Editar Usuario</ion-title>
+  <ion-toolbar color="light">
+    <ion-title class="titulo">Editar Usuario</ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="dismiss()">
-        <ion-icon name="close-outline"></ion-icon>
+      <ion-button fill="clear" (click)="dismiss()">
+        <ion-icon name="close-outline" class="icono-cerrar"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <form (ngSubmit)="updateUser()">
-    <ion-item>
-      <ion-label position="floating">Nombre</ion-label>
-      <ion-input [(ngModel)]="user.usuario" name="name" required></ion-input>
-    </ion-item>
+<ion-content class="fondo">
+  <ion-card class="tarjeta">
+    <ion-card-header>
+      <ion-card-title class="titulo">Información del Usuario</ion-card-title>
+    </ion-card-header>
 
-    <ion-item>
-      <ion-label position="floating">Correo Electrónico</ion-label>
-      <ion-input [(ngModel)]="user.email" name="email" type="email" required></ion-input>
-    </ion-item>
+    <ion-card-content>
+      <form (ngSubmit)="updateUser()">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating" class="etiqueta">Nombre</ion-label>
+            <ion-input [(ngModel)]="user.usuario" name="name" required class="input"></ion-input>
+          </ion-item>
 
-    <ion-item>
-      <ion-label position="floating">Tipo de usuario</ion-label>
-      <ion-select [(ngModel)]="user.tipo_usuario" name="tipo_usuario" required>
-        <ion-select-option value="administrador">Administrador</ion-select-option>
-        <ion-select-option value="cliente">Cliente</ion-select-option>
-      </ion-select>
-    </ion-item>
+          <ion-item>
+            <ion-label position="floating" class="etiqueta">Correo Electrónico</ion-label>
+            <ion-input [(ngModel)]="user.email" name="email" type="email" required class="input"></ion-input>
+          </ion-item>
 
-    <ion-button expand="full" color="primary" type="submit">Guardar Cambios</ion-button>
-  </form>
+          <ion-item>
+            <ion-label position="floating" class="etiqueta">Tipo de usuario</ion-label>
+            <ion-select [(ngModel)]="user.tipo_usuario" name="tipo_usuario" required class="input">
+              <ion-select-option value="administrador">Administrador</ion-select-option>
+              <ion-select-option value="cliente">Cliente</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+
+        <div class="botones">
+          <ion-button expand="full" color="danger" type="submit" class="boton-guardar">
+            Guardar Cambios
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
