@@ -1,23 +1,24 @@
-<div class="carousel-container">
-  <!-- Evento actual -->
+<div class="carousel-container" *ngIf="!loading && events.length > 0; else loadingTemplate">
   <div class="carousel-item">
-    <div class="event-image-container">
-      <img [src]="events[currentIndex].imageUrl" alt="Event image" class="event-image" />
-    </div>
-    <div class="event-info">
-      <h2 class="event-title">{{ events[currentIndex].title }}</h2>
-      <p class="event-description">{{ events[currentIndex].description }}</p>
-      <p class="event-date">{{ events[currentIndex].date | date: 'longDate' }}</p>
+    <div class="ticket-card">
+      <!-- Logo Estático -->
+      <div class="logo-container">
+        <img src="assets/images/Logo.png" alt="Logo" class="event-logo" />
+      </div>
+
+      <!-- Información del evento -->
+      <div class="event-info">
+        <h2 class="event-title">{{ events[currentIndex].nombre }}</h2>
+        <p class="event-description">{{ events[currentIndex].descripcion }}</p>
+        <p class="event-date">{{ events[currentIndex].fecha | date:"dd/MM/yyyy" }}</p>
+        <p class="event-location">{{ events[currentIndex].ubicacion }}</p>
+      </div>
     </div>
   </div>
 
   <!-- Indicadores de posición -->
   <div class="carousel-indicators">
-    <!-- Indicador de posición basado en el índice actual -->
-    <span *ngIf="currentIndex === 0" class="indicator-dot active" (click)="setCurrentEvent(0)"></span>
-    <span *ngIf="currentIndex === 1" class="indicator-dot active" (click)="setCurrentEvent(1)"></span>
-    <span *ngIf="currentIndex === 2" class="indicator-dot active" (click)="setCurrentEvent(2)"></span>
-    <!-- Puedes añadir más indicadores según el número de eventos -->
+    <span *ngFor="let event of events; let i = index" [class.active]="currentIndex === i" class="indicator-dot" (click)="setCurrentEvent(i)"></span>
   </div>
 
   <!-- Botones de navegación -->
@@ -26,3 +27,11 @@
     <button (click)="nextEvent()" class="carousel-button" [disabled]="currentIndex === events.length - 1" aria-label="Next Event">›</button>
   </div>
 </div>
+
+<!-- Template de carga -->
+<ng-template #loadingTemplate>
+  <div class="loading">Cargando pósters...</div>
+</ng-template>
+
+<!-- Mensaje de error -->
+<p *ngIf="errorMessage">{{ errorMessage }}</p>

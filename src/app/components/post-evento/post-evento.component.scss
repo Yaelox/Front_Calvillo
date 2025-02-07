@@ -1,0 +1,99 @@
+.register-event-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;// Ocupa toda la altura de la ventana
+    background: #f8f9fa; // Fondo neutro claro
+    padding: 60px;
+  
+    .modal-container {
+      width: 80%;
+      max-width: 400px;
+      background: #ffffff; // Fondo blanco para el modal
+      border-radius: 15px;
+      padding: 25px 30px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2); // Sombra profesional
+      text-align: center;
+      position: relative;
+      transform: translateY(0); // Para que el modal no se mueva con animaciones
+  
+      @media (max-width: 750px) {
+        padding: 20px;
+        max-width: 100%;
+      }
+  
+      h2 {
+        font-size: 24px;
+        color: red; // Azul profesional para el título
+        margin-bottom: 8px;
+        font-weight: bold;
+      }
+  
+      p {
+        font-size: 16px;
+        color: #6c757d; // Texto suave gris
+        margin-bottom: 20px;
+      }
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        color: #6c757d;
+      }
+    }
+  
+    /* Animación de entrada del modal (opcional) */
+    .modal-container {
+      animation: fadeIn 0.5s ease-in-out; // Animación al mostrar el modal
+    }
+  
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    /* Diseño responsive */
+    @media (max-width: 768px) {
+      .modal-container {
+        padding: 15px;
+        h2 {
+          font-size: 22px;
+        }
+        p {
+          font-size: 14px;
+        }
+      }
+  
+      .event-form {
+        ion-item {
+          ion-label {
+            font-size: 14px;
+          }
+          ion-input {
+            font-size: 14px;
+          }
+        }
+  
+        .submit-btn {
+          font-size: 14px;
+          padding: 12px;
+        }
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .modal-container {
+        padding: 10px;
+        h2 {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+  

@@ -35,9 +35,12 @@ export class AppComponent {
      this.router.navigate(['/puntos']);
    }
  
-   goToEventos() {
-     this.router.navigate(['/eventos']);
+   goToEvents() {
+     this.router.navigate(['/check-eventos']);
    }
+   goToEventos() {
+    this.router.navigate(['/eventos']);
+  }
  
    goToTienda() {
      this.router.navigate(['/tiendas']);

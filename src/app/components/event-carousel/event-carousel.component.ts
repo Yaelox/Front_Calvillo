@@ -1,6 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { PosterService } from 'src/app/services/poster.service';
 
+interface Poster {
+  id_eventos: number;
+  nombre: string;
+  fecha: string;
+  descripcion: string;
+  ubicacion: string;
+}
 @Component({
   selector: 'app-event-carousel',
   templateUrl: './event-carousel.component.html',
@@ -9,45 +17,43 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class EventCarouselComponent {
-  // Lista de eventos (puedes cambiarla con los datos reales)
-  events = [
-    {
-      title: 'Evento 1',
-      description: 'Descripción del evento 1',
-      imageUrl: 'assets/images/Logo.png',
-      date: '2025-01-20',
-    },
-    {
-      title: 'Evento 2',
-      description: 'Descripción del evento 2',
-      imageUrl: 'assets/images/Logo.png',
-      date: '2025-02-15',
-    },
-    {
-      title: 'Evento 3',
-      description: 'Descripción del evento 3',
-      imageUrl: 'assets/images/Logo.png',
-      date: '2025-03-10',
-    },
-  ];
-
+  events: Poster[] = [];
   currentIndex: number = 0;
+  loading: boolean = true;
+  errorMessage: string = '';
 
-  // Función para navegar al siguiente evento
-  nextEvent() {
-    if (this.currentIndex < this.events.length - 1) {
-      this.currentIndex++;
-    }
+  constructor(private posterService: PosterService) {}
+
+  ngOnInit() {
+    this.loadPosters();
   }
 
-  // Función para navegar al evento anterior
+  loadPosters() {
+    this.posterService.getPoster().subscribe({
+      next: (data) => {
+        this.events = data;
+        this.loading = false;
+      },
+      error: (error) => {
+        this.errorMessage = 'Error al cargar los pósters';
+        console.error('Error en la API:', error);
+        this.loading = false;
+      }
+    });
+  }
+
   prevEvent() {
     if (this.currentIndex > 0) {
       this.currentIndex--;
     }
   }
 
-  // Función para seleccionar un evento específico desde el indicador
+  nextEvent() {
+    if (this.currentIndex < this.events.length - 1) {
+      this.currentIndex++;
+    }
+  }
+
   setCurrentEvent(index: number) {
     this.currentIndex = index;
   }

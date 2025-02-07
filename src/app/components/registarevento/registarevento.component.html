@@ -1,7 +1,7 @@
 <section class="register-event">
   <h2>Registrar Nuevo Evento</h2>
-  <p>Llena el siguiente formulario para agregar un nuevo evento a nuestra lista.</p>
   <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    
     <ion-item>
       <ion-label position="stacked">Nombre del Evento</ion-label>
       <ion-input type="text" formControlName="eventName" required></ion-input>
@@ -18,16 +18,21 @@
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Ubicación</ion-label>
-      <ion-input type="text" formControlName="eventLocation" required></ion-input>
+      <ion-label position="stacked">Teléfono</ion-label>
+      <ion-input type="tel" formControlName="eventPhone" required></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="stacked">Capacidad</ion-label>
-      <ion-input type="number" formControlName="eventCapacity" required></ion-input>
+      <ion-label position="stacked">Correo Electrónico</ion-label>
+      <ion-input type="email" formControlName="eventEmail" placeholder="Utiliza el mismo correo con el cual te registraste" required></ion-input>
     </ion-item>
 
-    <ion-button expand="block" type="submit" [disabled]="!eventForm.valid" class="submit-button">
+    <ion-item>
+      <ion-label position="stacked">Ubicación</ion-label>
+      <ion-input type="text" formControlName="eventLocation" placeholder="Calle #numero, Colonia, Ciudad, C.P"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" color="danger" [disabled]="!eventForm.valid" class="submit-button">
       Registrar Evento
     </ion-button>
   </form>

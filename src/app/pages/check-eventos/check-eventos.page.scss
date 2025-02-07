@@ -1,0 +1,120 @@
+.admin-banner {
+  text-align: center;
+  background: linear-gradient(135deg, #ffcccc, #ff6666); // Rojo pastel a rojo suave
+  color: #000;
+  padding: 20px 20px;
+  font-size: 30px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.event-admin-section {
+  padding: 20px;
+
+  .event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .event-card {
+    position: relative;
+    background: linear-gradient(135deg, #ffffff, #f2f2f2, #e6e6e6);  // Café claro con beige
+    background-image: url('https://www.transparenttextures.com/patterns/brushed-alum.png');
+    background-size: contain;
+    color: #000; // Marrón oscuro para contraste
+    border-radius: 15px;
+    width: 400px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0px 10px 20px rgba(139, 69, 19, 0.3),
+                0px 4px 8px rgba(160, 82, 45, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: 3px solid rgba(139, 69, 19, 0.5); // Borde marrón tenue
+    background-clip: padding-box;
+
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0px 12px 24px rgba(139, 69, 19, 0.4),
+                  0px 6px 12px rgba(160, 82, 45, 0.4);
+    }
+  
+    // Efecto de brillo en el borde
+    &::before {
+      content: "";
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      background: linear-gradient(45deg, #972d0a, #ff2200, #c00c0c, #ff0000);
+      border-radius: 15px;
+      z-index: -1;
+      filter: blur(8px);
+    }
+    // Fondo con textura
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: radial-gradient(circle at top left, rgba(255, 255, 255, 0.2), transparent);
+      z-index: 0;
+    }
+  
+    .event-details {
+      padding: 15px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+  
+      h2 {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #000; // Marrón oscuro para contraste
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        text-transform: uppercase;
+      }
+  
+      .event-date,
+      .event-location,
+      .event-description {
+        font-size: 18px;
+        font-weight: bold;
+        color: #000;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        letter-spacing: 1px;
+      }
+  
+      .event-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-top: auto;
+  
+        ion-button {
+          font-size: 1rem;
+          width: 48%;
+          background: linear-gradient(135deg, #ffcc66, #ff9900);
+          color: white;
+          border-radius: 8px;
+          font-weight: bold;
+          transition: background 0.3s ease-in-out, transform 0.2s;
+  
+          &:hover {
+            background: linear-gradient(135deg, #ffdb99, #ff8000);
+            transform: scale(1.05);
+          }
+        }
+      }
+    }
+  }
+}  

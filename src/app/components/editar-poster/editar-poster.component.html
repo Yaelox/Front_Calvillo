@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title class="titulo">Editar Poster</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="dismiss()">
+        <ion-icon name="close-outline" class="icono-cerrar"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fondo">
+  <ion-card class="tarjeta">
+    <ion-card-header>
+      <ion-card-title class="titulo">Información del Evento</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <form (ngSubmit)="updatePoster()">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating" class="etiqueta">Nombre</ion-label>
+            <ion-input [(ngModel)]="poster.nombre" name="name" required class="input"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Fecha del Evento</ion-label>
+            <ion-input [(ngModel)]="poster.fecha" name="fecha" type="date" id="fecha" class="input" required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating" class="etiqueta">Ubicacion</ion-label>
+            <ion-input [(ngModel)]="poster.ubicacion" name="ubicacion" type="text" required class="input"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating" class="etiqueta">Descripcion</ion-label>
+            <ion-input [(ngModel)]="poster.descripcion" name="descripcion" type="text" required class="input"></ion-input>
+          </ion-item>
+
+        </ion-list>
+
+        <div class="botones">
+          <ion-button expand="full" color="danger" type="submit" class="boton-guardar">
+            Guardar Cambios
+          </ion-button>
+        </div>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

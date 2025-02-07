@@ -1,0 +1,42 @@
+<ion-content>
+  <div class="register-event-page">
+    <div class="modal-container">
+      <!-- Botón de Cerrar Modal -->
+      <ion-button fill="clear" class="close-btn" (click)="closeModal()">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+
+      <h2>Registro de Poster</h2>
+      <p>Completa los datos para registrar un Poster</p>
+
+      <!-- Formulario de Evento -->
+      <form [formGroup]="eventForm" (ngSubmit)="submitForm()">
+        <ion-item>
+          <ion-label position="floating">Nombre del Evento</ion-label>
+          <ion-input type="text" formControlName="nombre"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Fecha del Evento</ion-label>
+          <ion-input type="date" formControlName="fecha"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Descripción</ion-label>
+          <ion-input type="text" formControlName="descripcion"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Ubicación</ion-label>
+          <ion-input type="text" formControlName="ubicacion"></ion-input>
+        </ion-item> 
+
+        <br>
+
+        <ion-button expand="full" class="submit-btn" color="danger" type="submit" [disabled]="loading">
+          {{ loading ? 'Registrando...' : 'Registrar Evento' }}
+        </ion-button>
+      </form>
+    </div>
+  </div>
+</ion-content>

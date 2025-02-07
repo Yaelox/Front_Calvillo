@@ -1,13 +1,40 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>check-eventos</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Eventos Posteados</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">check-eventos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content id="main-content">
+  <!-- Banner Principal -->
+  <div class="admin-banner">
+    <h1>Administrar Eventos</h1>
+    <p>Gestiona los eventos publicados en nuestra cartelera</p>
+  </div>
+
+  <!-- Lista de Eventos Publicados -->
+  <section class="event-admin-section">
+    <div class="event-grid">
+      <div *ngFor="let poster of poster" class="event-card">
+        <div class="event-details">
+          <h2>{{ poster.nombre }}</h2>
+          <p class="event-date">Fecha: <br>{{ poster.fecha | date: 'longDate' }}</p>
+          <p class="event-location">Ubicacion: <br>{{ poster.ubicacion }}</p>
+          <p class="event-description">Descripcion: <br>{{ poster.descripcion }}</p>
+          
+          <!-- Botones de Acción -->
+          <div class="event-actions">
+            <ion-button color="success" (click)="openEditPosterModal(poster)">
+              <ion-icon name="create-outline"></ion-icon> Editar
+            </ion-button>
+            <ion-button color="danger" (click)="deletePoster(poster.id)">
+              <ion-icon name="trash-outline"></ion-icon> Eliminar
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </ion-content>

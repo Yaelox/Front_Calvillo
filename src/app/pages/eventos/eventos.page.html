@@ -8,14 +8,22 @@
   </div>
 
   <!-- Carrusel de Eventos -->
-  <section>
+  <section class="event-carousel-section">
     <app-event-carousel></app-event-carousel>
+
+    <!-- Botón para publicar un evento -->
+    <div class="post-event-button">
+      <ion-button (click)="openPostEventModal()" color="danger">
+        <ion-icon name="add-circle-outline"></ion-icon>
+        Publicar Evento
+      </ion-button>
+    </div>
   </section>
 
   <!-- Formulario de Registro de Evento -->
   <section class="event-registration-section">
-    <h2>Quieres tener tu propio evento</h2>
-    <p>Llena el siguiente formulario para agendar un nuevo con nosotros.</p>
+    <h2>¿Quieres tener tu propio evento?</h2>
+    <p>Llena el siguiente formulario para agendar un nuevo evento con nosotros.</p>
     <app-registarevento (formSubmitted)="handleEventForm($event)"></app-registarevento>
   </section>
 

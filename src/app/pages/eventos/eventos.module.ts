@@ -8,13 +8,15 @@ import { EventosPageRoutingModule } from './eventos-routing.module';
 
 
 import { EventosPage } from './eventos.page';
+import { PostEventoComponent } from 'src/app/components/post-evento/post-evento.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EventosPageRoutingModule
+    EventosPageRoutingModule,
+    PostEventoComponent
   ],
   declarations: []
 })

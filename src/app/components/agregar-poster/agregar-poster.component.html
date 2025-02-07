@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Agregar Poster</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="posterForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" id="nombre_tienda" formControlName="nombre_tienda" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Fecha del Evento</ion-label>
+      <ion-input type="date" id="fecha" formControlName="fecha" required=""></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="floating">Ubicacion</ion-label>
+      <ion-input type="text" id="ubicacion" formControlName="ubicacion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripcion</ion-label>
+      <ion-input type="text" id="descripcion" formControlName="descripcion" required></ion-input>
+    </ion-item>
+
+
+    <ion-button expand="block" type="submit" [disabled]="posterForm.invalid">Registrar Poster</ion-button>
+  </form>
+</ion-content>
