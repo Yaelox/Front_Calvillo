@@ -35,11 +35,11 @@ export class AppComponent {
      this.router.navigate(['/puntos']);
    }
  
-   goToEvents() {
+   goToPoster() {
      this.router.navigate(['/check-eventos']);
    }
    goToEventos() {
-    this.router.navigate(['/eventos']);
+    this.router.navigate(['/admin-eventos']);
   }
  
    goToTienda() {
@@ -51,6 +51,6 @@ export class AppComponent {
    }
  
    goToContacto() {
-     this.router.navigate(['/contacto']);
+     this.router.navigate(['/check-contactos']);
    }
   }

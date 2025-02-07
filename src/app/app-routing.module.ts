@@ -82,7 +82,7 @@ const routes: Routes = [
   },
   {
     path: 'check-eventos',
-    loadChildren: () => import('./pages/check-eventos/check-eventos.module').then( m => m.CheckEventosPageModule)
+    loadChildren: () => import('./pages/check-poster/check-eventos.module').then( m => m.CheckEventosPageModule)
   },
   {
     path: 'check-envios',
@@ -91,6 +91,10 @@ const routes: Routes = [
   {
     path: 'check-contactos',
     loadChildren: () => import('./pages/check-contactos/check-contactos.module').then( m => m.CheckContactosPageModule)
+  },
+  {
+    path: 'admin-eventos',
+    loadChildren: () => import('./pages/admin-eventos/admin-eventos.module').then( m => m.AdminEventosPageModule)
   }
 ];
 

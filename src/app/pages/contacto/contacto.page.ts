@@ -23,6 +23,7 @@ export class ContactoPage {
     this.contactoForm = this.formBuilder.group({
       nombre: ['', [Validators.required]],
       email: ['', [Validators.required]],
+      telefono: ['', [Validators.pattern(/^\d{10}$/)]],
       descripcion: ['', [Validators.required]],
     });
   }
@@ -37,8 +38,9 @@ export class ContactoPage {
           alert('Mensaje enviado con éxito');
           this.contactoForm.reset(); // Limpiar el formulario
           
-          // Recargar la página
-          window.location.reload();
+          // En lugar de recargar la página, actualizamos la lista de contactos
+          this.contactoService.refreshContactos();  // Refresca la lista de contactos
+
         },
         (error) => {
           console.error('Error al enviar el mensaje:', error);

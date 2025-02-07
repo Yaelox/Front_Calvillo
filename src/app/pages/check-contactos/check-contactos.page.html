@@ -1,13 +1,37 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>check-contactos</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Quejas y Sugerencias</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">check-contactos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<div class="admin-banner">
+  <h1>Administrar Quejas y Sugerencias</h1>
+  <p>Gestionar las Quejas y Sugerencias de los clientes</p>
+</div>
+<ion-content id="main-content">
+  <!-- Lista de Quejas y Sugerencias -->
+  <section class="contacto-admin-section">
+    <div class="contacto-grid">
+      <div *ngFor="let contacto of contactos; let i = index" class="contacto-card postit postit-{{ i % 5 }}">
+        <div class="contact-details">
+          <h2>{{ contacto.nombre }}</h2>
+          <p class="contact-email">📧 Email:<br>{{ contacto.email }}</p>
+          <p class="contact-description">👤 Telefono:<br>{{ contacto.telefono }}</p>
+          <p class="contact-usuario">👤 Usuario:<br>{{ contacto.nombre_usuario }}</p>
+          <p class="contact-description">📝 Descripción:<br>{{ contacto.descripcion }}</p>
+          <p class="contact-description">📝 Fecha de Registro:<br>{{ contacto.fecha_registro | date:"medium" }}</p>
+          
+          <!-- Botones de Acción -->
+          <div class="contacto-actions">
+            <ion-button fill="clear" color="danger" (click)="confirmDeleteContacto(contacto.contacto_id)">
+              <ion-icon name="trash-outline"></ion-icon> Eliminar
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </ion-content>

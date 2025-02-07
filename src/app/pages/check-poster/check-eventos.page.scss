@@ -6,6 +6,21 @@
   font-size: 30px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
+// Diseño del encabezado
+ion-header {
+  background: var(--primary-gradient);
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+ion-title {
+  text-align: center;
+  font-size: 25px;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 1px;
+}
 
 .event-admin-section {
   padding: 20px;

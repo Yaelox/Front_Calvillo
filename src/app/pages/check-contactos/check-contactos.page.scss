@@ -1,0 +1,158 @@
+.admin-banner {
+  text-align: center;
+  background: linear-gradient(135deg, #ffcccc, #ff6666);
+  color: #000;
+  padding: 20px;
+  font-size: 30px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor principal */
+.contacto-admin-section {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Diseño en Grid para acomodar los post-its */
+.contacto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); // Ajuste flexible
+  gap: 30px; // Espaciado entre post-its
+  width: 100%;
+  max-width: 1200px;
+  justify-content: center;
+}
+
+// Diseño del encabezado
+ion-header {
+  background: var(--primary-gradient);
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+ion-title {
+  text-align: center;
+  font-size: 25px;
+  font-family: "Playfair Display", serif;
+  letter-spacing: 1px;
+}
+
+/* Diseño de los post-its */
+.postit {
+  padding: 20px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  transform: rotate(var(--tilt, 2deg));
+  transition: transform 0.2s ease-in-out;
+  border-radius: 10px;
+  position: relative;
+  width: 100%; // Se ajusta dinámicamente
+  min-height: 200px; // Altura mínima
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+    border-radius: 50%;
+  }
+}
+
+/* Colores de los post-its */
+.postit-0 { background: #FFEB3B; --tilt: -2deg; }
+.postit-1 { background: #FF9800; --tilt: 3deg; }
+.postit-2 { background: #4CAF50; --tilt: -4deg; }
+.postit-3 { background: #2196F3; --tilt: 2deg; }
+.postit-4 { background: #E91E63; --tilt: -3deg; }
+
+/* Contenido dentro del post-it */
+.contact-details {
+  text-align: left;
+  flex-grow: 1;
+
+  h2 {
+    margin-bottom: 10px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  p {
+    font-size: 25px;
+    margin: 10px 0;
+    line-height: 1.4;
+  }
+}
+
+/* Botones */
+.contacto-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+  ion-button {
+    font-size: 1rem;
+    --border-radius: 5px;
+    --padding: 10px 15px;
+  }
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .contacto-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px; // Reduce espacio en pantallas pequeñas
+  }
+
+  .postit {
+    transform: rotate(0deg); // Elimina la inclinación para mejor legibilidad
+    font-size: 16px;
+  }
+
+  .contact-details h2 {
+    font-size: 1.4rem;
+  }
+
+  .contact-details p {
+    font-size: 16px;
+  }
+
+  .contacto-actions {
+    flex-direction: column; // Apila los botones en móviles
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .contacto-grid {
+    gap: 15px; // Reduce aún más el espacio
+  }
+
+  .postit {
+    padding: 15px;
+    min-height: 180px; // Reduce tamaño en móviles
+  }
+
+  .contact-details h2 {
+    font-size: 1.2rem;
+  }
+
+  .contact-details p {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Eventos Registrados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="main-content" class="office-theme">
+
+  <div class="admin-banner">
+    <h1>Administrar Eventos</h1>
+    <p>Gestiona los eventos registrados por los clientes</p>
+  </div>
+
+  <!-- Lista de Eventos -->
+  <section class="event-admin-section">
+    <div class="event-grid">
+      <div *ngFor="let evento of eventoss; let i = index" class="event-card">
+        <div class="event-header">
+          <h2>{{ evento.nombre }}</h2>
+          <span class="event-date">{{ evento.fecha | date: 'mediumDate' }}</span>
+        </div>
+        <div class="event-body">
+          <p class="event-detail"><strong>📧 Email:</strong> {{ evento.email }}</p>
+          <p class="event-detail"><strong>👤 Usuario:</strong> {{ evento.nombre_usuario }}</p>
+          <p class="event-detail"><strong>📞 Teléfono:</strong> {{ evento.telefono }}</p>
+          <p class="event-detail"><strong>📍 Ubicación:</strong> {{ evento.ubicacion }}</p>
+          <p class="event-detail"><strong>📝 Descripción:</strong> {{ evento.descripcion }}</p>
+          <p class="event-detail"><strong>📅 Fecha del evento:</strong> <br>{{ evento.fecha | date: 'dd MMM yyyy' }}</p>
+          <p class="event-detail"><strong>📅 Fecha Registro:</strong><br> {{ evento.fecha_creacion | date: 'dd MMM yyyy' }}</p>
+          
+        </div>
+        <div class="event-actions">
+          <ion-button fill="solid" color="danger" shape="round" (click)="confirmDeleteEvento(evento.id_evento)">
+            <ion-icon name="trash-outline" slot="start"></ion-icon>
+            Eliminar
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </section>
+</ion-content>

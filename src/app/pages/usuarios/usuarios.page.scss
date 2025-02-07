@@ -81,6 +81,16 @@ ion-content {
   margin: 12px 0;
 }
 
+.admin-banner {
+  text-align: center;
+  background: linear-gradient(135deg, #ffcccc, #ff6666); // Rojo pastel a rojo suave
+  color: #000;
+  padding: 20px 20px;
+  font-size: 30px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
 /* Información en lista */
 .ticket-info {
   list-style: none;
