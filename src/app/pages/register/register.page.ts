@@ -6,6 +6,7 @@ import { NavController } from '@ionic/angular';
 import { ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -26,29 +27,38 @@ export class RegisterPage implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     public navCtrl: NavController,
+    private router: Router
   ) {
     this.registerForm = this.fb.group({
+      nombre: ['', [Validators.required]],
       usuario: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      telefono: ['', [Validators.required]],
       tipo_usuario: ['', [Validators.required]], // Por ejemplo, 'cliente' o 'admin'
     });
   }
 
+  goToLogin() {
+    this.router.navigate(['/login']);
+  }
+
   ngOnInit() {
     this.registerForm = this.fb.group({
-      usuario: ['', [Validators.required, Validators.minLength(3)]],
+      nombre: ['', [Validators.required]],
+      usuario: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
+      telefono: ['', [Validators.required]],
       tipo_usuario: ['cliente'], // Valor predeterminado invisible
     });
   }
 
   onRegister() {
     if (this.registerForm.valid) {
-      const { usuario, email, password, tipo_usuario } = this.registerForm.value;
+      const { nombre,usuario, email, password,telefono, tipo_usuario } = this.registerForm.value;
 
-      this.authService.registerUser({ usuario, email, password, tipo_usuario }).subscribe({
+      this.authService.registerUser({ nombre ,usuario, email, password,telefono, tipo_usuario }).subscribe({
         next: (response) => {
           console.log('Usuario registrado:', response);
           alert('Usuario registrado correctamente');

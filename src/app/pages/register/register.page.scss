@@ -1,69 +1,149 @@
-.form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    padding: 1.5rem;
-  
-    form {
-      width: 100%;
-      max-width: 400px;
-      background: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-      padding: 2rem;
-  
-      ion-item {
-        margin-bottom: 1rem;
-      }
-  
-      ion-button {
-        margin-top: 1.5rem;
-      }
-  
-      .login-link {
-        text-align: center;
-        margin-top: 1rem;
-  
-        p {
-          font-size: 0.9rem;
-          color: #555;
-  
-          a {
-            color: #3880ff;
-            text-decoration: none;
-            font-weight: bold;
-  
-            &:hover {
-              text-decoration: underline;
-            }
-          }
-        }
-      }
-    }
+/* Contenedor principal de la página */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: #f7e1d7; /* Color suave tipo pastel de dulcería */
+  padding: 10px;
+}
+
+/* Contenedor del formulario */
+.form-wrapper {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Logo */
+.logo-container {
+  margin-bottom: 20px;
+}
+
+.logo {
+  max-width: 120px;
+  width: 100%;
+  height: auto;
+}
+
+/* Estilos del formulario */
+.register-form {
+  width: 100%;
+}
+
+/* Estilos para los campos de entrada */
+.input-group {
+  margin-bottom: 20px;
+}
+
+ion-item {
+  --background: #f9e1d1; /* Fondo suave para los campos de entrada */
+  --border-radius: 8px;
+}
+
+h2 {
+  color: #000;
+  font-size: 20px;
+  font-weight: bold; 
+  text-align: left;
+}
+
+ion-input {
+  margin-bottom: 10px;
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --border-color: #f7b7a3; /* Color de borde suave */
+  --border-radius: 8px;
+  color: #000;
+}
+
+/* Estilos del botón de submit */
+.submit-btn {
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 14px;
+}
+
+.submit-btn:disabled {
+  background: #e8b7a3; /* Color deshabilitado para el botón */
+}
+
+/* Enlace para iniciar sesión */
+.login-link {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #000;
+}
+
+.login-link a {
+  color: #0000AA;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos Responsivos */
+@media (max-width: 768px) {
+  .form-wrapper {
+    padding: 20px;
+    max-width: 90%; /* Ajusta el formulario para pantallas pequeñas */
   }
-  
-  /* Responsivo */
-  @media (max-width: 768px) {
-    .form-container {
-      padding: 1rem;
-  
-      form {
-        padding: 1.5rem;
-      }
-    }
+
+  .logo {
+    max-width: 100px; /* Logo más pequeño en pantallas más pequeñas */
   }
-  
-  @media (max-width: 480px) {
-    .form-container {
-      form {
-        padding: 1rem;
-      }
-  
-      ion-button {
-        font-size: 0.9rem;
-      }
-    }
+
+  ion-item {
+    --padding-start: 10px;
+    --padding-end: 10px;
   }
-  
+
+  h2 {
+    font-size: 18px; /* Tamaño de letra más pequeño para el título */
+  }
+
+  .submit-btn {
+    font-size: 14px; /* Botón más pequeño */
+  }
+
+  .login-link {
+    font-size: 14px; /* Texto más pequeño para el enlace */
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    padding: 5px;
+  }
+
+  .form-wrapper {
+    padding: 15px;
+    max-width: 100%; /* Asegura que el formulario ocupe el ancho completo en pantallas muy pequeñas */
+  }
+
+  .logo {
+    max-width: 80px; /* Logo más pequeño en pantallas muy pequeñas */
+  }
+
+  h2 {
+    font-size: 16px; /* Título más pequeño en pantallas pequeñas */
+  }
+
+  .submit-btn {
+    font-size: 12px; /* Botón más pequeño para pantallas muy pequeñas */
+    padding: 10px;
+  }
+
+  .login-link {
+    font-size: 12px; /* Texto más pequeño para el enlace */
+  }
+}

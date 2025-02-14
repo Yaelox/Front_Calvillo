@@ -1,73 +1,129 @@
+// Colores principales
+$primary-color: #ff7eb3;
+$secondary-color: #ff758c;
+$accent-color: #e63946;
+$background-color: #ffffff;
+$shadow-color: rgba(0, 0, 0, 0.1);
+$input-border-color: #ddd;
+$input-focus-color: #ff758c;
+
+// Variables de espaciado
+$padding: 20px;
+$border-radius: 12px;
+$gap: 15px;
+$max-width: 400px;
+
+// Tipografía
+$font-family: 'Roboto', sans-serif;
+
+// Estilos generales para ion-content
 ion-content {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  background: linear-gradient(135deg, #ff7eb3, #ff758c); /* Fondo degradado */
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  font-family: $font-family;
+  padding: 0;
 }
 
+// Estilos del contenedor del formulario
 .form-container {
-  width: 90%;
-  max-width: 400px;
-  padding: 20px;
-  border-radius: 20px;
-  background: #ffffff; /* Fondo del formulario */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  width: 90%;
+  max-width: 500px;
+  height: auto;
+  margin: 0 auto;
+}
+/* Contenedor principal de la página */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background: #f7e1d7; /* Color suave tipo pastel de dulcería */
 }
 
+/* Contenedor del formulario */
+.form-wrapper {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Logo */
 .logo-container {
   margin-bottom: 20px;
 }
 
 .logo {
-  width: 80px;
-  height: auto;
+  max-width: 120px;
 }
 
-form {
+/* Estilos del formulario */
+.login-form {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px; /* Espaciado entre los elementos */
+}
+
+/* Estilos para los campos de entrada */
+.input-group {
+  margin-bottom: 30px;
+  color: #000;
 }
 
 ion-item {
-  --highlight-color-focused: #ff758c; /* Color del foco */
+  --background: #f9e1d1; /* Fondo suave para los campos de entrada */
+  --border-radius: 8px;
 }
 
-ion-button {
-  --background: #ff7eb3;
-  --background-focused: #ff758c;
-  --background-activated: #ff758c;
-  --box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+h2{
+  color: #000;
+  font-size: 25px;
+  font-weight: bold;
+  text-align: left; /* Color suave y cálido */
+}
+
+ion-input {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  --border-color: #f7b7a3; /* Color de borde suave */
+  --border-radius: 8px;
+  color: #000;
+}
+
+/* Estilos del botón de submit */
+.submit-btn {
+  text-decoration: #000;
+  border-radius: 8px;
+  font-size: 16px;
+  padding: 14px;
+}
+
+.submit-btn:disabled {
+  background: #e8b7a3; /* Color deshabilitado para el botón */
+  color: #000;
+}
+
+/* Enlace para registrarse */
+.register-link {
+  margin-top: 15px;
+  font-size: 16px;
+  color: #000;
+}
+
+.register-link a {
+  color: #0000AA;
+  text-decoration: none;
+  font-weight: bold;
   font-size: 16px;
 }
 
-ion-text {
-  font-size: 12px;
-  color: #e63946; /* Color del texto de error */
-}
-
-.register-link {
-  margin-top: 10px;
-  text-align: center;
-
-  p {
-    font-size: 14px;
-    color: #555;
-  }
-
-  a {
-    color: #ff758c;
-    font-weight: bold;
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+.register-link a:hover {
+  text-decoration: underline;
 }

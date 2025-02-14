@@ -1,65 +1,62 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Registro</ion-title>
+    <ion-title>Registrar Cuenta</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="form-container">
-    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-      <!-- Campo Usuario -->
-      <ion-item>
-        <ion-label position="floating">Nombre de Usuario</ion-label>
-        <ion-input
-          type="text"
-          formControlName="usuario"
-          placeholder="Ingresa tu nombre de usuario"
-        ></ion-input>
-      </ion-item>
-      <ion-text color="danger" *ngIf="registerForm.get('usuario')?.invalid && registerForm.get('usuario')?.touched">
-        <small>Por favor, ingresa un nombre de usuario válido.</small>
-      </ion-text>
-
-      <!-- Campo Correo -->
-      <ion-item>
-        <ion-label position="floating">Correo Electrónico</ion-label>
-        <ion-input
-          type="email"
-          formControlName="email"
-          placeholder="Ingresa tu correo"
-        ></ion-input>
-      </ion-item>
-      <ion-text color="danger" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-        <small>Por favor, ingresa un correo válido.</small>
-      </ion-text>
-
-      <!-- Campo Contraseña -->
-      <ion-item>
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input
-          type="password"
-          formControlName="password"
-          placeholder="Ingresa tu contraseña"
-        ></ion-input>
-      </ion-item>
-      <ion-text color="danger" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-        <small>La contraseña debe tener al menos 6 caracteres.</small>
-      </ion-text>
-
-      <!-- Campo Tipo Usuario (invisible) -->
-      <input type="hidden" formControlName="tipo_usuario" />
-
-      <!-- Botón de registro -->
-      <ion-button expand="block" type="submit" [disabled]="registerForm.invalid">
-        Registrarse
-      </ion-button>
-
-      <!-- Link para iniciar sesión -->
-      <div class="login-link">
-        <p>¿Ya tienes una cuenta? 
-          <a (click)="navCtrl.navigateRoot('/login')">Inicia sesión aquí</a>
-        </p>
+  <div class="register-container">
+    <div class="form-wrapper">
+      <!-- Logo -->
+      <div class="logo-container">
+        <img src="assets/images/Logo.png" alt="Logo" class="logo" />
       </div>
-    </form>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="register-form">
+        <div class="input-group">
+          <h2>Nombre Completo:</h2>
+          <ion-item>
+            <ion-input formControlName="nombre" placeholder="Ingresa tu nombre completo" type="text" required></ion-input>
+          </ion-item>
+        </div>
+
+        <div class="input-group">
+          <h2>Usuario:</h2>
+          <ion-item>
+            <ion-input formControlName="usuario" placeholder="Ingresa tu usuario" type="text" required></ion-input>
+          </ion-item>
+        </div>
+
+        <div class="input-group">
+          <h2>Email:</h2>
+          <ion-item>
+            <ion-input formControlName="email" type="email" placeholder="Ingresa tu email" required></ion-input>
+          </ion-item>
+        </div>
+
+        <div class="input-group">
+          <h2>Telefono:</h2>
+          <ion-item>
+            <ion-input formControlName="telefono" type="text" placeholder="xxx-xxx-xxxx" required></ion-input>
+          </ion-item>
+        </div>
+
+        <div class="input-group">
+         <h2>Contraseña:</h2>
+          <ion-item>
+            <ion-input formControlName="password" color="#000" placeholder="***********" type="password" required></ion-input>
+          </ion-item>
+        </div>
+
+        <ion-button expand="block" color="danger" type="submit" class="submit-btn">
+          Registrarse
+        </ion-button>
+
+        <!-- Enlace para iniciar sesión -->
+        <div class="login-link">
+          <p>¿Ya tienes una cuenta? <a (click)="goToLogin()">Inicia sesión aquí</a></p>
+        </div>
+      </form>
+    </div>
   </div>
 </ion-content>

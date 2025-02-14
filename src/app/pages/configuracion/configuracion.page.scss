@@ -1,144 +1,148 @@
-:host {
-  display: block;
-}
+// Colores principales
+$primary-color: #E57373; // Rojo suave
+$secondary-color: #FF8A80; // Rojo claro
+$dark-color: #B71C1C; // Rojo oscuro para contrastes
+// Colores base
+$background-color: #f9f9f9; // Fondo claro
+$text-color: #333; // Texto oscuro
 
+// Variables de espaciado
+$padding: 16px;
+$border-radius: 8px;
+
+// Fuente principal
+$font-family: 'Roboto', sans-serif;
+
+// Estilos generales
 ion-header {
-  --background: #f8d7da; /* Fondo suave con color rosado claro */
-  --ion-toolbar-background: #ffccd5; /* Barra de herramientas de color suave */
-  --ion-title-color: #d6336c; /* Título de la cabecera en rosa fuerte */
-  --ion-button-text-color: #fff; /* Color del texto de los botones */
+  background-color: $primary-color;
+  color: white;
 }
 
 ion-toolbar {
-  padding: 1rem;
+  --background: $primary-color;
 }
 
 ion-title {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 700;
-  font-size: 2rem; /* Tamaño grande para llamar la atención */
-  color: #000; /* Rosa fuerte para un color vibrante */
-  text-transform: uppercase; /* Título en mayúsculas para mayor impacto */
-  letter-spacing: 2px; /* Espaciado entre letras para mayor claridad */
+  font-weight: bold;
+}
+h2{
+
+  color: #000;
   text-align: center;
-}
-.content-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 20px;
-  background: #fff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 30px;
+  font-weight: bold;
 }
 
-.config-container {
-  max-width: 700px;
-  margin: 0 auto;
-  padding-top: 30px;
-}
-
-.config-title {
-  font-family: 'Roboto', sans-serif;
-  font-size: 2rem;
-  font-weight: 600;
-  text-align: center;
-  color: #d6336c;
-  margin-bottom: 20px;
-}
-
-.profile-section {
+// Estilos para el contenedor principal
+#main-content {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  align-items: center;
+  background-color: $background-color;
+  font-family: $font-family;
+  height: 100vh; // Asegura que el contenido ocupe toda la altura de la pantalla
+  padding: 0;
 }
 
-.profile-img {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #d6336c;
+// Estilos para el contenedor del formulario
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
-.config-card {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  padding: 20px;
+// Estilos para el formulario
+form {
   background-color: #fff;
-}
-
-.card-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #d6336c;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-ion-item {
-  margin-bottom: 15px;
-}
-
-ion-label {
-  font-weight: 500;
-  color: #555;
-}
-
-ion-input {
-  font-size: 1rem;
-  padding: 10px;
-}
-
-.save-button {
-  background-color: #d6336c;
-  color: #fff;
-  font-size: 1.2rem;
-  border-radius: 10px;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: $padding;
+  width: 100%;
+  max-width: 700px; // Máxima anchura para el formulario
   margin-top: 20px;
-  transition: background-color 0.3s ease;
+  text-align: center; // Para centrar los elementos dentro del formulario
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+// Estilo para los elementos del formulario
+ion-item {
+  margin-bottom: 20px;
+  width: 100%; // Asegura que el input ocupe el 100% del contenedor
+
+  ion-label {
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  ion-input,
+  ion-select {
+    font-size: 20px;
+    padding: 20px;
+    border-radius: $border-radius;
+    border: 1px solid #ddd;
+  }
+
+  ion-select {
+    --padding-start: 20px;
+    --padding-end: 20px;
+  }
+}
+
+// Estilo para el botón de envío
+ion-button {
+  color: #fff;
+  border-radius: $border-radius;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
 
   &:hover {
-    background-color: #c2185b; /* Cambiar a un rosa más fuerte en hover */
+    background-color: $secondary-color;
+  }
+
+  &.full {
+    width: 100%;
   }
 }
 
-ion-card-header,
-ion-card-content {
-  padding: 15px;
+ion-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba($primary-color, 0.5);
 }
 
-/* Estilos Responsivos */
+// Estilo para la imagen
+#default-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+// Media Queries para asegurar que el diseño sea responsivo
 @media (max-width: 768px) {
-  .config-title {
-    font-size: 1.6rem;
+  form {
+    padding: 10px;
+    max-width: 90%;
   }
 
-  .profile-img {
+  ion-button {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  #default-image {
     width: 100px;
     height: 100px;
-  }
-
-  ion-item {
-    font-size: 0.9rem;
-  }
-
-  .save-button {
-    font-size: 1rem;
-    padding: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .config-title {
-    font-size: 1.4rem;
-  }
-
-  .profile-img {
-    width: 80px;
-    height: 80px;
-  }
-
-  .save-button {
-    font-size: 0.9rem;
-    padding: 8px;
   }
 }

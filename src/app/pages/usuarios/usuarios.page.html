@@ -52,8 +52,10 @@
           <!-- Información en lista -->
           <ul class="ticket-info">
             <li><strong>ID:</strong> {{ usuario.id_usuario }}</li>
+            <li><strong>Nombre:</strong> {{ usuario.nombre }}</li>
             <li><strong>Email:</strong> {{ usuario.email }}</li>
-            <li><strong>Tipo:</strong> {{ usuario.tipo_usuario }}</li>
+            <li><strong>Telefono:</strong> {{ usuario.telefono}}</li>
+            <li><strong>Tipo de Usuario:</strong> {{ usuario.tipo_usuario }}</li>
             <li><strong>Registrado:</strong> {{ usuario.fecha_registro | date: 'medium' }}</li>
           </ul>
 
@@ -66,10 +68,8 @@
               <ion-icon name="trash-outline" slot="start"></ion-icon> Eliminar
             </ion-button>
           </div>
-
         </div>
       </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>

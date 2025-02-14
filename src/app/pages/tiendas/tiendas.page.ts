@@ -5,7 +5,7 @@ import { AgregaTiendaComponent } from 'src/app/components/agrega-tienda/agrega-t
 import { EditarTiendaComponent } from 'src/app/components/editar-tienda/editar-tienda.component';
 import { CommonModule } from '@angular/common';
 import { UserService } from 'src/app/services/user.service';
-
+import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-tiendas',
   templateUrl: './tiendas.page.html',
@@ -28,38 +28,57 @@ export class TiendasPage implements OnInit {
     this.getTiendas();
   }
 
-  // ✅ Obtener tiendas
-  getTiendas() {
-    console.log("📢 Cargando tiendas...");
+  // ✅ Obtener tienda
+getTiendas() {
+  console.log("📢 Cargando tiendas...");
 
-    this.tiendaService.getTiendas().subscribe(
-      (tiendasData) => {
-        console.log("✅ Tiendas obtenidas:", tiendasData);
-        this.tiendas = tiendasData;
+  this.tiendaService.getTiendas().subscribe(
+    (tiendasData) => {
+      console.log("✅ Tiendas obtenidas:", tiendasData);
+      this.tiendas = tiendasData;
 
-        this.tiendas.forEach((tienda) => {
-          if (tienda.id_usuario) {
-            this.userService.getUserById(tienda.id_usuario).subscribe(
-              (userData) => {
-                tienda.nombre_usuario = userData.usuario;
-                console.log(`👤 Nombre de usuario asignado: ${userData.usuario}`);
-              },
-              (error) => {
-                console.error(`❌ Error al obtener usuario ${tienda.id_usuario}:`, error);
-                tienda.nombre_usuario = 'Desconocido';
-              }
-            );
-          } else {
-            tienda.nombre_usuario = 'Desconocido';
-          }
-        });
-      },
-      (error) => {
-        console.error("❌ Error al obtener las tiendas:", error);
+      this.tiendas.forEach((tienda, index) => {
+        console.log(`🔹 Tienda ${index}:`, tienda);
+      });
+
+      // Lista de peticiones para obtener usuarios
+      const userRequests = this.tiendas.map((tienda, index) => {
+        console.log(`🔎 Buscando usuario para tienda ${index} con ID de usuario: ${tienda.id_usuario}`);
+        return tienda.id_usuario ? this.userService.getUserById(tienda.id_usuario) : null;
+      }).filter(req => req !== null); // Filtramos los null
+
+      console.log("🔄 Lista de peticiones de usuarios:", userRequests); // Ver las peticiones de usuarios generadas
+
+      if (userRequests.length === 0) {
+        console.log("⚠️ No hay usuarios que cargar.");
+        return;
       }
-    );
-  }
 
+      // Realizamos las peticiones de usuarios en paralelo
+      forkJoin(userRequests).subscribe(
+        (usersData) => {
+          console.log("👤 Usuarios obtenidos:", usersData);
+
+          // Asignar el nombre del usuario a cada tienda
+          this.tiendas.forEach((tienda, index) => {
+            const user = usersData[index];
+            tienda.nombre = user ? user.nombre : 'Desconocido'; // Asignamos el nombre del usuario
+            console.log(`✅ Asignado usuario: ${tienda.nombre} a la tienda ${index}`);
+          });
+        },
+        (error) => {
+          console.error("❌ Error al obtener usuarios:", error);
+        }
+      );
+    },
+    (error) => {
+      console.error("❌ Error al obtener las tiendas:", error);
+    }
+  );
+}
+
+  
+  
   // ✅ Confirmar eliminación de tienda
   async confirmDeleteTienda(id: number) {
     console.log(`🗑️ Confirmando eliminación de la tienda con ID: ${id}`);

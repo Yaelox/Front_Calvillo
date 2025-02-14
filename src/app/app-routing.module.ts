@@ -95,6 +95,10 @@ const routes: Routes = [
   {
     path: 'admin-eventos',
     loadChildren: () => import('./pages/admin-eventos/admin-eventos.module').then( m => m.AdminEventosPageModule)
+  },
+  {
+    path: 'check-pedidos',
+    loadChildren: () => import('./pages/check-pedidos/check-pedidos.module').then( m => m.CheckPedidosPageModule)
   }
 ];
 

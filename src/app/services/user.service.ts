@@ -5,9 +5,11 @@ import { Observable } from 'rxjs';
 // Define la interfaz para un usuario
 export interface User {
   id_usuario?: number;
+  nombre:string;
   usuario: string;
   email: string;
   password: string;
+  telefono:string;
   tipo_usuario: string;
   fecha_registro?: string;
 }

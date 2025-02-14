@@ -14,6 +14,10 @@ export class AppComponent {
    goToUser() {
      this.router.navigate(['/usuarios']);
    }
+   // Métodos para navegar entre las páginas
+   goToPedidos() {
+    this.router.navigate(['/check-pedidos']);
+  }
  
    goToPreventa() {
      this.router.navigate(['/preventa']);

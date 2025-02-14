@@ -83,7 +83,7 @@ export class PreventaPage   implements OnInit {
             Dirección: ${tienda.direccion || 'No disponible'}<br>
             Teléfono: ${tienda.telefono || 'No disponible'}<br>
             Email: ${tienda.email || 'No disponible'}<br>
-            Propietario: ${usuario.usuario || 'No disponible'}<br>
+            Propietario: ${usuario.nombre || 'No disponible'}<br>
             Frecuencia de visitas: ${tienda.frecuencia_visitas || 'No especificada'}
           `;
   
