@@ -3,6 +3,7 @@ import { NavController } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule} from '@angular/common';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -14,15 +15,24 @@ export class HeaderComponent implements OnInit {
   cartCount: number = 0;
   isDisabled = false;
 
+  isAdmin: boolean = false;
+
 
   constructor(
     private navCtrl: NavController,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
  
   ngOnInit() {
+    setTimeout(() => {
+      const userType = localStorage.getItem('tipo_usuario');
+      this.isAdmin = userType === 'administrador';
+      console.log("Usuario logueado como:", userType);
+    }, 100);  // Pequeño retraso para asegurarnos de obtener los datos correctos
   }
+  
   // Navegar al carrito
   goToCart() {
     this.router.navigate(['/carrito']);
@@ -40,28 +50,12 @@ export class HeaderComponent implements OnInit {
     this.navCtrl.navigateForward('/contacto');
   }
 
-  goToReparto() {
-    this.navCtrl.navigateForward('/reparto-domicilio');
-  }
-
-  goToRutas() {
-    this.navCtrl.navigateForward('/rutas-foraneas');
-  }
-
-  goToPuntos() {
-    this.navCtrl.navigateForward('/puntosdeventa');
-  }
-
-  goToEventos() {
+  /*goToEventos() {
     this.navCtrl.navigateForward('/eventos');
-  }
+  } */
 
   goToTienda() {
     this.navCtrl.navigateForward('/tienda-online');
-  }
-
-  goToEnvios() {
-    this.navCtrl.navigateForward('/envios');
   }
 
   goToCarrito() {
@@ -70,5 +64,10 @@ export class HeaderComponent implements OnInit {
 
   goToConfig(){
     this.router.navigate(['/configuracion']);
+  }
+
+  onLogout() {
+    this.authService.logout();  // Llama al método de logout
+    this.navCtrl.navigateRoot('/login');  // Redirige a la página de login después de cerrar sesión
   }
 }

@@ -99,6 +99,10 @@ const routes: Routes = [
   {
     path: 'check-pedidos',
     loadChildren: () => import('./pages/check-pedidos/check-pedidos.module').then( m => m.CheckPedidosPageModule)
+  },
+  {
+    path: 'mis-pedidos',
+    loadChildren: () => import('./pages/mis-pedidos/mis-pedidos.module').then( m => m.MisPedidosPageModule)
   }
 ];
 

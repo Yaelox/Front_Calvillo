@@ -15,27 +15,41 @@
     
     <ion-content>
       <ion-list>
-        <ion-item button (click)="goToUser()">
+        <ion-item *ngIf="isAdmin" button (click)="goToUser()">
           <ion-icon name="person" slot="start"></ion-icon> Usuarios
         </ion-item>
-        <ion-item button (click)="goToTienda()">
+        
+        <ion-item button (click)="goToMisPedidos()">
+          <ion-icon name="person" slot="start"></ion-icon> Mis Pedidos
+        </ion-item>
+        
+        <ion-item *ngIf="isAdmin" button (click)="goToTienda()">
           <ion-icon name="storefront" slot="start"></ion-icon> Tiendas
         </ion-item>
-        <ion-item button (click)="goToPoster()">
+        
+        <ion-item *ngIf="isAdmin" button (click)="goToPedidos()">
+          <ion-icon name="boat" slot="start"></ion-icon> Pedidos
+        </ion-item>
+        
+        <ion-item *ngIf="isAdmin" button (click)="goToContacto()">
+          <ion-icon name="person" slot="start"></ion-icon> Contáctanos
+        </ion-item>
+        
+        <ion-item button (click)="goToConfiguracion()">
+          <ion-icon name="settings" slot="start"></ion-icon> Configuración
+        </ion-item>
+        
+        <ion-item button (click)="goToHome()">
+          <ion-icon name="home" slot="start"></ion-icon> Home
+        </ion-item>        
+
+        <!--<ion-item button (click)="goToPoster()">
           <ion-icon name="map" slot="start"></ion-icon> Poster
         </ion-item>
         <ion-item button (click)="goToEventos()">
           <ion-icon name="map" slot="start"></ion-icon> Eventos
         </ion-item>
-        <ion-item button (click)="goToPedidos()">
-          <ion-icon name="boat" slot="start"></ion-icon> Pedidos
-        </ion-item>
-        <ion-item button (click)="goToContacto()">
-          <ion-icon name="person" slot="start"></ion-icon> Contáctanos
-        </ion-item>
-          <ion-item button (click)="goToConfiguracion()">
-            <ion-icon name="settings" slot="start"></ion-icon> Configuración
-          </ion-item>
+      -->
         </ion-list>
       </ion-content>
     </ion-menu>

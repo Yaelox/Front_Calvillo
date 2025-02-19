@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <!-- Fila que contiene el formulario de envío y el método de pago -->
+    <!-- Fila que contiene el formulario de envío, ubicación y el método de pago -->
     <div class="form-payment-row">
       <!-- Formulario de dirección -->
       <div class="shipping-info">
@@ -37,59 +37,70 @@
         <ion-list>
           <ion-item>
             <ion-label position="floating">Nombre completo</ion-label>
-            <ion-input type="text" required></ion-input>
+            <ion-input type="text" required [(ngModel)]="shippingInfo.fullName"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Dirección</ion-label>
-            <ion-input type="text" required></ion-input>
+            <ion-input type="text" required [(ngModel)]="shippingInfo.address"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Ciudad</ion-label>
-            <ion-input type="text" required></ion-input>
+            <ion-input type="text" required [(ngModel)]="shippingInfo.city"></ion-input>
           </ion-item>
           <ion-item>
             <ion-label position="floating">Código Postal</ion-label>
-            <ion-input type="text" required></ion-input>
+            <ion-input type="text" required [(ngModel)]="shippingInfo.postalCode"></ion-input>
           </ion-item>
-        </ion-list>
-      </div>
-
-      <div class="payment-method">
-        <h2>Método de Pago</h2>
-        <ion-list>
-          <ion-radio-group [(ngModel)]="metodoPagoSeleccionado"> <!-- Vincula el valor seleccionado -->
-            <ion-item>
-              <ion-label>Tarjeta de Crédito</ion-label>
-              <ion-radio slot="start" value="credit-card"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>PayPal</ion-label>
-              <ion-radio slot="start" value="paypal"></ion-radio>
-            </ion-item>
-            <ion-item>
-              <ion-label>Pago en Efectivo</ion-label>
-              <ion-radio slot="start" value="cash"></ion-radio>
-            </ion-item>
-          </ion-radio-group>
         </ion-list>
       </div>
     </div>
 
+    <!-- Nueva Sección: Registro de Ubicación -->
+    <div class="location-registration">
+      <h2>Registrar Ubicación</h2>
+      <p>Arrastra el marcador para establecer tu ubicación exacta.</p>
+      <div id="map" style="height: 400px;"></div> <!-- Mapa de registro -->
+      <p *ngIf="selectedLat && selectedLng">📍 Ubicación Registrada: {{ selectedLat }}, {{ selectedLng }}</p>
+      <ion-button expand="block" color="tertiary" (click)="getUserLocation()">
+        <ion-icon slot="start" name="locate-outline"></ion-icon>
+        Obtener Mi Ubicación
+      </ion-button>
+    </div>
+
+    <!-- Método de Pago -->
+   <!-- Método de Pago -->
+<div class="payment-method">
+  <h2>Método de Pago</h2>
+  <ion-list>
+    <ion-radio-group [(ngModel)]="metodoPagoSeleccionado" name="metodoPago" (ngModelChange)="onPaymentMethodChange($event)">
+      <ion-item>
+        <ion-label>Tarjeta de Crédito</ion-label>
+        <ion-radio slot="start" name="credit-card" value="credit-card"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Tarjeta de Débito</ion-label>
+        <ion-radio slot="start" name="credit-debit" value="credit-debit"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Transferencia</ion-label>
+        <ion-radio slot="start" name="transferencia" value="transferencia"></ion-radio>
+      </ion-item>
+    </ion-radio-group>    
+  </ion-list>
+</div>
+
     <!-- Acciones de navegación y compra -->
     <div class="checkout-actions">
-      <!-- Botón para regresar al carrito -->
       <ion-button expand="block" color="medium" (click)="goToCart()">
         <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
         Volver al Carrito
       </ion-button>
 
-      <!-- Botón para regresar al producto details -->
       <ion-button expand="block" color="medium" (click)="goToProductDetails()">
         <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
         Volver al Producto
       </ion-button>
 
-      <!-- Botón de finalizar compra -->
       <ion-button expand="block" color="primary" (click)="finalizarCompra()">
         <ion-icon slot="start" name="checkmark-outline"></ion-icon>
         Finalizar Compra

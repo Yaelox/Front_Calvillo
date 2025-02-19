@@ -10,6 +10,15 @@ import { Router } from '@angular/router';
 export class AppComponent {
  constructor(private router: Router) {}
  
+ isAdmin: boolean = false;
+ 
+ ngOnInit() {
+  setTimeout(() => {
+    const userType = localStorage.getItem('tipo_usuario');
+    this.isAdmin = userType === 'administrador';
+    console.log("Usuario logueado como:", userType);
+  }, 100);  // Pequeño retraso para asegurarnos de obtener los datos correctos
+}
    // Métodos para navegar entre las páginas
    goToUser() {
      this.router.navigate(['/usuarios']);
@@ -21,6 +30,15 @@ export class AppComponent {
  
    goToPreventa() {
      this.router.navigate(['/preventa']);
+   }
+
+   goToHome() {
+    this.router.navigate(['/home']);
+  }
+
+
+   goToMisPedidos(){
+    this.router.navigate(['/mis-pedidos'])
    }
  
    goToConfiguracion() {

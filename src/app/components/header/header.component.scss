@@ -11,6 +11,27 @@ ion-header {
   --ion-button-text-color: #d6336c;
   
 }
+.logout-button {
+  --color: #ff0000;  // Color rojo para el icono y texto
+  --background: #ff0000;  // Fondo rojo
+  --border-radius: 50px;  // Borde redondeado
+  --padding: 10px 20px;  // Aumentar el tamaño del botón
+  font-size: 18px;  // Aumenta el tamaño del texto (si lo necesitas)
+  --icon-size: 24px;  // Aumentar el tamaño del icono
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Para el icono */
+  ion-icon {
+    font-size: 28px;  // Aumentar el tamaño del icono dentro del botón
+  }
+  
+  &:hover {
+    --background: #d40000;  // Cambia a un rojo más oscuro cuando el mouse pasa por encima
+  }
+}
 
 ion-toolbar {
   display: flex;

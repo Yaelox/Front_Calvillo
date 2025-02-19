@@ -7,6 +7,12 @@
   margin: 1rem auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
+  #map {
+    width: 100%;
+    height: 400px; /* Ajusta la altura según lo necesario */
+    border-radius: 10px;
+  }
+  
   ion-title {
     font-size: 1.8rem;
     font-weight: bold;
@@ -20,176 +26,177 @@
     margin: 0;
   }
 }
-  .product-summary {
-    margin-bottom: 2rem;
 
-    h2 {
-      color: #ff8fa3;
-      margin-bottom: 1rem;
-      font-size: 1.5rem;
+.product-summary {
+  margin-bottom: 2rem;
+
+  h2 {
+    color: #ff8fa3;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .product-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    background-color: #ffc2cf;
+    border-radius: 8px;
+    padding: 0.8rem;
+
+    .product-image img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-right: 1rem;
     }
 
-    .product-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-      background-color: #ffc2cf;
-      border-radius: 8px;
-      padding: 0.8rem;
-
-      .product-image img {
-        width: 60px;
-        height: 60px;
-        object-fit: cover;
-        border-radius: 6px;
-        margin-right: 1rem;
-      }
-
-      .product-details {
-        h3 {
-          font-size: 1rem;
-          color: #000;
-        }
-
-        p {
-          margin: 0.2rem 0;
-          color: #000;
-
-          &.price {
-            font-weight: bold;
-          }
-        }
-      }
-    }
-
-    .total {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-      border-top: 2px solid #ff8fa3;
-      font-size: 1.7rem;
-      color: #000;
-
-      h2 {
+    .product-details {
+      h3 {
+        font-size: 1rem;
         color: #000;
       }
+
+      p {
+        margin: 0.2rem 0;
+        color: #000;
+
+        &.price {
+          font-weight: bold;
+        }
+      }
     }
   }
 
-  .form-payment-row {
+  .total {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
-  
-    .shipping-info,
-    .payment-method {
-      flex: 1; // Ambos contenedores ocupan el mismo ancho
-      height: auto; // Garantiza altura dinámica
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: #ffe4ec; // Fondo más visible
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
-      h2 {
-        margin-bottom: 1rem;
-        color: #d63384;
-        font-size: 1.8rem;
-        text-align: center;
-      }
-  
-      ion-list {
-        flex-grow: 1; // Permite que el contenido del formulario ocupe el espacio necesario
-        background: #fff;
-        padding: 1rem;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
-        ion-item {
-          --highlight-color-focused: #d63384;
-          --color: #000;
-          margin-bottom: 2.5rem;
-  
-          ion-label {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #000;
-            margin-bottom: 5rem;
-          }
-  
-          ion-input {
-            border-radius: 6px;
-            margin-bottom: 1rem;
-          }
-        }
-  
-        ion-radio {
-          --background: #d63384;
-        }
-      }
-    }
-  
-    .shipping-info {
-      h2 {
-        margin-bottom: 1rem;
-        color: #d63384;
-        font-size: 1.8rem;
-        text-align: center;
-      }
-    
-      ion-list {
-        background: #fff;
-        padding: 1rem;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    
-        ion-item {
-          --highlight-color-focused: #d63384;
-          --color: #000;
-          margin-bottom: 2rem; // Separación más amplia entre campos
-    
-          ion-label {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #000;
-            margin-bottom: 1.5rem;
-          }
-    
-          ion-input {
-            border-radius: 6px;
-            padding: 2rem; // Espaciado interno del campo
-          }
-        }
-      }
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-top: 2px solid #ff8fa3;
+    font-size: 1.7rem;
+    color: #000;
+
+    h2 {
+      color: #000;
     }
   }
+}
 
-  .checkout-actions {
-    margin-top: 2rem;
+.form-payment-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
 
-    ion-button {
+  .shipping-info,
+  .payment-method {
+    flex: 1; // Ambos contenedores ocupan el mismo ancho
+    height: auto; // Garantiza altura dinámica
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #ffe4ec; // Fondo más visible
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    h2 {
       margin-bottom: 1rem;
-      border-radius: 8px;
+      color: #d63384;
+      font-size: 1.8rem;
+      text-align: center;
+    }
 
-      ion-icon {
-        margin-right: 0.5rem;
+    ion-list {
+      flex-grow: 1; // Permite que el contenido del formulario ocupe el espacio necesario
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      ion-item {
+        --highlight-color-focused: #d63384;
+        --color: #000;
+        margin-bottom: 2.5rem;
+
+        ion-label {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: #000;
+          margin-bottom: 5rem;
+        }
+
+        ion-input {
+          border-radius: 6px;
+          margin-bottom: 1rem;
+        }
       }
 
-      &[color="primary"] {
-        background: #ff8fa3;
-        color: white;
-      }
-
-      &[color="medium"] {
-        background: #ffc2cf;
-        color: #4a4a4a;
+      ion-radio {
+        --background: #d63384;
       }
     }
   }
-  app-footer {
-    margin-top: 4rem;
-  }
 
+  .shipping-info {
+    h2 {
+      margin-bottom: 1rem;
+      color: #d63384;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    ion-list {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      ion-item {
+        --highlight-color-focused: #d63384;
+        --color: #000;
+        margin-bottom: 2rem; // Separación más amplia entre campos
+
+        ion-label {
+          font-size: 1.5rem;
+          font-weight: bold;
+          color: #000;
+          margin-bottom: 1.5rem;
+        }
+
+        ion-input {
+          border-radius: 6px;
+          padding: 2rem; // Espaciado interno del campo
+        }
+      }
+    }
+  }
+}
+
+.checkout-actions {
+  margin-top: 2rem;
+
+  ion-button {
+    margin-bottom: 1rem;
+    border-radius: 8px;
+
+    ion-icon {
+      margin-right: 0.5rem;
+    }
+
+    &[color="primary"] {
+      background: #ff8fa3;
+      color: white;
+    }
+
+    &[color="medium"] {
+      background: #ffc2cf;
+      color: #4a4a4a;
+    }
+  }
+}
+
+app-footer {
+  margin-top: 4rem;
+}

@@ -8,6 +8,8 @@ import { AgregaTiendaComponent } from "../../components/agrega-tienda/agrega-tie
 import { ModalController } from '@ionic/angular';
 import { TiendaService, Tienda} from 'src/app/services/tienda.service';
 import { UserService } from 'src/app/services/user.service';
+import 'leaflet-routing-machine';
+
 @Component({
   selector: 'app-preventa',
   templateUrl: './preventa.page.html',
@@ -25,7 +27,7 @@ export class PreventaPage   implements OnInit {
    private aguascalientesCoords: [number, number] = [21.8818, -102.291];
 
    // Coordenadas de Calvillo (Matriz)
-   private calvilloCoords: [number, number] = [21.845, -102.720];
+   private calvilloCoords: [number, number] = [21.854023, -102.721191];
 
   constructor(
     private modalController : ModalController,
@@ -78,16 +80,21 @@ export class PreventaPage   implements OnInit {
     if (this.map) {
       this.userService.getUserById(tienda.id_usuario).subscribe(
         (usuario) => {
+          // URL para abrir Google Maps con la matriz en Calvillo como punto de inicio
+          const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&origin=${this.calvilloCoords[0]},${this.calvilloCoords[1]}&destination=${lat},${lon}`;
+  
           const popupContent = `
             <strong>${tienda.nombre_tienda}</strong><br>
             Dirección: ${tienda.direccion || 'No disponible'}<br>
             Teléfono: ${tienda.telefono || 'No disponible'}<br>
             Email: ${tienda.email || 'No disponible'}<br>
             Propietario: ${usuario.nombre || 'No disponible'}<br>
-            Frecuencia de visitas: ${tienda.frecuencia_visitas || 'No especificada'}
+            Frecuencia de visitas: ${tienda.frecuencia_visitas || 'No especificada'}<br>
+            <a href="${googleMapsUrl}" target="_blank" style="color: blue; text-decoration: underline;">
+              📍 Ir con Google Maps
+            </a>
           `;
   
-          // Asignar el icono según la frecuencia
           let icono;
           switch (tienda.frecuencia_visitas?.toLowerCase()) {
             case "muy_recurrente":
@@ -100,7 +107,7 @@ export class PreventaPage   implements OnInit {
               icono = this.icono.baja; // Rojo
               break;
             default:
-              return;  // No agregar marcador si no hay frecuencia
+              return;
           }
   
           L.marker([lat, lon], { icon: icono })
@@ -112,8 +119,8 @@ export class PreventaPage   implements OnInit {
         }
       );
     }
-  }
-
+  }  
+  
   agregarMarcadorPorDireccion(tienda: Tienda): void {
     if (tienda.direccion) {
       this.geocodificarDireccion(tienda.direccion).then((coords) => {

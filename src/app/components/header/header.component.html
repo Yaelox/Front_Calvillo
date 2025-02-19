@@ -1,55 +1,40 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <!-- Contenedor del logo y título -->
     <div class="header-left">
       <img src="assets/images/Logo.png" alt="Mi Crush de Calvillo" class="logo-img" />
-      <ion-title class="header-title">
-        Mi Crush de Calvillo
-      </ion-title>
+      <ion-title class="header-title">Mi Crush de Calvillo</ion-title>
     </div>
 
-    <!-- Botón de configuración alineado a la derecha del logo -->
     <div class="header-right">
-      <ion-buttons slot="end">
+      <!-- Mostrar Configuración solo si el usuario es admin -->
         <ion-button fill="clear" (click)="goToConfig()" class="header-button">
           <ion-icon name="settings" slot="start"></ion-icon> Configuración
         </ion-button>
-      </ion-buttons>
-      
-      <!-- Botones en el header -->
+
+      <!-- Botones generales -->
       <ion-buttons slot="end">
         <ion-button fill="clear" (click)="goToHome()" class="header-button">
           <ion-icon name="home" slot="start"></ion-icon> Home
         </ion-button>
-        <ion-button fill="clear" (click)="goToPreventa()" class="header-button">
-          <ion-icon name="cart" slot="start"></ion-icon> Preventa
-        </ion-button>
-        <ion-button fill="clear" (click)="goToReparto()" class="header-button">
-          <ion-icon name="car" slot="start"></ion-icon> Reparto
-        </ion-button>
-        <ion-button fill="clear" (click)="goToRutas()" class="header-button">
-          <ion-icon name="map" slot="start"></ion-icon> Rutas
-        </ion-button>
-        <ion-button fill="clear" (click)="goToPuntos()" class="header-button">
-          <ion-icon name="location" slot="start"></ion-icon> Puntos
-        </ion-button>
-        <ion-button fill="clear" (click)="goToEventos()" class="header-button">
-          <ion-icon name="calendar" slot="start"></ion-icon> Eventos
-        </ion-button>
+        <ion-buttons *ngIf="isAdmin" slot="end">
+          <ion-button fill="clear" (click)="goToPreventa()" class="header-button">
+            <ion-icon name="cart" slot="start"></ion-icon> Preventa
+          </ion-button>
+        </ion-buttons>
         <ion-button fill="clear" (click)="goToTienda()" class="header-button">
           <ion-icon name="storefront" slot="start"></ion-icon> Tienda
-        </ion-button>
-        <ion-button fill="clear" (click)="goToEnvios()" class="header-button">
-          <ion-icon name="boat" slot="start"></ion-icon> Envíos
         </ion-button>
         <ion-button fill="clear" (click)="goToContacto()" class="header-button">
           <ion-icon name="person" slot="start"></ion-icon> Contactanos
         </ion-button>
       </ion-buttons>
-      
-      <!-- Botón de carrito de supermercado siempre visible -->
+
       <ion-button fill="clear" (click)="goToCarrito()" class="cart-button">
         <ion-icon name="cart-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+
+      <ion-button fill="clear" color="danger" (click)="onLogout()" class="logout-button">
+        <ion-icon name="log-out" slot="start"></ion-icon> Cerrar sesión
       </ion-button>
     </div>
   </ion-toolbar>
