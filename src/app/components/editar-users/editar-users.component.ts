@@ -15,7 +15,14 @@ import { NavController } from '@ionic/angular';
 })
 export class EditarUsersComponent{
  // Datos del usuario (en un caso real, podrías obtenerlos de un servicio o API)
- @Input() user!: { id_usuario: number; usuario: string; email: string; tipo_usuario: string };
+ @Input() user!: { 
+  id_usuario:number; 
+  usuario: string; 
+  nombre:string, 
+  email: string; 
+  telefono:string;
+  password:string;
+  tipo_usuario: string };
 
   constructor(
     private modalController: ModalController,
@@ -27,26 +34,30 @@ export class EditarUsersComponent{
     this.modalController.dismiss();
   }
 
-  // Actualiza el usuario y cierra la modal si se completa correctamente
-  updateUser() {
-    if (!this.user || !this.user.id_usuario) {
-      console.error("Error: ID del usuario no definido", this.user);
-      return;
-    }
-    const userToUpdate = {
-      usuario: this.user.usuario,
-      email: this.user.email,
-      tipo_usuario: this.user.tipo_usuario
-    };
-  
-    this.userService.updateUser(this.user.id_usuario, userToUpdate).subscribe(
-      () => {
-        // Asegúrate de que `this.user` contiene los valores actualizados antes de cerrar el modal
-        this.modalController.dismiss(this.user); 
-      },
-      (error) => {
-        console.error('Error al actualizar el usuario', error);
-      }
-    );
+ // Actualiza el usuario y cierra la modal si se completa correctamente
+ updateUser() {
+  if (!this.user || !this.user.id_usuario) {
+    console.error("Error: ID del usuario no definido", this.user);
+    return;
   }
+
+  const userToUpdate = {
+    usuario: this.user.usuario,
+    email: this.user.email,
+    tipo_usuario: this.user.tipo_usuario,
+    nombre: this.user.nombre,  // Ensure all fields are updated
+    telefono: this.user.telefono,  // Ensure all fields are updated
+    password: this.user.password  // Ensure all fields are updated
+  };
+
+  this.userService.updateUser(this.user.id_usuario, userToUpdate).subscribe(
+    () => {
+      // Asegúrate de que `this.user` contiene los valores actualizados antes de cerrar el modal
+      this.modalController.dismiss(this.user); 
+    },
+    (error) => {
+      console.error('Error al actualizar el usuario', error);
+    }
+  );
+}
 }

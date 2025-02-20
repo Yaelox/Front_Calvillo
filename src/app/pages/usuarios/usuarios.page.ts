@@ -98,7 +98,7 @@ export class UsuariosPage implements OnInit {
       console.error("Error: Usuario sin ID", usuario);
       return;
     }
-
+  
     const modal = await this.modalController.create({
       component: EditarUsersComponent,
       componentProps: {
@@ -106,20 +106,22 @@ export class UsuariosPage implements OnInit {
           id_usuario: usuario.id_usuario,
           usuario: usuario.usuario,
           email: usuario.email,
-          tipo_usuario: usuario.tipo_usuario
+          tipo_usuario: usuario.tipo_usuario,
+          nombre: usuario.nombre || '',  // Ensure all fields are passed
+          telefono: usuario.telefono || '',  // Ensure all fields are passed
+          password: usuario.password || ''  // Ensure all fields are passed
         }
       }
     });
-
+  
     modal.onDidDismiss().then((data) => {
       if (data.data) {
-        const { id_usuario, usuario, email, tipo_usuario } = data.data;
-        this.userService.updateUser(id_usuario, { usuario, email, tipo_usuario }).subscribe(() => {
+        const { id_usuario, usuario, email, tipo_usuario, nombre, telefono, password } = data.data;
+        this.userService.updateUser(id_usuario, { usuario, nombre, email, telefono, tipo_usuario, password }).subscribe(() => {
           this.getUsers();
         });
       }
-    });
-
+    }); 
     return await modal.present();
   }
 }

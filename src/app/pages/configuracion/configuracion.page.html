@@ -3,44 +3,59 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Configuracion</ion-title>
+    <ion-title>Configuración</ion-title>
   </ion-toolbar>
-</ion-header><br><br>
+</ion-header>
 
-<!-- Contenido principal -->
+<!-- Contenedor principal para centrar -->
 <ion-content id="main-content">
-  <div class="form-container">
-    <form (ngSubmit)="updateUser()">
-      <!-- Imagen de usuario por defecto -->
-      <img id="default-image" src="assets/images/user.png" alt="Imagen de usuario" />
-      <h2>Editar Cuenta</h2>
-  
-      <ion-item>
-        <ion-label position="floating">Nombre:</ion-label>
-        <ion-input [(ngModel)]="user.nombre" name="nombre" required></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label position="floating">Usuario:</ion-label>
-        <ion-input [(ngModel)]="user.usuario" name="usuario" required></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label position="floating">Contraseña:</ion-label>
-        <ion-input [(ngModel)]="user.password" name="password" type="password" required></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label position="floating">Email:</ion-label>
-        <ion-input [(ngModel)]="user.email" name="email" type="email" required></ion-input>
-      </ion-item>
-  
-      <ion-item>
-        <ion-label position="floating">Teléfono:</ion-label>
-        <ion-input [(ngModel)]="user.telefono" name="telefono" required></ion-input>
-      </ion-item>
+  <div class="center-container"> 
+    <div class="form-container" *ngIf="user">
+      <!-- Imagen de usuario -->
+      <div class="profile-image-container">
+        <img id="default-image" [src]="'assets/images/user.png'" alt="Imagen de usuario">
+      </div>
 
-      <ion-button expand="full" color="danger" type="submit">Actualizar Usuario</ion-button>
-    </form>
+      <h2>Editar Cuenta</h2>
+
+      <form (ngSubmit)="updateUser()">
+        <ion-item>
+          <ion-label position="floating">Nombre</ion-label>
+          <ion-input [(ngModel)]="user.nombre" name="nombre" required [disabled]="!isEditing"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Usuario</ion-label>
+          <ion-input [(ngModel)]="user.usuario" name="usuario" required [disabled]="!isEditing"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input [(ngModel)]="user.password" name="password" type="password" required [disabled]="true"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input [(ngModel)]="user.email" name="email" type="email" required [disabled]="!isEditing"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Teléfono</ion-label>
+          <ion-input [(ngModel)]="user.telefono" name="telefono" required [disabled]="!isEditing"></ion-input>
+        </ion-item>
+
+        <!-- Botones de acción -->
+        <div class="button-group">
+          <ion-button expand="full" color="primary" type="submit" [disabled]="!isEditing || isLoading">
+            <ion-spinner *ngIf="isLoading" slot="start"></ion-spinner>
+            Actualizar Usuario
+          </ion-button>
+          <ion-button expand="full" color="warning" (click)="toggleEdit()">
+            {{ isEditing ? 'Cancelar' : 'Editar' }}
+          </ion-button>
+          <ion-button expand="full" color="danger" (click)="deleteUser()">Eliminar Cuenta</ion-button>
+        </div>
+      </form>
+    </div>
   </div>
 </ion-content>

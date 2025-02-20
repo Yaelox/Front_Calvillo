@@ -1,53 +1,15 @@
-// Colores principales
-$primary-color: #E57373; // Rojo suave
-$secondary-color: #FF8A80; // Rojo claro
-$dark-color: #B71C1C; // Rojo oscuro para contrastes
-// Colores base
-$background-color: #f9f9f9; // Fondo claro
-$text-color: #333; // Texto oscuro
-
-// Variables de espaciado
-$padding: 16px;
-$border-radius: 8px;
-
-// Fuente principal
-$font-family: 'Roboto', sans-serif;
-
-// Estilos generales
-ion-header {
-  background-color: $primary-color;
-  color: white;
-}
-
-ion-toolbar {
-  --background: $primary-color;
-}
-
-ion-title {
-  font-weight: bold;
-}
-h2{
-
-  color: #000;
-  text-align: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 30px;
-  font-weight: bold;
-}
-
-// Estilos para el contenedor principal
+/* Centrar contenido principal */
 #main-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $background-color;
-  font-family: $font-family;
-  height: 100vh; // Asegura que el contenido ocupe toda la altura de la pantalla
-  padding: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #f3f4f6, #e2e8f0);
+  padding: 30px; /* Aumentado el padding */
 }
 
-// Estilos para el contenedor del formulario
-.form-container {
+/* Contenedor que mantiene el formulario centrado */
+.center-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,94 +17,115 @@ h2{
   height: 100%;
 }
 
-// Estilos para el formulario
-form {
-  background-color: #fff;
-  border-radius: $border-radius;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: $padding;
+/* Contenedor del formulario */
+.form-container {
   width: 100%;
-  max-width: 700px; // Máxima anchura para el formulario
-  margin-top: 20px;
-  text-align: center; // Para centrar los elementos dentro del formulario
+  max-width: 500px; /* Tamaño máximo reducido */
+  background: white;
+  padding: 25px; /* Padding reducido para disminuir altura */
+  border-radius: 12px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: fadeIn 0.3s ease-in-out;
+  height: auto; /* Altura ajustable */
+}
+
+/* Imagen de usuario */
+.profile-image-container {
+  display: flex;
   justify-content: center;
-  box-sizing: border-box;
+  margin-bottom: 15px; /* Reducido el margen inferior */
+
+  img {
+    width: 120px; /* Ajustado el tamaño de la imagen */
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #4a90e2; /* Borde más grueso */
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.2); /* Aumento en el efecto hover */
+    }
+  }
 }
 
-// Estilo para los elementos del formulario
+/* Títulos */
+h2 {
+  font-size: 24px; /* Tamaño de texto ajustado */
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px; /* Reducido el margen inferior */
+}
+
+/* Campos del formulario */
 ion-item {
-  margin-bottom: 20px;
-  width: 100%; // Asegura que el input ocupe el 100% del contenedor
-
-  ion-label {
-    color: #000;
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
-
-  ion-input,
-  ion-select {
-    font-size: 20px;
-    padding: 20px;
-    border-radius: $border-radius;
-    border: 1px solid #ddd;
-  }
-
-  ion-select {
-    --padding-start: 20px;
-    --padding-end: 20px;
-  }
+  --border-radius: 8px;
+  --background: #f8f9fa;
+  --border-color: #ddd;
+  margin-bottom: 15px; /* Reducido el margen inferior */
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05); /* Sombra más ligera */
+  width: 100%; /* Asegura que el item ocupe todo el espacio disponible */
+  max-width: 100%; /* Removido el límite de ancho */
+  margin-left: auto; /* Centrado horizontal */
+  margin-right: auto; /* Centrado horizontal */
 }
 
-// Estilo para el botón de envío
-ion-button {
-  color: #fff;
-  border-radius: $border-radius;
-  padding: 14px;
-  font-size: 16px;
-  font-weight: bold;
-
-  &:hover {
-    background-color: $secondary-color;
-  }
-
-  &.full {
-    width: 100%;
-  }
+/* Clase personalizada para los input más largos */
+.input-long {
+  --padding-start: 15px; /* Espaciado dentro del input */
+  --padding-end: 15px; /* Espaciado dentro del input */
+  width: 100%; /* Ancho completo */
+  max-width: 100%; /* Asegura que el input ocupe todo el espacio disponible */
+  font-size: 16px; /* Tamaño de fuente más grande */
 }
 
-ion-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba($primary-color, 0.5);
-}
-
-// Estilo para la imagen
-#default-image {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 20px;
-}
-
-// Media Queries para asegurar que el diseño sea responsivo
-@media (max-width: 768px) {
-  form {
-    padding: 10px;
-    max-width: 90%;
-  }
+/* Botones */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Reducido el espacio entre los botones */
+  margin-top: 20px; /* Reducido el margen superior */
+  width: 100%; /* Asegura que los botones sean del ancho completo */
 
   ion-button {
-    padding: 12px;
-    font-size: 14px;
+    font-size: 20px; /* Tamaño de la fuente ajustado */
+    font-weight: 600;
+    border-radius: 10px; /* Aumento del radio del borde */
+    transition: all 0.3s ease;
+    width: 100%; /* Asegura que los botones sean del ancho completo */
+
+    &:hover {
+      filter: brightness(0.9);
+    }
   }
 
-  #default-image {
-    width: 100px;
-    height: 100px;
+  ion-button[color="primary"] {
+    background: #4a90e2;
+  }
+
+  ion-button[color="warning"] {
+    background: #f39c12;
+  }
+
+  ion-button[color="danger"] {
+    background: #e74c3c;
+  }
+}
+
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px); /* Aumento en el desplazamiento de la animación */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

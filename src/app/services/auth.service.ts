@@ -16,8 +16,17 @@ export interface User {
 
 export interface LoginResponse {
   token: string;
-  user: User;
+  user: {
+    id_usuario: number;
+    nombre: string;
+    usuario: string;
+    email: string;
+    telefono: string;
+    tipo_usuario: string;
+    fecha_registro: string;
+  };
 }
+
 
 @Injectable({
   providedIn: 'root'
@@ -37,21 +46,33 @@ export class AuthService {
     const payload = { email, password };
     return this.http.post<LoginResponse>(`${this.apiUrl}/login`, payload).pipe(
       tap((response: LoginResponse) => {
+        console.log('Respuesta completa del backend:', response); // Verifica toda la respuesta
+  
         if (response && response.user) {
-          localStorage.setItem('token', response.token);
-          localStorage.setItem('user', JSON.stringify(response.user));
-          localStorage.setItem('tipo_usuario', response.user.tipo_usuario);
-          console.log('Usuario almacenado en localStorage:', response.user);
+          console.log('ID de usuario recibido:', response.user.id_usuario); // 👀 Verifica aquí
+  
+          if (response.user.id_usuario !== undefined && response.user.id_usuario !== null) {
+            localStorage.setItem('token', response.token);
+            localStorage.setItem('user', JSON.stringify(response.user));
+            localStorage.setItem('tipo_usuario', response.user.tipo_usuario);
+            localStorage.setItem('id_usuario', response.user.id_usuario.toString()); // 👀 Se almacena aquí
+            console.log('Usuario almacenado en localStorage:', response.user);
+          } else {
+            console.error('Error: id_usuario está indefinido o nulo en la respuesta del backend.');
+          }
         } else {
           console.error('Error: No se recibió el usuario en la respuesta del backend.');
         }
       })
     );
   }
-
+  
+  
   logout() {
     localStorage.removeItem('token');  // Elimina el token
-    localStorage.removeItem('user');   // Elimina los datos del usuario
+    localStorage.removeItem('user');  
+    localStorage.removeItem('tipo_usuario')
+    localStorage.removeItem('id_usuario') // Elimina los datos del usuario
   }
 
   // Guardar los datos del usuario en localStorage
