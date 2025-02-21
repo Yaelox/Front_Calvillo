@@ -26,8 +26,7 @@ export class EditarUsersComponent{
 
   constructor(
     private modalController: ModalController,
-    private userService: UserService,
-    private navController: NavController
+    private userService: UserService
   ) {}
 
   dismiss() {
@@ -42,10 +41,10 @@ export class EditarUsersComponent{
   }
 
   const userToUpdate = {
+    nombre: this.user.nombre,
     usuario: this.user.usuario,
     email: this.user.email,
-    tipo_usuario: this.user.tipo_usuario,
-    nombre: this.user.nombre,  // Ensure all fields are updated
+    tipo_usuario: this.user.tipo_usuario,  // Ensure all fields are updated
     telefono: this.user.telefono,  // Ensure all fields are updated
     password: this.user.password  // Ensure all fields are updated
   };

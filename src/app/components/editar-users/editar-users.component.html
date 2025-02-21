@@ -18,14 +18,25 @@
     <ion-card-content>
       <form (ngSubmit)="updateUser()">
         <ion-list>
+          
           <ion-item>
             <ion-label position="floating" class="etiqueta">Nombre</ion-label>
-            <ion-input [(ngModel)]="user.usuario" name="name" required class="input"></ion-input>
+            <ion-input [(ngModel)]="user.nombre" name="name" type="text" required class="input"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating" class="etiqueta">Usuario</ion-label>
+            <ion-input [(ngModel)]="user.usuario" name="usuario" type="text" required class="input"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="floating" class="etiqueta">Correo Electrónico</ion-label>
             <ion-input [(ngModel)]="user.email" name="email" type="email" required class="input"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating" class="etiqueta">Telefono</ion-label>
+            <ion-input [(ngModel)]="user.telefono" name="telefono" type="number" required class="input"></ion-input>
           </ion-item>
 
           <ion-item>
