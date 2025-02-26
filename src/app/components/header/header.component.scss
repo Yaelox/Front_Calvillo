@@ -3,21 +3,20 @@
 }
 
 ion-header {
-  --background: #ffccd5; 
-  --ion-toolbar-background: #ffccd5;
-  //--ion-toolbar-background: #ff002f;
-  --ion-title-color: #d6336c;
+  --background: red; 
+  --ion-toolbar-background: red;
+  --ion-title-color: black;
   --ion-toolbar-color: #000;
-  --ion-button-text-color: #d6336c;
+  --ion-button-text-color: red;
   
 }
 .logout-button {
-  --color: #ff0000;  // Color rojo para el icono y texto
-  --background: #ff0000;  // Fondo rojo
+  --color: black;  // Color rojo para el icono y texto
+  --background: transparent; 
   --border-radius: 50px;  // Borde redondeado
   --padding: 10px 20px;  // Aumentar el tamaño del botón
   font-size: 18px;  // Aumenta el tamaño del texto (si lo necesitas)
-  --icon-size: 24px;  // Aumentar el tamaño del icono
+  --icon-size: 28px;  // Aumentar el tamaño del icono
   
   display: flex;
   align-items: center;
@@ -29,7 +28,7 @@ ion-header {
   }
   
   &:hover {
-    --background: #d40000;  // Cambia a un rojo más oscuro cuando el mouse pasa por encima
+    --background: white;  // Cambia a un rojo más oscuro cuando el mouse pasa por encima
   }
 }
 
@@ -87,7 +86,7 @@ ion-button {
   transition: all 0.3s ease;
 
   &:hover {
-    background-color: #d6336c;
+    background-color: white;
     
   }
 

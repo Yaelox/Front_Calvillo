@@ -14,7 +14,7 @@ import { FooterComponent } from 'src/app/components/footer/footer.component';
   templateUrl: './tienda-online.page.html',
   styleUrls: ['./tienda-online.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports:[HeaderComponent, CommonModule, NgIf,FooterComponent],
+  imports:[HeaderComponent, CommonModule,FooterComponent],
 })
 export class TiendaOnlinePage implements OnInit {
   productos: any[] = [];  // Array para almacenar los productos

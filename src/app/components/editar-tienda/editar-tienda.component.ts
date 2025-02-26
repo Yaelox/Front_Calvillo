@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input} from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, Input,OnInit} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TiendaService } from 'src/app/services/tienda.service';
 import { IonicModule, ModalController } from '@ionic/angular';
@@ -12,7 +12,7 @@ import { UserService} from 'src/app/services/user.service';
   imports:[CommonModule,ReactiveFormsModule,FormsModule,IonicModule],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
-export class EditarTiendaComponent{
+export class EditarTiendaComponent implements OnInit{
 // Datos del usuario (en un caso real, podrías obtenerlos de un servicio o API)
 @Input() tienda!: {
    id_tienda: number;

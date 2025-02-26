@@ -6,6 +6,7 @@ import { EditarTiendaComponent } from 'src/app/components/editar-tienda/editar-t
 import { CommonModule } from '@angular/common';
 import { UserService } from 'src/app/services/user.service';
 import { forkJoin } from 'rxjs';
+
 @Component({
   selector: 'app-tiendas',
   templateUrl: './tiendas.page.html',
@@ -28,57 +29,52 @@ export class TiendasPage implements OnInit {
     this.getTiendas();
   }
 
-  // ✅ Obtener tienda
-getTiendas() {
-  console.log("📢 Cargando tiendas...");
+  // ✅ Obtener tiendas
+  getTiendas() {
+    console.log("📢 Cargando tiendas...");
 
-  this.tiendaService.getTiendas().subscribe(
-    (tiendasData) => {
-      console.log("✅ Tiendas obtenidas:", tiendasData);
-      this.tiendas = tiendasData;
+    this.tiendaService.getTiendas().subscribe(
+      (tiendasData) => {
+        console.log("✅ Tiendas obtenidas:", tiendasData);
+        this.tiendas = tiendasData;
 
-      this.tiendas.forEach((tienda, index) => {
-        console.log(`🔹 Tienda ${index}:`, tienda);
-      });
+        this.tiendas.forEach((tienda, index) => {
+          console.log(`🔹 Tienda ${index}:`, tienda);
+        });
 
-      // Lista de peticiones para obtener usuarios
-      const userRequests = this.tiendas.map((tienda, index) => {
-        console.log(`🔎 Buscando usuario para tienda ${index} con ID de usuario: ${tienda.id_usuario}`);
-        return tienda.id_usuario ? this.userService.getUserById(tienda.id_usuario) : null;
-      }).filter(req => req !== null); // Filtramos los null
+        const userRequests = this.tiendas.map((tienda, index) => {
+          console.log(`🔎 Buscando usuario para tienda ${index} con ID de usuario: ${tienda.id_usuario}`);
+          return tienda.id_usuario ? this.userService.getUserById(tienda.id_usuario) : null;
+        }).filter(req => req !== null);
 
-      console.log("🔄 Lista de peticiones de usuarios:", userRequests); // Ver las peticiones de usuarios generadas
+        console.log("🔄 Lista de peticiones de usuarios:", userRequests);
 
-      if (userRequests.length === 0) {
-        console.log("⚠️ No hay usuarios que cargar.");
-        return;
-      }
-
-      // Realizamos las peticiones de usuarios en paralelo
-      forkJoin(userRequests).subscribe(
-        (usersData) => {
-          console.log("👤 Usuarios obtenidos:", usersData);
-
-          // Asignar el nombre del usuario a cada tienda
-          this.tiendas.forEach((tienda, index) => {
-            const user = usersData[index];
-            tienda.nombre = user ? user.nombre : 'Desconocido'; // Asignamos el nombre del usuario
-            console.log(`✅ Asignado usuario: ${tienda.nombre} a la tienda ${index}`);
-          });
-        },
-        (error) => {
-          console.error("❌ Error al obtener usuarios:", error);
+        if (userRequests.length === 0) {
+          console.log("⚠️ No hay usuarios que cargar.");
+          return;
         }
-      );
-    },
-    (error) => {
-      console.error("❌ Error al obtener las tiendas:", error);
-    }
-  );
-}
 
-  
-  
+        forkJoin(userRequests).subscribe(
+          (usersData) => {
+            console.log("👤 Usuarios obtenidos:", usersData);
+
+            this.tiendas.forEach((tienda, index) => {
+              const user = usersData[index];
+              tienda.nombre = user ? user.nombre : 'Desconocido';
+              console.log(`✅ Asignado usuario: ${tienda.nombre} a la tienda ${index}`);
+            });
+          },
+          (error) => {
+            console.error("❌ Error al obtener usuarios:", error);
+          }
+        );
+      },
+      (error) => {
+        console.error("❌ Error al obtener las tiendas:", error);
+      }
+    );
+  }
+
   // ✅ Confirmar eliminación de tienda
   async confirmDeleteTienda(id: number) {
     console.log(`🗑️ Confirmando eliminación de la tienda con ID: ${id}`);
@@ -119,14 +115,12 @@ getTiendas() {
   
       await modal.present();
   
-      // Esperar a que el modal se cierre y recibir los datos
       const { data } = await modal.onDidDismiss();
       console.log("🎯 Modal de agregar tienda cerrado, datos recibidos:", data);
   
-      // Si la tienda se ha agregado, recargar la lista de tiendas
       if (data?.tiendaAgregada) {
         console.log("✅ Nueva tienda agregada.");
-        this.getTiendas(); // Recargar la lista de tiendas sin recargar la página
+        this.getTiendas();
       } else {
         console.log("⚠️ Modal de agregar tienda cerrado sin cambios.");
       }
@@ -134,10 +128,9 @@ getTiendas() {
       console.error("❌ Error al abrir el modal de agregar tienda:", error);
     }
   }
-  
 
   // ✅ Abrir modal para editar tienda con `onDidDismiss()`
-  async openEditTiendaModal(tienda: any, usuarioNombre: string) {
+  async openEditTiendaModal(tienda: any) {
     if (!tienda || tienda.id_tienda === undefined) {
       console.error("❌ Error: La tienda no tiene un ID válido", tienda);
       return;
@@ -155,7 +148,7 @@ getTiendas() {
             direccion: tienda.direccion,
             telefono: tienda.telefono,
             email: tienda.email,
-            id_usuario: tienda.id_usuario,
+            id_usuario: tienda.id_usuario, // 🛠 Verificar si llega correctamente
             frecuencia_visitas: tienda.frecuencia_visitas,
           },
         },
@@ -167,19 +160,22 @@ getTiendas() {
       console.log("🎯 Modal de edición cerrado, datos recibidos:", data);
 
       if (data && data.id_tienda) {
-        console.log("📌 Actualizando tienda:", data);
+        console.log("📌 Datos enviados para actualizar tienda:", data);
 
         this.tiendaService.updateTienda(data.id_tienda, {
           nombre_tienda: data.nombre_tienda,
           direccion: data.direccion,
           telefono: data.telefono,
           email: data.email,
-          id_usuario: data.id_usuario,
+          id_usuario: data.id_usuario, // 🛠 Verificar que no sea undefined o null
           frecuencia_visitas: data.frecuencia_visitas,
         }).subscribe(() => {
           console.log("✅ Tienda actualizada correctamente.");
           this.getTiendas();
+        }, (error) => {
+          console.error("❌ Error al actualizar la tienda:", error);
         });
+
       } else {
         console.log("⚠️ Modal de edición cerrado sin cambios.");
       }

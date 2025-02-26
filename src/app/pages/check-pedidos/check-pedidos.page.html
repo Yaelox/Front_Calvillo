@@ -8,9 +8,9 @@
 </ion-header>
 
 <ion-content id="main-content">
-  <div class="admin-banner">
-    <h1>Administración de Pedidos para mi Crush de Calvillo</h1>
-    <p>¡Gestionar Pedidos!</p>
+  <div class="page-banner">
+    <h1>Administra los pedidos</h1>
+    <p>En esta seccion podran Administrar los pedidos realizados a mi crush de calvillo</p>
   </div>
 
   <!-- Kanban -->
@@ -156,16 +156,16 @@
           </ion-buttons>
         </ion-toolbar>
       </ion-header>
-      <ion-content>
+      <ion-content class="modal-content">
         <ion-item>
-          <ion-label>Nuevo Estado</ion-label>
-          <ion-select [(ngModel)]="estadoSeleccionado">
-            <ion-select-option value="pendiente">Pendiente</ion-select-option>
-            <ion-select-option value="en_proceso">En Proceso</ion-select-option>
-            <ion-select-option value="completada">Completado</ion-select-option>
+          <ion-label class="modal-label">Nuevo Estado</ion-label>
+          <ion-select [(ngModel)]="estadoSeleccionado" class="modal-select">
+            <ion-select-option class="modal-option" value="pendiente">Pendiente</ion-select-option>
+            <ion-select-option class="modal-option" value="en_proceso">En Proceso</ion-select-option>
+            <ion-select-option class="modal-option" value="completada">Completado</ion-select-option>
           </ion-select>
         </ion-item>
-        <ion-button expand="full" (click)="actualizarEstado()">Actualizar Estado</ion-button>
+        <ion-button expand="full" class="modal-button"color="danger"(click)="actualizarEstado()">Actualizar Estado</ion-button>
       </ion-content>
     </ng-template>
   </ion-modal>

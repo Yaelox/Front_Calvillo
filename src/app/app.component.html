@@ -15,12 +15,18 @@
     
     <ion-content>
       <ion-list>
-        <ion-item *ngIf="isAdmin" button (click)="goToUser()">
-          <ion-icon name="person" slot="start"></ion-icon> Usuarios
-        </ion-item>
-        
+
+        <ion-item button (click)="goToHome()">
+          <ion-icon name="home" slot="start"></ion-icon> Home
+        </ion-item>        
+
         <ion-item button (click)="goToMisPedidos()">
           <ion-icon name="person" slot="start"></ion-icon> Mis Pedidos
+        </ion-item>
+        
+
+        <ion-item *ngIf="isAdmin" button (click)="goToUser()">
+          <ion-icon name="person" slot="start"></ion-icon> Usuarios
         </ion-item>
         
         <ion-item *ngIf="isAdmin" button (click)="goToTienda()">
@@ -39,10 +45,6 @@
           <ion-icon name="settings" slot="start"></ion-icon> Configuración
         </ion-item>
         
-        <ion-item button (click)="goToHome()">
-          <ion-icon name="home" slot="start"></ion-icon> Home
-        </ion-item>        
-
         <!--<ion-item button (click)="goToPoster()">
           <ion-icon name="map" slot="start"></ion-icon> Poster
         </ion-item>

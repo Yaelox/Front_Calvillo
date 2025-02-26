@@ -7,7 +7,7 @@
   --ion-color-dark: #f38181; /* Rosa apagado para textos importantes */
 
   ion-header {
-    background: var(--ion-color-primary);
+    background: red;
     color: white;
     ion-title {
       font-weight: bold;
@@ -16,7 +16,7 @@
     }
     ion-button {
       color: white;
-      --background: var(--ion-color-dark);
+      --background: red;
       --box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
       --border-radius: 10px;
       &:hover {
@@ -32,9 +32,9 @@
       margin: 12px 0; /* Mayor separación entre los elementos */
 
       ion-label {
-        color: var(--ion-color-dark); /* Letras negras */
+        color: #000; /* Letras negras */
         font-weight: 600;
-        font-size: 0.95rem;
+        font-size:17px;
         margin-bottom: 8px; /* Espacio entre la etiqueta y el campo */
       }
 
@@ -56,20 +56,19 @@
         ion-select-option {
           color: #000;
           &:hover {
-            background: var(--ion-color-secondary);
+            background: red;
           }
         }
       }
     }
 
-    ion-button {
+   .boton{
       margin-top: 16px;
-      background: var(--ion-color-primary);
-      color: white;
+      background: red;
+      color: #000;
       font-weight: bold;
       font-size: 1rem;
       --border-radius: 8px;
-      --box-shadow: 0 4px 8px rgba(248, 165, 194, 0.3);
       &:hover {
         filter: brightness(1.05);
       }

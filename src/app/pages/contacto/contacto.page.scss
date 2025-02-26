@@ -11,7 +11,7 @@ $gris: #dcdcdc;
 .page-banner {
   text-align: center;
   padding: 2rem 1rem;
-  background: linear-gradient(135deg, #f9a8d4, #fddde6); /* Degradado rosa brillante */
+  background: red; /* Degradado rosa brillante */
   color: white;
   border-radius: 0 0 20px 20px; /* Bordes redondeados inferiores */
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
@@ -56,7 +56,7 @@ $gris: #dcdcdc;
     margin-bottom: 30px;
 
     ion-label {
-      color: #f17b9b;
+      color: red;
       font-weight: bold;
       margin-bottom: 30px;
       font-size: 1.2rem;

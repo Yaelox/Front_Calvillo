@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<div class="admin-banner">
+<div class="page-banner">
   <h1>Administrar Tiendas</h1>
   <p>Gestionar las tiendas de la APP</p>
 </div>
@@ -50,7 +50,7 @@
           <div class="divider"></div>
 
           <ion-card-footer>
-            <ion-button fill="clear" color="primary" (click)="openEditTiendaModal(tienda, tienda.nombre_usuario)">
+            <ion-button fill="clear" color="primary" (click)="openEditTiendaModal(tienda)">
               <ion-icon name="create-outline" slot="start"></ion-icon> Editar
             </ion-button>
             <ion-button fill="clear" color="danger" (click)="confirmDeleteTienda(tienda.id_tienda)">

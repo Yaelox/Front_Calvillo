@@ -15,20 +15,25 @@
     h2 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
-      color: #ff3c83;
+      color: #000;
     }
 
     p {
-      font-size: 1rem;
+      font-size: 20px;
       margin: 0.5rem 0;
       display: flex;
       align-items: center;
       justify-content: center;
+      color: #000;
+
+      .text{
+        color: red;
+      }
 
       ion-icon {
         margin-right: 0.5rem;
         font-size: 1.2rem;
-        color: #ff3c83;
+        color: red;
       }
     }
 
@@ -36,9 +41,9 @@
       margin-top: 1rem;
 
       ion-icon {
-        font-size: 2rem;
+        font-size: 40px;
         margin: 0 0.5rem;
-        color: #ff3c83;
+        color: red;
         cursor: pointer;
 
         &:hover {
@@ -50,10 +55,10 @@
 
   .footer-section.hours {
     p {
-      font-size: 1rem;
+      font-size: 20px;
       strong {
         font-weight: bold;
-        color: #ff3c83;
+        color: red;
       }
     }
   }
