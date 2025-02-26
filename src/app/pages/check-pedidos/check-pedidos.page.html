@@ -10,7 +10,7 @@
 <ion-content id="main-content">
   <div class="page-banner">
     <h1>Administra los pedidos</h1>
-    <p>En esta seccion podran Administrar los pedidos realizados a mi crush de calvillo</p>
+    <p>En esta sección podrás gestionar todos los pedidos realizados a Mi Crush de Calvillo.</p>
   </div>
 
   <!-- Kanban -->
@@ -19,7 +19,7 @@
     <div class="kanban-column pendiente">
       <h2>Pedidos Pendientes</h2>
       <ion-list *ngIf="pedidosPendientes.length > 0; else noPedidosPendientes">
-        <ion-item *ngFor="let compra of pedidosPendientes" [ngClass]="{'pedido-card': compra.estado === 'Pendiente'}">
+        <ion-item *ngFor="let compra of pedidosPendientes" [ngClass]="{'pedido-card': compra.estado === 'pendiente'}">
           <ion-card>
             <ion-card-header>
               <ion-card-title>Pedido ID: {{ compra.id_compra }}</ion-card-title>
@@ -27,7 +27,6 @@
             </ion-card-header>
             <ion-card-content>
               <div class="pedido-details">
-                <!-- Información del Usuario -->
                 <p><strong>Cliente:</strong> {{ usuarios[compra.usuario_id]?.nombre || 'Cargando...' }}</p>
                 <p><strong>Usuario:</strong> {{ usuarios[compra.usuario_id]?.usuario || 'Cargando...' }}</p>
                 <p><strong>Correo:</strong> {{ usuarios[compra.usuario_id]?.email || 'Cargando...' }}</p>
@@ -35,7 +34,7 @@
                 <p><strong>Dirección:</strong> {{ compra.direccion }}</p>
                 <p><strong>Total:</strong> ${{ compra.total }}</p>
                 
-                <!-- Detalles de los Productos en Lista -->
+                <!-- Detalles de los Productos -->
                 <h3>Productos en el Pedido:</h3>
                 <ion-list>
                   <ion-item *ngFor="let producto of compra.productos">
@@ -46,6 +45,11 @@
                     </ion-label>
                   </ion-item>
                 </ion-list>
+
+                <p *ngIf="compra.latitud && compra.longitud">
+                  <strong>Ubicación:</strong>
+                  <a [href]=" generarRutaGoogleMaps(compra.latitud, compra.longitud)" target="_blank">Ver en Google Maps</a>
+                </p>
 
                 <ion-button expand="full" color="danger" (click)="abrirModal(compra)">Cambiar Estado</ion-button>
               </div>
@@ -58,11 +62,11 @@
       </ng-template>
     </div>
 
-    <!-- Columna Realizado -->
-    <div class="kanban-column realizado">
+    <!-- Columna En Proceso -->
+    <div class="kanban-column en-proceso">
       <h2>Pedidos En Proceso</h2>
-      <ion-list *ngIf="pedidosEn_proceso.length > 0; else noPedidosRealizados">
-        <ion-item *ngFor="let compra of pedidosEn_proceso" [ngClass]="{'pedido-card': compra.estado === 'En_proceso'}">
+      <ion-list *ngIf="pedidosEn_proceso.length > 0; else noPedidosEnProceso">
+        <ion-item *ngFor="let compra of pedidosEn_proceso" [ngClass]="{'pedido-card': compra.estado === 'en_proceso'}">
           <ion-card>
             <ion-card-header>
               <ion-card-title>Pedido ID: {{ compra.id_compra }}</ion-card-title>
@@ -70,15 +74,13 @@
             </ion-card-header>
             <ion-card-content>
               <div class="pedido-details">
-                <!-- Información del Usuario -->
                 <p><strong>Cliente:</strong> {{ usuarios[compra.usuario_id]?.nombre || 'Cargando...' }}</p>
                 <p><strong>Usuario:</strong> {{ usuarios[compra.usuario_id]?.usuario || 'Cargando...' }}</p>
                 <p><strong>Correo:</strong> {{ usuarios[compra.usuario_id]?.email || 'Cargando...' }}</p>
                 <p><strong>Teléfono:</strong> {{ usuarios[compra.usuario_id]?.telefono || 'Cargando...' }}</p>
                 <p><strong>Dirección:</strong> {{ compra.direccion }}</p>
                 <p><strong>Total:</strong> ${{ compra.total }}</p>
-                
-                <!-- Detalles de los Productos en Lista -->
+
                 <h3>Productos en el Pedido:</h3>
                 <ion-list>
                   <ion-item *ngFor="let producto of compra.productos">
@@ -90,22 +92,27 @@
                   </ion-item>
                 </ion-list>
 
-                <ion-button expand="full" color="danger" (click)="abrirModal(compra)">Cambiar Estado</ion-button>
+                <p *ngIf="compra.latitud && compra.longitud">
+                  <strong>Ubicación:</strong>
+                  <a [href]="  generarRutaGoogleMaps(compra.latitud, compra.longitud)" target="_blank">Ver en Google Maps</a>
+                </p>
+
+                <ion-button expand="full" color="warning" (click)="abrirModal(compra)">Cambiar Estado</ion-button>
               </div>
             </ion-card-content>
           </ion-card>
         </ion-item>
       </ion-list>
-      <ng-template #noPedidosRealizados>
+      <ng-template #noPedidosEnProceso>
         <p>No hay pedidos en proceso.</p>
       </ng-template>
     </div>
 
-    <!-- Columna Completado -->
-    <div class="kanban-column completado">
+    <!-- Columna Completados -->
+    <div class="kanban-column completados">
       <h2>Pedidos Completados</h2>
       <ion-list *ngIf="pedidosCompletados.length > 0; else noPedidosCompletados">
-        <ion-item *ngFor="let compra of pedidosCompletados" [ngClass]="{'pedido-card': compra.estado === 'Completado'}">
+        <ion-item *ngFor="let compra of pedidosCompletados" [ngClass]="{'pedido-card': compra.estado === 'completada'}">
           <ion-card>
             <ion-card-header>
               <ion-card-title>Pedido ID: {{ compra.id_compra }}</ion-card-title>
@@ -113,15 +120,13 @@
             </ion-card-header>
             <ion-card-content>
               <div class="pedido-details">
-                <!-- Información del Usuario -->
                 <p><strong>Cliente:</strong> {{ usuarios[compra.usuario_id]?.nombre || 'Cargando...' }}</p>
                 <p><strong>Usuario:</strong> {{ usuarios[compra.usuario_id]?.usuario || 'Cargando...' }}</p>
                 <p><strong>Correo:</strong> {{ usuarios[compra.usuario_id]?.email || 'Cargando...' }}</p>
                 <p><strong>Teléfono:</strong> {{ usuarios[compra.usuario_id]?.telefono || 'Cargando...' }}</p>
                 <p><strong>Dirección:</strong> {{ compra.direccion }}</p>
                 <p><strong>Total:</strong> ${{ compra.total }}</p>
-                
-                <!-- Detalles de los Productos en Lista -->
+
                 <h3>Productos en el Pedido:</h3>
                 <ion-list>
                   <ion-item *ngFor="let producto of compra.productos">
@@ -133,7 +138,12 @@
                   </ion-item>
                 </ion-list>
 
-                <ion-button expand="full" color="danger" (click)="abrirModal(compra)">Cambiar Estado</ion-button>
+                <p *ngIf="compra.latitud && compra.longitud">
+                  <strong>Ubicación:</strong>
+                  <a [href]="  generarRutaGoogleMaps(compra.latitud, compra.longitud)" target="_blank">Ver en Google Maps</a>
+                </p>
+
+                <ion-button expand="full" color="success" (click)="abrirModal(compra)">Cambiar Estado</ion-button>
               </div>
             </ion-card-content>
           </ion-card>
@@ -160,12 +170,12 @@
         <ion-item>
           <ion-label class="modal-label">Nuevo Estado</ion-label>
           <ion-select [(ngModel)]="estadoSeleccionado" class="modal-select">
-            <ion-select-option class="modal-option" value="pendiente">Pendiente</ion-select-option>
-            <ion-select-option class="modal-option" value="en_proceso">En Proceso</ion-select-option>
-            <ion-select-option class="modal-option" value="completada">Completado</ion-select-option>
+            <ion-select-option value="pendiente">Pendiente</ion-select-option>
+            <ion-select-option value="en_proceso">En Proceso</ion-select-option>
+            <ion-select-option value="completada">Completado</ion-select-option>
           </ion-select>
         </ion-item>
-        <ion-button expand="full" class="modal-button"color="danger"(click)="actualizarEstado()">Actualizar Estado</ion-button>
+        <ion-button expand="full" color="danger" (click)="actualizarEstado()">Actualizar Estado</ion-button>
       </ion-content>
     </ng-template>
   </ion-modal>
