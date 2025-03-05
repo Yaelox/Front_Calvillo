@@ -10,7 +10,7 @@ export interface User {
   password: string;
   email: string;
   telefono: string;
-  tipo_usuario: string; // admin, cliente, etc.
+  tipo_usuario: string; 
   fecha_registro?: string;
 }
 
@@ -32,7 +32,7 @@ export interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api'; // Cambia esta URL según tu backend
+  private apiUrl = 'http://localhost:3000/api';
 
   constructor(private http: HttpClient) {}
 
@@ -46,16 +46,15 @@ export class AuthService {
     const payload = { email, password };
     return this.http.post<LoginResponse>(`${this.apiUrl}/login`, payload).pipe(
       tap((response: LoginResponse) => {
-        console.log('Respuesta completa del backend:', response); // Verifica toda la respuesta
+        console.log('Respuesta completa del backend:', response); 
   
         if (response && response.user) {
-          console.log('ID de usuario recibido:', response.user.id_usuario); // 👀 Verifica aquí
-  
+          console.log('ID de usuario recibido:', response.user.id_usuario); 
           if (response.user.id_usuario !== undefined && response.user.id_usuario !== null) {
             localStorage.setItem('token', response.token);
             localStorage.setItem('user', JSON.stringify(response.user));
             localStorage.setItem('tipo_usuario', response.user.tipo_usuario);
-            localStorage.setItem('id_usuario', response.user.id_usuario.toString()); // 👀 Se almacena aquí
+            localStorage.setItem('id_usuario', response.user.id_usuario.toString()); 
             console.log('Usuario almacenado en localStorage:', response.user);
           } else {
             console.error('Error: id_usuario está indefinido o nulo en la respuesta del backend.');
@@ -69,26 +68,25 @@ export class AuthService {
   
   
   logout() {
-    localStorage.removeItem('token');  // Elimina el token
+    localStorage.removeItem('token');  
     localStorage.removeItem('user');  
     localStorage.removeItem('tipo_usuario')
-    localStorage.removeItem('id_usuario') // Elimina los datos del usuario
+    localStorage.removeItem('id_usuario') 
   }
 
-  // Guardar los datos del usuario en localStorage
   saveUserToLocalStorage(user: any) {
-    localStorage.setItem('user', JSON.stringify(user));  // Guardamos el usuario completo
+    localStorage.setItem('user', JSON.stringify(user)); 
   }
 
   // Verificar si el usuario es admin
   isAdmin(): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return user.tipo_usuario === 'administrador'; // Asegúrate de que el valor sea el correcto según tu backend
+    return user.tipo_usuario === 'administrador'; 
   }
 
   // Verificar si el usuario es cliente
   isCliente(): boolean {
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return user.tipo_usuario === 'cliente'; // Asegúrate de que el valor sea el correcto según tu backend
+    return user.tipo_usuario === 'cliente'; 
   }
 }
