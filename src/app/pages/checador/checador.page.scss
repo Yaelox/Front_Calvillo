@@ -1,0 +1,111 @@
+// Estilos para el reloj despertador
+.reloj {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: #333;
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 20px 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    margin-top: 30px;
+  }
+  
+  .reloj h2 {
+    margin: 0;
+    font-size: 5rem;
+    letter-spacing: 2px;
+    color: #000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  // Estilos de las tarjetas
+  ion-card {
+    margin: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #ffffff;
+  }
+  
+  // Estilo para el encabezado de la tarjeta
+  ion-card-header {
+    background-color: red;
+    color: #ffffff;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+  }
+  
+  ion-card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  
+  // Estilo para el contenido de la tarjeta
+  ion-card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  // Estilo para los botones de Entrada y Salida
+  ion-button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  
+    // Estilos para el botón de entrada
+    &.success {
+      background-color: #28a745;
+      color: #ffffff;
+      border: none;
+    }
+  
+    // Estilos para el botón de salida
+    &.danger {
+      background-color: #dc3545;
+      color: #ffffff;
+      border: none;
+    }
+  
+    // Efectos al pasar el mouse
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    }
+  
+    &:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  // Estilo para los botones cuando se está en dispositivos pequeños
+  @media (max-width: 600px) {
+    .reloj h2 {
+      font-size: 3rem;
+    }
+  
+    ion-card {
+      margin: 10px 0;
+    }
+  
+    ion-button {
+      padding: 12px;
+      font-size: 1rem;
+    }
+  }
+  

@@ -42,6 +42,11 @@ export class HeaderComponent implements OnInit {
     this.navCtrl.navigateForward('/home');
   }
 
+  goToReloj() {
+    this.navCtrl.navigateForward('/checador');
+  }
+
+
   goToPreventa() {
     this.navCtrl.navigateForward('/preventa');
   }

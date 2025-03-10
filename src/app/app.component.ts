@@ -32,6 +32,11 @@ export class AppComponent {
      this.router.navigate(['/preventa']);
    }
 
+   goToHistorial() {
+    this.router.navigate(['/check-historial']);
+  }
+
+
    goToHome() {
     this.router.navigate(['/home']);
   }

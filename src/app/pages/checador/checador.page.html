@@ -1,0 +1,30 @@
+<app-header></app-header>
+
+<ion-content class="ion-padding">
+  <!-- Reloj -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Hora Actual</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="reloj">
+        <h2>{{ horaActual }}</h2>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botones de Entrada y Salida -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Checar Entrada/Salida</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-button expand="block" color="success" (click)="checarEntrada()">
+        Registrar Entrada
+      </ion-button>
+      <ion-button expand="block" color="danger" (click)="checarSalida()">
+        Registrar Salida
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

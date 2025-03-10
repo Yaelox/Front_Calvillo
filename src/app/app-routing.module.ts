@@ -103,6 +103,14 @@ const routes: Routes = [
   {
     path: 'mis-pedidos',
     loadChildren: () => import('./pages/mis-pedidos/mis-pedidos.module').then( m => m.MisPedidosPageModule)
+  },
+  {
+    path: 'checador',
+    loadChildren: () => import('./pages/checador/checador.module').then( m => m.ChecadorPageModule)
+  },
+  {
+    path: 'check-historial',
+    loadChildren: () => import('./pages/check-historial/check-historial.module').then( m => m.CheckHistorialPageModule)
   }
 ];
 
