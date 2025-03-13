@@ -65,16 +65,17 @@
 }
 
 /* Color para las columnas */
-.pendiente {
-  background-color: #ffdd57; /* Amarillo */
+.kanban-column.pendiente {
+  background-color: yellow; /* Amarillo */
 }
 
-.en_proceso {
-  background-color: orange; /* Azul */
+.kanban-column.en-proceso {
+  background-color: orange;
 }
 
-.completado {
-  background-color: #4caf50; /* Verde */
+
+.kanban-column.completados {
+  background-color: green; /* Verde */
 }
 
 /* Card de Pedido */
