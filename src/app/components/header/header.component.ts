@@ -46,6 +46,9 @@ export class HeaderComponent implements OnInit {
     this.navCtrl.navigateForward('/checador');
   }
 
+  goToInventario() {
+    this.navCtrl.navigateForward('/inventario');
+  }
 
   goToPreventa() {
     this.navCtrl.navigateForward('/preventa');

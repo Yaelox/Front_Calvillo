@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar Producto</ion-title>
+    <ion-buttons slot="end">
+      <ion-button  color="danger"(click)="dismissModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="editProductForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="nombre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-input formControlName="descripcion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input type="number" formControlName="precio"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Stock</ion-label>
+      <ion-input type="number" formControlName="stock"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Categoría</ion-label>
+      <ion-select formControlName="categoria_id">
+        <ion-select-option *ngFor="let categoria of categorias" [value]="categoria.id_categoria">
+          {{ categoria.nombre }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Botón para seleccionar imagen -->
+    <ion-item>
+      <ion-label>Imagen</ion-label>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*" hidden #fileInput />
+      <ion-button (click)="fileInput.click()" expand="block" color="danger">
+        <ion-icon name="image-outline"></ion-icon> Seleccionar Imagen
+      </ion-button>
+    </ion-item>
+
+    <!-- Vista previa de la imagen seleccionada -->
+    <div class="image-preview" *ngIf="imagenBase64">
+      <img *ngIf="imagenBase64" [src]="imagenBase64" alt="Imagen del producto" />
+    </div> <br>
+
+    <ion-button expand="full"  color="danger" type="submit" [disabled]="editProductForm.invalid">
+      Guardar Cambios
+    </ion-button>
+  </form>
+</ion-content>

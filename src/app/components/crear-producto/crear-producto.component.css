@@ -1,0 +1,127 @@
+/* Colores base */
+:root {
+  --primary-color: #d32f2f; /* Rojo fuerte */
+  --secondary-color: #f44336; /* Rojo más suave */
+  --light-color: #ffebee; /* Rojo muy suave */
+  --dark-color: #b71c1c; /* Rojo oscuro */
+  --border-color: #ccc; /* Gris claro */
+  --input-border: #e0e0e0; /* Borde de los inputs */
+  --button-padding: 12px; /* Padding de los botones */
+}
+
+/* Estilos generales */
+ion-header {
+  background-color: red;
+  color: black;
+}
+
+ion-toolbar {
+  background-color: red;
+}
+
+ion-title {
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+ion-buttons {
+  color: #000;
+  ion-button {
+    color: black;
+    background-color: red;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
+
+ion-buttons ion-button:hover {
+  background-color: var(--dark-color);
+}
+
+ion-content {
+  background-color: #fff;
+  padding: 20px;
+}
+
+form {
+  .image-container {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .image-preview {
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    margin-bottom: 20px;
+  }
+
+  input[type="file"] {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: white;
+    color: white;
+    cursor: pointer;
+    border: none;
+  }
+
+  input[type="file"]:hover {
+    background-color: var(--dark-color);
+  }
+
+  ion-item {
+    margin-bottom: 16px;
+    font-size: 20px;
+  }
+
+  ion-label {
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  ion-input {
+    border-radius: 4px;
+    border: 1px solid var(--input-border);
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  ion-button {
+    margin-top: 20px;
+    border-radius: 8px;
+    padding: var(--button-padding);
+    font-weight: bold;
+  }
+
+  /* Estilo para el botón de guardar */
+  ion-button.primary {
+    background-color: var(--primary-color);
+    color: white;
+  }
+
+  ion-button.primary:disabled {
+    background-color: var(--light-color);
+  }
+
+  /* Estilo para el botón de cancelar */
+  ion-button.light {
+    background-color: var(--light-color);
+    color: var(--primary-color);
+  }
+
+  ion-button.light:hover {
+    background-color: var(--secondary-color);
+  }
+
+  ion-button:disabled {
+    opacity: 0.6;
+  }
+}

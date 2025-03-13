@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Agregar Producto</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="productForm">
+    <!-- Imagen -->
+    <div class="image-container">
+      <img *ngIf="imagePreview" [src]="imagePreview" alt="Vista previa" class="image-preview" />
+      <input type="file" color="danger" (change)="onImageChange($event)" accept="image/*" />
+    </div>
+
+    <!-- Nombre -->
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="nombre"></ion-input>
+    </ion-item>
+
+    <!-- Descripción -->
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-input formControlName="descripcion"></ion-input>
+    </ion-item>
+
+    <!-- Precio -->
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input type="number" formControlName="precio"></ion-input>
+    </ion-item>
+
+    <!-- Stock -->
+    <ion-item>
+      <ion-label position="floating">Stock</ion-label>
+      <ion-input type="number" formControlName="stock"></ion-input>
+    </ion-item>
+
+    <!-- Categoria -->
+    <ion-item>
+      <ion-label position="floating">Categoría</ion-label>
+      <ion-select formControlName="categoria">
+        <ion-select-option *ngFor="let category of categorias" [value]="category.id_categoria">
+          {{ category.id_categoria }} - {{ category.nombre }}
+        </ion-select-option>
+      </ion-select>
+
+      <ion-buttons slot="end">
+        <ion-button (click)="openCategoryModal()">Agregar Categoría</ion-button>
+      </ion-buttons>
+    </ion-item>
+
+    <!-- Botones -->
+    <ion-button expand="full" color="danger" (click)="saveProduct()" [disabled]="productForm.invalid">
+      Guardar
+    </ion-button>
+    <ion-button expand="full" color="light" (click)="closeModal()">Cancelar</ion-button>
+  </form>
+</ion-content>

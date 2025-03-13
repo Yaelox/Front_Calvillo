@@ -13,14 +13,6 @@
 </div>
 
 <ion-content id="main-content">
-  <!-- Filtro por fecha -->
-  <ion-item lines="none">
-    <ion-label>Selecciona una fecha:</ion-label>
-    <!-- Input tipo "date" para seleccionar solo fecha -->
-    <ion-input [(ngModel)]="fechaSeleccionada" (ionBlur)="filtrarPorFecha()" 
-               type="date" placeholder="YYYY-MM-DD">
-    </ion-input>
-  </ion-item>
 
   <!-- Contenedor para centrar el mapa -->
   <div class="map-container">
@@ -34,6 +26,7 @@
         <h2>{{ registro.nombre }}</h2>
         <p><strong>Entrada:</strong> {{ registro.hora_entrada }}</p>
         <p><strong>Salida:</strong> {{ registro.hora_salida }}</p>
+        <p><strong>Fecha:</strong> {{ registro.fecha }}</p>
         <p><strong>Ubicación:</strong> {{ registro.latitud }}, {{ registro.longitud }}</p>
       </ion-label>
       <ion-button fill="clear" color="danger" (click)="eliminarRegistro(registro.id)">
@@ -41,5 +34,5 @@
       </ion-button>
     </ion-item>
   </ion-list>
-  
+
 </ion-content>

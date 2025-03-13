@@ -1,0 +1,177 @@
+// Paleta de colores inspirada en Mercado Libre
+$primary-color: #ffe600;
+$secondary-color: #3483fa;
+$background-color: #f5f5f5;
+$text-color: #000;
+$border-radius: 10px;
+
+// Fuente personalizada
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+// 📦 Diseño de tarjetas de productos
+.product-card {
+  background: #fff;
+  margin: 10px;
+  padding: 15px;
+  border-radius: $border-radius;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  ion-thumbnail {
+    border-radius: $border-radius;
+    overflow: hidden;
+    width: 80px;
+    height: 80px;
+    border: 2px solid #ddd;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  ion-label {
+    margin-left: 10px;
+
+    h2.product-name {
+      font-size: 25px;
+      font-weight: 600;
+      color: $text-color;
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: 20px;
+      color: #000;
+      margin: 3px 0;
+    }
+
+    p.product-stock span {
+      font-size: 20px;
+      color: #ff3d00;
+    }
+
+    p.product-price {
+      font-size: 20px;
+      font-weight: 600;
+      color: #000;
+    }
+
+    p.product-category {
+      font-size: 20px;
+      font-style: italic;
+      color: #000;
+    }
+  }
+}
+
+// ✏️ Estilos para los botones
+ion-button {
+  --border-radius: 8px;
+  --box-shadow: none;
+  --padding: 8px 12px;
+
+  ion-icon {
+    font-size: 45px;
+  }
+}
+
+ion-button[color="primary"] {
+  background: $secondary-color;
+  color: white;
+}
+
+ion-button[color="danger"] {
+  background: #ff3d00;
+  color: white;
+}
+
+// 🛑 Botón de eliminar
+.delete-button {
+  background: #ff3d00;
+  color:#000;
+
+  &:hover {
+    background: darken(#ff3d00, 10%);
+  }
+}
+
+// ➕ Botón flotante para agregar productos
+ion-fab-button.add-button {
+  color: #000;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background: darken($primary-color, 10%);
+  }
+
+  ion-icon {
+    font-size: 1.5rem;
+  }
+}
+
+// 📱 Responsive para pantallas pequeñas
+@media screen and (max-width: 768px) {
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    ion-thumbnail {
+      width: 100px;
+      height: 100px;
+    }
+
+    ion-buttons {
+      margin-top: 10px;
+    }
+  }
+}
+
+
+/* Banner de la página */
+.page-banner {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: red; /* Degradado rosa brillante */
+  color: white;
+  border-radius: 0 0 20px 20px; /* Bordes redondeados inferiores */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  animation: fadeInDown 1s ease-in-out;
+
+  h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    margin: 0;
+    font-weight: bold;
+  }
+
+  p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0;
+  }
+}
+
+/* Animación de entrada */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

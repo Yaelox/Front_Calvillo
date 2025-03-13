@@ -1,0 +1,47 @@
+<app-header></app-header>
+
+  <!-- Banner de bienvenida -->
+  <div class="page-banner">
+    <h1>Inventario</h1>
+    <p>Administra los productos de tu tienda</p>
+  </div>
+
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let product of products" lines="none" class="product-card">
+      <ion-thumbnail slot="start">
+        <img [src]="product.imagen ? product.imagen : 'assets/img/default-image.png'" 
+             alt="Imagen del producto" 
+             onerror="this.src='assets/img/default-image.png'" />
+      </ion-thumbnail>
+  
+      <ion-label>
+        <h2 class="product-name">{{ product.nombre }}</h2>
+        <p class="product-stock">Stock: <span>{{ product.stock }}</span></p>
+        <p class="product-price">$ {{ product.precio }}</p>
+        <p class="product-description">{{ product.descripcion }}</p>
+        <p class="product-category">Categoría: {{ product.categoryName }}</p>
+      </ion-label>
+  
+      <ion-buttons slot="end">
+
+         <!-- Botón para editar producto -->
+         <ion-button color="primary" (click)="openEditProductModal(product)">
+          <ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+        
+        <ion-button class="delete-button" (click)="deleteProduct(product.id_producto)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+  
+  <!-- Botón flotante -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button class="add-button" (click)="openAddProductModal()">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  

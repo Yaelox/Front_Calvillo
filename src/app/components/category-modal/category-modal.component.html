@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Agregar Categoría</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="closeModal()">Cerrar</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+  
+    <!-- Formulario para agregar una nueva categoría -->
+    <form [formGroup]="categoryForm">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input formControlName="nombre"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Descripción</ion-label>
+        <ion-input formControlName="descripcion"></ion-input>
+      </ion-item>
+  
+      <ion-button expand="full" color="danger" (click)="saveCategory()" [disabled]="categoryForm.invalid">
+        Guardar
+      </ion-button>
+    </form>
+  </ion-content>
+  

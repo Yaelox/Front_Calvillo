@@ -111,6 +111,10 @@ const routes: Routes = [
   {
     path: 'check-historial',
     loadChildren: () => import('./pages/check-historial/check-historial.module').then( m => m.CheckHistorialPageModule)
+  },
+  {
+    path: 'inventario',
+    loadChildren: () => import('./pages/inventario/inventario.module').then( m => m.InventarioPageModule)
   }
 ];
 

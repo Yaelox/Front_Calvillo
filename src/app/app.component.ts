@@ -36,6 +36,7 @@ export class AppComponent {
     this.router.navigate(['/check-historial']);
   }
 
+  
 
    goToHome() {
     this.router.navigate(['/home']);

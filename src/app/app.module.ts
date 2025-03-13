@@ -9,6 +9,9 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { CrearProductoComponent } from './components/crear-producto/crear-producto.component';
+import { CategoryModalComponent } from './components/category-modal/category-modal.component';
+import { EditarProductoComponent } from './components/editar-producto/editar-producto.component';
 
 
 
@@ -20,6 +23,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
      AppRoutingModule,
      HttpClientModule, 
      ReactiveFormsModule, 
+     CrearProductoComponent,
+     EditarProductoComponent,
+     CategoryModalComponent,
      ServiceWorkerModule.register('ngsw-worker.js', 
       {
   enabled: !isDevMode(),

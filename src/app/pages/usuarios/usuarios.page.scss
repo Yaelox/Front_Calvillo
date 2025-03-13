@@ -5,13 +5,13 @@
   --background: #fff5f8;
   --card-bg: #ffeaf1;
   --text-color: #5a3e4b;
-  --shadow-color: rgba(255, 192, 203, 0.4);
+  --shadow-color: #000;
   --primary-gradient: linear-gradient(135deg, #f7c6d8, #e39cb3);
   --ticket-border: #e39cb3;
 }
 
 ion-header {
-  background: var(--primary-gradient);
+  background: red;
   color: white;
   font-weight: bold;
   text-transform: uppercase;
@@ -26,7 +26,7 @@ ion-title {
 }
 
 ion-content {
-  background: var(--background);
+  background: red;
   color: var(--text-color);
   display: flex;
   justify-content: center;
@@ -36,7 +36,7 @@ ion-content {
 
 .ticket-card {
   position: relative;
-  background: var(--card-bg);
+  background: rgb(231, 52, 52);
   border-radius: 16px;
   box-shadow: 0px 8px 20px var(--shadow-color);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -44,7 +44,7 @@ ion-content {
   max-width: 450px;
   margin: 20px auto;
   padding: 20px;
-  border: 2px dashed var(--ticket-border);
+  border: 2px dashed #000;
   font-family: "Playfair Display", serif;
   text-align: center;
 }

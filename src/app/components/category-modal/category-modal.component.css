@@ -1,0 +1,62 @@
+ion-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  form {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+    padding: 0 15px;
+    align-items: center;
+    text-align: center;
+  }
+  
+  ion-item {
+    margin-bottom: 15px;
+    font-size: 20px;
+    align-items: center;
+
+  }
+  
+  ion-label {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  ion-input,
+  ion-textarea {
+    font-size: 20px;
+    padding: 10px;
+  }
+  
+  ion-button {
+    margin-top: 10px;
+    text-align: center;
+    align-items: center;
+  }
+  
+  
+  ion-header {
+    background-color: #3880ff;
+  }
+  
+  ion-toolbar {
+    --background: red;
+    text-align: center;
+  }
+  
+  ion-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  ion-list {
+    margin-bottom: 20px;
+  }
+  
