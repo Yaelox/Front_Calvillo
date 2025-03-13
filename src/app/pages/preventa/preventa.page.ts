@@ -9,6 +9,7 @@ import { ModalController } from '@ionic/angular';
 import { TiendaService, Tienda} from 'src/app/services/tienda.service';
 import { UserService } from 'src/app/services/user.service';
 import 'leaflet-routing-machine';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-preventa',
@@ -32,7 +33,8 @@ export class PreventaPage   implements OnInit {
   constructor(
     private modalController : ModalController,
     private tiendaService: TiendaService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   private icono = {
@@ -64,6 +66,13 @@ export class PreventaPage   implements OnInit {
     this.initMap();
   }
 
+  goToCheckPedidos() {
+    this.router.navigate(['/check-pedidos']);
+  }
+
+  goToTiendas() {
+    this.router.navigate(['/tiendas']);
+  }
   cargarTiendas(): void {
     this.tiendaService.getTiendas().subscribe(
       (tiendas) => {

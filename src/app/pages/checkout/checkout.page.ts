@@ -39,6 +39,10 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnDestroy {
   marker: any;
   id_usuario: number | null = null;
 
+  // Nueva propiedad para entrega inmediata
+  entregaInmediata: boolean = false; // Variable para controlar si la entrega es inmediata
+  costoExtraEntregaInmediata: number = 50; // Costo extra por la entrega inmediata
+
   constructor(
     private route: ActivatedRoute,
     private cartService: CartService,
@@ -104,7 +108,18 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnDestroy {
       (sum, item) => sum + item.precio * item.cantidad,
       0
     );
+
+    // Si la entrega es inmediata, agregar el costo adicional
+    if (this.entregaInmediata) {
+      this.total += this.costoExtraEntregaInmediata;
+    }
+
     console.log('Total calculado:', this.total);
+  }
+
+  onDeliveryChange() {
+    // Calcular el total nuevamente cuando se marque o desmarque la opción de entrega inmediata
+    this.calcularTotal();
   }
 
   goToCart() {

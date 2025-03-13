@@ -12,12 +12,13 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { CrearProductoComponent } from './components/crear-producto/crear-producto.component';
 import { CategoryModalComponent } from './components/category-modal/category-modal.component';
 import { EditarProductoComponent } from './components/editar-producto/editar-producto.component';
+import { AgendaRutasComponent } from './components/agenda-rutas/agenda-rutas.component';
 
 
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AgendaRutasComponent],
   imports: [BrowserModule, 
     IonicModule.forRoot(),
      AppRoutingModule,
