@@ -1,0 +1,130 @@
+<app-header></app-header>
+
+<!-- Banner de bienvenida -->
+<div class="page-banner">
+  <h1>Ventas del Día</h1>
+  <p>Subir la información de Venta</p>
+</div>
+
+<ion-content>
+  <form (ngSubmit)="registrarVenta()" #ventaForm="ngForm">
+    
+    <!-- Sección Repartidor -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Información del Repartidor</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="stacked">ID Repartidor:</ion-label>
+          <ion-input [value]="usuario?.id_usuario" disabled></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Nombre:</ion-label>
+          <ion-input [value]="usuario?.nombre" disabled></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Usuario:</ion-label>
+          <ion-input [value]="usuario?.usuario" disabled></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Email:</ion-label>
+          <ion-input [value]="usuario?.email" disabled></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Teléfono:</ion-label>
+          <ion-input [value]="usuario?.telefono" disabled></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Sección Venta -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Información de Venta</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        
+        <!-- Selección de Productos -->
+        <ion-item>
+          <ion-label position="stacked">Seleccionar Producto</ion-label>
+          <ion-select [(ngModel)]="selectedProducto" name="producto">
+            <ion-select-option *ngFor="let producto of productos" [value]="producto">
+              {{ producto.nombre }} - ${{ producto.precio }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Cantidad del Producto -->
+        <ion-item>
+          <ion-label position="stacked">Cantidad</ion-label>
+          <ion-input type="number" [(ngModel)]="cantidadProducto" name="cantidad" min="1"></ion-input>
+        </ion-item>
+
+        <!-- Botón para Agregar al Carrito -->
+        <ion-button expand="full" (click)="agregarProductoAlCarrito()" [disabled]="!selectedProducto || cantidadProducto <= 0">
+          Agregar Producto
+        </ion-button>
+
+        <!-- Lista de Productos en el Carrito -->
+        <ion-list *ngIf="carrito.length > 0">
+          <ion-item *ngFor="let item of carrito; let i = index">
+            <ion-label>
+              {{ item.producto.nombre }} - {{ item.cantidad }} x ${{ item.producto.precio }} = ${{ item.total }}
+            </ion-label>
+            <ion-button fill="clear" color="danger" (click)="eliminarProductoDelCarrito(i)">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+          </ion-item>
+
+          <!-- Total de la Venta -->
+          <ion-item>
+            <ion-label><strong>Total:</strong></ion-label>
+            <ion-label><strong>${{ calcularTotal() }}</strong></ion-label>
+          </ion-item>
+        </ion-list>
+
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Sección Tienda -->
+    <ion-card *ngIf="tiendas?.length">
+      <ion-card-header>
+        <ion-card-title>Información de Tienda</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Tienda</ion-label>
+          <ion-select [(ngModel)]="selectedTienda" name="tienda" (ionChange)="onTiendaChange($event)" required>
+            <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda">
+              {{ tienda.nombre_tienda }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        
+        <ion-item *ngIf="selectedTienda">
+          <ion-label position="stacked">Dirección</ion-label>
+          <ion-input [value]="selectedTienda?.direccion" disabled></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="selectedTienda">
+          <ion-label position="stacked">Teléfono</ion-label>
+          <ion-input [value]="selectedTienda?.telefono" disabled></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="selectedTienda">
+          <ion-label position="stacked">Email</ion-label>
+          <ion-input [value]="selectedTienda?.email" disabled></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="selectedTienda">
+          <ion-label position="stacked">Propietario</ion-label>
+          <ion-input [value]="propietarioNombre" disabled></ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Botón de envío -->
+    <ion-button expand="full" type="submit" [disabled]="!ventaForm.valid || !selectedTienda">Registrar Venta</ion-button>
+  </form>
+</ion-content>

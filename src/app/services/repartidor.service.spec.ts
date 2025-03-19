@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PreventaService } from './preventa.service';
+import { RepartidorService } from './repartidor.service';
 
-describe('PreventaService', () => {
-  let service: PreventaService;
+describe('RepartidorService', () => {
+  let service: RepartidorService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PreventaService);
+    service = TestBed.inject(RepartidorService);
   });
 
   it('should be created', () => {

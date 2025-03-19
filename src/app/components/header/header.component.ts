@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   isDisabled = false;
 
   isAdmin: boolean = false;
-
+  isRepartidor: boolean = false;
 
   constructor(
     private navCtrl: NavController,
@@ -30,9 +30,17 @@ export class HeaderComponent implements OnInit {
       const userType = localStorage.getItem('tipo_usuario');
       this.isAdmin = userType === 'administrador';
       console.log("Usuario logueado como:", userType);
+    }, 100); 
+    setTimeout(() => {
+      const userType = localStorage.getItem('tipo_usuario');
+      this.isRepartidor = userType === 'repartidor';
+      console.log("Usuario logueado como:", userType);
     }, 100);  // Pequeño retraso para asegurarnos de obtener los datos correctos
   }
   
+  goToRepartidor() {
+    this.router.navigate(['/ventas-repartidor']);
+  }
   // Navegar al carrito
   goToCart() {
     this.router.navigate(['/carrito']);

@@ -115,6 +115,14 @@ const routes: Routes = [
   {
     path: 'inventario',
     loadChildren: () => import('./pages/inventario/inventario.module').then( m => m.InventarioPageModule)
+  },
+  {
+    path: 'ventas-repartidor',
+    loadChildren: () => import('./pages/ventas-repartidor/ventas-repartidor.module').then( m => m.VentasRepartidorPageModule)
+  },
+  {
+    path: 'check-venta-repartidores',
+    loadChildren: () => import('./pages/check-venta-repartidores/check-venta-repartidores.module').then( m => m.CheckVentaRepartidoresPageModule)
   }
 ];
 

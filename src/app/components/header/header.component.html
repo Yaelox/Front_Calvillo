@@ -29,6 +29,12 @@
         </ion-button>
       </ion-buttons>
 
+      <ion-buttons *ngIf="isRepartidor || isAdmin" slot="end">
+        <ion-button fill="clear" (click)="goToRepartidor()" class="header-button">
+          <ion-icon name="information" slot="start"></ion-icon> Subir-Info
+        </ion-button>
+      </ion-buttons>
+
       <ion-buttons *ngIf="isAdmin" slot="end">
         <ion-button fill="clear" (click)="goToInventario()" class="header-button">
           <ion-icon name="cube-outline" slot="start"></ion-icon> Inventario

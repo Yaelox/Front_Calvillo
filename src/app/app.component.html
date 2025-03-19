@@ -45,6 +45,10 @@
           <ion-icon name="time" slot="start"></ion-icon> Check Entradas/ Salidas
         </ion-item>
 
+        <ion-item *ngIf="isAdmin" button (click)="goToRepartidorVentas()">
+          <ion-icon name="person" slot="start"></ion-icon> Repartidores
+        </ion-item>
+
         <ion-item button (click)="goToConfiguracion()">
           <ion-icon name="settings" slot="start"></ion-icon> Configuración
         </ion-item>

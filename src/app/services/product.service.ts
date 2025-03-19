@@ -3,6 +3,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+export interface Producto {
+  id_producto?: number;
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  stock: number;
+  categoria_id:number;
+  imagen?: string; // Opcional si manejas imágenes
+}
+
 @Injectable({
   providedIn: 'root',
 })

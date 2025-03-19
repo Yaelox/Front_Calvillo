@@ -32,6 +32,9 @@ export class AppComponent {
      this.router.navigate(['/preventa']);
    }
 
+   goToRepartidorVentas() {
+    this.router.navigate(['/check-venta-repartidores']);
+  }
    goToHistorial() {
     this.router.navigate(['/check-historial']);
   }
