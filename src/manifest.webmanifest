@@ -1,6 +1,6 @@
 {
-  "name": "app",
-  "short_name": "app",
+  "name": "Mi Crus de Calvillo APP",
+  "short_name": "Mi crush de calvillo",
   "description": "Una aplicación increíble para todos los usuarios.",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
@@ -58,5 +58,9 @@
       "type": "image/png",
       "purpose": "maskable any"
     }
+  ],
+  "permissions": [
+    "camera",
+    "microphone"
   ]
 }

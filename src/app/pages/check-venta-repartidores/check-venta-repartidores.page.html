@@ -1,1 +1,76 @@
-<app-header></app-header>
+<ion-header [translucent]="true">
+  <ion-toolbar class="header-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Administración de Mis Pedidos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div class="page-banner">
+  <h1>Venta por Repartidor</h1>
+  <p>Administra las ventas por repartidor.</p>
+</div>
+
+<ion-content id="main-content" class="content-container">
+  <!-- Selector de repartidor utilizando ion-chip -->
+  <div>
+    <ion-chip *ngFor="let repartidor of repartidores" 
+              [class.selected]="repartidorSeleccionado === repartidor.id_usuario"
+              (click)="seleccionarRepartidor(repartidor.id_usuario)">
+      <ion-label>{{ repartidor.nombre }}</ion-label>
+    </ion-chip>
+  </div>
+
+  <!-- Mostrar total de ventas para el repartidor seleccionado -->
+  <div *ngIf="repartidorSeleccionado" class="total-ventas">
+    <h3>Total Ventas: ${{ totalVentas | number:'1.2-2' }}</h3>
+  </div>
+
+  <!-- Lista de ventas -->
+  <ion-list>
+    <ion-item *ngFor="let venta of ventas">
+      <ion-label>
+        <h2>Venta ID: {{ venta.id_venta }}</h2>
+        <p>Total: ${{ venta.total }}</p>
+        <p>Fecha: {{ venta.fecha_venta }}</p>
+      </ion-label>
+  
+      <ion-button (click)="openVentaDetalles(venta)" expand="full" color="primary">
+        Ver Detalles
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Modal for Venta Details -->
+  <ion-modal [isOpen]="isModalOpen" (didDismiss)="closeModal()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="closeModal()">Cerrar</ion-button>
+          </ion-buttons>
+          <ion-title>Detalles de Venta</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      
+      <ion-content>
+        <ion-list>
+          <ion-item *ngFor="let detalle of ventaSeleccionada?.detalles">
+            <ion-label>
+              <p>Producto: {{ detalle.nombre_producto }}</p> <!-- Display the product name -->
+              <p>Cantidad: {{ detalle.cantidad }}</p>
+              <p>Precio: ${{ detalle.precio }}</p>
+              <p>Subtotal: ${{ detalle.subtotal }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <!-- Foto de la venta -->
+        <div *ngIf="ventaSeleccionada?.foto_venta">
+          <img [src]="ventaSeleccionada?.foto_venta" alt="Foto de la venta" style="width: 100%; border-radius: 10px; margin-top: 20px;">
+        </div>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

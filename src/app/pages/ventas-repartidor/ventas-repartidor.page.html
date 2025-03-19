@@ -84,8 +84,15 @@
           </ion-item>
         </ion-list>
 
-      </ion-card-content>
-    </ion-card>
+            <!-- Botón para abrir la cámara -->
+            <button (click)="capturarFoto()">Tomar Foto</button>
+
+            <!-- Vista previa de la imagen -->
+            <ion-item *ngIf="foto_venta">
+              <img [src]="foto_venta" alt="Foto de la venta" class="foto-preview">
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
 
     <!-- Sección Tienda -->
     <ion-card *ngIf="tiendas?.length">

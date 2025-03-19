@@ -5,7 +5,13 @@ const config: CapacitorConfig = {
   appName: 'Tienda Online',
   webDir: 'www', // Directorio de salida de la build
   bundledWebRuntime: false,
+  plugins: {
+    Camera: {
+      permissions: {
+        camera: 'true',
+      },
+    },
+  },
 };
-
 
 export default config;
