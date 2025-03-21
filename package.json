@@ -43,6 +43,7 @@
     "date-fn": "^0.0.2",
     "date-fns": "^4.1.0",
     "ecommerce-app": "file:",
+    "html2pdf.js": "^0.10.3",
     "ionicons": "^7.0.0",
     "jspdf": "^3.0.1",
     "jspdf-autotable": "^5.0.2",

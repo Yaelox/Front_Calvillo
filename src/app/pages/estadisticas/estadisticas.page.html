@@ -1,22 +1,24 @@
 <ion-header [translucent]="true">
-  <ion-toolbar class="header-toolbar">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Administración de Mis Pedidos</ion-title>
+    <ion-title>Configuración</ion-title>
   </ion-toolbar>
 </ion-header>
 
+
 <div class="page-banner">
-  <h1>Estadísticas de Ventas</h1>
-  <p>Administra las estadísticas de ventas por diferentes parámetros.</p>
+  <h1>📊 Estadísticas de Ventas</h1>
+  <p>Administra las estadísticas de ventas de manera intuitiva.</p>
 </div>
 
 <ion-content id="main-content" class="content-container">
-  <div class="container">
+  <div class="main-content">
+    
     <!-- Ventas por Zona -->
-    <section>
-      <h2>Ventas por Zona</h2>
+    <section class="ventas-zona">
+      <h2>📍 Ventas por Zona</h2>
       <table *ngIf="ventasZona.length > 0">
         <thead>
           <tr>
@@ -31,16 +33,15 @@
             <td>{{ zona.ciudad }}</td>
             <td>{{ zona.calle }}</td>
             <td>{{ zona.colonia }}</td>
-            <td>{{ zona.total_ventas }}</td>
+            <td><strong>${{ zona.total_ventas | number }}</strong></td>
           </tr>
         </tbody>
       </table>
-      
     </section>
 
     <!-- Ventas por Mes -->
-    <section>
-      <h2>Ventas por Mes</h2>
+    <section class="ventas-mes">
+      <h2>📆 Ventas por Mes</h2>
       <table *ngIf="ventasMes?.length">
         <thead>
           <tr>
@@ -51,88 +52,88 @@
         <tbody>
           <tr *ngFor="let mes of ventasMes">
             <td>{{ mes.mes }}</td>
-            <td>{{ mes.total_ventas }}</td>
+            <td><strong>${{ mes.total_ventas | number }}</strong></td>
           </tr>
         </tbody>
       </table>
     </section>
 
     <!-- Ventas por Semana -->
-    <section>
-      <h2>Ventas por Semana</h2>
-   <!-- Asegúrate de que se muestren las semanas solo si hay datos -->
-    <table *ngIf="ventasSemana.length > 0">
-      <thead>
-        <tr>
-          <th>Semana</th>
-          <th>Ventas</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let semana of ventasSemana">
-          <td>{{ semana.semana }}</td>
-          <td>{{ semana.ventas }}</td>
-        </tr>
-      </tbody>
-    </table>
-
-    </section>
-
-    <!-- Ventas por Año -->
-    <section>
-      <h2>Ventas por Año</h2>
-      <canvas #ventasPorAnioChart></canvas>
-    </section>
-
-    <!-- Ventas por Día -->
-    <section>
-      <h2>Ventas por Día</h2>
-      <table *ngIf="ventasDia?.length">
+    <section class="ventas-semana">
+      <h2>📅 Ventas por Semana</h2>
+      <table *ngIf="ventasSemana.length > 0">
         <thead>
           <tr>
-            <th>Día</th>
-            <th>Total Vendido</th>
+            <th>Mes</th>
+            <th>Semana</th>
+            <th>Ventas</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let dia of ventasDia">
-            <td>{{ dia.dia }}</td>
-            <td>{{ dia.total_vendido }}</td>
+          <tr *ngFor="let mes of ventasSemana">
+            <td>{{ mes.mes }}</td>
+            <ng-container *ngFor="let semana of mes.semanas">
+              <td>{{ semana.semana }}</td>
+              <td><strong>${{ semana.ventas | number }}</strong></td>
+            </ng-container>
           </tr>
         </tbody>
       </table>
     </section>
 
-    <!-- Producto Más Vendido -->
-    <section>
-      <h2>Producto Más Vendido</h2>
-      <div *ngIf="productoMasVendido">
-        <p>{{ productoMasVendido.producto }} - {{ productoMasVendido.total_vendido }}</p>
+    <!-- Ventas por Año -->
+    <section class="ventas-anio">
+      <h2>📈 Ventas por Año</h2>
+      <div class="card-container" *ngIf="ventasAnio.length > 0">
+        <div class="card" *ngFor="let anio of ventasAnio">
+          <h3>Año: {{ anio.ano }}</h3>
+          <p><strong>Total Vendido:</strong> ${{ anio.total_ventas | number }}</p>
+        </div>
       </div>
+      <p *ngIf="ventasAnio.length === 0">No hay datos de ventas por año.</p>
+    </section>
+
+    <!-- Producto Más Vendido -->
+    <section class="producto-mas-vendido">
+      <h2>🔥 Producto Más Vendido</h2>
+      <div *ngIf="productoMasVendido?.length > 0">
+        <ul>
+          <li *ngFor="let item of productoMasVendido">
+            <strong>{{ item.producto }}</strong>: {{ item.total_vendido }} vendidos
+          </li>
+        </ul>
+      </div>
+      <div *ngIf="productoMasVendido?.length === 0">
+        <p>No hay productos más vendidos.</p>
+      </div>      
     </section>
 
     <!-- Producto Más Vendido por Zona -->
-    <section>
-      <h2>Producto Más Vendido por Zona</h2>
-      <table *ngIf="productoMasVendidoPorZona?.length">
+    <section class="producto-mas-vendido-zona" *ngIf="productoMasVendidoPorZona.length > 0">
+      <h2>🌎 Producto Más Vendido por Zona</h2>
+      <table>
         <thead>
           <tr>
-            <th>Zona</th>
+            <th>Ciudad</th>
+            <th>Colonia</th>
+            <th>Calle</th>
             <th>Producto</th>
             <th>Total Vendido</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let producto of productoMasVendidoPorZona">
-            <td>{{ producto.zona }}</td>
+            <td>{{ producto.zona.ciudad }}</td>
+            <td>{{ producto.zona.colonia }}</td>
+            <td>{{ producto.zona.calle }}</td>
             <td>{{ producto.producto }}</td>
-            <td>{{ producto.total_vendido }}</td>
+            <td><strong>{{ producto.total_vendido }}</strong></td>
           </tr>
         </tbody>
       </table>
     </section>
 
     <!-- Botón de Imprimir PDF -->
-    <button ion-button (click)="downloadPDF()">Imprimir en PDF</button>
+    <button (click)="downloadPDF()">🖨 Imprimir PDF</button>
   </div>
 </ion-content>

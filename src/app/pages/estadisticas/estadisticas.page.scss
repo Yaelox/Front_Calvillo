@@ -1,40 +1,204 @@
-.container {
-  padding: 20px;
-}
+// Define Global Variables
+$primary-color: #007bff; // Main color for headings and important elements
+$secondary-color: #28a745; // Secondary color for table headers
+$highlight-color: #f39c12; // Highlight color for hover effects
+$text-color: #333333; // Default text color
+$card-bg: #ffffff; // Card background color
+$table-border-color: #ddd; // Border color for tables
+$card-shadow: rgba(0, 0, 0, 0.1); // Shadow for cards and sections
+$f4f7f9: #f4f7f9; // Light background color for table rows
 
+
+// Global Section Styles
 section {
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: $card-bg;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px $card-shadow;
+}
+
+.page-banner {
+  text-align: center;
+  padding: 2rem 1rem;
+  background:  red;
+  color: white;
+  border-radius: 0 0 20px 20px; /* Bordes redondeados inferiores */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  animation: fadeInDown 1s ease-in-out;
+
+  h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    margin: 0;
+    font-weight: bold;
+  }
+
+  p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0;
+  }
+}
+
+/* Animación de entrada */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media print {
+  body {
+    font-family: Arial, sans-serif;
+  }
+  .content-container {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  table, th, td {
+    border: 1px solid black;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+}
+
+
+
+section h2 {
+  font-size: 28px;
+  color: $primary-color;
+  font-weight: 600;
   margin-bottom: 20px;
+  text-align: center;
 }
 
-h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
+// Table Styling for Section
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-}
-
-th, td {
-  padding: 8px;
-  text-align: center;
-  border: 1px solid #ddd;
-}
-
-th {
-  background-color: #f4f4f4;
-}
-
-button {
   margin-top: 20px;
-  background-color: #007bff;
-  color: white;
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid $table-border-color;
+    font-size: 14px;
+  }
+
+  th {
+    background-color: $secondary-color;
+    color: white;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: $f4f7f9;
+  }
+
+  tbody tr:hover {
+    background-color: $highlight-color;
+    cursor: pointer;
+    color: white;
+  }
 }
 
-canvas {
-  max-width: 100%;
-  height: auto;
+// Cards for Ventas por Año
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+
+  .card {
+    background-color: $card-bg;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px $card-shadow;
+    width: 280px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    h3 {
+      font-size: 20px;
+      color: $primary-color;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 16px;
+      color: $text-color;
+      margin-top: 10px;
+    }
+
+    &:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 14px $card-shadow;
+    }
+  }
+}
+
+// Producto Más Vendido Styles
+.producto-mas-vendido ul {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    font-size: 16px;
+    padding: 10px;
+    border-bottom: 1px solid $table-border-color;
+    color: $text-color;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+// Producto Más Vendido por Zona Table Styling
+.producto-mas-vendido-zona table {
+  th, td {
+    padding: 14px;
+    font-size: 16px;
+  }
+  th {
+    background-color: $secondary-color;
+    color: white;
+  }
+  tbody tr:nth-child(even) {
+    background-color: $f4f7f9;
+  }
+  tbody tr:hover {
+    background-color: $highlight-color;
+    cursor: pointer;
+    color: white;
+  }
+}
+
+// Button Styling
+button {
+  padding: 12px 20px;
+  background-color: $highlight-color;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  margin-top: 30px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($highlight-color, 10%);
+  }
 }
