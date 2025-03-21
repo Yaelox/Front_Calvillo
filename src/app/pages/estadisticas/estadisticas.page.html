@@ -1,0 +1,138 @@
+<ion-header [translucent]="true">
+  <ion-toolbar class="header-toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Administración de Mis Pedidos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<div class="page-banner">
+  <h1>Estadísticas de Ventas</h1>
+  <p>Administra las estadísticas de ventas por diferentes parámetros.</p>
+</div>
+
+<ion-content id="main-content" class="content-container">
+  <div class="container">
+    <!-- Ventas por Zona -->
+    <section>
+      <h2>Ventas por Zona</h2>
+      <table *ngIf="ventasZona.length > 0">
+        <thead>
+          <tr>
+            <th>Ciudad</th>
+            <th>Calle</th>
+            <th>Colonia</th>
+            <th>Total Vendido</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let zona of ventasZona">
+            <td>{{ zona.ciudad }}</td>
+            <td>{{ zona.calle }}</td>
+            <td>{{ zona.colonia }}</td>
+            <td>{{ zona.total_ventas }}</td>
+          </tr>
+        </tbody>
+      </table>
+      
+    </section>
+
+    <!-- Ventas por Mes -->
+    <section>
+      <h2>Ventas por Mes</h2>
+      <table *ngIf="ventasMes?.length">
+        <thead>
+          <tr>
+            <th>Mes</th>
+            <th>Total Vendido</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let mes of ventasMes">
+            <td>{{ mes.mes }}</td>
+            <td>{{ mes.total_ventas }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Ventas por Semana -->
+    <section>
+      <h2>Ventas por Semana</h2>
+   <!-- Asegúrate de que se muestren las semanas solo si hay datos -->
+    <table *ngIf="ventasSemana.length > 0">
+      <thead>
+        <tr>
+          <th>Semana</th>
+          <th>Ventas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let semana of ventasSemana">
+          <td>{{ semana.semana }}</td>
+          <td>{{ semana.ventas }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    </section>
+
+    <!-- Ventas por Año -->
+    <section>
+      <h2>Ventas por Año</h2>
+      <canvas #ventasPorAnioChart></canvas>
+    </section>
+
+    <!-- Ventas por Día -->
+    <section>
+      <h2>Ventas por Día</h2>
+      <table *ngIf="ventasDia?.length">
+        <thead>
+          <tr>
+            <th>Día</th>
+            <th>Total Vendido</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dia of ventasDia">
+            <td>{{ dia.dia }}</td>
+            <td>{{ dia.total_vendido }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Producto Más Vendido -->
+    <section>
+      <h2>Producto Más Vendido</h2>
+      <div *ngIf="productoMasVendido">
+        <p>{{ productoMasVendido.producto }} - {{ productoMasVendido.total_vendido }}</p>
+      </div>
+    </section>
+
+    <!-- Producto Más Vendido por Zona -->
+    <section>
+      <h2>Producto Más Vendido por Zona</h2>
+      <table *ngIf="productoMasVendidoPorZona?.length">
+        <thead>
+          <tr>
+            <th>Zona</th>
+            <th>Producto</th>
+            <th>Total Vendido</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productoMasVendidoPorZona">
+            <td>{{ producto.zona }}</td>
+            <td>{{ producto.producto }}</td>
+            <td>{{ producto.total_vendido }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Botón de Imprimir PDF -->
+    <button ion-button (click)="downloadPDF()">Imprimir en PDF</button>
+  </div>
+</ion-content>

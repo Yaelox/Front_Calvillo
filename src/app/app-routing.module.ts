@@ -123,6 +123,10 @@ const routes: Routes = [
   {
     path: 'check-venta-repartidores',
     loadChildren: () => import('./pages/check-venta-repartidores/check-venta-repartidores.module').then( m => m.CheckVentaRepartidoresPageModule)
+  },
+  {
+    path: 'estadisticas',
+    loadChildren: () => import('./pages/estadisticas/estadisticas.module').then( m => m.EstadisticasPageModule)
   }
 ];
 

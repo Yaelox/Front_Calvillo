@@ -14,7 +14,6 @@
 
 <ion-content id="main-content">
 
-  
   <!-- Botón flotante para agregar tienda -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="danger" (click)="openAddTiendaModal()">
@@ -39,12 +38,14 @@
 
           <ion-card-content>
             <p><ion-icon name="id-card-outline"></ion-icon> <strong>ID:</strong> {{ tienda.id_tienda }}</p>
-            <p><ion-icon name="location-outline"></ion-icon> <strong>Dirección:</strong> {{ tienda.direccion }}</p>
+            <p><ion-icon name="location-outline"></ion-icon> <strong>Dirección:</strong>
+              {{ tienda.calle }}, {{ tienda.numero }}, {{ tienda.colonia }}, {{ tienda.ciudad }} - {{ tienda.codigo_postal }}
+            </p>
             <p><ion-icon name="call-outline"></ion-icon> <strong>Teléfono:</strong> {{ tienda.telefono }}</p>
             <p><ion-icon name="mail-outline"></ion-icon> <strong>Email:</strong> {{ tienda.email }}</p>
             <p><ion-icon name="person-outline"></ion-icon> <strong>Propietario:</strong> {{ tienda.nombre }}</p>
             <p><ion-icon name="calendar-outline"></ion-icon> <b>Frecuencia Visitas:</b> {{ tienda.frecuencia_visitas || 'No disponible' }}</p>
-            <p><ion-icon name="time-outline"></ion-icon> <b>Registrado el:</b> {{ tienda.fecha_registro |date: 'medium'}}</p>
+            <p><ion-icon name="time-outline"></ion-icon> <b>Registrado el:</b> {{ tienda.fecha_registro | date: 'medium' }}</p>
           </ion-card-content>
 
           <div class="divider"></div>

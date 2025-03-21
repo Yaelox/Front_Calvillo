@@ -32,6 +32,10 @@ export class AppComponent {
      this.router.navigate(['/preventa']);
    }
 
+   goToEstadisticas() {
+    this.router.navigate(['/estadisticas']);
+  }
+
    goToRepartidorVentas() {
     this.router.navigate(['/check-venta-repartidores']);
   }

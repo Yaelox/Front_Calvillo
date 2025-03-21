@@ -15,6 +15,7 @@
 <ion-content id="main-content" class="content-container">
   <!-- Selector de repartidor utilizando ion-chip -->
   <div>
+    <h2>Repartidores:</h2> <br>
     <ion-chip *ngFor="let repartidor of repartidores" 
               [class.selected]="repartidorSeleccionado === repartidor.id_usuario"
               (click)="seleccionarRepartidor(repartidor.id_usuario)">

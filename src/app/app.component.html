@@ -49,6 +49,10 @@
           <ion-icon name="person" slot="start"></ion-icon> Repartidores
         </ion-item>
 
+        <ion-item *ngIf="isAdmin" button (click)="goToEstadisticas()">
+          <ion-icon name="bar-chart" slot="start"></ion-icon> Estadisticas
+        </ion-item>        
+
         <ion-item button (click)="goToConfiguracion()">
           <ion-icon name="settings" slot="start"></ion-icon> Configuración
         </ion-item>
