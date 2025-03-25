@@ -113,6 +113,8 @@ table {
   }
 }
 
+
+
 // Cards for Ventas por Año
 .card-container {
   display: flex;
@@ -200,5 +202,26 @@ button {
 
   &:hover {
     background-color: darken($highlight-color, 10%);
+  }
+}
+
+#inner-content {
+  width: 100%;
+  max-width: 210mm;  // Asegurarse de que no exceda el tamaño de la página A4
+  margin: 0 auto;   // Centrar el contenido horizontalmente
+  padding: 20px;
+  box-sizing: border-box;
+  display: block;   // Asegurarse de que el contenido es bloque y puede ser centrado
+}
+
+h1, h2, h3, p {
+  text-align: center;  // Asegura que los textos principales estén centrados
+}
+
+/* Estilo para ocultar el botón de imprimir durante la impresión */
+@media print {
+  /* Ocultar el botón de imprimir */
+  #print-button {
+    display: none;
   }
 }

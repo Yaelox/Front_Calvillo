@@ -1,15 +1,14 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit, ChangeDetectorRef } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Chart, registerables } from 'chart.js';
 import html2pdf from 'html2pdf.js';
-import 'jspdf-autotable'; 
+import 'jspdf-autotable';
 import { EstadisticasService } from 'src/app/services/estadisticas.service';
 import { CommonModule } from '@angular/common';
 
-
 interface Semana {
-  semana: string;
-  ventas: string;
+  semana: number;
+  ventas: number;
 }
 
 interface VentasPorSemana {
@@ -22,7 +21,7 @@ interface VentasPorSemana {
   templateUrl: './estadisticas.page.html',
   styleUrls: ['./estadisticas.page.scss'],
   imports: [IonicModule, CommonModule],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class EstadisticasPage implements OnInit {
   ventasZona: any[] = [];
@@ -32,13 +31,12 @@ export class EstadisticasPage implements OnInit {
   ventasDia: any[] = [];
   productoMasVendido: any = {};
   productoMasVendidoPorZona: any[] = [];
+  isLoaded: boolean = false;
 
-  @ViewChild('ventasPorAñoChart') ventasPorAnioChart: any;
-
-  constructor(private estadisticasService: EstadisticasService) {}
+  constructor(private estadisticasService: EstadisticasService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
-    Chart.register(...registerables);  // Registrar Chart.js
+    Chart.register(...registerables);
 
     this.loadVentasPorZona();
     this.loadVentasPorMes();
@@ -52,12 +50,14 @@ export class EstadisticasPage implements OnInit {
   loadVentasPorZona() {
     this.estadisticasService.getVentasPorZona().subscribe((data) => {
       this.ventasZona = data;
+      this.checkDataLoaded();
     });
   }
 
   loadVentasPorMes() {
     this.estadisticasService.getVentasPorMes().subscribe((data) => {
       this.ventasMes = data;
+      this.checkDataLoaded();
     });
   }
 
@@ -70,18 +70,21 @@ export class EstadisticasPage implements OnInit {
           ventas: semana.ventas,
         })),
       }));
+      this.checkDataLoaded();
     });
   }
 
   loadVentasPorAnio() {
     this.estadisticasService.getVentasPorAño().subscribe((data) => {
       this.ventasAnio = data;
+      this.checkDataLoaded();
     });
   }
 
   loadVentasPorDia() {
     this.estadisticasService.getVentasPorDia().subscribe((data) => {
       this.ventasDia = data;
+      this.checkDataLoaded();
     });
   }
 
@@ -93,49 +96,99 @@ export class EstadisticasPage implements OnInit {
           total_vendido: Number(item.total_vendido),
         }))
         .sort((a, b) => b.total_vendido - a.total_vendido);
+      this.checkDataLoaded();
     });
   }
 
   async loadProductoMasVendidoPorZona() {
     try {
       const data: any = await this.estadisticasService.getProductoMasVendidoPorZona().toPromise();
-  
-      // Verificamos si los datos son válidos
       if (data && Array.isArray(data)) {
         this.productoMasVendidoPorZona = data;
       } else if (data) {
-        // Si los datos no son un array pero existen, los envolvemos en un array
         this.productoMasVendidoPorZona = [data];
       } else {
-        // Si no hay datos, establecer como vacío
         this.productoMasVendidoPorZona = [];
       }
+      this.checkDataLoaded();
     } catch (error) {
       console.error('Error al obtener productos más vendidos por zona:', error);
-      this.productoMasVendidoPorZona = []; // Establecer como vacío si hay error
+      this.productoMasVendidoPorZona = [];
     }
   }
-  
+
+  checkDataLoaded() {
+    if (
+      this.ventasZona.length > 0 &&
+      this.ventasMes.length > 0 &&
+      this.ventasSemana.length > 0 &&
+      this.ventasAnio.length > 0 &&
+      this.ventasDia.length > 0 &&
+      Object.keys(this.productoMasVendido).length > 0 &&
+      this.productoMasVendidoPorZona.length > 0
+    ) {
+      this.isLoaded = true;
+    }
+  }
 
   downloadPDF() {
-    const element = document.getElementById('main-content');
-    console.log(element);  // Verify the element in the console
-    
-    if (element) {
-      const options = {
-        margin: 1,
-        filename: 'estadisticas_de_ventas.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 4 },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-      };
-  
-      html2pdf()
-        .from(element)
-        .set(options)
-        .save();
-    } else {
-      console.error('Element not found!');
+    if (!this.isLoaded) {
+      console.log("Esperando que los datos se carguen...");
+      return;
     }
+  
+    // Forzar la actualización del componente y verificar si el DOM está listo
+    this.cdr.detectChanges();
+  
+    // Asegurémonos de que los datos estén renderizados antes de crear el PDF
+    setTimeout(() => {
+      const element = document.getElementById('inner-content');
+      if (element) {
+        const options = {
+          margin: [10, 10, 10, 10], // Márgenes ajustados
+          filename: 'estadisticas_de_ventas.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: {
+            scale: 4,  // Aumentar la escala para más detalle
+            width: element.scrollWidth,   // Ajuste automático al ancho del contenido
+            height: element.scrollHeight,  // Ajuste automático al alto del contenido
+            x: 0,  // Centrado horizontal
+            y: 0   // Centrado vertical
+          },
+          jsPDF: { 
+            unit: 'mm',  // Usar milímetros para mayor precisión
+            format: 'a4', // A4 es un buen formato estándar
+            orientation: 'portrait',
+            compress: true,
+            putOnlyUsedFonts: true,
+            pageSize: 'A4', // Asegurar que la página es A4
+            autoSize: true, // Ajustar al tamaño de la página
+            html2canvas: {
+              scale: 3, // Este valor ajusta la calidad y el tamaño
+            }
+          }
+        };
+
+        // Esto oculta el botón de impresión, asegurando que no se incluya en el PDF
+        const printButton = document.getElementById('print-button');
+        if (printButton) {
+          printButton.style.display = 'none';
+        }
+
+        // Generación del PDF
+        html2pdf()
+          .from(element)
+          .set(options)
+          .save()
+          .finally(() => {
+            // Restauramos el botón de impresión
+            if (printButton) {
+              printButton.style.display = 'block';
+            }
+          });
+      } else {
+        console.error('Element not found!');
+      }
+    }, 500); // Espera 500ms para asegurarse de que el DOM se haya renderizado completamente
   }
-}  
+}

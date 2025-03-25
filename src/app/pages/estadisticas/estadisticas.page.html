@@ -14,7 +14,7 @@
 </div>
 
 <ion-content id="main-content" class="content-container">
-  <div class="main-content">
+  <div class="main-content" id="inner-content">
     
     <!-- Ventas por Zona -->
     <section class="ventas-zona">
@@ -77,17 +77,18 @@
       </table>
     </section>
 
-    <!-- Ventas por Año -->
+  <!-- Ventas por Año -->
     <section class="ventas-anio">
       <h2>📈 Ventas por Año</h2>
       <div class="card-container" *ngIf="ventasAnio.length > 0">
         <div class="card" *ngFor="let anio of ventasAnio">
-          <h3>Año: {{ anio.ano }}</h3>
+          <h3>Año: {{ anio['año'] }}</h3>  <!-- Usé corchetes para acceder a 'año' -->
           <p><strong>Total Vendido:</strong> ${{ anio.total_ventas | number }}</p>
         </div>
       </div>
       <p *ngIf="ventasAnio.length === 0">No hay datos de ventas por año.</p>
     </section>
+
 
     <!-- Producto Más Vendido -->
     <section class="producto-mas-vendido">
@@ -129,6 +130,7 @@
     
 
     <!-- Botón de Imprimir PDF -->
-    <button (click)="downloadPDF()">🖨 Imprimir PDF</button>
+    <button id="print-button" (click)="downloadPDF()">Imprimir PDF</button>
+
   </div>
 </ion-content>
