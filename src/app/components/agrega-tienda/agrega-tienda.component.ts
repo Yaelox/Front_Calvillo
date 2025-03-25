@@ -24,18 +24,15 @@ export class AgregaTiendaComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      this.tiendaForm = this.fb.group({
-        nombre_tienda: ['', Validators.required],
-        calle: ['', Validators.required],
-        numero: ['', Validators.required],
-        colonia: ['', Validators.required],
-        ciudad: ['', Validators.required],
-        codigo_postal: ['', Validators.required],
-        telefono: [''],
-        email: ['', [Validators.required, Validators.email]],
-        id_usuario: ['', Validators.required],
-        frecuencia_visitas: ['', Validators.required]
-      });
+    this.tiendaForm = this.fb.group({
+      nombre_tienda: [''],
+      usuario: [''],
+      direccion: [''],
+      telefono: ['', [Validators.pattern(/^\d{10}$/)]], // Validación para un teléfono de 10 dígitos
+      email: ['', [Validators.required, Validators.email]], // Validación para el correo electrónico
+      id_usuario: [''],
+      frecuencia_visitas: [''],
+    });
     this.loadUsuarios();
   }
 
