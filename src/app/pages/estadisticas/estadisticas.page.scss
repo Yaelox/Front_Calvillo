@@ -98,7 +98,7 @@ table {
   }
 
   th {
-    background-color: $secondary-color;
+    background-color: red;
     color: white;
   }
 
@@ -107,7 +107,7 @@ table {
   }
 
   tbody tr:hover {
-    background-color: $highlight-color;
+    background-color:red;
     cursor: pointer;
     color: white;
   }
@@ -171,14 +171,14 @@ table {
     font-size: 16px;
   }
   th {
-    background-color: $secondary-color;
+    background-color: red;
     color: white;
   }
   tbody tr:nth-child(even) {
     background-color: $f4f7f9;
   }
   tbody tr:hover {
-    background-color: $highlight-color;
+    background-color: red;
     cursor: pointer;
     color: white;
   }
@@ -187,7 +187,7 @@ table {
 // Button Styling
 button {
   padding: 12px 20px;
-  background-color: $highlight-color;
+  background-color: red;
   border: none;
   color: white;
   font-size: 16px;

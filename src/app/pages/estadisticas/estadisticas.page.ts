@@ -96,21 +96,26 @@ export class EstadisticasPage implements OnInit {
     });
   }
 
-  loadProductoMasVendidoPorZona() {
-    this.estadisticasService.getProductoMasVendidoPorZona().subscribe((data: any) => {
-      // Check if data is an object or array
-      if (data) {
-        // If data is not an array, wrap it in one
-        this.productoMasVendidoPorZona = Array.isArray(data) ? data : [data];
+  async loadProductoMasVendidoPorZona() {
+    try {
+      const data: any = await this.estadisticasService.getProductoMasVendidoPorZona().toPromise();
+  
+      // Verificamos si los datos son válidos
+      if (data && Array.isArray(data)) {
+        this.productoMasVendidoPorZona = data;
+      } else if (data) {
+        // Si los datos no son un array pero existen, los envolvemos en un array
+        this.productoMasVendidoPorZona = [data];
       } else {
-        // If no data is received, set it as an empty array
+        // Si no hay datos, establecer como vacío
         this.productoMasVendidoPorZona = [];
       }
-    }, error => {
-      console.error('Error en getProductoMasVendidoPorZona:', error);
-      this.productoMasVendidoPorZona = []; // Fallback to empty array on error
-    });
+    } catch (error) {
+      console.error('Error al obtener productos más vendidos por zona:', error);
+      this.productoMasVendidoPorZona = []; // Establecer como vacío si hay error
+    }
   }
+  
 
   downloadPDF() {
     const element = document.getElementById('main-content');

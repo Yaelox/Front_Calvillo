@@ -73,6 +73,8 @@
   <h2>Método de Pago</h2>
   <ion-list>
     <ion-radio-group [(ngModel)]="metodoPagoSeleccionado" name="metodoPago" (ngModelChange)="onPaymentMethodChange($event)">
+      
+      <!--
       <ion-item>
         <ion-label>Tarjeta de Crédito</ion-label>
         <ion-radio slot="start" name="credit-card" value="credit-card"></ion-radio>
@@ -84,6 +86,11 @@
       <ion-item>
         <ion-label>Transferencia</ion-label>
         <ion-radio slot="start" name="transferencia" value="transferencia"></ion-radio>
+      </ion-item> -->
+
+      <ion-item>
+        <ion-label>Efectivo</ion-label>
+        <ion-radio slot="start" name="efectivo" value="efectivo"></ion-radio>
       </ion-item>
     </ion-radio-group>    
   </ion-list>
