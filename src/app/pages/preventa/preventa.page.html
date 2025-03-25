@@ -21,10 +21,23 @@
 
   <!-- Botón Normal para Resetear el Mapa -->
   <div class="reset-map-button-container">
-    <ion-button color="danger"(click)="resetMap()">
+    <ion-button color="danger" (click)="resetMap()">
       <ion-icon name="refresh"></ion-icon> Resetear Mapa
     </ion-button>
-  </div><br><br>
+  </div>
+
+  <!-- Botones para ir a Tiendas y Pedidos -->
+<div class="reset-map-button-container">
+    <ion-button color="danger" (click)="goToTiendas()">
+      <ion-icon name="storefront"></ion-icon> Tiendas
+    </ion-button>
+    </div>
+
+    <div class="reset-map-button-container">
+    <ion-button color="danger" (click)="goToCheckPedidos()">
+      <ion-icon name="list"></ion-icon> Pedidos
+    </ion-button>
+  </div>
 
   <!-- Footer -->
   <app-footer></app-footer>

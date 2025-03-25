@@ -42,6 +42,7 @@ export class CarritoPage implements OnInit {
     return this.cartService.getTotal();
   }
 
+  
   updateQuantity(item: CartItem, cantidad: number) {
     if (item && item.uniqueId) {
       this.cartService.updateQuantity(item.uniqueId, cantidad);
@@ -49,7 +50,7 @@ export class CarritoPage implements OnInit {
       console.error('No se pudo actualizar cantidad. Producto inválido:', item);
     }
   }
-
+  
 
  // Eliminar un producto del carrito
 removeItem(product: CartItem) {
