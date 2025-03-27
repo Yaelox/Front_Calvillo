@@ -7,43 +7,38 @@
 
     <div class="header-right">
       <!-- Mostrar Configuración solo si el usuario es admin -->
-        <ion-button fill="clear" (click)="goToConfig()" class="header-button">
-          <ion-icon name="settings" slot="start"></ion-icon> Configuración
-        </ion-button>
+      <ion-button fill="clear" (click)="goToConfig()" class="header-button">
+        <ion-icon name="settings" slot="start"></ion-icon> Configuración
+      </ion-button>
 
       <!-- Botones generales -->
-      <ion-buttons slot="end">
-        <ion-button fill="clear" (click)="goToHome()" class="header-button">
-          <ion-icon name="home" slot="start"></ion-icon> Home
-        </ion-button>
-        <ion-buttons *ngIf="isRepartidor || isAdmin" slot="end">
-          <ion-button fill="clear" (click)="goToPreventa()" class="header-button">
-            <ion-icon name="cart" slot="start"></ion-icon> Preventa
-          </ion-button>
-        </ion-buttons>
-        <ion-button fill="clear" (click)="goToTienda()" class="header-button">
-          <ion-icon name="storefront" slot="start"></ion-icon> Tienda
-        </ion-button>
-        <ion-button fill="clear" (click)="goToContacto()" class="header-button">
-          <ion-icon name="person" slot="start"></ion-icon> Contactanos
-        </ion-button>
-      </ion-buttons>
+      <ion-button fill="clear" (click)="goToHome()" class="header-button">
+        <ion-icon name="home" slot="start"></ion-icon> Home
+      </ion-button>
 
-      <ion-buttons *ngIf="isRepartidor || isAdmin" slot="end">
-        <ion-button fill="clear" (click)="goToRepartidor()" class="header-button">
-          <ion-icon name="information" slot="start"></ion-icon> Subir-Info
-        </ion-button>
-      </ion-buttons>
+      <ion-button *ngIf="isEmpleado|| isAdmin" fill="clear" (click)="goToPreventa()" class="header-button">
+        <ion-icon name="cart" slot="start"></ion-icon> Preventa
+      </ion-button>
 
-      <ion-buttons *ngIf="isAdmin" slot="end">
-        <ion-button fill="clear" (click)="goToInventario()" class="header-button">
-          <ion-icon name="cube-outline" slot="start"></ion-icon> Inventario
-        </ion-button>
-        </ion-buttons>
-        
-        <ion-button fill="clear" (click)="goToReloj()" class="header-button">
-          <ion-icon name="time" slot="start"></ion-icon> Checador
-        </ion-button>
+      <ion-button *ngIf="isEmpleado || isAdmin || isCliente" fill="clear" (click)="goToTienda()" class="header-button">
+        <ion-icon name="storefront" slot="start"></ion-icon> Tienda
+      </ion-button>
+
+      <ion-button fill="clear" (click)="goToContacto()" class="header-button">
+        <ion-icon name="person" slot="start"></ion-icon> Contactanos
+      </ion-button>
+
+      <ion-button *ngIf="isRepartidor || isAdmin" fill="clear" (click)="goToRepartidor()" class="header-button">
+        <ion-icon name="information" slot="start"></ion-icon> Subir-Info
+      </ion-button>
+
+      <ion-button *ngIf="isAdmin || isEmpleado" fill="clear" (click)="goToInventario()" class="header-button">
+        <ion-icon name="cube-outline" slot="start"></ion-icon> Inventario
+      </ion-button>
+
+      <ion-button *ngIf="isAdmin || isRepartidor || isEmpleado" fill="clear" (click)="goToReloj()" class="header-button">
+        <ion-icon name="time" slot="start"></ion-icon> Checador
+      </ion-button>
 
       <ion-button fill="clear" (click)="goToCarrito()" class="cart-button">
         <ion-icon name="cart-outline" slot="icon-only"></ion-icon>

@@ -17,6 +17,9 @@ export class HeaderComponent implements OnInit {
 
   isAdmin: boolean = false;
   isRepartidor: boolean = false;
+  isEmpleado: boolean = false;
+  isCliente: boolean = false;
+
 
   constructor(
     private navCtrl: NavController,
@@ -35,7 +38,17 @@ export class HeaderComponent implements OnInit {
       const userType = localStorage.getItem('tipo_usuario');
       this.isRepartidor = userType === 'repartidor';
       console.log("Usuario logueado como:", userType);
-    }, 100);  // Pequeño retraso para asegurarnos de obtener los datos correctos
+    }, 100);
+    setTimeout(() => {
+      const userType = localStorage.getItem('tipo_usuario');
+      this.isEmpleado = userType === 'empleado';
+      console.log("Usuario logueado como:", userType);
+    }, 100); 
+    setTimeout(() => {
+      const userType = localStorage.getItem('tipo_usuario');
+      this.isCliente = userType === 'cliente';
+      console.log("Usuario logueado como:", userType);
+    }, 100); // Pequeño retraso para asegurarnos de obtener los datos correctos
   }
   
   goToRepartidor() {

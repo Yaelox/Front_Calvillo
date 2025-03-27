@@ -16,11 +16,17 @@ export class AppComponent {
  }
  
  isAdmin: boolean = false;
+ isEmpleado: boolean = false;
  
  ngOnInit() {
   setTimeout(() => {
     const userType = localStorage.getItem('tipo_usuario');
     this.isAdmin = userType === 'administrador';
+    console.log("Usuario logueado como:", userType);
+  }, 100);
+  setTimeout(() => {
+    const userType = localStorage.getItem('tipo_usuario');
+    this.isEmpleado = userType === 'empleado';
     console.log("Usuario logueado como:", userType);
   }, 100);  // Pequeño retraso para asegurarnos de obtener los datos correctos
 }
