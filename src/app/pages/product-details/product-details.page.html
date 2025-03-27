@@ -29,25 +29,23 @@
             <h2 class="product-title">{{ producto.nombre }}</h2>
             <p class="price"><strong>Precio:</strong> ${{ producto.precio }}</p>
             <p class="description">{{ producto.descripcion }}</p>
-
+        
             <!-- Selector de cantidad y botón de comprar -->
             <div class="purchase-section">
               <div class="quantity-selector">
                 <ion-button (click)="decreaseQuantity()" [disabled]="quantity <= 1">
                   <ion-icon name="remove-outline"></ion-icon>
                 </ion-button>
+                
                 <span class="quantity-value">{{ quantity }}</span>
+            
                 <ion-button (click)="increaseQuantity()">
                   <ion-icon name="add-outline"></ion-icon>
                 </ion-button>
               </div>
-              <ion-button class="buy-now" color="danger" expand="block" (click)="comprar()">
-                <ion-icon slot="start" name="cart-outline"></ion-icon>
-                COMPRAR
-              </ion-button>
-            </div>
-          </div>
-        </ion-col>
+              </div>
+              </div>
+        </ion-col>        
       </ion-row>
     </ion-grid>
   </div>

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { AlertController, IonicModule, ModalController } from '@ionic/angular';
 import { CrearProductoComponent } from 'src/app/components/crear-producto/crear-producto.component';
 import { EditarProductoComponent } from 'src/app/components/editar-producto/editar-producto.component';
 import { HeaderComponent } from 'src/app/components/header/header.component';
@@ -22,7 +22,8 @@ export class InventarioPage implements OnInit {
     private modalCtrl: ModalController,
     private inventarioService: InventarioService,
     private productService: ProductService,
-    private categoriaService: CategoriaService
+    private categoriaService: CategoriaService,
+    private alertCtrl: AlertController 
   ) {}
 
   ngOnInit() {
@@ -55,10 +56,11 @@ export class InventarioPage implements OnInit {
       this.loadProducts();
     }
   }
-
   loadProducts() {
     this.productService.getProducts().subscribe((products) => {
       this.products = products;
+  
+      // Verificar el stock de cada producto
       this.products.forEach((product) => {
         if (product.categoria_id) {
           this.categoriaService.getCategoriaById(product.categoria_id).subscribe((category) => {
@@ -67,9 +69,27 @@ export class InventarioPage implements OnInit {
         } else {
           console.error(`El producto con ID ${product.id_producto} no tiene un id_categoria válido.`);
         }
+  
+        // Verificar si el stock es menor o igual a 10
+        if (product.stock <= 10) {
+          this.showStockAlert(product);  // Mostrar alerta si el stock es bajo
+        }
       });
     });
   }
+
+  async showStockAlert(producto: any) {
+    setTimeout(async () => {
+      const alert = await this.alertCtrl.create({
+        header: 'Alerta de Stock Bajo',
+        message: `El producto "${producto.nombre}" tiene solo ${producto.stock} unidades en stock. ¡Asegúrate de reponerlo pronto!`,
+        buttons: ['OK']
+      });
+      await alert.present();
+    }, 0);  // Agregar un pequeño retraso
+  }
+  
+  
   
   deleteProduct(id_producto: number) {
     if (!id_producto) {

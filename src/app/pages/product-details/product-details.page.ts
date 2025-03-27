@@ -1,18 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component,CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { CheckoutService } from 'src/app/services/checkout.service';
 import { Router } from '@angular/router';
 import { FooterComponent } from "../../components/footer/footer.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.page.html',
   styleUrls: ['./product-details.page.scss'],
-  imports: [CommonModule, HeaderComponent, FooterComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent,FormsModule],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ProductDetailsPage implements OnInit {
@@ -24,9 +24,9 @@ export class ProductDetailsPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private navCtrl: NavController,
-    private checkoutService: CheckoutService, 
-    private router: Router
+    private navCtrl: NavController, 
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   goBack() {
@@ -52,17 +52,30 @@ export class ProductDetailsPage implements OnInit {
       });
     }
   }
-
+  
+  
   increaseQuantity() {
     this.quantity++;
+    console.log('Cantidad incrementada:', this.quantity);
+    setTimeout(() => {
+      this.cdr.detectChanges(); // Forzar la actualización de la vista
+    }, 0);
   }
-
+  
   decreaseQuantity() {
     if (this.quantity > 1) {
       this.quantity--;
+      console.log('Cantidad decrementada:', this.quantity);
+      setTimeout(() => {
+        this.cdr.detectChanges(); // Forzar la actualización de la vista
+      }, 0);
+    } else {
+      console.log('La cantidad no puede ser menor a 1');
     }
   }
-
+  
+  
+  
   // Comprar producto
   comprar() {
     if (!this.producto) {
