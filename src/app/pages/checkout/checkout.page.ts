@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { FooterComponent } from 'src/app/components/footer/footer.component';
 import * as L from 'leaflet'; // Importar Leaflet
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule } from '@ionic/angular';
 import { ComprasService } from 'src/app/services/compras.service';
 import { AuthService } from 'src/app/services/auth.service'; // Asegúrate de que AuthService esté importado
 import { UserService } from 'src/app/services/user.service';
@@ -48,7 +48,8 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnDestroy {
     private cartService: CartService,
     private router: Router,
     private comprasService: ComprasService,
-    private userService: UserService
+    private userService: UserService,
+    private alertController:AlertController
   ) {}
 
   onPaymentMethodChange(event: any) {
@@ -134,7 +135,6 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnDestroy {
       this.router.navigate(['/product-details', productoId]);
     }
   }
-
   finalizarCompra() {
     console.log('Método de pago seleccionado:', this.metodoPagoSeleccionado);
   
@@ -179,6 +179,10 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnDestroy {
       (response) => {
         console.log('Compra registrada con éxito:', response);
         alert('¡Compra realizada con éxito!');
+  
+        // Mostrar la alerta con el mensaje de entrega
+        this.mostrarAlertaDeEntrega();
+  
         this.cartService.clearCart();  // Limpiar carrito
         this.router.navigate(['/tienda-online']);  // Navegar a la tienda
       },
@@ -189,6 +193,17 @@ export class CheckoutPage implements OnInit, AfterViewInit, OnDestroy {
       }
     );
   }
+  
+  async mostrarAlertaDeEntrega() {
+    const alert = await this.alertController.create({
+      header: 'Compra Finalizada',
+      message: '¡Gracias por tu compra! Tu pedido llegará en 1 o 2 días hábiles.',
+      buttons: ['Aceptar']
+    });
+  
+    await alert.present();
+  }
+  
 
   validateShippingInfo(): boolean {
     const isValid = !!(this.nombre_completo && this.direccion && this.ciudad && this.codigo_postal);
