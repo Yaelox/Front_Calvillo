@@ -16,7 +16,7 @@
         <ion-button fill="clear" (click)="goToHome()" class="header-button">
           <ion-icon name="home" slot="start"></ion-icon> Home
         </ion-button>
-        <ion-buttons *ngIf="isAdmin" slot="end">
+        <ion-buttons *ngIf="isRepartidor || isAdmin" slot="end">
           <ion-button fill="clear" (click)="goToPreventa()" class="header-button">
             <ion-icon name="cart" slot="start"></ion-icon> Preventa
           </ion-button>

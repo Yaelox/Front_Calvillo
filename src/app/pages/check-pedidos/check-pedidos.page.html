@@ -27,29 +27,21 @@
             </ion-card-header>
             <ion-card-content>
               <div class="pedido-details">
-                <p><strong>Cliente:</strong> {{ usuarios[compra.usuario_id]?.nombre || 'Cargando...' }}</p>
-                <p><strong>Usuario:</strong> {{ usuarios[compra.usuario_id]?.usuario || 'Cargando...' }}</p>
-                <p><strong>Correo:</strong> {{ usuarios[compra.usuario_id]?.email || 'Cargando...' }}</p>
-                <p><strong>Teléfono:</strong> {{ usuarios[compra.usuario_id]?.telefono || 'Cargando...' }}</p>
+                <p><strong>Cliente:</strong> {{ usuarios[compra.usuario_id]?.nombre}}</p>
+                <p><strong>Usuario:</strong> {{ usuarios[compra.usuario_id]?.usuario  }}</p>
+                <p><strong>Correo:</strong> {{ usuarios[compra.usuario_id]?.email  }}</p>
+                <p><strong>Teléfono:</strong> {{ usuarios[compra.usuario_id]?.telefono }}</p>
                 <p><strong>Dirección:</strong> {{ compra.direccion }}</p>
-                <p><strong>Total:</strong> ${{ compra.total }}</p>
+                <p><strong>Total:</strong> ${{ compra.total }}</p> 
                 
-                <!-- Detalles de los Productos -->
-                <h3>Productos en el Pedido:</h3>
-                <ion-list>
-                  <ion-item *ngFor="let producto of compra.productos">
-                    <ion-label>
-                      <p><strong>Producto:</strong> {{ producto.nombre }}</p>
-                      <p><strong>Cantidad:</strong> {{ producto.cantidad }}</p>
-                      <p><strong>Precio:</strong> ${{ producto.precio_unitario }}</p>
-                    </ion-label>
-                  </ion-item>
-                </ion-list>
-
                 <p *ngIf="compra.latitud && compra.longitud">
                   <strong>Ubicación:</strong>
                   <a [href]=" generarRutaGoogleMaps(compra.latitud, compra.longitud)" target="_blank">Ver en Google Maps</a>
                 </p>
+
+                <ion-button expand="full" color="primary" (click)="abrirModalProductos(compra.productos)">
+                  Ver Productos
+                </ion-button>
 
                 <ion-button expand="full" color="danger" (click)="abrirModal(compra)">Cambiar Estado</ion-button>
               </div>
@@ -74,28 +66,21 @@
             </ion-card-header>
             <ion-card-content>
               <div class="pedido-details">
-                <p><strong>Cliente:</strong> {{ usuarios[compra.usuario_id]?.nombre || 'Cargando...' }}</p>
-                <p><strong>Usuario:</strong> {{ usuarios[compra.usuario_id]?.usuario || 'Cargando...' }}</p>
-                <p><strong>Correo:</strong> {{ usuarios[compra.usuario_id]?.email || 'Cargando...' }}</p>
-                <p><strong>Teléfono:</strong> {{ usuarios[compra.usuario_id]?.telefono || 'Cargando...' }}</p>
+                <p><strong>Cliente:</strong> {{ usuarios[compra.usuario_id]?.nombre  }}</p>
+                <p><strong>Usuario:</strong> {{ usuarios[compra.usuario_id]?.usuario }}</p>
+                <p><strong>Correo:</strong> {{ usuarios[compra.usuario_id]?.email   }}</p>
+                <p><strong>Teléfono:</strong> {{ usuarios[compra.usuario_id]?.telefono  }}</p>
                 <p><strong>Dirección:</strong> {{ compra.direccion }}</p>
                 <p><strong>Total:</strong> ${{ compra.total }}</p>
-
-                <h3>Productos en el Pedido:</h3>
-                <ion-list>
-                  <ion-item *ngFor="let producto of compra.productos">
-                    <ion-label>
-                      <p><strong>Producto:</strong> {{ producto.nombre }}</p>
-                      <p><strong>Cantidad:</strong> {{ producto.cantidad }}</p>
-                      <p><strong>Precio:</strong> ${{ producto.precio_unitario }}</p>
-                    </ion-label>
-                  </ion-item>
-                </ion-list>
 
                 <p *ngIf="compra.latitud && compra.longitud">
                   <strong>Ubicación:</strong>
                   <a [href]="  generarRutaGoogleMaps(compra.latitud, compra.longitud)" target="_blank">Ver en Google Maps</a>
                 </p>
+
+                <ion-button expand="full" color="primary" (click)="abrirModalProductos(compra.productos)">
+                  Ver Productos
+                </ion-button>
 
                 <ion-button expand="full" color="warning" (click)="abrirModal(compra)">Cambiar Estado</ion-button>
               </div>
@@ -120,28 +105,20 @@
             </ion-card-header>
             <ion-card-content>
               <div class="pedido-details">
-                <p><strong>Cliente:</strong> {{ usuarios[compra.usuario_id]?.nombre || 'Cargando...' }}</p>
-                <p><strong>Usuario:</strong> {{ usuarios[compra.usuario_id]?.usuario || 'Cargando...' }}</p>
-                <p><strong>Correo:</strong> {{ usuarios[compra.usuario_id]?.email || 'Cargando...' }}</p>
-                <p><strong>Teléfono:</strong> {{ usuarios[compra.usuario_id]?.telefono || 'Cargando...' }}</p>
+                <p><strong>Cliente:</strong> {{ usuarios[compra.usuario_id]?.nombre  }}</p>
+                <p><strong>Usuario:</strong> {{ usuarios[compra.usuario_id]?.usuario  }}</p>
+                <p><strong>Correo:</strong> {{ usuarios[compra.usuario_id]?.email  }}</p>
+                <p><strong>Teléfono:</strong> {{ usuarios[compra.usuario_id]?.telefono  }}</p>
                 <p><strong>Dirección:</strong> {{ compra.direccion }}</p>
                 <p><strong>Total:</strong> ${{ compra.total }}</p>
-
-                <h3>Productos en el Pedido:</h3>
-                <ion-list>
-                  <ion-item *ngFor="let producto of compra.productos">
-                    <ion-label>
-                      <p><strong>Producto:</strong> {{ producto.nombre }}</p>
-                      <p><strong>Cantidad:</strong> {{ producto.cantidad }}</p>
-                      <p><strong>Precio:</strong> ${{ producto.precio_unitario }}</p>
-                    </ion-label>
-                  </ion-item>
-                </ion-list>
-
                 <p *ngIf="compra.latitud && compra.longitud">
                   <strong>Ubicación:</strong>
                   <a [href]="  generarRutaGoogleMaps(compra.latitud, compra.longitud)" target="_blank">Ver en Google Maps</a>
                 </p>
+
+                <ion-button expand="full" color="primary" (click)="abrirModalProductos(compra.productos)">
+                  Ver Productos
+                </ion-button>
 
                 <ion-button expand="full" color="success" (click)="abrirModal(compra)">Cambiar Estado</ion-button>
               </div>
@@ -179,4 +156,41 @@
       </ion-content>
     </ng-template>
   </ion-modal>
+
+
+<!-- Modal para ver productos -->
+<!-- Modal para ver productos -->
+<ion-modal [isOpen]="modalProductosAbierto" (didDismiss)="cerrarModalProductos()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title class="modal-title">Productos del Pedido</ion-title>
+        <ion-buttons slot="end">
+          <ion-button class="close-button" (click)="cerrarModalProductos()">Cerrar</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="modal-content">
+      <ion-list class="product-list">
+        <ion-item *ngFor="let producto of productosSeleccionados" class="product-item">
+          <ion-label class="product-label">
+            <div class="product-info">
+              <!-- Verificar si la imagen base64 existe -->
+              <img *ngIf="producto.imagen" [src]="producto.imagen" alt="{{ producto.nombre }}" class="product-image" />
+              <div class="product-details">
+                <p class="product-name"><strong>Producto:</strong> {{ producto.nombre }}</p>
+                <p class="product-quantity"><strong>Cantidad:</strong> {{ producto.cantidad }}</p>
+                <p class="product-price"><strong>Precio:</strong> ${{ producto.precio_unitario }}</p>
+              </div>
+            </div>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+
+
+
 </ion-content>

@@ -21,6 +21,8 @@ export class CheckPedidosPage implements OnInit {
   compraSeleccionada: Pedido = {} as Pedido;
   estadoSeleccionado = '';
   noProductos: number = 0;
+  modalProductosAbierto = false;
+productosSeleccionados: any[] = [];
 
   // Variables para manejar los estados de los pedidos
   pedidosPendientes: Pedido[] = [];
@@ -39,7 +41,15 @@ export class CheckPedidosPage implements OnInit {
   ngOnInit() {
     this.cargarPedidos();
   }
-
+  abrirModalProductos(productos: any[]) {
+    this.productosSeleccionados = productos;
+    this.modalProductosAbierto = true;
+  }
+  
+  cerrarModalProductos() {
+    this.modalProductosAbierto = false;
+  }
+  
   cargarPedidos() {
     this.comprasService.getPedidosConDetalles().subscribe({
       next: (data) => {

@@ -12,6 +12,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { CrearProductoComponent } from './components/crear-producto/crear-producto.component';
 import { CategoryModalComponent } from './components/category-modal/category-modal.component';
 import { EditarProductoComponent } from './components/editar-producto/editar-producto.component';
+import { DatePipe } from '@angular/common';
 
 
 
@@ -34,7 +35,7 @@ import { EditarProductoComponent } from './components/editar-producto/editar-pro
   // or after 30 seconds (whichever comes first).
   registrationStrategy: 'registerWhenStable:30000',
 })],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [[DatePipe],{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -22,6 +22,7 @@ export interface Pedido {
     producto_id: number;
     nombre: string; // 👈 Asegúrate de que se incluya el nombre del producto
     cantidad: number;
+    imagen:string;
     precio_unitario: number;
     subtotal: number;
   }[];

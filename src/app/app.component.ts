@@ -8,7 +8,12 @@ import { Router } from '@angular/router';
   standalone: false,
 })
 export class AppComponent {
- constructor(private router: Router) {}
+
+
+ constructor(private router: Router) {
+
+  this.clearLocalStorage();
+ }
  
  isAdmin: boolean = false;
  
@@ -19,6 +24,15 @@ export class AppComponent {
     console.log("Usuario logueado como:", userType);
   }, 100);  // Pequeño retraso para asegurarnos de obtener los datos correctos
 }
+
+clearLocalStorage() {
+  if (!localStorage.getItem('appIniciada')) {
+    localStorage.clear();
+    localStorage.setItem('appIniciada', 'true'); // Marca que la app ya inició una vez
+  }
+}
+
+
    // Métodos para navegar entre las páginas
    goToUser() {
      this.router.navigate(['/usuarios']);

@@ -76,10 +76,7 @@ const routes: Routes = [
     path: 'tiendas',
     loadChildren: () => import('./pages/tiendas/tiendas.module').then( m => m.TiendasPageModule)
   },
-  {
-    path: 'pedidos',
-    loadChildren: () => import('./pages/pedidos/pedidos.module').then( m => m.PedidosPageModule)
-  },
+
   {
     path: 'check-eventos',
     loadChildren: () => import('./pages/check-poster/check-eventos.module').then( m => m.CheckEventosPageModule)
