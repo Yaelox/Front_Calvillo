@@ -23,7 +23,7 @@ jobs:
 
 
       - name: Build project
-        run: ionic serve  # Cambia esto si usas otro comando de build
+        run: ionic build --prod  # Cambia esto si usas otro comando de build
 
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
