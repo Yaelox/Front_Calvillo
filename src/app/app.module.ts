@@ -26,7 +26,6 @@ import { CheckContactosPage } from './pages/check-contactos/check-contactos.page
   imports: [BrowserModule, 
     IonicModule.forRoot(),
      AppRoutingModule,
-     HttpClientModule, 
      ReactiveFormsModule, 
      CrearProductoComponent,
      EditarProductoComponent,
