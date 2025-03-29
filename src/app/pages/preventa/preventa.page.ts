@@ -15,6 +15,7 @@ import { Route, Router } from '@angular/router';
   templateUrl: './preventa.page.html',
   styleUrls: ['./preventa.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true,
   imports: [HeaderComponent,
     FooterComponent,
     CommonModule],

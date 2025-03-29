@@ -11,6 +11,7 @@ import { AgregarUsuarioComponent } from 'src/app/components/agregar-usuario/agre
   templateUrl: './usuarios.page.html',
   styleUrls: ['./usuarios.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true,
   imports: [CommonModule]
 })
 export class UsuariosPage implements OnInit {

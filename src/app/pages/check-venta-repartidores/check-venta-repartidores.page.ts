@@ -11,7 +11,8 @@ import { ProductService, Producto } from 'src/app/services/product.service';
   selector: 'app-check-venta-repartidores',
   templateUrl: './check-venta-repartidores.page.html',
   styleUrls: ['./check-venta-repartidores.page.scss'],
-  imports:[CommonModule, IonicModule, FormsModule]
+  imports:[CommonModule, IonicModule, FormsModule],
+  standalone:true
 })
 export class CheckVentaRepartidoresPage implements OnInit {
   repartidores: any[] = [];

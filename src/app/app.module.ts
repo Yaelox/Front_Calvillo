@@ -14,7 +14,10 @@ import { CategoryModalComponent } from './components/category-modal/category-mod
 import { EditarProductoComponent } from './components/editar-producto/editar-producto.component';
 import { DatePipe } from '@angular/common';
 import { LoginPage } from './pages/login/login.page';
-
+import { AdminEventosPage } from './pages/admin-eventos/admin-eventos.page';
+import { CarritoPage } from './pages/carrito/carrito.page';
+import { ChecadorPage } from './pages/checador/checador.page';
+import { CheckContactosPage } from './pages/check-contactos/check-contactos.page';
 
 
 
@@ -27,7 +30,6 @@ import { LoginPage } from './pages/login/login.page';
      ReactiveFormsModule, 
      CrearProductoComponent,
      EditarProductoComponent,
-     LoginPage,
      CategoryModalComponent,
      ServiceWorkerModule.register('ngsw-worker.js', 
       {
@@ -36,7 +38,7 @@ import { LoginPage } from './pages/login/login.page';
   // or after 30 seconds (whichever comes first).
   registrationStrategy: 'registerWhenStable:30000',
 })],
-exports:[LoginPage],
+exports:[],
   providers: [[DatePipe],{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

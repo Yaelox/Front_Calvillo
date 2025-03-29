@@ -13,7 +13,8 @@ import { CategoriaService } from 'src/app/services/categoria.service';
   templateUrl: './inventario.page.html',
   styleUrls: ['./inventario.page.scss'],
   imports: [CommonModule, IonicModule, HeaderComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true
 })
 export class InventarioPage implements OnInit {
   products: any[] = [];

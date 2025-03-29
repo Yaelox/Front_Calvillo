@@ -17,6 +17,7 @@ import { ModalController } from '@ionic/angular';
   templateUrl: './eventos.page.html',
   styleUrls: ['./eventos.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true,
   imports: [ReactiveFormsModule,
      HeaderComponent, FooterComponent, 
      RegistareventoComponent,EventCarouselComponent,

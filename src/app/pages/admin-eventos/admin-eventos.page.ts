@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './admin-eventos.page.html',
   styleUrls: ['./admin-eventos.page.scss'],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true,
   imports:[CommonModule,IonicModule]
 })
 export class AdminEventosPage implements OnInit {

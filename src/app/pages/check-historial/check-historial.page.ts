@@ -11,7 +11,8 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './check-historial.page.html',
   styleUrls: ['./check-historial.page.scss'],
   imports: [IonicModule, CommonModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true
 })
 export class CheckHistorialPage implements OnInit {
   historial: any[] = [];

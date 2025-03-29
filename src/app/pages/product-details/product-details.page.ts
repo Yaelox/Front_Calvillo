@@ -13,7 +13,8 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './product-details.page.html',
   styleUrls: ['./product-details.page.scss'],
   imports: [CommonModule, HeaderComponent, FooterComponent,FormsModule],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true
 })
 export class ProductDetailsPage implements OnInit {
   producto: any;

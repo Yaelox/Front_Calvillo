@@ -9,7 +9,7 @@ import * as L from 'leaflet'; // Importar Leaflet
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertController, IonicModule } from '@ionic/angular';
 import { ComprasService } from 'src/app/services/compras.service';
-import { AuthService } from 'src/app/services/auth.service'; // Asegúrate de que AuthService esté importado
+
 import { UserService } from 'src/app/services/user.service';
 
 @Component({

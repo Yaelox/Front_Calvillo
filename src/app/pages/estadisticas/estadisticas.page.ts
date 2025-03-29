@@ -22,6 +22,7 @@ interface VentasPorSemana {
   styleUrls: ['./estadisticas.page.scss'],
   imports: [IonicModule, CommonModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true
 })
 export class EstadisticasPage implements OnInit {
   ventasZona: any[] = [];

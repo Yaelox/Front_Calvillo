@@ -12,6 +12,7 @@ import { forkJoin } from 'rxjs';
   templateUrl: './tiendas.page.html',
   styleUrls: ['./tiendas.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true,
   imports: [CommonModule],
 })
 export class TiendasPage implements OnInit {

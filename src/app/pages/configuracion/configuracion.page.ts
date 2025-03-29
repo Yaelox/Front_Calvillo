@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
   templateUrl: './configuracion.page.html',
   styleUrls: ['./configuracion.page.scss'],
   imports: [CommonModule, FormsModule, IonicModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true
 })
 export class ConfiguracionPage implements OnInit {
   user: User = {

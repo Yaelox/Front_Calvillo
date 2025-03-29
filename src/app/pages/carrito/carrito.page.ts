@@ -20,7 +20,8 @@ export interface CartItem {
   templateUrl: './carrito.page.html',
   styleUrls: ['./carrito.page.scss'],
   imports: [HeaderComponent, CommonModule,FooterComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true
 })
 export class CarritoPage implements OnInit {
   cartItems: any[] = [];

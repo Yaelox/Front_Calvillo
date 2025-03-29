@@ -12,6 +12,7 @@ import { forkJoin } from 'rxjs';
   templateUrl: './check-contactos.page.html',
   styleUrls: ['./check-contactos.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true,
   imports: [CommonModule, IonicModule, ReactiveFormsModule, FormsModule]
 })
 export class CheckContactosPage implements OnInit {

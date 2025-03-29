@@ -9,7 +9,8 @@ import { EditarPosterComponent } from 'src/app/components/editar-poster/editar-p
   templateUrl: './check-eventos.page.html',
   styleUrls: ['./check-eventos.page.scss'],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
-  imports:[CommonModule,IonicModule]
+  imports:[CommonModule,IonicModule],
+  standalone:true
 })
 export class CheckEventosPage implements OnInit {
   poster: any[] = [];
