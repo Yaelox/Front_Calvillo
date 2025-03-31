@@ -12,37 +12,29 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { CrearProductoComponent } from './components/crear-producto/crear-producto.component';
 import { CategoryModalComponent } from './components/category-modal/category-modal.component';
 import { EditarProductoComponent } from './components/editar-producto/editar-producto.component';
-import { DatePipe } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-
-
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, 
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    BrowserModule, 
     HttpClientModule,
     IonicModule.forRoot(),
-     AppRoutingModule,
-     ReactiveFormsModule, 
-     CrearProductoComponent,
-     EditarProductoComponent,
-     CategoryModalComponent,
-     ServiceWorkerModule.register('ngsw-worker.js', 
+    AppRoutingModule,
+    ReactiveFormsModule, 
+    CrearProductoComponent,
+    EditarProductoComponent,
+    CategoryModalComponent,
+    ServiceWorkerModule.register('ngsw-worker.js', 
       {
-  enabled: !isDevMode(),
-  // Register the ServiceWorker as soon as the application is stable
-  // or after 30 seconds (whichever comes first).
-  registrationStrategy: 'registerWhenStable:30000',
-}),
-     ServiceWorkerModule.register('ngsw-worker.js', {
-       enabled: !isDevMode(),
-       // Register the ServiceWorker as soon as the application is stable
-       // or after 30 seconds (whichever comes first).
-       registrationStrategy: 'registerWhenStable:30000'
-     })],
-exports:[],
-  providers: [[DatePipe],{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+        enabled: !isDevMode(),
+        registrationStrategy: 'registerWhenStable:30000',
+      })
+  ],
+  exports: [],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
