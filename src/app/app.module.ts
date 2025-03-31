@@ -25,6 +25,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
      AppRoutingModule,
      ReactiveFormsModule, 
      HttpClientModule,
+     HttpClient,
      CrearProductoComponent,
      EditarProductoComponent,
      CategoryModalComponent,
