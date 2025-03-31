@@ -39,29 +39,34 @@ export class LoginPage {
   goToRegister() {
     this.navCtrl.navigateForward('/register'); // Redirige a la página de registro
   }
+// Función de login utilizando Axios
+async onLogin() {
+  if (this.loginForm.valid) {
+    const { email, password } = this.loginForm.value;
 
-  // Función de login
-  onLogin() {
-    if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-  
-      this.authService.login(email, password).subscribe({
-        next: (response) => {
-          console.log('Login exitoso:', response);
-          this.authService.saveUserToLocalStorage(response.user); // Guarda los datos del usuario
-          localStorage.setItem('token', response.token); // Almacena el token
-          this.navCtrl.navigateRoot('/home'); // Redirige al inicio o dashboard
-          this.showAlert('Login Exitoso', '¡Bienvenido de nuevo!', 'success'); // Muestra la alerta de éxito
-        },
-        error: (err) => {
-          console.error('Error al iniciar sesión:', err);
-          this.showAlert('Error al iniciar sesión', 'Credenciales incorrectas. Por favor, inténtalo de nuevo.', 'danger'); // Muestra la alerta de error
-        }
-      });
-    } else {
-      this.showAlert('Datos incompletos', 'Por favor, completa todos los campos correctamente.', 'warning'); // Muestra la alerta de falta de datos
+    try {
+      // Llamada a la función de login usando el servicio AuthService que ahora usa Axios
+      const response = await this.authService.login(email, password).toPromise();
+
+      if (response && response.token && response.user) { // Verifica que response no sea undefined y contenga los datos necesarios
+        // Si la respuesta es exitosa, guardar los datos del usuario
+        console.log('Login exitoso:', response);
+        this.authService.saveUserToLocalStorage(response.user); // Guarda los datos del usuario
+        localStorage.setItem('token', response.token); // Almacena el token
+        this.navCtrl.navigateRoot('/home'); // Redirige al inicio o dashboard
+        this.showAlert('Login Exitoso', '¡Bienvenido de nuevo!', 'success'); // Muestra la alerta de éxito
+      } else {
+        console.error('Error: La respuesta del backend no contiene los datos esperados.');
+        this.showAlert('Error al iniciar sesión', 'Hubo un problema con la respuesta del servidor.', 'danger');
+      }
+    } catch (err) {
+      console.error('Error al iniciar sesión:', err);
+      this.showAlert('Error al iniciar sesión', 'Credenciales incorrectas. Por favor, inténtalo de nuevo.', 'danger'); // Muestra la alerta de error
     }
+  } else {
+    this.showAlert('Datos incompletos', 'Por favor, completa todos los campos correctamente.', 'warning'); // Muestra la alerta de falta de datos
   }
+}
 
   // Función para mostrar alertas
   async showAlert(header: string, message: string, color: string) {

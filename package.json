@@ -37,6 +37,7 @@
     "@capacitor/status-bar": "6.0.2",
     "@ionic/angular": "^8.0.0",
     "angular-calendar": "^0.31.1",
+    "axios": "^1.8.4",
     "bcryptjs": "^3.0.2",
     "chart.js": "^4.4.8",
     "crypto-js": "^4.2.0",

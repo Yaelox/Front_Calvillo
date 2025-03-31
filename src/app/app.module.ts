@@ -21,11 +21,10 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, 
+    HttpClientModule,
     IonicModule.forRoot(),
      AppRoutingModule,
      ReactiveFormsModule, 
-     HttpClientModule,
-     HttpClient,
      CrearProductoComponent,
      EditarProductoComponent,
      CategoryModalComponent,

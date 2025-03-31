@@ -9,7 +9,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'login',
+    path: '',
     redirectTo: 'login',
     pathMatch: 'full'
   },
