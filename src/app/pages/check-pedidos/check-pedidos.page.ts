@@ -35,7 +35,6 @@ productosSeleccionados: any[] = [];
   constructor(
     private comprasService: ComprasService,
     private userService: UserService,
-    private modalController: ModalController
   ) {}
 
   ngOnInit() {

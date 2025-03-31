@@ -72,8 +72,6 @@ import { VentasRepartidorPage } from './pages/ventas-repartidor/ventas-repartido
     ProductDetailsPage,
     RegisterPage,
     CheckContactosPage,
-    LoginPage,
-    RegisterPage,
     ReactiveFormsModule, 
     CrearProductoComponent,
     EditarProductoComponent,

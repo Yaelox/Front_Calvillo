@@ -28,7 +28,6 @@ export class CheckVentaRepartidoresPage implements OnInit {
   constructor(
     private repartidorService: RepartidorService,
     private userService: UserService,
-    private modalController: ModalController,
     private productService: ProductService
   ) {}
 

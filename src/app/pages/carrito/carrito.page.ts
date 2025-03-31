@@ -21,6 +21,7 @@ export interface CartItem {
   styleUrls: ['./carrito.page.scss'],
   imports: [HeaderComponent, CommonModule,FooterComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers:[CarritoPage],
   standalone:true
 })
 export class CarritoPage implements OnInit {

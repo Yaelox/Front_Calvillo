@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
-import { IonicModule,ModalController,AlertController } from '@ionic/angular';
+import { IonicModule,AlertController } from '@ionic/angular';
 import { EventService} from 'src/app/services/event.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,14 +10,14 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./admin-eventos.page.scss'],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   standalone:true,
-  imports:[CommonModule,IonicModule]
+  imports:[CommonModule,IonicModule],
+  providers:[AdminEventosPage]
 })
 export class AdminEventosPage implements OnInit {
 eventoss: any[] = [];
 
   constructor(
     private eventService: EventService,
-    private modalController: ModalController,
     private alertController: AlertController,
     private userService: UserService
   ) {}

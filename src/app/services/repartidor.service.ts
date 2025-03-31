@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 
-// En repartidor.service.ts
 export interface VentaDetalle {
   id_venta_detalle: number;
   producto_id: number;

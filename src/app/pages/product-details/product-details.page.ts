@@ -25,7 +25,7 @@ export class ProductDetailsPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private navCtrl: NavController, 
+
     private router: Router,
     private cdr: ChangeDetectorRef
   ) {}
