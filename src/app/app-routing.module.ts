@@ -67,10 +67,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/check-poster/check-eventos.module').then( m => m.CheckEventosPageModule)
   },
   {
-    path: 'check-envios',
-    loadChildren: () => import('./pages/check-envios/check-envios.module').then( m => m.CheckEnviosPageModule)
-  },
-  {
     path: 'check-contactos',
     loadChildren: () => import('./pages/check-contactos/check-contactos.module').then( m => m.CheckContactosPageModule)
   },
