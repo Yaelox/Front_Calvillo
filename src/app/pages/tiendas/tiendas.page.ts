@@ -1,11 +1,11 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { TiendaService } from 'src/app/services/tienda.service';
 import { ModalController, AlertController } from '@ionic/angular';
-import { AgregaTiendaComponent } from 'src/app/components/agrega-tienda/agrega-tienda.component';
-import { EditarTiendaComponent } from 'src/app/components/editar-tienda/editar-tienda.component';
 import { CommonModule } from '@angular/common';
 import { UserService } from 'src/app/services/user.service';
 import { forkJoin } from 'rxjs';
+import { AgregaTiendaComponent } from 'src/app/components/agrega-tienda/agrega-tienda.component';
+import { EditarTiendaComponent } from 'src/app/components/editar-tienda/editar-tienda.component';
 
 @Component({
   selector: 'app-tiendas',

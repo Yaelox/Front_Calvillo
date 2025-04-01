@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
   styleUrls: ['./agrega-tienda.component.scss'],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, IonicModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true
 })
 export class AgregaTiendaComponent implements OnInit {
   tiendaForm!: FormGroup;

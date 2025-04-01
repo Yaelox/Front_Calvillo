@@ -8,6 +8,7 @@ import { PosterService } from 'src/app/services/poster.service';
   templateUrl: './editar-poster.component.html',
   styleUrls: ['./editar-poster.component.scss'],
   imports:[CommonModule,IonicModule,ReactiveFormsModule,FormsModule],
+  standalone:true,
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class EditarPosterComponent implements OnInit{

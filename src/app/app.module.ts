@@ -28,7 +28,6 @@ import { ConfiguracionPage } from './pages/configuracion/configuracion.page';
 import { ContactoPage } from './pages/contacto/contacto.page';
 import { EstadisticasPage } from './pages/estadisticas/estadisticas.page';
 import { EventosPage } from './pages/eventos/eventos.page';
-import { HomePage } from './pages/home/home.page';
 import { InventarioPage } from './pages/inventario/inventario.page';
 import { MisPedidosPage } from './pages/mis-pedidos/mis-pedidos.page';
 import { PreventaPage } from './pages/preventa/preventa.page';
@@ -43,6 +42,7 @@ import { VentasRepartidorPage } from './pages/ventas-repartidor/ventas-repartido
 @NgModule({
   declarations: [
     AppComponent,
+    
   ],
   imports: [
     BrowserModule, 

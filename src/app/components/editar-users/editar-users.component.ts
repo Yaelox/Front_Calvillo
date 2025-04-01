@@ -11,7 +11,8 @@ import { NavController } from '@ionic/angular';
   templateUrl: './editar-users.component.html',
   styleUrls: ['./editar-users.component.scss'],
   imports:[IonicModule, ReactiveFormsModule,CommonModule,FormsModule],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true
 })
 export class EditarUsersComponent{
  // Datos del usuario (en un caso real, podrías obtenerlos de un servicio o API)

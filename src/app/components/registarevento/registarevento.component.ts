@@ -11,7 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';  // Necesario para formula
   templateUrl: './registarevento.component.html',
   styleUrls: ['./registarevento.component.scss'],
   imports:[IonicModule,CommonModule,ReactiveFormsModule],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true
 })
 export class RegistareventoComponent implements OnInit {
   eventForm!: FormGroup;

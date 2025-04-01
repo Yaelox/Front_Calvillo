@@ -11,7 +11,8 @@ import { InventarioService } from 'src/app/services/inventario.service'; // Aseg
   templateUrl: './editar-producto.component.html',
   styleUrls: ['./editar-producto.component.scss'],
   imports:[IonicModule,CommonModule,ReactiveFormsModule],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true
 })
 export class EditarProductoComponent implements OnInit {
   @Input() product: any;

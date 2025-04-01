@@ -14,7 +14,8 @@ interface Poster {
   templateUrl: './event-carousel.component.html',
   styleUrls: ['./event-carousel.component.scss'],
   imports:[CommonModule],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true
 })
 export class EventCarouselComponent {
   events: Poster[] = [];

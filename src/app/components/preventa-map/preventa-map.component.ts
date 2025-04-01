@@ -11,6 +11,7 @@ interface Marker {
 
 @Component({
   selector: 'app-preventa-map',
+  standalone:true,
   templateUrl: './preventa-map.component.html',
   styleUrls: ['./preventa-map.component.scss'],
 })

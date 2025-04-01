@@ -10,7 +10,8 @@ import { AlertController } from '@ionic/angular';
   templateUrl: './post-evento.component.html',
   styleUrls: ['./post-evento.component.scss'],
   imports:[CommonModule,IonicModule,ReactiveFormsModule,FormsModule],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true
 })
 export class PostEventoComponent{
   eventForm: FormGroup;

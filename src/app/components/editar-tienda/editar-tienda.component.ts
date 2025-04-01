@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, Input,OnInit} from '@angular/core';
+import { Component, Input,OnInit} from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TiendaService } from 'src/app/services/tienda.service';
 import { IonicModule, ModalController } from '@ionic/angular';
@@ -10,7 +10,7 @@ import { UserService} from 'src/app/services/user.service';
   templateUrl: './editar-tienda.component.html',
   styleUrls: ['./editar-tienda.component.scss'],
   imports:[CommonModule,ReactiveFormsModule,FormsModule,IonicModule],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  standalone: true,
 })
 export class EditarTiendaComponent implements OnInit{
 // Datos del usuario (en un caso real, podrías obtenerlos de un servicio o API)
