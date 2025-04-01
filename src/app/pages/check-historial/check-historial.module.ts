@@ -6,7 +6,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { CheckHistorialPageRoutingModule } from './check-historial-routing.module';
 
-import { CheckHistorialPage } from './check-historial.page';
 
 @NgModule({
   imports: [

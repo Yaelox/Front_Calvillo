@@ -10,6 +10,7 @@ import { PosterService,Poster } from 'src/app/services/poster.service';
   styleUrls: ['./agregar-poster.component.scss'],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, IonicModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  standalone:true
 })
 export class AgregarPosterComponent  implements OnInit {
 posterForm!: FormGroup;

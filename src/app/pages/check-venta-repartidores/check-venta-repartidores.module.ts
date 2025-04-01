@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { CheckVentaRepartidoresPageRoutingModule } from './check-venta-repartidores-routing.module';
 
-import { CheckVentaRepartidoresPage } from './check-venta-repartidores.page';
+
 
 @NgModule({
   imports: [

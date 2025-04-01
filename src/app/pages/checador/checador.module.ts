@@ -6,14 +6,16 @@ import { IonicModule } from '@ionic/angular';
 
 import { ChecadorPageRoutingModule } from './checador-routing.module';
 
-import { ChecadorPage } from './checador.page';
+
+import { HeaderComponent } from 'src/app/components/header/header.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ChecadorPageRoutingModule
+    ChecadorPageRoutingModule,
+    HeaderComponent
   ],
   declarations: []
 })

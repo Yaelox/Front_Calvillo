@@ -7,8 +7,12 @@ import { IonicModule } from '@ionic/angular';
 import { EventosPageRoutingModule } from './eventos-routing.module';
 
 
-import { EventosPage } from './eventos.page';
+
 import { PostEventoComponent } from 'src/app/components/post-evento/post-evento.component';
+import { HeaderComponent } from 'src/app/components/header/header.component';
+import { FooterComponent } from 'src/app/components/footer/footer.component';
+import { RegistareventoComponent } from 'src/app/components/registarevento/registarevento.component';
+import { EventCarouselComponent } from 'src/app/components/event-carousel/event-carousel.component';
 
 @NgModule({
   imports: [
@@ -16,7 +20,11 @@ import { PostEventoComponent } from 'src/app/components/post-evento/post-evento.
     FormsModule,
     IonicModule,
     EventosPageRoutingModule,
-    PostEventoComponent
+    PostEventoComponent,
+    HeaderComponent,
+    FooterComponent,
+    RegistareventoComponent,
+    EventCarouselComponent
   ],
   declarations: []
 })

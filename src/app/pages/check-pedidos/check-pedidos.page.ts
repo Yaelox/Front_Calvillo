@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { ComprasService, Pedido } from 'src/app/services/compras.service';
 import { UserService, User } from 'src/app/services/user.service';
 import { forkJoin } from 'rxjs';

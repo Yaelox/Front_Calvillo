@@ -6,14 +6,13 @@ import { IonicModule } from '@ionic/angular';
 
 import { AdminEventosPageRoutingModule } from './admin-eventos-routing.module';
 
-import { AdminEventosPage } from './admin-eventos.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AdminEventosPageRoutingModule
+    AdminEventosPageRoutingModule,
   ],
   declarations: []
 })

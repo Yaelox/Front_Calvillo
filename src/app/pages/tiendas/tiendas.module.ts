@@ -6,9 +6,9 @@ import { IonicModule } from '@ionic/angular';
 
 import { TiendasPageRoutingModule } from './tiendas-routing.module';
 
-import { TiendasPage } from './tiendas.page';
 import { AgregaTiendaComponent } from 'src/app/components/agrega-tienda/agrega-tienda.component';
 import { EditarTiendaComponent } from 'src/app/components/editar-tienda/editar-tienda.component';
+import { HeaderComponent } from 'src/app/components/header/header.component';
 
 @NgModule({
   imports: [
@@ -16,6 +16,9 @@ import { EditarTiendaComponent } from 'src/app/components/editar-tienda/editar-t
     FormsModule,
     IonicModule,
     TiendasPageRoutingModule,
+    AgregaTiendaComponent,
+    EditarTiendaComponent,
+    HeaderComponent
   ],
   declarations: []
 })

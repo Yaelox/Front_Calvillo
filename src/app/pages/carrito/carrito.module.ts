@@ -6,14 +6,18 @@ import { IonicModule } from '@ionic/angular';
 
 import { CarritoPageRoutingModule } from './carrito-routing.module';
 
-import { CarritoPage } from './carrito.page';
+
+import { FooterComponent } from 'src/app/components/footer/footer.component';
+import { HeaderComponent } from 'src/app/components/header/header.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CarritoPageRoutingModule
+    CarritoPageRoutingModule,
+    FooterComponent,
+    HeaderComponent
   ],
   declarations: []
 })

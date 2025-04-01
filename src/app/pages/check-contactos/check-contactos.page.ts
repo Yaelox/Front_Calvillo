@@ -3,7 +3,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ContactoService } from 'src/app/services/contacto.service';
-import { ModalController, AlertController } from '@ionic/angular';
+import {AlertController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 import { forkJoin } from 'rxjs';
 

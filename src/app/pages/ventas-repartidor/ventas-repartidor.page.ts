@@ -3,7 +3,6 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { ProductService, Producto } from 'src/app/services/product.service';
 import { RepartidorService } from 'src/app/services/repartidor.service';

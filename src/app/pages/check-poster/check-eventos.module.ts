@@ -7,13 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { CheckEventosPageRoutingModule } from './check-eventos-routing.module';
 
 import { CheckEventosPage } from './check-eventos.page';
+import { AgregarPosterComponent } from 'src/app/components/agregar-poster/agregar-poster.component';
+import { EditarPosterComponent } from 'src/app/components/editar-poster/editar-poster.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CheckEventosPageRoutingModule
+    CheckEventosPageRoutingModule,
+    AgregarPosterComponent,
+    EditarPosterComponent
   ],
   declarations: []
 })

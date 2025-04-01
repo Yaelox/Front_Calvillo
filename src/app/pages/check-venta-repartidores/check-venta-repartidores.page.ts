@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RepartidorService, Venta } from 'src/app/services/repartidor.service';
 import { UserService, User } from 'src/app/services/user.service';
-import { ModalController } from '@ionic/angular';
 import { ProductService, Producto } from 'src/app/services/product.service';
 
 @Component({

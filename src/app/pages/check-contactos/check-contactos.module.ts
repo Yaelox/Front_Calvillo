@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { CheckContactosPageRoutingModule } from './check-contactos-routing.module';
 
-import { CheckContactosPage } from './check-contactos.page';
+
 
 @NgModule({
   imports: [

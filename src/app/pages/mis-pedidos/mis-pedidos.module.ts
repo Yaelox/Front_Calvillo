@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { MisPedidosPageRoutingModule } from './mis-pedidos-routing.module';
 
-import { MisPedidosPage } from './mis-pedidos.page';
+
 
 @NgModule({
   imports: [

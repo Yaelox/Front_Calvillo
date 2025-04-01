@@ -6,7 +6,6 @@ import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/cart.service';
 import { ToastController } from '@ionic/angular';
-import { NgIf } from '@angular/common';
 import { FooterComponent } from 'src/app/components/footer/footer.component';
 
 @Component({

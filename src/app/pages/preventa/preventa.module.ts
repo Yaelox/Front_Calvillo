@@ -6,6 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { PreventaPageRoutingModule } from './preventa-routing.module';
 import { AgregaTiendaComponent } from 'src/app/components/agrega-tienda/agrega-tienda.component';
+import { HeaderComponent } from 'src/app/components/header/header.component';
+import { FooterComponent } from 'src/app/components/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -14,7 +16,9 @@ import { AgregaTiendaComponent } from 'src/app/components/agrega-tienda/agrega-t
     IonicModule,
     PreventaPageRoutingModule,
     AgregaTiendaComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HeaderComponent,
+    FooterComponent
   ],
   declarations: [],
 })

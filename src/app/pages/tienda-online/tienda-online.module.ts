@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { TiendaOnlinePageRoutingModule } from './tienda-online-routing.module';
+import { HeaderComponent } from 'src/app/components/header/header.component';
+import { FooterComponent } from 'src/app/components/footer/footer.component';
 
 
 @NgModule({
@@ -12,7 +14,9 @@ import { TiendaOnlinePageRoutingModule } from './tienda-online-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    TiendaOnlinePageRoutingModule
+    TiendaOnlinePageRoutingModule,
+    HeaderComponent,
+    FooterComponent
   ],
   declarations: []
 })

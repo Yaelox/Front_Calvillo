@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { CheckPedidosPageRoutingModule } from './check-pedidos-routing.module';
 
-import { CheckPedidosPage } from './check-pedidos.page';
+
 
 @NgModule({
   imports: [

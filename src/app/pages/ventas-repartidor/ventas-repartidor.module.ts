@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { VentasRepartidorPageRoutingModule } from './ventas-repartidor-routing.module';
 
-import { VentasRepartidorPage } from './ventas-repartidor.page';
+import { HeaderComponent } from 'src/app/components/header/header.component';
 
 @NgModule({
   imports: [
@@ -14,6 +14,7 @@ import { VentasRepartidorPage } from './ventas-repartidor.page';
     FormsModule,
     IonicModule,
     VentasRepartidorPageRoutingModule,
+    HeaderComponent
   ],
   declarations: []
 })

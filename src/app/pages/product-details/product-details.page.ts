@@ -3,7 +3,6 @@ import { ChangeDetectorRef, Component,CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@an
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FooterComponent } from "../../components/footer/footer.component";
 import { FormsModule } from '@angular/forms';

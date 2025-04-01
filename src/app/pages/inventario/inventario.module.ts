@@ -5,14 +5,20 @@ import { IonicModule } from '@ionic/angular';
 
 import { InventarioPageRoutingModule } from './inventario-routing.module';
 
-import { InventarioPage } from './inventario.page';
+
+import { HeaderComponent } from 'src/app/components/header/header.component';
+import { CrearProductoComponent } from 'src/app/components/crear-producto/crear-producto.component';
+import { EditarProductoComponent } from 'src/app/components/editar-producto/editar-producto.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    InventarioPageRoutingModule
+    InventarioPageRoutingModule,
+    HeaderComponent,
+    CrearProductoComponent,
+    EditarProductoComponent
   ],
   declarations: []
 })

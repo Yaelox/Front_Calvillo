@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { UsuariosPageRoutingModule } from './usuarios-routing.module';
+import { EditarUsersComponent } from 'src/app/components/editar-users/editar-users.component';
+import { AgregarUsuarioComponent } from 'src/app/components/agregar-usuario/agregar-usuario.component';
 ;
 
 
@@ -14,6 +16,8 @@ import { UsuariosPageRoutingModule } from './usuarios-routing.module';
     FormsModule,
     IonicModule,
     UsuariosPageRoutingModule,
+    EditarUsersComponent,
+    AgregarUsuarioComponent
   ],
   declarations: [],
 })
