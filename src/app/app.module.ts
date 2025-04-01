@@ -36,6 +36,20 @@ import { TiendaOnlinePage } from './pages/tienda-online/tienda-online.page';
 import { TiendasPage } from './pages/tiendas/tiendas.page';
 import { UsuariosPage } from './pages/usuarios/usuarios.page';
 import { VentasRepartidorPage } from './pages/ventas-repartidor/ventas-repartidor.page';
+import { UserService } from './services/user.service';
+import { TiendaService } from './services/tienda.service';
+import { AuthService } from './services/auth.service';
+import { CartService } from './services/cart.service';
+import { CategoriaService } from './services/categoria.service';
+import { ChecadorService } from './services/checador.service';
+import { CheckoutService } from './services/checkout.service';
+import { ComprasService } from './services/compras.service';
+import { ContactoService } from './services/contacto.service';
+import { EstadisticasService } from './services/estadisticas.service';
+import { EventService } from './services/event.service';
+import { InventarioService } from './services/inventario.service';
+import { PosterService } from './services/poster.service';
+import { RepartidorService } from './services/repartidor.service';
 
 
 
@@ -83,7 +97,23 @@ import { VentasRepartidorPage } from './pages/ventas-repartidor/ventas-repartido
       })
   ],
   exports: [],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [UserService,
+    TiendaService,
+    AuthService,
+    CartService,
+    CategoriaService,
+    ChecadorService,
+    CheckoutService,
+    ComprasService,
+    ContactoService,
+    EstadisticasService,
+    EventService,
+    InventarioService,
+    PosterService,
+    RepartidorService,
+    UserService,
+
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
