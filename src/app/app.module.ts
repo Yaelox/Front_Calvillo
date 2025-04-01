@@ -42,7 +42,7 @@ import { AuthService } from './services/auth.service';
 import { CartService } from './services/cart.service';
 import { CategoriaService } from './services/categoria.service';
 import { ChecadorService } from './services/checador.service';
-import { CheckoutService } from './services/checkout.service';
+
 import { ComprasService } from './services/compras.service';
 import { ContactoService } from './services/contacto.service';
 import { EstadisticasService } from './services/estadisticas.service';
@@ -103,7 +103,6 @@ import { RepartidorService } from './services/repartidor.service';
     CartService,
     CategoriaService,
     ChecadorService,
-    CheckoutService,
     ComprasService,
     ContactoService,
     EstadisticasService,
