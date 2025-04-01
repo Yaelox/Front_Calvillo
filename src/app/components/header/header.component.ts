@@ -28,29 +28,16 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService
   ) { }
 
- 
   ngOnInit() {
-    setTimeout(() => {
-      const userType = localStorage.getItem('tipo_usuario');
-      this.isAdmin = userType === 'administrador';
-      console.log("Usuario logueado como:", userType);
-    }, 100); 
-    setTimeout(() => {
-      const userType = localStorage.getItem('tipo_usuario');
-      this.isRepartidor = userType === 'repartidor';
-      console.log("Usuario logueado como:", userType);
-    }, 100);
-    setTimeout(() => {
-      const userType = localStorage.getItem('tipo_usuario');
-      this.isEmpleado = userType === 'empleado';
-      console.log("Usuario logueado como:", userType);
-    }, 100); 
-    setTimeout(() => {
-      const userType = localStorage.getItem('tipo_usuario');
-      this.isCliente = userType === 'cliente';
-      console.log("Usuario logueado como:", userType);
-    }, 100); // Pequeño retraso para asegurarnos de obtener los datos correctos
+    const userType = localStorage.getItem('tipo_usuario');
+    this.isAdmin = userType === 'administrador';
+    this.isRepartidor = userType === 'repartidor';
+    this.isEmpleado = userType === 'empleado';
+    this.isCliente = userType === 'cliente';
+  
+    console.log("Usuario logueado como:", userType);
   }
+  
   
   goToRepartidor() {
     this.router.navigate(['/ventas-repartidor']);

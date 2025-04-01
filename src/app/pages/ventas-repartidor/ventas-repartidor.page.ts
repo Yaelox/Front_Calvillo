@@ -14,7 +14,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './ventas-repartidor.page.html',
   standalone: true,
   styleUrls: ['./ventas-repartidor.page.scss'],
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, HeaderComponent],
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule,HeaderComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class VentasRepartidorPage implements OnInit {
