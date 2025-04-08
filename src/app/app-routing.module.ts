@@ -105,7 +105,11 @@ const routes: Routes = [
   {
     path: 'estadisticas',
     loadChildren: () => import('./pages/estadisticas/estadisticas.module').then( m => m.EstadisticasPageModule)
+  },  {
+    path: 'rechazos',
+    loadChildren: () => import('./pages/rechazos/rechazos.module').then( m => m.RechazosPageModule)
   }
+
 ];
 
 @NgModule({

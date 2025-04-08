@@ -17,7 +17,7 @@ export interface Producto {
   providedIn: 'root',
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:3000/api/products'; // Cambiar por tu URL real.
+  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/products'; // Cambiar por tu URL real.
 
   constructor(private http: HttpClient) {}
 

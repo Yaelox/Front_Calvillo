@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class EstadisticasService {
 
-  private apiUrl = 'http://localhost:3000/api';  // URL de la API del backend
+  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api';  // URL de la API del backend
 
   constructor(private http: HttpClient) {}
 

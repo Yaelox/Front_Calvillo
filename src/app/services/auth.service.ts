@@ -30,7 +30,7 @@ export interface LoginResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api';  // Your API base URL
+  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api';  // Your API base URL
 
   constructor() {}
 

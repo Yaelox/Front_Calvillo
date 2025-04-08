@@ -15,7 +15,7 @@ export interface Poster {
   providedIn: 'root',
 })
 export class PosterService {
-  private apiUrl = 'http://localhost:3000/api/poster';  // Cambia la URL según tu backend
+  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/poster';  // Cambia la URL según tu backend
 
   constructor(private http: HttpClient) {}
 

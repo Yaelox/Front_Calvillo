@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class EventService {
-  private apiUrl = 'http://localhost:3000/api/evento';  // Cambia la URL según tu backend
+  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/evento';  // Cambia la URL según tu backend
 
   constructor(private http: HttpClient) {}
 

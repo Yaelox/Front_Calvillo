@@ -8,7 +8,7 @@ import { catchError, tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ContactoService {
-  private apiUrl = 'http://localhost:3000/api/contacto'; // URL de tu backend
+  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/contacto'; // URL de tu backend
   private contactosSource = new BehaviorSubject<any[]>([]);  // Mantenemos el estado de los contactos
   contactos$ = this.contactosSource.asObservable();  // Observable que emite los cambios de la lista
 

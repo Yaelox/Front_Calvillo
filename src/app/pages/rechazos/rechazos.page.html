@@ -1,0 +1,38 @@
+<ion-content [fullscreen]="true">
+  <app-header></app-header>
+
+  <div class="page-banner ion-padding">
+    <h1>Pedidos Rechazados</h1>
+    <p>En esta sección podrás explicar el motivo del rechazo del pedido.</p>
+  </div>
+
+  <!-- Lista de pedidos -->
+  <ion-list>
+    <ion-item *ngFor="let pedido of pedidos">
+      <ion-label>
+        <h2>Pedido #{{ pedido.id_venta }}</h2>
+        <p><strong>Repartidor:</strong> {{ pedido.nombre_repartidor }}</p>
+        <p><strong>Tienda:</strong> {{ pedido.nombre_tienda }}</p>
+        <p><strong>Propietario de Tienda:</strong> {{ pedido.propietario_tienda }}</p>
+        <p><strong>Fecha:</strong> {{ pedido.fecha_venta | date }}</p>
+        <p><strong>Total:</strong> {{ pedido.total | currency }}</p>
+        
+        <!-- Imagen del pedido -->
+        <img *ngIf="pedido.foto_venta" [src]="pedido.foto_venta" alt="Foto del pedido" style="max-width: 100%; height: auto; margin-top: 10px;"/>
+        
+        <!-- Detalles del pedido (productos) -->
+        <div *ngFor="let detalle of pedido.detalles">
+          <p><strong>Producto:</strong> {{ detalle.nombre_producto }}</p>
+          <p><strong>Descripción:</strong> {{ detalle.descripcion }}</p>
+          <p><strong>Cantidad:</strong> {{ detalle.cantidad }}</p>
+          <p><strong>Precio:</strong> {{ detalle.precio | currency }}</p>
+          <p><strong>Subtotal:</strong> {{ detalle.subtotal | currency }}</p>
+        </div>
+        
+      </ion-label>
+
+      <!-- Botón de Rechazo -->
+      <ion-button color="danger" (click)="rechazarPedido(pedido)">Rechazar</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

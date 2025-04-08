@@ -50,13 +50,14 @@ import { EventService } from './services/event.service';
 import { InventarioService } from './services/inventario.service';
 import { PosterService } from './services/poster.service';
 import { RepartidorService } from './services/repartidor.service';
+import { RechazosPage } from './pages/rechazos/rechazos.page';
+import { MotivoRechazoModalComponent } from './components/motivo-rechazo-modal/motivo-rechazo-modal.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    
   ],
   imports: [
     BrowserModule, 
@@ -85,6 +86,7 @@ import { RepartidorService } from './services/repartidor.service';
     VentasRepartidorPage,
     ProductDetailsPage,
     RegisterPage,
+    RechazosPage,
     CheckContactosPage,
     ReactiveFormsModule, 
     CrearProductoComponent,

@@ -14,7 +14,7 @@ export interface Categoria {
   providedIn: 'root'
 })
 export class CategoriaService {
-  private apiUrl = 'http://localhost:3000/api/categoria'; // URL de la API
+  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/categoria'; // URL de la API
 
   constructor(private http: HttpClient) {}
 

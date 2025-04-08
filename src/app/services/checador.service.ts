@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ChecadorService {
-  private apiUrl = 'http://localhost:3000/api/checador'; // URL de tu API
+  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/checador'; // URL de tu API
 
   constructor(private http: HttpClient) {}
 

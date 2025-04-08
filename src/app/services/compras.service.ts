@@ -33,8 +33,8 @@ export interface Pedido {
   providedIn: 'root',
 })
 export class ComprasService {
-  private apiUrl = 'http://localhost:3000/api/compras';
-  private baseUrl = 'http://localhost:3000/api/detalles'; // Ajusta la URL según tu backend
+  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/compras';
+  private baseUrl = 'https://tiendacalvillo-production.up.railway.app/api/detalles'; // Ajusta la URL según tu backend
 
   constructor(private http: HttpClient) {}
 

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Motivo del Rechazo</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Selecciona el motivo del rechazo:</ion-label>
+    <ion-select [(ngModel)]="descripcionRechazo" placeholder="Selecciona una opción">
+      <ion-select-option value="Ya tienen proveedor">Ya tienen proveedor</ion-select-option>
+      <ion-select-option value="Están bajas las ventas">Están bajas las ventas</ion-select-option>
+      <ion-select-option value="No vende dulces que se tiene que meter la mano">No vende dulces que se tiene que meter la mano</ion-select-option>
+      <ion-select-option value="Se vende poco">Se vende poco</ion-select-option>
+      <ion-select-option value="No se vende nada">No se vende nada</ion-select-option>
+      <ion-select-option value="No tienen dinero">No tienen dinero</ion-select-option>
+      <ion-select-option value="Está saturado el mostrador">Está saturado el mostrador</ion-select-option>
+      <ion-select-option value="No está el patrón">No está el patrón</ion-select-option>
+      <ion-select-option value="No se vende ese tipo de dulce">No se vende ese tipo de dulce</ion-select-option>
+      <ion-select-option value="No dio explicaciones">No dio explicaciones</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-footer>
+    <ion-button expand="full" (click)="confirmarRechazo()">Confirmar</ion-button>
+  </ion-footer>
+</ion-content>

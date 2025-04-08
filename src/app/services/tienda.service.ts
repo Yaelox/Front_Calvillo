@@ -17,7 +17,7 @@ export interface Tienda {
   providedIn: 'root',
 })
 export class TiendaService {
-  private baseUrl = 'http://localhost:3000/api/tiendas'; // Cambia la URL según tu configuración
+  private baseUrl = 'https://tiendacalvillo-production.up.railway.app/api/tiendas'; // Cambia la URL según tu configuración
 
   constructor(private http: HttpClient) {}
 

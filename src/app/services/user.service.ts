@@ -18,7 +18,7 @@ export interface User {
   providedIn: 'root',
 })
 export class UserService {
-  private baseUrl = 'http://localhost:3000/api/usuarios'; // Cambia la URL según tu configuración
+  private baseUrl = 'https://tiendacalvillo-production.up.railway.app/api/usuarios'; // Cambia la URL según tu configuración
 
   constructor(private http: HttpClient) {}
 

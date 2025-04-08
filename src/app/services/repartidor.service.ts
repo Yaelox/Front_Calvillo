@@ -8,6 +8,7 @@ export interface VentaDetalle {
   id_venta_detalle: number;
   producto_id: number;
   nombre_producto: string; 
+  descripcion?:string;
   cantidad: number;
   precio: number;
   subtotal: number;
@@ -20,14 +21,20 @@ export interface Venta {
   total: number;
   fecha_venta: string;
   foto_venta: string;
+  nombre_repartidor?: string;
+  nombre_tienda?: string;
+  rechazado?: boolean; 
+  propietario_tienda?: string;
   detalles: VentaDetalle[];
 }
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class RepartidorService {
-  private apiUrl = 'http://localhost:3000/api/repartidor'; // Ajusta esta URL según tu backend
+  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/repartidor'; // Ajusta esta URL según tu backend
 
   constructor(private http: HttpClient) {}
 
