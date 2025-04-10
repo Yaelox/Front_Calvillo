@@ -108,6 +108,10 @@ const routes: Routes = [
   },  {
     path: 'rechazos',
     loadChildren: () => import('./pages/rechazos/rechazos.module').then( m => m.RechazosPageModule)
+  },
+  {
+    path: 'fotos',
+    loadChildren: () => import('./pages/fotos/fotos.module').then( m => m.FotosPageModule)
   }
 
 ];
