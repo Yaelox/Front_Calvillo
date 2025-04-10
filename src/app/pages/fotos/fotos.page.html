@@ -1,0 +1,44 @@
+<app-header></app-header>
+
+<ion-content class="ion-padding">
+  <form (submit)="guardarImagen()" #formulario="ngForm">
+    <ion-item>
+      <ion-label position="floating">Título de la foto</ion-label>
+      <ion-input [(ngModel)]="titulo" name="titulo" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="button" (click)="seleccionarImagen()">
+      <ion-icon name="cloud-upload-outline" slot="start"></ion-icon>
+      Seleccionar imagen
+    </ion-button>
+
+    <input type="file" #fileInput hidden (change)="cargarImagen($event)" accept="image/*" />
+
+    <div *ngIf="imagen">
+      <h3>Vista previa:</h3>
+      <ion-img [src]="imagen"></ion-img>
+    </div>
+
+    <ion-button expand="block" type="submit" [disabled]="!formulario.valid || !imagen">
+      Guardar
+    </ion-button>
+  </form>
+
+  <div *ngIf="galeria.length > 0" class="ion-margin-top">
+    <h3>Galería:</h3>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let foto of galeria">
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>{{ foto.titulo }}</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-img [src]="foto.imagen"></ion-img>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

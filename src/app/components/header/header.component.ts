@@ -39,7 +39,10 @@ export class HeaderComponent implements OnInit {
     console.log("Usuario logueado como:", userType);
   }
   
-  
+  goToFotos() {
+    this.router.navigate(['/fotos']);
+  }
+
   goToRepartidor() {
     this.router.navigate(['/ventas-repartidor']);
   }
