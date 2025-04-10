@@ -109,18 +109,10 @@ const routes: Routes = [
   {
     path: 'rechazos',
     loadChildren: () => import('./pages/rechazos/rechazos.module').then( m => m.RechazosPageModule)
-  },  {
-<<<<<<< HEAD
-    path: 'meta-del-dia',
-    loadChildren: () => import('./pages/meta-del-dia/meta-del-dia.module').then( m => m.MetaDelDiaPageModule)
-=======
-    path: 'rechazos',
-    loadChildren: () => import('./pages/rechazos/rechazos.module').then( m => m.RechazosPageModule)
   },
   {
-    path: 'fotos',
-    loadChildren: () => import('./pages/fotos/fotos.module').then( m => m.FotosPageModule)
->>>>>>> 24dd3e62af4fe60d077da49e5a0ecce8e4293401
+    path: 'meta-del-dia',
+    loadChildren: () => import('./pages/meta-del-dia/meta-del-dia.module').then( m => m.MetaDelDiaPageModule)
   }
 
 
