@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { AdminEventosPageRoutingModule } from './admin-eventos-routing.module';
-import { AdminEventosPage } from './admin-eventos.page';
+import { MetaDelDiaPageRoutingModule } from './meta-del-dia-routing.module';
 
+import { MetaDelDiaPage } from './meta-del-dia.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AdminEventosPageRoutingModule,
+    MetaDelDiaPageRoutingModule
   ],
   declarations: []
 })
-export class AdminEventosPageModule {}
+export class MetaDelDiaPageModule {}

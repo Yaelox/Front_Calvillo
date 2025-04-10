@@ -10,9 +10,10 @@ import { InventarioService } from 'src/app/services/inventario.service'; // Aseg
   selector: 'app-editar-producto',
   templateUrl: './editar-producto.component.html',
   styleUrls: ['./editar-producto.component.scss'],
-  imports:[IonicModule,CommonModule,ReactiveFormsModule],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA],
-  standalone:true
+  imports:[
+  CommonModule,
+    IonicModule,
+    ReactiveFormsModule],
 })
 export class EditarProductoComponent implements OnInit {
   @Input() product: any;

@@ -12,7 +12,7 @@ import { HeaderComponent } from 'src/app/components/header/header.component';
   styleUrls: ['./checador.page.scss'],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports:[IonicModule,CommonModule,HeaderComponent]
+  imports:[IonicModule,HeaderComponent]
 })
 export class ChecadorPage implements OnInit, OnDestroy {
   usuario_id: number | null = null;

@@ -105,10 +105,15 @@ const routes: Routes = [
   {
     path: 'estadisticas',
     loadChildren: () => import('./pages/estadisticas/estadisticas.module').then( m => m.EstadisticasPageModule)
-  },  {
+  },
+  {
     path: 'rechazos',
     loadChildren: () => import('./pages/rechazos/rechazos.module').then( m => m.RechazosPageModule)
+  },  {
+    path: 'meta-del-dia',
+    loadChildren: () => import('./pages/meta-del-dia/meta-del-dia.module').then( m => m.MetaDelDiaPageModule)
   }
+
 
 ];
 
