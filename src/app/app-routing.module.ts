@@ -113,9 +113,11 @@ const routes: Routes = [
   {
     path: 'meta-del-dia',
     loadChildren: () => import('./pages/meta-del-dia/meta-del-dia.module').then( m => m.MetaDelDiaPageModule)
+  },
+  {
+    path: 'fotos',
+    loadChildren: () => import('./pages/fotos/fotos-routing.module').then( m => m.FotosPageRoutingModule)
   }
-
-
 ];
 
 @NgModule({
