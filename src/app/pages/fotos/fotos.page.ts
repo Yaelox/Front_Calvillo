@@ -45,31 +45,40 @@ export class FotosPage {
 
   // Método para guardar la imagen
   guardarImagen() {
-    if (this.titulo && this.imagen) {
-      // Crear el objeto Foto basado en la interfaz Foto
-      const nuevaFoto: Foto = {
-        foto_id: 0, // Deja este valor como 0, el backend lo asignará
-        titulo: this.titulo,
-        imagen: this.imagen, // Imagen en formato Base64
-        id_usuario: this.id_usuario,
-      };
-
-      // Llamada al servicio para subir la foto
-      this.fotosService.postFoto(nuevaFoto).subscribe(
-        (respuesta) => {
-          console.log('Foto subida correctamente:', respuesta);
-          // Agregar la nueva foto a la galería si se sube correctamente
-          this.galeria.push(respuesta);
-
-          // Limpiar campos después de subir
-          this.titulo = '';
-          this.imagen = null;
-          this.fileInput.nativeElement.value = '';
-        },
-        (error) => {
-          console.error('Error al subir la foto:', error);
-        }
-      );
+    // Validación explícita para el título
+    if (!this.titulo) {
+      alert('Por favor, ingrese un título para la foto.');
+      return; // Si no hay título, no continúa con el guardado
     }
+  
+    if (!this.imagen) {
+      alert('Por favor, seleccione una imagen.');
+      return; // Si no hay imagen, no continúa con el guardado
+    }
+  
+    // Crear el objeto Foto basado en la interfaz Foto
+    const nuevaFoto: Foto = {
+      foto_id: 0, // Deja este valor como 0, el backend lo asignará
+      titulo: this.titulo,
+      imagen: this.imagen, // Imagen en formato Base64
+      id_usuario: this.id_usuario,
+    };
+  
+    // Llamada al servicio para subir la foto
+    this.fotosService.postFoto(nuevaFoto).subscribe(
+      (respuesta) => {
+        console.log('Foto subida correctamente:', respuesta);
+        // Agregar la nueva foto a la galería si se sube correctamente
+        this.galeria.push(respuesta);
+  
+        // Limpiar campos después de subir
+        this.titulo = '';
+        this.imagen = null;
+        this.fileInput.nativeElement.value = '';
+      },
+      (error) => {
+        console.error('Error al subir la foto:', error);
+      }
+    );
   }
 }
