@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Meta del Día</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="cerrar()">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-padding">
+    <h2 class="ion-text-center">🎯 Meta: {{ meta }} contenedores</h2>
+    <h3 class="ion-text-center">✅ Vendidos: {{ vendidos }}</h3>
+  
+    <ion-progress-bar 
+      [value]="progreso / 100" 
+      color="success" 
+      class="barra-meta">
+    </ion-progress-bar>
+  
+    <p class="ion-text-center mt-3">📊 Progreso: {{ progreso }}%</p>
+  </ion-content>
+  

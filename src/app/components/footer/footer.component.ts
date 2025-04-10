@@ -5,7 +5,6 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss'],
-  imports:[CommonModule],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   standalone:true
 })

@@ -1,19 +1,15 @@
-import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
 import { ContactoService } from 'src/app/services/contacto.service';
 import {AlertController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 import { forkJoin } from 'rxjs';
+import { IonHeader, IonIcon } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-check-contactos',
   templateUrl: './check-contactos.page.html',
   styleUrls: ['./check-contactos.page.scss'],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  standalone:true,
-  imports: [CommonModule, IonicModule, ReactiveFormsModule, FormsModule]
+  schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class CheckContactosPage implements OnInit {
   contactos: any[] = [];

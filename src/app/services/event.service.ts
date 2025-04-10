@@ -10,8 +10,14 @@ export class EventService {
 
   constructor(private http: HttpClient) {}
 
+  
   // Obtener todos los eventos
   getEventos(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}`);
+  }
+
+   // Obtener todos los eventos
+   getFotos(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}`);
   }
 

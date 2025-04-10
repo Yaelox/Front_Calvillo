@@ -2,12 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ModalController } from '@ionic/angular';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { ProductService, Producto } from 'src/app/services/product.service';
 import { RepartidorService } from 'src/app/services/repartidor.service';
 import { TiendaService, Tienda } from 'src/app/services/tienda.service';
 import { UserService } from 'src/app/services/user.service';
+import { MetaDiaComponent } from 'src/app/components/metadia/metadia.component';
+import { MetaService } from 'src/app/services/meta.service';
 
 @Component({
   selector: 'app-ventas-repartidor',
@@ -33,8 +35,10 @@ export class VentasRepartidorPage implements OnInit {
     private repartidorService: RepartidorService,
     private userService: UserService,
     private tiendaService: TiendaService,
+    private metaService: MetaService,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private modalcontroller: ModalController
   ) {}
 
   ngOnInit() {
@@ -171,34 +175,88 @@ async capturarFoto() {
   }
 }
 
-
-  registrarVenta() {
-    if (this.total <= 0 || !this.selectedTienda || this.carrito.length === 0) {
-      console.error('Faltan datos necesarios para registrar la venta');
-      return;
-    }
-
-    const venta = {
-      repartidor_id: this.usuario.id_usuario,
-      tienda_id: this.selectedTienda?.id_tienda,
-      total: this.total,
-      foto_venta: this.foto_venta,
-      productos: this.carrito.map((item) => ({
-        producto_id: item.producto.id_producto,
-        cantidad: item.cantidad,
-        precio: item.producto.precio,
-        total: item.total
-      }))
-    };
-
-    this.repartidorService.registrarVenta(venta).subscribe(
-      (response) => {
-        console.log('Venta registrada con éxito', response);
+async mostrarMetaModal() {
+  try {
+    const metaData = await this.metaService.getMetaDelDia().toPromise();
+  
+    // Comprobamos si metaData contiene las propiedades necesarias
+    if (metaData && metaData.meta !== undefined && metaData.vendidos !== undefined && metaData.progreso !== undefined) {
+      const modal = await this.modalcontroller.create({
+        component: MetaDiaComponent,
+        componentProps: {
+          meta: metaData.meta,
+          vendidos: metaData.vendidos,
+          progreso: metaData.progreso
+        }
+      });
+  
+      await modal.present();
+  
+      const { role } = await modal.onDidDismiss();
+      if (role !== 'cancel') {
         this.router.navigate(['/home']);
-      },
-      (error) => {
-        console.error('Error al registrar venta:', error);
       }
-    );
+    } else {
+      console.error('Los datos de la meta no son válidos', metaData);
+    }
+  } catch (error) {
+    console.error('Error al obtener los datos de la meta:', error);
+    this.router.navigate(['/home']);
   }
+}
+
+registrarVenta() {
+  if (this.total <= 0 || !this.selectedTienda || this.carrito.length === 0) {
+    console.error('Faltan datos necesarios para registrar la venta');
+    return;
+  }
+
+  const venta = {
+    repartidor_id: this.usuario.id_usuario,
+    tienda_id: this.selectedTienda?.id_tienda,
+    total: this.total,
+    foto_venta: this.foto_venta,
+    productos: this.carrito.map((item) => ({
+      producto_id: item.producto.id_producto,
+      cantidad: item.cantidad,
+      precio: item.producto.precio,
+      total: item.total
+    }))
+  };
+
+  this.repartidorService.registrarVenta(venta).subscribe(
+    async (response) => {
+      console.log('Venta registrada con éxito', response);
+
+      // Aquí agregamos el código para mostrar el modal con el progreso
+      try {
+        const metaData = await this.metaService.getMetaDelDia().toPromise();
+
+        const modal = await this.modalcontroller.create({
+          component: MetaDiaComponent,
+          componentProps: {
+            meta: metaData?.meta,
+            vendidos: metaData?.vendidos,
+            progreso: metaData?.progreso
+          }
+        });
+
+        await modal.present();
+
+        // Opcional: navegar después de cerrar el modal
+        const { role } = await modal.onDidDismiss();
+        if (role !== 'cancel') {
+          this.router.navigate(['/home']);
+        }
+
+      } catch (error) {
+        console.error('Error al obtener los datos de la meta:', error);
+        this.router.navigate(['/home']);
+      }
+    },
+    (error) => {
+      console.error('Error al registrar la venta:', error);
+    }
+  );
+}
 }

@@ -1,16 +1,17 @@
 import { Component,OnInit} from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { IonicModule, NavController } from '@ionic/angular';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule} from '@angular/common';
 import { AuthService } from 'src/app/services/auth.service';
+
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports:[CommonModule],
-  standalone:true
+  standalone:true,
+  imports:[RouterModule,IonicModule,CommonModule],
 })
 export class HeaderComponent implements OnInit {
   cartCount: number = 0;

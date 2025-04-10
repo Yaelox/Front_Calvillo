@@ -9,9 +9,6 @@ import { CheckHistorialPageRoutingModule } from './check-historial-routing.modul
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
     CheckHistorialPageRoutingModule
   ],
   declarations: []

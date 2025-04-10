@@ -12,12 +12,7 @@ import { FooterComponent } from 'src/app/components/footer/footer.component';
 
 @NgModule({
   imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
     CheckoutPageRoutingModule,
-    HeaderComponent,
-    FooterComponent
   ],
   declarations: []
 })

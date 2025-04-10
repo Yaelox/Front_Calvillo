@@ -12,10 +12,9 @@
       </ion-button>
 
       
-      <!--
       <ion-button *ngIf="isEmpleado|| isAdmin" fill="clear" (click)="goToRechazos()" class="header-button">
         <ion-icon name="close" slot="start"></ion-icon> Rechazos
-      </ion-button> --->
+      </ion-button>
 
 
       <ion-button *ngIf="isEmpleado|| isAdmin" fill="clear" (click)="goToFotos()" class="header-button">
@@ -28,12 +27,13 @@
       </ion-button>
 
       <ion-button *ngIf="isEmpleado|| isAdmin" fill="clear" (click)="goToPreventa()" class="header-button">
-        <ion-icon name="cart" slot="start"></ion-icon> Preventa
+        <ion-icon name="storefront" slot="start"></ion-icon> Tiendas
       </ion-button>
 
+      <!---
       <ion-button *ngIf="isEmpleado || isAdmin || isCliente" fill="clear" (click)="goToTienda()" class="header-button">
         <ion-icon name="storefront" slot="start"></ion-icon> Tienda
-      </ion-button>
+      </ion-button> --->
 
       <ion-button fill="clear" (click)="goToContacto()" class="header-button">
         <ion-icon name="person" slot="start"></ion-icon> Contactanos
@@ -47,9 +47,10 @@
         <ion-icon name="cube-outline" slot="start"></ion-icon> Inventario
       </ion-button>
 
+      <!---
       <ion-button *ngIf="isAdmin || isRepartidor || isEmpleado" fill="clear" (click)="goToReloj()" class="header-button">
         <ion-icon name="time" slot="start"></ion-icon> Checador
-      </ion-button>
+      </ion-button> --->
 
       <ion-button fill="clear" (click)="goToCarrito()" class="cart-button">
         <ion-icon name="cart-outline" slot="icon-only"></ion-icon>
