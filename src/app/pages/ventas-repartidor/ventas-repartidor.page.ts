@@ -6,7 +6,7 @@ import { IonicModule, ModalController } from '@ionic/angular';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { ProductService, Producto } from 'src/app/services/product.service';
 import { RepartidorService } from 'src/app/services/repartidor.service';
-import { TiendaService, Tienda } from 'src/app/services/tienda.service';
+
 import { UserService } from 'src/app/services/user.service';
 import { MetaDiaComponent } from 'src/app/components/metadia/metadia.component';
 import { MetaService } from 'src/app/services/meta.service';
@@ -40,7 +40,8 @@ export class VentasRepartidorPage implements OnInit {
   rechazoVerde: string = '';
   comentarioVerde: string = '';
 
-  motivoSeleccionado: boolean = false; // Indica si se ha seleccionado un motivo
+  motivoSeleccionado: string = ''; // Cambiar de boolean a string
+  // Indica si se ha seleccionado un motivo
 
 
   constructor(
@@ -216,9 +217,8 @@ async mostrarMetaModal() {
     this.router.navigate(['/home']);
   }
 }
-
 registrarVenta() {
-  if (this.total <= 0 || this.carrito.length === 0) {
+  if (this.total <= 0 || this.carrito.length === 0 || !this.descripcionRechazo) {
     console.error('Faltan datos necesarios para registrar la venta');
     return;
   }
@@ -227,6 +227,7 @@ registrarVenta() {
     repartidor_id: this.usuario.id_usuario,
     total: this.total,
     foto_venta: this.foto_venta,
+    motivo: this.motivoSeleccionado, // Usamos el motivo como color
     productos: this.carrito.map((item) => ({
       producto_id: item.producto.id_producto,
       cantidad: item.cantidad,
@@ -235,11 +236,29 @@ registrarVenta() {
     }))
   };
 
+  console.log('Objeto de la venta que se enviará:', venta);
+
   this.repartidorService.registrarVenta(venta).subscribe(
     async (response) => {
       console.log('Venta registrada con éxito', response);
 
-      // Aquí agregamos el código para mostrar el modal con el progreso
+      // Limpiar todos los campos
+      this.carrito = [];
+      this.total = 0;
+      this.selectedProducto = null;
+      this.cantidadProducto = 1;
+      this.foto_venta = null;
+
+      this.rechazoRojo = '';
+      this.rechazoAmarillo = '';
+      this.rechazoVerde = '';
+      this.comentarioRojo = '';
+      this.comentarioAmarillo = '';
+      this.comentarioVerde = '';
+      this.descripcionRechazo = '';
+      this.motivoSeleccionado = '';
+
+      // Mostrar modal de meta
       try {
         const metaData = await this.metaService.getMetaDelDia().toPromise();
 
@@ -254,7 +273,6 @@ registrarVenta() {
 
         await modal.present();
 
-        // Opcional: navegar después de cerrar el modal
         const { role } = await modal.onDidDismiss();
         if (role !== 'cancel') {
           this.router.navigate(['/home']);
@@ -270,6 +288,7 @@ registrarVenta() {
     }
   );
 }
+
 
 // Listas
 motivosRojo: string[] = [
@@ -316,29 +335,34 @@ onSeleccion(color: string) {
     this.rechazoVerde = '';
     this.comentarioAmarillo = '';
     this.comentarioVerde = '';
-    // Asignar el motivo de rechazo seleccionado
     this.descripcionRechazo = this.rechazoRojo;
   } else if (color === 'amarillo') {
     this.rechazoRojo = '';
     this.rechazoVerde = '';
     this.comentarioRojo = '';
     this.comentarioVerde = '';
-    // Asignar el motivo de rechazo seleccionado
     this.descripcionRechazo = this.rechazoAmarillo;
   } else if (color === 'verde') {
     this.rechazoRojo = '';
     this.rechazoAmarillo = '';
     this.comentarioRojo = '';
     this.comentarioAmarillo = '';
-    // Asignar el motivo de rechazo seleccionado
     this.descripcionRechazo = this.rechazoVerde;
   }
 
   console.log('Descripción de rechazo seleccionada:', this.descripcionRechazo);
 
-  // Cuando se selecciona cualquier motivo, habilitar el botón de Cancelar
-  this.motivoSeleccionado = true;
+  // Aquí asignamos el valor de 'motivo' según el color seleccionado
+  if (color === 'rojo') {
+    this.motivoSeleccionado = 'Motivo Rojo';
+  } else if (color === 'amarillo') {
+    this.motivoSeleccionado = 'Motivo Naranja'; // Usamos 'Motivo Naranja' en lugar de 'amarillo'
+  } else if (color === 'verde') {
+    this.motivoSeleccionado = 'Motivo Verde';
+  }
+
 }
+
 
 cancelarSeleccion() {
   console.log('Cancelando selección...');
@@ -349,12 +373,10 @@ cancelarSeleccion() {
   this.comentarioAmarillo = '';
   this.comentarioVerde = '';
   this.descripcionRechazo = '';
-  this.motivoSeleccionado = false; // Oculta el botón de cancelar
+  this.motivoSeleccionado = ''; // Asigna una cadena vacía en lugar de un booleano
 
   console.log('Selección cancelada:', this.descripcionRechazo);
 }
-
-
 
 
 
@@ -363,8 +385,6 @@ dismiss() {
   console.log('Cerrando modal...');
   this.modalcontroller.dismiss();
 }
-
-// Confirmar el rechazo y enviar la descripción seleccionada
 confirmarRechazo() {
   console.log('Confirmar rechazo con descripción:', this.descripcionRechazo);
 
@@ -374,5 +394,6 @@ confirmarRechazo() {
     console.error('Debe seleccionar un motivo de rechazo');
   }
 }
+
 
 }

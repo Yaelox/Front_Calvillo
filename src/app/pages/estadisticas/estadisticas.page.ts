@@ -39,21 +39,24 @@ export class EstadisticasPage implements OnInit {
   ngOnInit() {
     Chart.register(...registerables);
 
-    this.loadVentasPorZona();
+     /*this.loadVentasPorZona();
+         this.loadProductoMasVendidoPorZona(); */
     this.loadVentasPorMes();
     this.loadVentasPorSemana();
     this.loadVentasPorAnio();
     this.loadVentasPorDia();
     this.loadProductoMasVendido();
-    this.loadProductoMasVendidoPorZona();
   }
 
+
+  /** 
   loadVentasPorZona() {
     this.estadisticasService.getVentasPorZona().subscribe((data) => {
       this.ventasZona = data;
       this.checkDataLoaded();
     });
   }
+    */
 
   loadVentasPorMes() {
     this.estadisticasService.getVentasPorMes().subscribe((data) => {
@@ -101,6 +104,7 @@ export class EstadisticasPage implements OnInit {
     });
   }
 
+  /** 
   async loadProductoMasVendidoPorZona() {
     try {
       const data: any = await this.estadisticasService.getProductoMasVendidoPorZona().toPromise();
@@ -117,6 +121,8 @@ export class EstadisticasPage implements OnInit {
       this.productoMasVendidoPorZona = [];
     }
   }
+
+  */
 
   checkDataLoaded() {
     if (

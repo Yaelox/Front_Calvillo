@@ -21,6 +21,7 @@ export interface Venta {
   total: number;
   fecha_venta: string;
   foto_venta: string;
+  motivo:string;
   nombre_repartidor?: string;
   nombre_tienda?: string;
   rechazado?: boolean; 
