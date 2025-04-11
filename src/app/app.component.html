@@ -62,6 +62,11 @@
         <ion-item button (click)="goToConfiguracion()">
           <ion-icon name="settings" slot="start"></ion-icon> Configuración
         </ion-item>
+
+        
+        <ion-item *ngIf="isAdmin" button (click)="goToFotos()">
+          <ion-icon name="image" slot="start"></ion-icon> Fotos Almacen
+        </ion-item>
         
         <!--<ion-item button (click)="goToPoster()">
           <ion-icon name="map" slot="start"></ion-icon> Poster

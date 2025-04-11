@@ -6,6 +6,7 @@ export interface Foto {
   titulo: string;
   imagen: string;
   id_usuario: number;
+  fecha_subida?:string;
 }
 
 @Injectable({

@@ -48,6 +48,11 @@ clearLocalStorage() {
     this.router.navigate(['/check-pedidos']);
   }
  
+     // Métodos para navegar entre las páginas
+     goToFotos() {
+      this.router.navigate(['/fotos-almacen']);
+    }
+   
    goToPreventa() {
      this.router.navigate(['/preventa']);
    }
