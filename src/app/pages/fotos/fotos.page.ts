@@ -21,16 +21,18 @@ export class FotosPage implements OnInit {
 
   titulo: string = '';
   imagen: string | null = null;
-  usuario: any = null;  // Asigna un valor adecuado para el usuario, idealmente desde un servicio de usuario
+  usuario: any = null;
 
-  galeria: Foto[] = []; // Galería de fotos
+  galeria: Foto[] = [];
+  fotoEditando: Foto | null = null;
+  editando: boolean = false;
 
   constructor(
     private fotosService: FotoService,
     private userService: UserService,
-    private alertControler: AlertController) {}
+    private alertControler: AlertController
+  ) {}
 
-  // M
   ngOnInit(): void {
     this.obtenerUsuario();
   }
@@ -55,11 +57,8 @@ export class FotosPage implements OnInit {
     this.fileInput.nativeElement.click();
   }
 
-
-  
-  // Función para mostrar alertas
   async mostrarAlerta(mensaje: string, encabezado: string, color: string) {
-    const alert = await this. alertControler.create({
+    const alert = await this.alertControler.create({
       header: encabezado,
       message: mensaje,
       buttons: ['OK'],
@@ -78,41 +77,73 @@ export class FotosPage implements OnInit {
       lector.readAsDataURL(archivo);
     }
   }
+
   guardarImagen() {
-    if (!this.titulo) {
-      this.mostrarAlerta('Por favor, ingrese un título para la foto.', 'Faltan datos', 'alert-warning');
+    if (!this.titulo || !this.imagen || !this.usuario) {
+      this.mostrarAlerta('Faltan datos requeridos.', 'Error', 'alert-warning');
       return;
     }
-  
-    if (!this.imagen) {
-      this.mostrarAlerta('Por favor, seleccione una imagen.', 'Faltan datos', 'alert-warning');
-      return;
-    }
-  
-    if (!this.usuario) {
-      this.mostrarAlerta('Usuario no cargado. Intenta nuevamente.', 'Error', 'alert-danger');
-      return;
-    }
-  
-    const nuevaFoto: Foto = {
+
+    const datos: Foto = {
       titulo: this.titulo,
       imagen: this.imagen,
       id_usuario: this.usuario.id_usuario,
+      foto_id: this.fotoEditando?.foto_id,
     };
-  
-    this.fotosService.postFoto(nuevaFoto).subscribe(
-      (respuesta) => {
-        console.log('Foto subida correctamente:', respuesta);
-        this.mostrarAlerta('Foto subida correctamente.', 'Éxito', 'alert-success');
-        this.galeria.push(respuesta);
-        this.titulo = '';
-        this.imagen = null;
-        this.fileInput.nativeElement.value = '';
+
+    if (this.editando && this.fotoEditando) {
+      // Modo edición
+      this.fotosService.updateFoto(datos).subscribe(
+        () => {
+          this.mostrarAlerta('Foto actualizada correctamente.', 'Éxito', 'alert-success');
+          this.resetFormulario();
+        },
+        (error) => {
+          console.error('Error al actualizar la foto:', error);
+          this.mostrarAlerta('Error al actualizar la foto.', 'Error', 'alert-danger');
+        }
+      );
+    } else {
+      // Nueva foto
+      this.fotosService.postFoto(datos).subscribe(
+        (respuesta) => {
+          this.mostrarAlerta('Foto subida correctamente.', 'Éxito', 'alert-success');
+          this.galeria.push(respuesta);
+          this.resetFormulario();
+        },
+        (error) => {
+          console.error('Error al subir la foto:', error);
+          this.mostrarAlerta('Error al subir la foto.', 'Error', 'alert-danger');
+        }
+      );
+    }
+  }
+
+  editarFoto(foto: Foto) {
+    this.fotoEditando = { ...foto };
+    this.titulo = this.fotoEditando.titulo;
+    this.imagen = this.fotoEditando.imagen;
+    this.editando = true;
+  }
+
+  eliminarFoto(foto: Foto) {
+    this.fotosService.deleteFoto(foto.foto_id!).subscribe(
+      () => {
+        this.mostrarAlerta('Foto eliminada correctamente.', 'Éxito', 'alert-success');
+        this.galeria = this.galeria.filter(f => f.foto_id !== foto.foto_id);
       },
       (error) => {
-        console.error('Error al subir la foto:', error);
-        this.mostrarAlerta('Hubo un error al subir la foto. Intenta nuevamente.', 'Error', 'alert-danger');
+        console.error('Error al eliminar la foto:', error);
+        this.mostrarAlerta('Error al eliminar la foto.', 'Error', 'alert-danger');
       }
     );
   }
-}  
+
+  resetFormulario() {
+    this.titulo = '';
+    this.imagen = null;
+    this.editando = false;
+    this.fotoEditando = null;
+    this.fileInput.nativeElement.value = '';
+  }
+}

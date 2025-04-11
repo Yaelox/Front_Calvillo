@@ -3,160 +3,132 @@
 }
 
 ion-header {
-  --background: red; 
   --ion-toolbar-background: red;
-  --ion-title-color: black;
   --ion-toolbar-color: #000;
-  --ion-button-text-color: red;
-  
-}
-.logout-button {
-  --color: black;  // Color rojo para el icono y texto
-  --background: transparent; 
-  --border-radius: 50px;  // Borde redondeado
-  --padding: 10px 20px;  // Aumentar el tamaño del botón
-  font-size: 18px;  // Aumenta el tamaño del texto (si lo necesitas)
-  --icon-size: 28px;  // Aumentar el tamaño del icono
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /* Para el icono */
-  ion-icon {
-    font-size: 28px;  // Aumentar el tamaño del icono dentro del botón
-  }
-  
-  &:hover {
-    --background: white;  // Cambia a un rojo más oscuro cuando el mouse pasa por encima
-  }
+  --background: red;
 }
 
 ion-toolbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
 }
-
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* Espacio entre el logo y el título */
-  flex: 1;
-}
-
-.header-title {
-  font-family: 'Roboto', sans-serif; /* Aplicar la fuente Roboto */
-  font-size: 2.0rem; /* Tamaño moderado */
-  font-weight: 500; /* Peso visible */
-  color: #000;
-}
-
-.logo-img {
-  height: 80px;
-  width: 80px;
-  object-fit: contain;
-  border-radius: 50%; /* Hace que la imagen tenga forma circular */
-}
-
 
 .header-right {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  width: 100%;
   gap: 0.5rem;
-  flex: 1;
-  flex-wrap: wrap;
 }
 
-ion-buttons {
+.header-button {
+  --background: transparent;
+  --color: #000;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 10px;
+  padding: 0.4rem 0.6rem;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 0.5rem;
-}
-
-ion-button {
-  background: transparent;
-  font-size: 20px;
-  font-weight: 600;
-  text-transform: capitalize;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background-color: white;
-    
-  }
+  align-items: center;
+  text-transform: none;
 
   ion-icon {
+    margin-right: 0.3rem;
     font-size: 18px;
-    margin-right: 0.5rem;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
   }
 }
 
-/* Responsive para pantallas pequeñas */
-@media (max-width: 768px) {
-  .header-left {
-    gap: 5px; /* Reducir espacio entre logo y título */
-  }
+.logout-button {
+  @extend .header-button;
+  color: #d9534f;
 
-  .header-title {
-    font-size: 1.2rem; /* Ajustar el tamaño del texto */
-  }
-
-  ion-buttons {
-    justify-content: center;
-    gap: 0.3rem;
-   
-  }
-
-  ion-button {
-    font-size: 12px;
-    padding: 0.3rem 0.5rem;
-  
-  }
-
-  .header-right {
-    flex: 1;
-    justify-content: center;
-  }
-
-  .logo-img {
-    height: 30px;
-    width: 30px;
+  &:hover {
+    background-color: rgba(217, 83, 79, 0.1);
   }
 }
-
 
 .cart-button {
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  
+  --background: transparent;
+  --color: #000;
+  font-size: 18px;
+
   ion-icon {
-    font-size: 30px;
-    color: var(--color-black); /* Cambié a --color-black para usar variables CSS */
+    font-size: 24px;
   }
 
   &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
+  .header-button {
+    font-size: 14px;
+    padding: 0.3rem 0.5rem;
+
     ion-icon {
-      color: var(--color-black); /* Ajusta el color del ícono al pasar el ratón por encima */
+      font-size: 16px;
     }
   }
 
-  /* Estilos responsive */
-  @media (max-width: 768px) {
-    right: 10px; /* Ajusta la distancia en pantallas más pequeñas */
-    font-size: 25px; /* Disminuye el tamaño del ícono en pantallas pequeñas */
+  .cart-button {
+    ion-icon {
+      font-size: 20px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  ion-toolbar {
+    padding: 0.3rem 0.5rem;
   }
 
-  @media (max-width: 480px) {
-    right: 5px; /* Alinea el ícono más cerca del borde en pantallas muy pequeñas */
-    font-size: 20px; /* Ajusta aún más el tamaño del ícono */
+  .header-right {
+    justify-content: center;
+    gap: 0.4rem;
+  }
+
+  .header-button {
+    font-size: 12px;
+    padding: 0.25rem 0.4rem;
+
+    ion-icon {
+      font-size: 14px;
+    }
+  }
+
+  .logout-button {
+    font-size: 12px;
+  }
+
+  .cart-button {
+    ion-icon {
+      font-size: 18px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .header-button {
+    font-size: 11px;
+    padding: 0.2rem 0.3rem;
+
+    ion-icon {
+      margin-right: 0.2rem;
+      font-size: 12px;
+    }
+  }
+
+  .cart-button ion-icon,
+  .logout-button ion-icon {
+    font-size: 16px;
   }
 }

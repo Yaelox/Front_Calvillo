@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Foto {
+  foto_id?:number;
   titulo: string;
   imagen: string;
   id_usuario: number;
@@ -22,5 +23,19 @@ export class FotoService {
   }
   postFoto(foto: Foto): Observable<Foto> {
     return this.http.post<Foto>(this.apiUrl, foto);
+  }
+
+  getFotoById(id: number) {
+    return this.http.get(`${this.apiUrl}/${id}`);
+  }
+
+    //// Actualizar una foto existente
+  updateFoto(foto: Foto): Observable<Foto> {
+    return this.http.put<Foto>(`${this.apiUrl}/${foto.foto_id}`, foto);
+  }
+
+  // Eliminar una foto
+  deleteFoto(id_foto: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id_foto}`);
   }
 }

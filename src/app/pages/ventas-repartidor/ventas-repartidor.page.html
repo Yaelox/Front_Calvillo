@@ -1,15 +1,11 @@
 <app-header></app-header>
 
-<!-- Banner de bienvenida -->
-<div class="page-banner">
-  <h1>Ventas del Día</h1>
-  <p>Subir la información de Venta</p>
-</div>
-
 <ion-content>
   <form (ngSubmit)="registrarVenta()" #ventaForm="ngForm">
     
-    <!-- Sección Repartidor -->
+
+    <!--
+
     <ion-card>
       <ion-card-header>
         <ion-card-title>Información del Repartidor</ion-card-title>
@@ -38,6 +34,8 @@
       </ion-card-content>
     </ion-card>
 
+    -->
+    
     <!-- Sección Venta -->
     <ion-card>
       <ion-card-header>
@@ -113,7 +111,7 @@
           </ion-card-content>
         </ion-card>
 
-    <!-- Sección Tienda -->
+    <!-- 
     <ion-card *ngIf="tiendas?.length">
       <ion-card-header>
         <ion-card-title>Información de Tienda</ion-card-title>
@@ -149,8 +147,9 @@
         </ion-item>
       </ion-card-content>
     </ion-card>
+    Sección Tienda -->
 
     <!-- Botón de envío -->
-    <ion-button expand="full" type="submit" [disabled]="!ventaForm.valid || !selectedTienda">Registrar Venta</ion-button>
+    <ion-button expand="full" type="submit" [disabled]="!ventaForm.valid ">Registrar Venta</ion-button>
   </form>
 </ion-content>

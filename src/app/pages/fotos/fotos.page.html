@@ -1,33 +1,40 @@
-<app-header></app-header>
+<app-header></app-header> <br><br>
 
-<div class="page-banner">
-  <h1>Imágenes</h1>
-  <p>En esta sección podrás subir las notas de recepción de productos que llegan al Almacén</p>
-</div>
+<ion-content class="content-wrapper">
+  <div class="form-card">
+    <form (submit)="guardarImagen()" #formulario="ngForm" class="upload-form">
+      
+      <ion-label class="form-label">Título de la foto</ion-label>
+      <ion-input
+        [(ngModel)]="titulo"
+        name="titulo"
+        required
+        class="custom-input"
+        type="text"
+        placeholder="Venda martes.. etc"
+      ></ion-input>
 
-<ion-content class="ion-padding content-container">
-  <div class="form-container">
-    <form (submit)="guardarImagen()" #formulario="ngForm">
-      <ion-item class="form-item">
-        <ion-label position="floating">Título de la foto</ion-label>
-        <ion-input [(ngModel)]="titulo" name="titulo" required></ion-input>
-      </ion-item> <br><br>
-
-      <ion-button expand="block" type="button" class="upload-button" (click)="seleccionarImagen()">
-        <ion-icon name="cloud-upload-outline" slot="start"></ion-icon>
+      <ion-button expand="block" type="button" (click)="seleccionarImagen()" class="upload-button">
+        <ion-icon slot="start" name="cloud-upload-outline"></ion-icon>
         Seleccionar imagen
       </ion-button>
 
       <input type="file" #fileInput hidden (change)="cargarImagen($event)" accept="image/*" />
 
-      <div *ngIf="imagen" class="preview-container">
-        <h3>Vista previa:</h3>
-        <ion-img [src]="imagen" class="preview-image"></ion-img>
-      </div>
+      <div *ngIf="imagen" class="preview">
+        <h3>Vista previa</h3>
+        <ion-img [src]="imagen" class="preview-img"></ion-img>
+      </div> <br>
 
-      <ion-button expand="block" type="submit" class="save-button" [disabled]="!formulario.valid || !imagen">
-        Guardar
+      <ion-button
+        expand="block"
+        type="submit"
+        class="submit-button"
+        [disabled]="!formulario.valid || !imagen"
+      >
+        Guardar imagen
       </ion-button>
+
     </form>
   </div>
 </ion-content>

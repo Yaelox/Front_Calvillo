@@ -21,11 +21,9 @@ import { MetaService } from 'src/app/services/meta.service';
 })
 export class VentasRepartidorPage implements OnInit {
   usuario: any;
-  tiendas: Tienda[] = [];
   productos: Producto[] = [];
   carrito: { producto: Producto; cantidad: number; total: number }[] = [];
   total: number = 0;
-  selectedTienda: Tienda | null = null;
   selectedProducto: Producto | null = null;
   cantidadProducto: number = 1;
   propietarioNombre: string = '';
@@ -35,7 +33,6 @@ export class VentasRepartidorPage implements OnInit {
   constructor(
     private repartidorService: RepartidorService,
     private userService: UserService,
-    private tiendaService: TiendaService,
     private metaService: MetaService,
     private productService: ProductService,
     private router: Router,
@@ -44,7 +41,6 @@ export class VentasRepartidorPage implements OnInit {
 
   ngOnInit() {
     this.obtenerUsuario();
-    this.obtenerTienda();
     this.obtenerProductos();
   }
 
@@ -93,25 +89,6 @@ export class VentasRepartidorPage implements OnInit {
     }
   }
 
-  obtenerTienda() {
-    this.tiendaService.getTiendas().subscribe(
-      (response: Tienda[]) => {
-        if (response.length > 0) {
-          this.tiendas = response;
-          this.selectedTienda = this.tiendas[0];
-          this.obtenerNombrePropietario(this.selectedTienda.id_usuario);
-        } else {
-          console.error('No se encontraron tiendas');
-          this.tiendas = [];
-        }
-      },
-      (error) => {
-        console.error('Error al obtener la información de la tienda:', error);
-        this.tiendas = [];
-      }
-    );
-  }
-
   obtenerProductos() {
     this.productService.getProducts().subscribe(
       (response: Producto[]) => {
@@ -121,13 +98,6 @@ export class VentasRepartidorPage implements OnInit {
         console.error('Error al obtener productos:', error);
       }
     );
-  }
-
-  onTiendaChange(event: any) {
-    this.selectedTienda = event.detail.value;
-    if (this.selectedTienda?.id_usuario) {
-      this.obtenerNombrePropietario(this.selectedTienda.id_usuario);
-    }
   }
 
   obtenerNombrePropietario(idUsuario: number) {
@@ -235,14 +205,13 @@ async mostrarMetaModal() {
 }
 
 registrarVenta() {
-  if (this.total <= 0 || !this.selectedTienda || this.carrito.length === 0) {
+  if (this.total <= 0 || this.carrito.length === 0) {
     console.error('Faltan datos necesarios para registrar la venta');
     return;
   }
 
   const venta = {
     repartidor_id: this.usuario.id_usuario,
-    tienda_id: this.selectedTienda?.id_tienda,
     total: this.total,
     foto_venta: this.foto_venta,
     productos: this.carrito.map((item) => ({
