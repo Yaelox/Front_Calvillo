@@ -1,57 +1,66 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
-import { AlertController, IonicModule, ModalController } from '@ionic/angular';
-import { FotoService,Foto } from 'src/app/services/fotos.service';
+import { IonicModule, ModalController } from '@ionic/angular';
+import { FotoService, Foto } from 'src/app/services/fotos.service';
 import { GaleriaModalComponent } from 'src/app/components/galeria-modal/galeria-modal.component';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-fotos-almacen',
   templateUrl: './fotos-almacen.page.html',
   styleUrls: ['./fotos-almacen.page.scss'],
-  standalone:true,
-  imports:[CommonModule,IonicModule],
-  schemas:[CUSTOM_ELEMENTS_SCHEMA]
+  standalone: true,
+  imports: [CommonModule, IonicModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class FotosAlmacenPage implements OnInit {
-  fotos: Foto[] = [];
-  isOpen: boolean = false; 
-  usuariosMap: { [key: number]: string } = {};
+  fotosAgrupadas: { [fecha: string]: any[] } = {};
+  fotosSeleccionadas: any[] = []; // Default empty array
 
+  fechaSeleccionada: string = '';
 
   constructor(
-    private fotoService: FotoService,
-    private modalController: ModalController,
-    private userService: UserService
-  ) {}
+    private fotosService: FotoService,
+    private modalctrl:ModalController) {}
 
   ngOnInit() {
-    this.cargarFotos();
+    this.fotosService.getFotosAgrupadas().subscribe(data => {
+      console.log('Fotos agrupadas recibidas:', data);  // Verifica lo que recibes del servicio
+      this.fotosAgrupadas = data;
+    }, error => {
+      console.error('Error al obtener fotos agrupadas:', error);  // Si hay error en la solicitud
+    });
   }
 
-  // Método para abrir el modal con la foto seleccionada
-  async openModal(foto: Foto) {
-    this.isOpen = true; // Cambiar el valor de isOpen para abrir el modal
-    const modal = await this.modalController.create({
+  async abrirModal(foto: Foto) {
+    const modal = await this.modalctrl.create({
       component: GaleriaModalComponent,
-      componentProps: { foto: foto }
+      componentProps: {
+        imagen: foto.imagen,
+        titulo: foto.titulo
+      },
+      showBackdrop: true,
+      cssClass: 'galeria-modal-clase'
     });
-    return await modal.present();
+  
+    await modal.present();
   }
 
+  onFechaSeleccionada(valor: string | string[]) {
+    const fecha = Array.isArray(valor) ? valor[0] : valor;
+    console.log('Fecha seleccionada:', fecha);  // Verifica qué fecha estás recibiendo
 
-  cargarFotos() {
-    this.fotoService.getFotos().subscribe((fotos) => {
-      this.fotos = fotos;
-      console.log(fotos);
-      // Para cada foto, obtenemos el nombre del usuario por su id
-      fotos.forEach((foto) => {
-        if (!this.usuariosMap[foto.id_usuario]) {
-          this.userService.getUserById(foto.id_usuario).subscribe((usuario) => {
-            this.usuariosMap[foto.id_usuario] = usuario.nombre;
-          });
-        }
-      });
-    });
+    const soloFecha = fecha.split('T')[0]; // Quita la hora y deja solo la fecha
+    console.log('Fecha sin hora:', soloFecha);  // Verifica el formato de la fecha después de quitar la hora
+
+    this.fechaSeleccionada = soloFecha;
+
+    // Verifica qué fotos se están seleccionando para esa fecha
+    this.fotosSeleccionadas = this.fotosAgrupadas[soloFecha] || [];
+    console.log('Fotos seleccionadas para la fecha', soloFecha, ':', this.fotosSeleccionadas);  // Verifica las fotos seleccionadas
+
+    // Si no hay fotos, asegúrate de manejarlo
+    if (this.fotosSeleccionadas.length === 0) {
+      console.log('No hay fotos para la fecha seleccionada');
+    }
   }
 }

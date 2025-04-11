@@ -1,36 +1,43 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Almacen de Fotos</ion-title>
+    <ion-title>Almacén de Fotos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<div class="page-banner">
-  <h1>Galeria</h1>
-  <p>Fotos Subidas</p>
-</div>
+<ion-content class="ion-padding">
 
-<ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6" size-md="4" size-lg="3" *ngFor="let foto of fotos">
-        <div class="foto-card" (click)="openModal(foto)">
+  <!-- Sección de selección de fecha -->
+  <div class="calendario-section">
+    <ion-label>Selecciona una fecha:</ion-label>
+    <ion-datetime
+      presentation="date"
+      [value]="fechaSeleccionada"
+      (ionChange)="onFechaSeleccionada($event.detail.value!)"
+      [multiple]="false"
+      class="fecha-selector"
+    ></ion-datetime>
+  </div>
 
-          <div class="foto-info">
-            <div class="titulo">{{ foto.titulo }}</div><br>
-            <div class="fecha">Fecha: {{ foto.fecha_subida | date:'mediumDate' }}</div><br>
-            <div class="usuario">Subida por: {{ usuariosMap[foto.id_usuario] || 'Cargando...' }}</div>
+  <!-- Sección de fotos -->
+  <div *ngIf="fotosSeleccionadas && fotosSeleccionadas.length > 0" class="fotos-grid">
+    <ion-card 
+      *ngFor="let foto of fotosSeleccionadas" 
+      class="foto-card" 
+      (click)="abrirModal(foto)">
+      <img [src]="foto.imagen" [alt]="foto.titulo" />
+      <ion-card-header>
+        <ion-card-title>{{ foto.titulo }}</ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </div>
 
-          </div> <br><br>
-        
-          
-          <div class="foto-thumbnail">
-            <img [src]="foto.imagen" alt="Foto" />
-          </div>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <!-- Mensaje cuando no hay fotos -->
+  <div class="sin-fotos" *ngIf="fotosSeleccionadas?.length === 0">
+    <ion-icon name="image-outline" size="large"></ion-icon>
+    <p>No hay fotos para la fecha seleccionada.</p>
+  </div>
+
 </ion-content>

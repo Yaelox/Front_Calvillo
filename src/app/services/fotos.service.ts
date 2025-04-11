@@ -14,7 +14,8 @@ export interface Foto {
   providedIn: 'root',
 })
 export class FotoService {
-  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/foto'; // Reemplaza con la URL de tu backend
+  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/foto';
+  private BaseUrl = 'https://tiendacalvillo-production.up.railway.app/api'; // Reemplaza con la URL de tu backend
 
   constructor(private http: HttpClient) {}
 
@@ -29,6 +30,10 @@ export class FotoService {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
 
+  getFotosAgrupadas(): Observable<any> {
+    return this.http.get(`${this.BaseUrl}/fotos`);
+  }
+  
     //// Actualizar una foto existente
   updateFoto(foto: Foto): Observable<Foto> {
     return this.http.put<Foto>(`${this.apiUrl}/${foto.foto_id}`, foto);

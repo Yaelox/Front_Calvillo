@@ -1,6 +1,8 @@
-<app-header></app-header> <br><br>
+
 
 <ion-content class="content-wrapper">
+  <app-header></app-header> <br><br>
+
   <div class="form-card">
     <form (submit)="guardarImagen()" #formulario="ngForm" class="upload-form">
       
@@ -11,7 +13,7 @@
         required
         class="custom-input"
         type="text"
-        placeholder="Venda martes.. etc"
+        placeholder="Venta martes.. etc"
       ></ion-input>
 
       <ion-button expand="block" type="button" (click)="seleccionarImagen()" class="upload-button">

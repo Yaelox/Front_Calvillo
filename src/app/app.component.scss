@@ -3,16 +3,16 @@
   }
   
   ion-menu {
-    --background: #fff1f3; /* Fondo suave rosado */
-    --ion-item-background: #ffebf0; /* Fondo claro en los items */
-    --ion-item-divider-background: #ffccd5; /* Divisores de items en tono rosado */
-    --ion-item-text-color: #d6336c; /* Color de texto de los items */
+    --background:red; /* Fondo suave rosado */
+
+    --ion-item-divider-background:red; /* Divisores de items en tono rosado */
+    --ion-item-text-color: #000; /* Color de texto de los items */
   }
   
   ion-header {
-    --background: #ffccd5; /* Fondo suave para la barra superior */
-    --ion-toolbar-background: #ffccd5; /* Fondo de la toolbar */
-    --ion-title-color: #d6336c; /* Color del título */
+    --background: red; /* Fondo suave para la barra superior */
+    --ion-toolbar-background: red; /* Fondo de la toolbar */
+    --ion-title-color: #000; /* Color del título */
   }
   
   ion-toolbar {

@@ -11,14 +11,16 @@ import { IonModal } from "@ionic/angular/standalone";
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class GaleriaModalComponent {
-    @Input() foto: any;  // Foto recibida como input
+    @Input() imagen: string = '';
+    @Input() titulo: string = '';
+    
      selectedImage!: string;
 
   constructor(private modalController: ModalController) {}
 
   ngOnInit() {
-    if (this.foto) {
-      this.selectedImage = this.foto.imagen;  // Asigna la imagen seleccionada
+    if (this.imagen) {
+      this.selectedImage = this.imagen;  // Asigna la imagen seleccionada
     }
   }
 

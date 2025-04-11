@@ -1,3 +1,4 @@
+
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { RepartidorService, Venta } from 'src/app/services/repartidor.service';
 import { RechazoService } from 'src/app/services/rechazo.service';
@@ -31,7 +32,7 @@ export class RechazosPage implements OnInit {
     this.cargarPedidos();
   }
 
-  /** Cargar todos los pedidos */
+
 async cargarPedidos() {
   try {
     console.log('Cargando pedidos...');
@@ -51,7 +52,7 @@ async cargarPedidos() {
 }
 
 
-  /** Abrir el modal para seleccionar el motivo del rechazo */
+
   async rechazarPedido(pedido: Venta) {
     if (pedido.rechazado) {
       // Si el pedido ya ha sido rechazado, mostramos un mensaje y no hacemos nada
@@ -77,7 +78,7 @@ async cargarPedidos() {
     return await modal.present(); // Presentamos el modal
   }
 
-  /** Confirmar el rechazo y registrar el rechazo en el sistema */
+
   async confirmarRechazo() {
     if (!this.descripcionRechazo.trim()) {
       this.mostrarToast('Escribe una razón para el rechazo', 'warning');
@@ -115,7 +116,7 @@ async cargarPedidos() {
     }
   }
 
-  /** Mostrar mensaje Toast */
+
   async mostrarToast(message: string, color: string) {
     const toast = await this.toastController.create({
       message: message,
@@ -125,4 +126,5 @@ async cargarPedidos() {
     toast.present();
   }
 }
+
 

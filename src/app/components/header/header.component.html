@@ -2,13 +2,18 @@
   <ion-toolbar>
 
     <div class="header-right">
+
+        <!-- Botones generales -->
+        <ion-button fill="clear" (click)="goToHome()" class="header-button">
+          <ion-icon name="home" slot="start"></ion-icon> Home
+        </ion-button>
+
       <!-- Mostrar Configuración solo si el usuario es admin -->
       <ion-button fill="clear" (click)="goToConfig()" class="header-button">
         <ion-icon name="settings" slot="start"></ion-icon> Configuración
       </ion-button>
 
-      
-
+    
       <!---
       <ion-button *ngIf="isEmpleado|| isAdmin" fill="clear" (click)="goToRechazos()" class="header-button">
         <ion-icon name="close" slot="start"></ion-icon> Rechazos
@@ -19,19 +24,14 @@
         <ion-icon name="camera-outline" slot="start"></ion-icon> Subir-fotos
       </ion-button>
 
-      <!-- Botones generales -->
-      <ion-button fill="clear" (click)="goToHome()" class="header-button">
-        <ion-icon name="home" slot="start"></ion-icon> Home
-      </ion-button>
-
       <ion-button *ngIf="isEmpleado|| isAdmin" fill="clear" (click)="goToPreventa()" class="header-button">
         <ion-icon name="storefront" slot="start"></ion-icon> Tiendas
       </ion-button>
 
-      <!---
+    
       <ion-button *ngIf="isEmpleado || isAdmin || isCliente" fill="clear" (click)="goToTienda()" class="header-button">
-        <ion-icon name="storefront" slot="start"></ion-icon> Tienda
-      </ion-button> --->
+        <ion-icon name="storefront" slot="start"></ion-icon> Pedidos
+      </ion-button> 
 
       <!---
       <ion-button fill="clear" (click)="goToContacto()" class="header-button">
