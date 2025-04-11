@@ -7,8 +7,10 @@
           <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <div class="header-left">
-          <img src="assets/images/Logo.png" alt="Mi Crush de Calvillo" class="logo-img" />
-          <ion-title class="header-title">Menú</ion-title>
+          <ion-title class="header-title">
+            <p>
+              Menú
+            </p></ion-title>
         </div>
       </ion-toolbar>
     </ion-header>
@@ -17,7 +19,8 @@
       <ion-list>
 
         <ion-item button (click)="goToHome()">
-          <ion-icon name="home" slot="start"></ion-icon> Home
+          <ion-icon name="home" slot="start"></ion-icon> 
+          <p>Home</p>
         </ion-item>        
 
 
@@ -29,15 +32,18 @@
         
 
         <ion-item *ngIf="isAdmin" button (click)="goToUser()">
-          <ion-icon name="person" slot="start"></ion-icon> Usuarios
+          <ion-icon name="person" slot="start"></ion-icon>
+          <p>Usuarios</p> 
         </ion-item>
         
         <ion-item *ngIf="isAdmin" button (click)="goToTienda()">
-          <ion-icon name="storefront" slot="start"></ion-icon> Tiendas
+          <ion-icon name="storefront" slot="start"></ion-icon>
+          <p> Tiendas </p> 
         </ion-item>
         
         <ion-item *ngIf="isAdmin || isEmpleado" button (click)="goToPedidos()">
-          <ion-icon name="boat" slot="start"></ion-icon> Pedidos
+          <ion-icon name="boat" slot="start"></ion-icon> 
+          <p>Pedidos</p>
         </ion-item> 
         
              <!---
@@ -49,24 +55,26 @@
         <ion-item *ngIf="isAdmin" button (click)="goToHistorial()">
           <ion-icon name="time" slot="start"></ion-icon> Check Entradas/ Salidas
         </ion-item> -->
-
         <ion-item *ngIf="isAdmin" button (click)="goToRepartidorVentas()">
-          <ion-icon name="person" slot="start"></ion-icon> Repartidores
-        </ion-item>
-
-        <ion-item *ngIf="isAdmin" button (click)="goToEstadisticas()">
-          <ion-icon name="bar-chart" slot="start"></ion-icon> Estadisticas
-        </ion-item>        
-
-        <ion-item *ngIf="isAdmin" button (click)="goToFotos()">
-          <ion-icon name="image" slot="start"></ion-icon> Fotos Almacen
+          <ion-icon name="person" slot="start"></ion-icon>
+          <p>Repartidores</p>
         </ion-item>
         
+        <ion-item *ngIf="isAdmin" button (click)="goToEstadisticas()">
+          <ion-icon name="bar-chart" slot="start"></ion-icon>
+          <p>Estadísticas</p>
+        </ion-item>
+        
+        <ion-item *ngIf="isAdmin" button (click)="goToFotos()">
+          <ion-icon name="image" slot="start"></ion-icon>
+          <p>Fotos Almacén</p>
+        </ion-item>
         
         <ion-item button (click)="goToConfiguracion()">
-          <ion-icon name="settings" slot="start"></ion-icon> Configuración
+          <ion-icon name="settings" slot="start"></ion-icon>
+          <p>Configuración</p>
         </ion-item>
-
+        
     
         <!--<ion-item button (click)="goToPoster()">
           <ion-icon name="map" slot="start"></ion-icon> Poster

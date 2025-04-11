@@ -1,9 +1,12 @@
 <ion-header [translucent]="true">
-  <ion-toolbar color="primary">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Almacén de Fotos</ion-title>
+    <ion-title>
+      <p>
+        Almacén de Fotos
+      </p></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +14,7 @@
 
   <!-- Sección de selección de fecha -->
   <div class="calendario-section">
-    <ion-label>Selecciona una fecha:</ion-label>
+    <p>Selecciona una fecha:</p>
     <ion-datetime
       presentation="date"
       [value]="fechaSeleccionada"
@@ -37,7 +40,7 @@
   <!-- Mensaje cuando no hay fotos -->
   <div class="sin-fotos" *ngIf="fotosSeleccionadas?.length === 0">
     <ion-icon name="image-outline" size="large"></ion-icon>
-    <p>No hay fotos para la fecha seleccionada.</p>
+    <p class="texto">No hay fotos para la fecha seleccionada.</p>
   </div>
 
 </ion-content>

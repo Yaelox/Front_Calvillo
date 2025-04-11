@@ -1,15 +1,14 @@
-// Define Global Variables
-$primary-color: #007bff; // Main color for headings and important elements
-$secondary-color: #28a745; // Secondary color for table headers
-$highlight-color: #f39c12; // Highlight color for hover effects
-$text-color: #333333; // Default text color
-$card-bg: #ffffff; // Card background color
-$table-border-color: #ddd; // Border color for tables
-$card-shadow: rgba(0, 0, 0, 0.1); // Shadow for cards and sections
-$f4f7f9: #f4f7f9; // Light background color for table rows
+// VARIABLES
+$primary-color: #007bff;
+$secondary-color: #28a745;
+$highlight-color: #f39c12;
+$text-color: #333333;
+$card-bg: #ffffff;
+$table-border-color: #ddd;
+$card-shadow: rgba(0, 0, 0, 0.1);
+$f4f7f9: #f4f7f9;
 
-
-// Global Section Styles
+// GLOBAL SECTION STYLES
 section {
   margin-bottom: 40px;
   padding: 20px;
@@ -21,9 +20,9 @@ section {
 .page-banner {
   text-align: center;
   padding: 2rem 1rem;
-  background:  red;
+  background: red;
   color: white;
-  border-radius: 0 0 20px 20px; /* Bordes redondeados inferiores */
+  border-radius: 0 0 20px 20px;
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
   margin-bottom: 1.5rem;
   animation: fadeInDown 1s ease-in-out;
@@ -42,7 +41,7 @@ section {
   }
 }
 
-/* Animación de entrada */
+// Animación
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -53,30 +52,8 @@ section {
     transform: translateY(0);
   }
 }
-@media print {
-  body {
-    font-family: Arial, sans-serif;
-  }
-  .content-container {
-    width: 100%;
-    padding: 0;
-    margin: 0;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  table, th, td {
-    border: 1px solid black;
-  }
-  th, td {
-    padding: 8px;
-    text-align: left;
-  }
-}
 
-
-
+// SECTION TITLES
 section h2 {
   font-size: 28px;
   color: $primary-color;
@@ -85,11 +62,12 @@ section h2 {
   text-align: center;
 }
 
-// Table Styling for Section
+// TABLE STYLES
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+
   th, td {
     padding: 12px;
     text-align: left;
@@ -107,15 +85,13 @@ table {
   }
 
   tbody tr:hover {
-    background-color:red;
+    background-color: red;
     cursor: pointer;
     color: white;
   }
 }
 
-
-
-// Cards for Ventas por Año
+// CARD CONTAINER
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -150,7 +126,7 @@ table {
   }
 }
 
-// Producto Más Vendido Styles
+// LISTA PRODUCTOS
 .producto-mas-vendido ul {
   list-style: none;
   padding-left: 0;
@@ -160,25 +136,29 @@ table {
     padding: 10px;
     border-bottom: 1px solid $table-border-color;
     color: $text-color;
+
     &:last-child {
       border-bottom: none;
     }
   }
 }
 
-// Producto Más Vendido por Zona Table Styling
+// TABLA PRODUCTO/ZONA
 .producto-mas-vendido-zona table {
   th, td {
     padding: 14px;
     font-size: 16px;
   }
+
   th {
     background-color: red;
     color: white;
   }
+
   tbody tr:nth-child(even) {
     background-color: $f4f7f9;
   }
+
   tbody tr:hover {
     background-color: red;
     cursor: pointer;
@@ -186,7 +166,7 @@ table {
   }
 }
 
-// Button Styling
+// BOTÓN
 button {
   padding: 12px 20px;
   background-color: red;
@@ -205,23 +185,96 @@ button {
   }
 }
 
+// CONTENEDOR RESPONSIVE
 #inner-content {
   width: 100%;
-  max-width: 210mm;  // Asegurarse de que no exceda el tamaño de la página A4
-  margin: 0 auto;   // Centrar el contenido horizontalmente
+  max-width: 210mm;
+  margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
-  display: block;   // Asegurarse de que el contenido es bloque y puede ser centrado
+  display: block;
 }
 
 h1, h2, h3, p {
-  text-align: center;  // Asegura que los textos principales estén centrados
+  text-align: center;
 }
 
-/* Estilo para ocultar el botón de imprimir durante la impresión */
+// PRINT MEDIA
 @media print {
-  /* Ocultar el botón de imprimir */
   #print-button {
     display: none;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  .content-container {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+  }
+}
+
+// RESPONSIVE MEDIA QUERIES
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+
+  .page-banner h1 {
+    font-size: 1.6rem;
+  }
+
+  .page-banner p {
+    font-size: 1rem;
+  }
+
+  table, th, td {
+    font-size: 13px;
+  }
+
+  section {
+    padding: 15px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-banner h1 {
+    font-size: 1.4rem;
+  }
+
+  .page-banner p {
+    font-size: 0.95rem;
+  }
+
+  th, td {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .card {
+    width: 100%;
   }
 }

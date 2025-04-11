@@ -68,67 +68,58 @@ ion-toolbar {
   }
 }
 
-/* Responsive styles */
+/* Responsive styles que NO afectan el header */
 @media (max-width: 1024px) {
   .header-button {
-    font-size: 14px;
-    padding: 0.3rem 0.5rem;
+    font-size: 18px;
+    padding: 0.5rem 0.8rem;
 
-    ion-icon {
-      font-size: 16px;
-    }
-  }
-
-  .cart-button {
     ion-icon {
       font-size: 20px;
     }
   }
+
+  .cart-button ion-icon {
+    font-size: 22px;
+  }
 }
 
 @media (max-width: 768px) {
-  ion-toolbar {
-    padding: 0.3rem 0.5rem;
-  }
-
   .header-right {
-    justify-content: center;
-    gap: 0.4rem;
+    gap: 0.6rem;
   }
 
   .header-button {
-    font-size: 12px;
-    padding: 0.25rem 0.4rem;
+    font-size: 20px;
+    padding: 0.5rem 0.9rem;
 
     ion-icon {
-      font-size: 14px;
+      font-size: 22px;
     }
   }
 
   .logout-button {
-    font-size: 12px;
+    font-size: 20px;
   }
 
-  .cart-button {
-    ion-icon {
-      font-size: 18px;
-    }
+  .cart-button ion-icon {
+    font-size: 26px;
   }
 }
 
 @media (max-width: 480px) {
   .header-button {
-    font-size: 11px;
-    padding: 0.2rem 0.3rem;
+    font-size: 22px;
+    padding: 0.6rem 1rem;
 
     ion-icon {
-      margin-right: 0.2rem;
-      font-size: 12px;
+      margin-right: 0.4rem;
+      font-size: 24px;
     }
   }
 
   .cart-button ion-icon,
   .logout-button ion-icon {
-    font-size: 16px;
+    font-size: 26px;
   }
 }

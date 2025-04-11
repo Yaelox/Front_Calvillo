@@ -35,6 +35,15 @@ ion-content {
     }
   }
 
+  p{
+    font-size: 35px;
+    color: #000;
+  }
+
+  .texto{
+    font-size: 35px;
+    color: #000;
+  }
   /* Estilo de la cuadrícula de fotos */
   .fotos-grid {
     display: grid;
@@ -60,9 +69,10 @@ ion-content {
         background-color: #f9f9f9;
 
         ion-card-title {
-          font-size: 18px;
+          font-size: 25px;
           font-weight: bold;
           color: #000;
+          text-align: center;
         }
       }
 
