@@ -7,13 +7,14 @@ export interface Foto {
   titulo: string;
   imagen: string;
   id_usuario: number;
+  fecha_subida?:string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class FotoService {
-  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/fotos'; // Reemplaza con la URL de tu backend
+  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/foto'; // Reemplaza con la URL de tu backend
 
   constructor(private http: HttpClient) {}
 

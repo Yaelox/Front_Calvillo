@@ -117,7 +117,11 @@ const routes: Routes = [
   {
     path: 'fotos',
     loadChildren: () => import('./pages/fotos/fotos.module').then( m => m.FotosPageModule)
+  },  {
+    path: 'fotos-almacen',
+    loadChildren: () => import('./pages/fotos-almacen/fotos-almacen.module').then( m => m.FotosAlmacenPageModule)
   }
+
 
 ];
 

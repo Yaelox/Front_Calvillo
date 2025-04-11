@@ -1,0 +1,45 @@
+.modal-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0;
+    background-color: #fff;
+    border-radius: 0 0 15px 15px;
+    overflow: hidden;
+  }
+  
+  img {
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+  }
+  
+  ion-header {
+    background-color: var(--primary);
+    padding: 10px;
+    border-radius: 15px 15px 0 0;
+  }
+  
+  ion-toolbar {
+    --background: var(--primary);
+  }
+  
+  ion-buttons {
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  ion-button {
+    color: white;
+    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background-color: var(--primary-dark, #333); // Fallback si --primary-dark no está definido
+    transition: background-color 0.3s ease;
+    border: none;
+  }
