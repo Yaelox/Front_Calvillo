@@ -116,14 +116,8 @@ const routes: Routes = [
   },
   {
     path: 'fotos',
-<<<<<<< HEAD
     loadChildren: () => import('./pages/fotos/fotos-routing.module').then( m => m.FotosPageRoutingModule)
   }
-=======
-    loadChildren: () => import('./pages/fotos/fotos.module').then( m => m.FotosPageModule)
-  }
-
->>>>>>> origin/Oscar
 ];
 
 @NgModule({
