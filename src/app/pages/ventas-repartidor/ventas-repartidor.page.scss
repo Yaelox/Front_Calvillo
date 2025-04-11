@@ -5,6 +5,18 @@ $candy-white: #ffffff;
 $candy-dark: #1e2a47;
 $candy-light: #f8f8f8;
 
+ion-content {
+  --background: #f6f8fa;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  // Esto asegura que el contenido se expanda correctamente
+  height: calc(100vh - 60px); // ajusta el "60px" si tu <app-header> mide más o menos
+  padding: 1rem;
+}
+
  /* Banner de la página */
 .page-banner {
   text-align: center;
