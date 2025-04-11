@@ -149,3 +149,45 @@ $candy-light: #f8f8f8;
     border-radius: 8px; /* Opcional, para bordes redondeados */
   }
   
+/* Seccion de Comentarios*/
+  .seccion {
+    font-weight: bold;
+    margin: 16px 0 8px 10px;
+    display: block;
+    font-size: 1rem;
+  }
+  
+  .item-compact {
+    --min-height: 40px;
+    font-size: 0.9rem;
+    ion-label {
+      font-size: 0.9rem;
+    }
+    ion-input,
+    ion-select {
+      font-size: 0.9rem;
+    }
+  }
+  
+  /* Colores personalizados */
+  .rojo {
+    --ion-item-background: #ffe5e5;
+    ion-label {
+      color: #d32f2f;
+    }
+  }
+  
+  .amarillo {
+    --ion-item-background: #fff8e1;
+    ion-label {
+      color: #f9a825;
+    }
+  }
+  
+  .verde {
+    --ion-item-background: #e8f5e9;
+    ion-label {
+      color: #388e3c;
+    }
+  }
+  

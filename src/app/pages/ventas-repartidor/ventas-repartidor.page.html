@@ -110,6 +110,7 @@
 
           </ion-card-content>
         </ion-card>
+        
 
     <!-- 
     <ion-card *ngIf="tiendas?.length">
@@ -148,6 +149,71 @@
       </ion-card-content>
     </ion-card>
     Sección Tienda -->
+
+    <!-- Sección Comentarios -->
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Comentarios</ion-card-title>
+  </ion-card-header>
+  <ion-card-content class="ion-padding">
+
+    <!-- ROJO -->
+    <ng-container *ngIf="(!rechazoAmarillo && !rechazoVerde) || rechazoRojo">
+      <ion-item class="rojo">
+        <ion-label class="rojo-label">Rechazo definitivo</ion-label>
+        <ion-select [(ngModel)]="rechazoRojo" name="rechazoRojo" placeholder="Selecciona una opción" (ionChange)="onSeleccion('rojo')">
+          <ion-select-option *ngFor="let motivo of motivosRojo" [value]="motivo">{{ motivo }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="rechazoRojo === 'Otra causa de rechazo.'" class="rojo">
+        <ion-input [(ngModel)]="comentarioRojo" name="comentarioRojo" placeholder="Escribe el motivo..."></ion-input>
+      </ion-item>
+    </ng-container>
+
+    <!-- AMARILLO -->
+    <br>
+    <ng-container *ngIf="(!rechazoRojo && !rechazoVerde) || rechazoAmarillo">
+      <ion-item class="amarillo">
+        <ion-label class="amarillo-label">Rechazo con posibilidad de compra</ion-label>
+        <ion-select [(ngModel)]="rechazoAmarillo" name="rechazoAmarillo" placeholder="Selecciona una opción" (ionChange)="onSeleccion('amarillo')">
+          <ion-select-option *ngFor="let motivo of motivosAmarillo" [value]="motivo">{{ motivo }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="rechazoAmarillo === 'Otra causa de rechazo momentáneo'" class="amarillo">
+        <ion-input [(ngModel)]="comentarioAmarillo" name="comentarioAmarillo" placeholder="Escribe el motivo temporal..."></ion-input>
+      </ion-item>
+    </ng-container>
+
+    <!-- VERDE -->
+    <br>
+    <ng-container *ngIf="(!rechazoRojo && !rechazoAmarillo) || rechazoVerde">
+      <ion-item class="verde">
+        <ion-label class="verde-label">Es seguro que van a comprar.</ion-label>
+        <ion-select [(ngModel)]="rechazoVerde" name="rechazoVerde" placeholder="Selecciona una opción" (ionChange)="onSeleccion('verde')">
+          <ion-select-option *ngFor="let motivo of motivosVerde" [value]="motivo">{{ motivo }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="rechazoVerde === 'Puedes dejarnos un comentario aquí...'" class="verde">
+        <ion-input [(ngModel)]="comentarioVerde" name="comentarioVerde" placeholder="Escribe el comentario del cliente..."></ion-input>
+      </ion-item>
+    </ng-container>
+
+
+    <ion-row>
+      <ion-col size="6" *ngIf="motivoSeleccionado">
+        <ion-button expand="full" color="medium" (click)="cancelarSeleccion()">Cancelar</ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="full" color="primary" (click)="confirmarRechazo()">Confirmar</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card-content>
+</ion-card>
+
+
+
+
 
     <!-- Botón de envío -->
     <ion-button expand="full" type="submit" [disabled]="!ventaForm.valid ">Registrar Venta</ion-button>

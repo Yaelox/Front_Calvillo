@@ -39,6 +39,7 @@ export class MotivoRechazoModalComponent implements OnInit {
     'Va a quitar la tienda',
     'Ya tienen proveedor',
     'Se los roba la gente',
+    'Se tardaron en regresar',
     'Otra causa de rechazo.'
   ];
 
