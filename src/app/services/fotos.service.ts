@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Foto {
-  foto_id: number;
   titulo: string;
   imagen: string;
   id_usuario: number;
@@ -13,7 +12,7 @@ export interface Foto {
   providedIn: 'root',
 })
 export class FotoService {
-  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/fotos'; // Reemplaza con la URL de tu backend
+  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/foto'; // Reemplaza con la URL de tu backend
 
   constructor(private http: HttpClient) {}
 

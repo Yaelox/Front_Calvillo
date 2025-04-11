@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit,ViewChild, ElementRef } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonicModule, ModalController } from '@ionic/angular';
@@ -31,6 +31,7 @@ export class VentasRepartidorPage implements OnInit {
   propietarioNombre: string = '';
   foto_venta: string | null = null;
 
+
   constructor(
     private repartidorService: RepartidorService,
     private userService: UserService,
@@ -46,6 +47,34 @@ export class VentasRepartidorPage implements OnInit {
     this.obtenerTienda();
     this.obtenerProductos();
   }
+
+   // Método para eliminar la imagen
+   eliminarFoto() {
+    this.foto_venta = null; // Esto eliminará la foto seleccionada
+  }
+  
+  seleccionarImagen() {
+    // Crear un input de tipo archivo dinámicamente
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+
+    // Manejar la selección de archivo
+    input.click();
+    
+    input.onchange = (event: Event) => {
+      const archivo = (event.target as HTMLInputElement).files?.[0];
+      if (archivo) {
+        const lector = new FileReader();
+        lector.onload = () => {
+          this.foto_venta = lector.result as string; // Asignar la imagen a la variable
+          console.log('Imagen seleccionada:', this.foto_venta);
+        };
+        lector.readAsDataURL(archivo);
+      }
+    };
+  }
+
 
   obtenerUsuario() {
     const repartidorId = this.userService.getUserIdFromLocalStorage();

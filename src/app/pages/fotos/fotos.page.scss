@@ -1,14 +1,128 @@
-ion-img {
-    width: 100%;
-    max-width: 300px; /* Ajusta el tamaño máximo de la imagen */
-    margin-top: 10px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
+/* Estilo general de la página */
+.content-container {
+  display: flex;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center;     /* Centra el contenido verticalmente */
+  padding: 2rem 1rem;
+  background-color: #f9f9f9;
+  height: 100vh;           /* Asegura que la altura sea 100% de la pantalla */
+}
+
+.form-container {
+  background: #ffffff;
+  width: 100%;
+  max-width: 480px;        /* Ancho máximo del formulario */
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;     /* Centra los elementos dentro del formulario */
+  justify-content: center; /* Alinea los elementos del formulario */
+}
+
+.form-item {
+  width: 100%;             /* Asegura que los elementos del formulario ocupen todo el ancho disponible */
+}
+
+ion-input {
+  font-size: 1rem;
+}
+
+ion-button {
+  --border-radius: 14px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.upload-button {
+  display: flex;
+  justify-content: center; /* Centra el texto e ícono dentro del botón */
+  align-items: center;
+  width: 100%;              /* Asegura que el botón ocupe todo el ancho disponible */
+}
+
+.preview-container {
+  text-align: center; /* Centra la vista previa de la imagen */
+  width: 100%;        /* Asegura que la vista previa ocupe todo el ancho posible */
+
   h3 {
-    text-align: center;
-    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
   }
-  
+}
+
+.preview-image {
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  max-height: 280px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.preview-image:hover {
+  transform: scale(1.02);
+}
+
+.save-button {
+  margin-top: 20px;  /* Separa un poco el botón de guardar */
+  font-weight: bold;
+}
+/* Banner de la página */
+.page-banner {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: red; /* Degradado rosa brillante */
+  color: white;
+  border-radius: 0 0 20px 20px; /* Bordes redondeados inferiores */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+  animation: fadeInDown 1s ease-in-out;
+
+  h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.2rem;
+    margin: 0;
+    font-weight: bold;
+  }
+
+  p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0;
+  }
+}
+
+/* Animación de entrada */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Colores para las alertas */
+.alert-success {
+  --background: #28a745;
+  --color: white;
+}
+
+.alert-danger {
+  --background: #dc3545;
+  --color: white;
+}
+
+.alert-warning {
+  --background: #ffc107;
+  --color: black;
+}

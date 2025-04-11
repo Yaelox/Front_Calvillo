@@ -45,15 +45,19 @@
       </ion-card-header>
       <ion-card-content>
         
-        <!-- Selección de Productos -->
-        <ion-item>
-          <ion-label position="stacked">Seleccionar Producto</ion-label>
-          <ion-select [(ngModel)]="selectedProducto" name="producto">
-            <ion-select-option *ngFor="let producto of productos" [value]="producto">
-              {{ producto.nombre }} - ${{ producto.precio }}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
+  <!-- Selección de Productos -->
+<ion-item>
+  <ion-label position="stacked">Seleccionar Producto</ion-label>
+  <ion-select [(ngModel)]="selectedProducto" name="producto">
+    <ion-select-option *ngFor="let producto of productos" [value]="producto">
+      <ion-item lines="none">
+        <!-- Usar ion-img para mostrar la imagen -->
+        <ion-img [src]="producto.imagen" alt="{{ producto.nombre }}" style="max-width: 50px; max-height: 50px; margin-right: 10px;"></ion-img>
+        <ion-label>{{ producto.nombre }} - ${{ producto.precio }}</ion-label>
+      </ion-item>
+    </ion-select-option>
+  </ion-select>
+</ion-item>
 
         <!-- Cantidad del Producto -->
         <ion-item>
@@ -69,9 +73,13 @@
         <!-- Lista de Productos en el Carrito -->
         <ion-list *ngIf="carrito.length > 0">
           <ion-item *ngFor="let item of carrito; let i = index">
+            <!-- Mostrar la imagen del producto -->
+            <ion-img [src]="item.producto.imagen" alt="{{ item.producto.nombre }}" style="max-width: 50px; max-height: 50px; margin-right: 10px;"></ion-img>
+            
             <ion-label>
               {{ item.producto.nombre }} - {{ item.cantidad }} x ${{ item.producto.precio }} = ${{ item.total }}
             </ion-label>
+            
             <ion-button fill="clear" color="danger" (click)="eliminarProductoDelCarrito(i)">
               <ion-icon name="trash"></ion-icon>
             </ion-button>
@@ -84,13 +92,24 @@
           </ion-item>
         </ion-list>
 
-            <!-- Botón para abrir la cámara -->
-            <button (click)="capturarFoto()">Tomar Foto</button>
+      <!-- Botón para seleccionar una imagen y cargarla -->
+      <ion-button expand="block" (click)="seleccionarImagen()">
+        <ion-icon name="image-outline" slot="start"></ion-icon>
+        Seleccionar Imagen
+      </ion-button>
 
+      
             <!-- Vista previa de la imagen -->
-            <ion-item *ngIf="foto_venta">
-              <img [src]="foto_venta" alt="Foto de la venta" class="foto-preview">
-            </ion-item>
+      <ion-item *ngIf="foto_venta">
+        <img [src]="foto_venta" alt="Foto de la venta" class="foto-preview">
+      </ion-item>
+
+            <!-- Botón para eliminar la imagen -->
+      <ion-button *ngIf="foto_venta" expand="block" color="danger" (click)="eliminarFoto()">
+        <ion-icon name="trash-outline" slot="start"></ion-icon>
+        Eliminar Foto
+      </ion-button>
+
           </ion-card-content>
         </ion-card>
 

@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { AlertController, IonicModule } from '@ionic/angular';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { ViewChild, ElementRef } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FotoService, Foto } from 'src/app/services/fotos.service';
+import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -15,23 +16,58 @@ import { FotoService, Foto } from 'src/app/services/fotos.service';
   imports:[CommonModule,IonicModule,HeaderComponent,ReactiveFormsModule,FormsModule],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
-export class FotosPage {
+export class FotosPage implements OnInit {
   @ViewChild('fileInput') fileInput!: ElementRef<HTMLInputElement>;
 
   titulo: string = '';
   imagen: string | null = null;
-  id_usuario: number = 1; // Asigna un valor adecuado para el usuario, idealmente desde un servicio de usuario
+  usuario: any = null;  // Asigna un valor adecuado para el usuario, idealmente desde un servicio de usuario
 
   galeria: Foto[] = []; // Galería de fotos
 
-  constructor(private fotosService: FotoService) {}
+  constructor(
+    private fotosService: FotoService,
+    private userService: UserService,
+    private alertControler: AlertController) {}
 
-  // Método para abrir el selector de archivos
+  // M
+  ngOnInit(): void {
+    this.obtenerUsuario();
+  }
+
+  obtenerUsuario() {
+    const repartidorId = this.userService.getUserIdFromLocalStorage();
+    if (repartidorId) {
+      this.userService.getUserById(repartidorId).subscribe(
+        (usuario) => {
+          this.usuario = usuario;
+        },
+        (error) => {
+          console.error('Error al obtener usuario:', error);
+        }
+      );
+    } else {
+      console.error('No se encontró el ID del repartidor en localStorage');
+    }
+  }
+
   seleccionarImagen() {
     this.fileInput.nativeElement.click();
   }
 
-  // Método para leer la imagen seleccionada y convertirla a Base64
+
+  
+  // Función para mostrar alertas
+  async mostrarAlerta(mensaje: string, encabezado: string, color: string) {
+    const alert = await this. alertControler.create({
+      header: encabezado,
+      message: mensaje,
+      buttons: ['OK'],
+      cssClass: color,
+    });
+    await alert.present();
+  }
+
   cargarImagen(event: Event) {
     const archivo = (event.target as HTMLInputElement).files?.[0];
     if (archivo) {
@@ -42,43 +78,41 @@ export class FotosPage {
       lector.readAsDataURL(archivo);
     }
   }
-
-  // Método para guardar la imagen
   guardarImagen() {
-    // Validación explícita para el título
     if (!this.titulo) {
-      alert('Por favor, ingrese un título para la foto.');
-      return; // Si no hay título, no continúa con el guardado
+      this.mostrarAlerta('Por favor, ingrese un título para la foto.', 'Faltan datos', 'alert-warning');
+      return;
     }
   
     if (!this.imagen) {
-      alert('Por favor, seleccione una imagen.');
-      return; // Si no hay imagen, no continúa con el guardado
+      this.mostrarAlerta('Por favor, seleccione una imagen.', 'Faltan datos', 'alert-warning');
+      return;
     }
   
-    // Crear el objeto Foto basado en la interfaz Foto
+    if (!this.usuario) {
+      this.mostrarAlerta('Usuario no cargado. Intenta nuevamente.', 'Error', 'alert-danger');
+      return;
+    }
+  
     const nuevaFoto: Foto = {
-      foto_id: 0, // Deja este valor como 0, el backend lo asignará
       titulo: this.titulo,
-      imagen: this.imagen, // Imagen en formato Base64
-      id_usuario: this.id_usuario,
+      imagen: this.imagen,
+      id_usuario: this.usuario.id_usuario,
     };
   
-    // Llamada al servicio para subir la foto
     this.fotosService.postFoto(nuevaFoto).subscribe(
       (respuesta) => {
         console.log('Foto subida correctamente:', respuesta);
-        // Agregar la nueva foto a la galería si se sube correctamente
+        this.mostrarAlerta('Foto subida correctamente.', 'Éxito', 'alert-success');
         this.galeria.push(respuesta);
-  
-        // Limpiar campos después de subir
         this.titulo = '';
         this.imagen = null;
         this.fileInput.nativeElement.value = '';
       },
       (error) => {
         console.error('Error al subir la foto:', error);
+        this.mostrarAlerta('Hubo un error al subir la foto. Intenta nuevamente.', 'Error', 'alert-danger');
       }
     );
   }
-}
+}  

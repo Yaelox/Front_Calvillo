@@ -139,3 +139,13 @@ $candy-light: #f8f8f8;
     margin-right: 10px;
   }
 
+
+  .foto-preview {
+    display: block;
+    margin: 0 auto;
+    max-width: 400px; /* Ajusta el tamaño según tus necesidades */
+    max-height: 400px; /* Ajusta el tamaño según tus necesidades */
+    object-fit: cover; /* Esto asegura que la imagen mantenga su proporción y no se distorsione */
+    border-radius: 8px; /* Opcional, para bordes redondeados */
+  }
+  
