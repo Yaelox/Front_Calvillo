@@ -1,4 +1,3 @@
-// Paleta de colores dulces y vibrantes
 $candy-pink: #f5a7b8;
 $candy-yellow: #fbd13b;
 $candy-blue: #7fd6e6;
@@ -6,14 +5,13 @@ $candy-white: #ffffff;
 $candy-dark: #1e2a47;
 $candy-light: #f8f8f8;
 
- 
-/* Banner de la página */
+ /* Banner de la página */
 .page-banner {
   text-align: center;
   padding: 2rem 1rem;
-  background: red; /* Degradado rosa brillante */
+  background: red;
   color: white;
-  border-radius: 0 0 20px 20px; /* Bordes redondeados inferiores */
+  border-radius: 0 0 20px 20px;
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
   margin-bottom: 1.5rem;
   animation: fadeInDown 1s ease-in-out;
@@ -44,150 +42,203 @@ $candy-light: #f8f8f8;
   }
 }
 
+/* Ajustes generales */
+ion-content {
+  padding: 15px;
+}
 
-  ion-content {
-    padding: 15px;
+/* Estilo de las tarjetas */
+ion-card {
+  background: $candy-white;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border: 2px solid #000;
+  margin-top: 20px;
+
+  ion-card-header {
+    background: red;
+    color: #000;
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 15px 15px 0 0;
   }
 
-  // Estilo de las tarjetas
-  ion-card {
-    background: $candy-white;
-    border-radius: 15px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    border: 2px solid #000;
-    margin-top: 20px;
+  ion-card-content {
+    padding: 20px;
+    font-family: 'Roboto', sans-serif;
+    color: #000;
 
-    ion-card-header {
-      background: red;
-      color: #000;
-      font-size: 25px;
-      font-weight: bold;
-      text-align: center;
-      border-radius: 15px 15px 0 0;
-    }
+    ion-item {
+      margin-bottom: 15px;
 
-    ion-card-content {
-      padding: 20px;
-      font-family: 'Roboto', sans-serif;
-      color: #000;
+      ion-label {
+        font-weight: bold;
+        font-size: 20px;
+        color: $candy-dark;
+      }
 
-      ion-item {
-        margin-bottom: 15px;
+      ion-input,
+      ion-select {
+        font-size: 20px;
+        font-weight: normal;
+        color: #000;
+        border-radius: 10px;
+        padding: 12px;
+      }
 
-        ion-label {
-          font-weight: bold;
-          font-size: 20px;
-          color: $candy-dark;
-        }
+      ion-select {
+        background-color: $candy-light;
+      }
 
-        ion-input,
-        ion-select {
-          font-size: 20px;
-          font-weight: normal;
-          color: #000;
-          border-radius: 10px;
-          padding: 12px;
-        }
-
-        ion-select {
-          background-color: $candy-light;
-        }
-
-        ion-input {
-          background-color: $candy-light;
-        }
+      ion-input {
+        background-color: $candy-light;
       }
     }
   }
+}
 
-  // Estilo de botones
-  ion-button {
-    color: $candy-dark;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 12px 20px;
-    border-radius: 25px;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    margin-top: 30px;
+/* Estilo de botones */
+ion-button {
+  color: $candy-dark;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 25px;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 30px;
 
-    &:hover {
-      background-color: darken($candy-yellow, 10%);
-      transform: scale(1.05);
-    }
-
-    &:disabled {
-      background-color: $candy-light;
-      color: $candy-dark;
-      opacity: 0.5;
-    }
+  &:hover {
+    background-color: darken($candy-yellow, 10%);
+    transform: scale(1.05);
   }
 
-  // Estilo de los inputs de archivo
-  input[type="file"] {
-    display: block;
-    font-size: 14px;
+  &:disabled {
+    background-color: $candy-light;
+    color: $candy-dark;
+    opacity: 0.5;
+  }
+}
+
+/* Estilo de los inputs de archivo */
+input[type="file"] {
+  display: block;
+  font-size: 14px;
+  margin-top: 10px;
+  color: $candy-dark;
+  font-weight: bold;
+}
+
+/* Estilo de los íconos dentro de las tarjetas */
+ion-icon {
+  color: $candy-blue;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.foto-preview {
+  display: block;
+  margin: 0 auto;
+  max-width: 400px;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* Sección de Comentarios */
+.seccion {
+  font-weight: bold;
+  margin: 16px 0 8px 10px;
+  display: block;
+  font-size: 1rem;
+}
+
+.item-compact {
+  --min-height: 40px;
+  font-size: 0.9rem;
+  ion-label {
+    font-size: 0.9rem;
+  }
+  ion-input,
+  ion-select {
+    font-size: 0.9rem;
+  }
+}
+
+/* Colores personalizados */
+.rojo {
+  --ion-item-background: #ffe5e5;
+  ion-label {
+    color: #d32f2f;
+  }
+}
+
+.amarillo {
+  --ion-item-background: #fff8e1;
+  ion-label {
+    color: #f9a825;
+  }
+}
+
+.verde {
+  --ion-item-background: #e8f5e9;
+  ion-label {
+    color: #388e3c;
+  }
+}
+
+/* Estilos de responsividad */
+@media (max-width: 600px) {
+  .page-banner h1 {
+    font-size: 1.8rem;
+  }
+
+  ion-card {
     margin-top: 10px;
-    color: $candy-dark;
-    font-weight: bold;
+    padding: 15px;
   }
 
-  // Estilo de los íconos dentro de las tarjetas
-  ion-icon {
-    color: $candy-blue;
-    font-size: 20px;
-    margin-right: 10px;
+  ion-card-header {
+    font-size: 1.5rem;
+    padding: 1rem;
   }
 
+  ion-button {
+    font-size: 16px;
+    padding: 10px 16px;
+    margin-top: 20px;
+  }
+
+  ion-item {
+    margin-bottom: 10px;
+  }
 
   .foto-preview {
-    display: block;
-    margin: 0 auto;
-    max-width: 400px; /* Ajusta el tamaño según tus necesidades */
-    max-height: 400px; /* Ajusta el tamaño según tus necesidades */
-    object-fit: cover; /* Esto asegura que la imagen mantenga su proporción y no se distorsione */
-    border-radius: 8px; /* Opcional, para bordes redondeados */
+    max-width: 100%;
+    max-height: 300px;
   }
-  
-/* Seccion de Comentarios*/
+
   .seccion {
-    font-weight: bold;
-    margin: 16px 0 8px 10px;
-    display: block;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   
   .item-compact {
-    --min-height: 40px;
-    font-size: 0.9rem;
-    ion-label {
-      font-size: 0.9rem;
-    }
-    ion-input,
-    ion-select {
-      font-size: 0.9rem;
-    }
+    font-size: 0.8rem;
   }
-  
-  /* Colores personalizados */
-  .rojo {
-    --ion-item-background: #ffe5e5;
-    ion-label {
-      color: #d32f2f;
-    }
+
+  input[type="file"] {
+    font-size: 12px;
   }
-  
-  .amarillo {
-    --ion-item-background: #fff8e1;
-    ion-label {
-      color: #f9a825;
-    }
-  }
-  
-  .verde {
-    --ion-item-background: #e8f5e9;
-    ion-label {
-      color: #388e3c;
-    }
-  }
-  
+}
+
+/* Solución para el encabezado congelado */
+ion-header {
+  position: relative;
+  z-index: 10;
+}
+
+ion-content {
+  margin-top: 70px; /* Ajusta el espacio superior si el header es fijo */
+  padding: 10px;
+}

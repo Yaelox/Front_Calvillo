@@ -1,61 +1,25 @@
 <app-header></app-header>
 
-<ion-content>
+<ion-content class="content-wrapper">
   <form (ngSubmit)="registrarVenta()" #ventaForm="ngForm">
-    
-
-    <!--
-
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Información del Repartidor</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-item>
-          <ion-label position="stacked">ID Repartidor:</ion-label>
-          <ion-input [value]="usuario?.id_usuario" disabled></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Nombre:</ion-label>
-          <ion-input [value]="usuario?.nombre" disabled></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Usuario:</ion-label>
-          <ion-input [value]="usuario?.usuario" disabled></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Email:</ion-label>
-          <ion-input [value]="usuario?.email" disabled></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="stacked">Teléfono:</ion-label>
-          <ion-input [value]="usuario?.telefono" disabled></ion-input>
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
-
-    -->
-    
-    <!-- Sección Venta -->
     <ion-card>
       <ion-card-header>
         <ion-card-title>Información de Venta</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        
-  <!-- Selección de Productos -->
-<ion-item>
-  <ion-label position="stacked">Seleccionar Producto</ion-label>
-  <ion-select [(ngModel)]="selectedProducto" name="producto">
-    <ion-select-option *ngFor="let producto of productos" [value]="producto">
-      <ion-item lines="none">
-        <!-- Usar ion-img para mostrar la imagen -->
-        <ion-img [src]="producto.imagen" alt="{{ producto.nombre }}" style="max-width: 50px; max-height: 50px; margin-right: 10px;"></ion-img>
-        <ion-label>{{ producto.nombre }} - ${{ producto.precio }}</ion-label>
-      </ion-item>
-    </ion-select-option>
-  </ion-select>
-</ion-item>
+
+        <!-- Selección de Productos -->
+        <ion-item>
+          <ion-label position="stacked">Seleccionar Producto</ion-label>
+          <ion-select [(ngModel)]="selectedProducto" name="producto">
+            <ion-select-option *ngFor="let producto of productos" [value]="producto">
+              <ion-item lines="none">
+                <ion-img [src]="producto.imagen" alt="{{ producto.nombre }}" style="max-width: 50px; max-height: 50px; margin-right: 10px;"></ion-img>
+                <ion-label>{{ producto.nombre }} - ${{ producto.precio }}</ion-label>
+              </ion-item>
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
 
         <!-- Cantidad del Producto -->
         <ion-item>
@@ -71,13 +35,10 @@
         <!-- Lista de Productos en el Carrito -->
         <ion-list *ngIf="carrito.length > 0">
           <ion-item *ngFor="let item of carrito; let i = index">
-            <!-- Mostrar la imagen del producto -->
             <ion-img [src]="item.producto.imagen" alt="{{ item.producto.nombre }}" style="max-width: 50px; max-height: 50px; margin-right: 10px;"></ion-img>
-            
             <ion-label>
               {{ item.producto.nombre }} - {{ item.cantidad }} x ${{ item.producto.precio }} = ${{ item.total }}
             </ion-label>
-            
             <ion-button fill="clear" color="danger" (click)="eliminarProductoDelCarrito(i)">
               <ion-icon name="trash"></ion-icon>
             </ion-button>
@@ -90,129 +51,85 @@
           </ion-item>
         </ion-list>
 
-      <!-- Botón para seleccionar una imagen y cargarla -->
-      <ion-button expand="block" (click)="seleccionarImagen()">
-        <ion-icon name="image-outline" slot="start"></ion-icon>
-        Seleccionar Imagen
-      </ion-button>
+        <!-- Botón para seleccionar una imagen y cargarla -->
+        <ion-button expand="block" (click)="seleccionarImagen()">
+          <ion-icon name="image-outline" slot="start"></ion-icon>
+          Seleccionar Imagen
+        </ion-button>
 
-      
-            <!-- Vista previa de la imagen -->
-      <ion-item *ngIf="foto_venta">
-        <img [src]="foto_venta" alt="Foto de la venta" class="foto-preview">
-      </ion-item>
-
-            <!-- Botón para eliminar la imagen -->
-      <ion-button *ngIf="foto_venta" expand="block" color="danger" (click)="eliminarFoto()">
-        <ion-icon name="trash-outline" slot="start"></ion-icon>
-        Eliminar Foto
-      </ion-button>
-
-          </ion-card-content>
-        </ion-card>
-        
-
-    <!-- 
-    <ion-card *ngIf="tiendas?.length">
-      <ion-card-header>
-        <ion-card-title>Información de Tienda</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <ion-item>
-          <ion-label>Tienda</ion-label>
-          <ion-select [(ngModel)]="selectedTienda" name="tienda" (ionChange)="onTiendaChange($event)" required>
-            <ion-select-option *ngFor="let tienda of tiendas" [value]="tienda">
-              {{ tienda.nombre_tienda }}
-            </ion-select-option>
-          </ion-select>
-        </ion-item>
-        
-        <ion-item *ngIf="selectedTienda">
-          <ion-label position="stacked">Dirección</ion-label>
-          <ion-input [value]="selectedTienda?.direccion" disabled></ion-input>
+        <!-- Vista previa de la imagen -->
+        <ion-item *ngIf="foto_venta">
+          <img [src]="foto_venta" alt="Foto de la venta" class="foto-preview">
         </ion-item>
 
-        <ion-item *ngIf="selectedTienda">
-          <ion-label position="stacked">Teléfono</ion-label>
-          <ion-input [value]="selectedTienda?.telefono" disabled></ion-input>
-        </ion-item>
+        <!-- Botón para eliminar la imagen -->
+        <ion-button *ngIf="foto_venta" expand="block" color="danger" (click)="eliminarFoto()">
+          <ion-icon name="trash-outline" slot="start"></ion-icon>
+          Eliminar Foto
+        </ion-button>
 
-        <ion-item *ngIf="selectedTienda">
-          <ion-label position="stacked">Email</ion-label>
-          <ion-input [value]="selectedTienda?.email" disabled></ion-input>
-        </ion-item>
-
-        <ion-item *ngIf="selectedTienda">
-          <ion-label position="stacked">Propietario</ion-label>
-          <ion-input [value]="propietarioNombre" disabled></ion-input>
-        </ion-item>
       </ion-card-content>
     </ion-card>
-    Sección Tienda -->
 
     <!-- Sección Comentarios -->
-<ion-card>
-  <ion-card-header>
-    <ion-card-title>Comentarios</ion-card-title>
-  </ion-card-header>
-  <ion-card-content class="ion-padding">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Comentarios</ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="ion-padding">
 
-    <!-- ROJO -->
-    <ng-container *ngIf="(!rechazoAmarillo && !rechazoVerde) || rechazoRojo">
-      <ion-item class="rojo">
-        <ion-label class="rojo-label">Rechazo definitivo</ion-label>
-        <ion-select [(ngModel)]="rechazoRojo" name="rechazoRojo" placeholder="Selecciona una opción" (ionChange)="onSeleccion('rojo')">
-          <ion-select-option *ngFor="let motivo of motivosRojo" [value]="motivo">{{ motivo }}</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item *ngIf="rechazoRojo === 'Otra causa de rechazo.'" class="rojo">
-        <ion-input [(ngModel)]="comentarioRojo" name="comentarioRojo" placeholder="Escribe el motivo..."></ion-input>
-      </ion-item>
-    </ng-container>
+        <!-- ROJO -->
+        <ng-container *ngIf="(!rechazoAmarillo && !rechazoVerde) || rechazoRojo">
+          <ion-item class="rojo">
+            <ion-label class="rojo-label">Rechazo definitivo</ion-label>
+            <ion-select [(ngModel)]="rechazoRojo" name="rechazoRojo" placeholder="Selecciona una opción" (ionChange)="onSeleccion('rojo')">
+              <ion-select-option *ngFor="let motivo of motivosRojo" [value]="motivo">{{ motivo }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item *ngIf="rechazoRojo === 'Otra causa de rechazo.'" class="rojo">
+            <ion-input [(ngModel)]="comentarioRojo" name="comentarioRojo" placeholder="Escribe el motivo..."></ion-input>
+          </ion-item>
+        </ng-container>
 
-    <!-- AMARILLO -->
-    <br>
-    <ng-container *ngIf="(!rechazoRojo && !rechazoVerde) || rechazoAmarillo">
-      <ion-item class="amarillo">
-        <ion-label class="amarillo-label">Rechazo con posibilidad de compra</ion-label>
-        <ion-select [(ngModel)]="rechazoAmarillo" name="rechazoAmarillo" placeholder="Selecciona una opción" (ionChange)="onSeleccion('amarillo')">
-          <ion-select-option *ngFor="let motivo of motivosAmarillo" [value]="motivo">{{ motivo }}</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item *ngIf="rechazoAmarillo === 'Otra causa de rechazo momentáneo'" class="amarillo">
-        <ion-input [(ngModel)]="comentarioAmarillo" name="comentarioAmarillo" placeholder="Escribe el motivo temporal..."></ion-input>
-      </ion-item>
-    </ng-container>
+        <!-- AMARILLO -->
+        <br>
+        <ng-container *ngIf="(!rechazoRojo && !rechazoVerde) || rechazoAmarillo">
+          <ion-item class="amarillo">
+            <ion-label class="amarillo-label">Rechazo con posibilidad de compra</ion-label>
+            <ion-select [(ngModel)]="rechazoAmarillo" name="rechazoAmarillo" placeholder="Selecciona una opción" (ionChange)="onSeleccion('amarillo')">
+              <ion-select-option *ngFor="let motivo of motivosAmarillo" [value]="motivo">{{ motivo }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item *ngIf="rechazoAmarillo === 'Otra causa de rechazo momentáneo'" class="amarillo">
+            <ion-input [(ngModel)]="comentarioAmarillo" name="comentarioAmarillo" placeholder="Escribe el motivo temporal..."></ion-input>
+          </ion-item>
+        </ng-container>
 
-    <!-- VERDE -->
-    <br>
-    <ng-container *ngIf="(!rechazoRojo && !rechazoAmarillo) || rechazoVerde">
-      <ion-item class="verde">
-        <ion-label class="verde-label">Es seguro que van a comprar.</ion-label>
-        <ion-select [(ngModel)]="rechazoVerde" name="rechazoVerde" placeholder="Selecciona una opción" (ionChange)="onSeleccion('verde')">
-          <ion-select-option *ngFor="let motivo of motivosVerde" [value]="motivo">{{ motivo }}</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item *ngIf="rechazoVerde === 'Puedes dejarnos un comentario aquí...'" class="verde">
-        <ion-input [(ngModel)]="comentarioVerde" name="comentarioVerde" placeholder="Escribe el comentario del cliente..."></ion-input>
-      </ion-item>
-    </ng-container>
+        <!-- VERDE -->
+        <br>
+        <ng-container *ngIf="(!rechazoRojo && !rechazoAmarillo) || rechazoVerde">
+          <ion-item class="verde">
+            <ion-label class="verde-label">Es seguro que van a comprar.</ion-label>
+            <ion-select [(ngModel)]="rechazoVerde" name="rechazoVerde" placeholder="Selecciona una opción" (ionChange)="onSeleccion('verde')">
+              <ion-select-option *ngFor="let motivo of motivosVerde" [value]="motivo">{{ motivo }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item *ngIf="rechazoVerde === 'Puedes dejarnos un comentario aquí...'" class="verde">
+            <ion-input [(ngModel)]="comentarioVerde" name="comentarioVerde" placeholder="Escribe el comentario del cliente..."></ion-input>
+          </ion-item>
+        </ng-container>
 
+        <ion-row>
+          <ion-col size="6" *ngIf="motivoSeleccionado">
+            <ion-button expand="full" color="medium" (click)="cancelarSeleccion()">Cancelar</ion-button>
+          </ion-col>
+        </ion-row>
 
-    <ion-row>
-      <ion-col size="6" *ngIf="motivoSeleccionado">
-        <ion-button expand="full" color="medium" (click)="cancelarSeleccion()">Cancelar</ion-button>
-      </ion-col>
-    </ion-row>
-
-  </ion-card-content>
-</ion-card>
-
-
-
-
+      </ion-card-content>
+    </ion-card>
 
     <!-- Botón de envío -->
-    <ion-button expand="full" type="submit" [disabled]="!ventaForm.valid ">Registrar Venta</ion-button>
+    <ion-button expand="full" type="submit" [disabled]="!ventaForm.valid">Registrar Venta</ion-button>
   </form>
 </ion-content>
+
