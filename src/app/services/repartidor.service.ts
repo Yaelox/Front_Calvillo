@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 
 export interface VentaDetalle {
@@ -22,6 +24,7 @@ export interface Venta {
   fecha_venta: string;
   foto_venta: string;
   motivo:string;
+  id_ubicacion:number;
   nombre_repartidor?: string;
   nombre_tienda?: string;
   rechazado?: boolean; 
@@ -38,10 +41,15 @@ export class RepartidorService {
   private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/repartidor'; // Ajusta esta URL según tu backend
 
   constructor(private http: HttpClient) {}
-
   registrarVenta(venta: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}`, venta);
+    return this.http.post(`${this.apiUrl}`, venta).pipe(
+      catchError((error) => {
+        console.error('Error al registrar la venta:', error);
+        return throwError(() => error);  // Re-lanzamos el error para que pueda ser manejado en el componente
+      })
+    );
   }
+  
 
   obtenerVentasPorRepartidor(id: number): Observable<Venta[]> {
     console.log(`Obteniendo ventas para el repartidor con id: ${id}`);

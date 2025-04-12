@@ -15,6 +15,7 @@ ion-toolbar {
   padding: 0 1rem;
 }
 
+// Contenedor general de los botones
 .header-right {
   display: flex;
   flex-wrap: wrap;
@@ -22,8 +23,44 @@ ion-toolbar {
   align-items: center;
   width: 100%;
   gap: 0.5rem;
+
+  ion-button {
+    --padding-start: 0;
+    --padding-end: 0;
+    color: #000;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    min-width: 80px;
+  }
+
+  ion-icon {
+    font-size: 18px;
+  }
+
+  // Estilo responsive: cuadrícula 3x3 en móvil
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+
+    ion-button {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    ion-icon {
+      margin-bottom: 2px;
+      margin-right: 0 !important;
+    }
+  }
 }
 
+// Botón genérico
 .header-button {
   --background: transparent;
   --color: #000;
@@ -45,6 +82,7 @@ ion-toolbar {
   }
 }
 
+// Botón de logout
 .logout-button {
   @extend .header-button;
   color: #d9534f;
@@ -54,6 +92,7 @@ ion-toolbar {
   }
 }
 
+// Botón del carrito
 .cart-button {
   --background: transparent;
   --color: #000;
@@ -68,7 +107,7 @@ ion-toolbar {
   }
 }
 
-/* Responsive styles que NO afectan el header */
+// Opcionales si quieres ajustar otros tamaños más finos
 @media (max-width: 1024px) {
   .header-button {
     font-size: 18px;
@@ -84,42 +123,19 @@ ion-toolbar {
   }
 }
 
-@media (max-width: 768px) {
-  .header-right {
-    gap: 0.6rem;
-  }
-
-  .header-button {
-    font-size: 20px;
-    padding: 0.5rem 0.9rem;
-
-    ion-icon {
-      font-size: 22px;
-    }
-  }
-
-  .logout-button {
-    font-size: 20px;
-  }
-
-  .cart-button ion-icon {
-    font-size: 26px;
-  }
-}
-
 @media (max-width: 480px) {
   .header-button {
-    font-size: 22px;
-    padding: 0.6rem 1rem;
+    font-size: 14px;
+    padding: 0.6rem 0.4rem;
 
     ion-icon {
-      margin-right: 0.4rem;
-      font-size: 24px;
+      margin-right: 0;
+      font-size: 20px;
     }
   }
 
   .cart-button ion-icon,
   .logout-button ion-icon {
-    font-size: 26px;
+    font-size: 22px;
   }
 }

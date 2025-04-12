@@ -1,0 +1,17 @@
+<ion-content [fullscreen]="true" class="content-wrapper">
+  <app-header></app-header> <br><br>
+
+  <div class="map-container">
+    <div id="map"></div> <!-- Aquí agregamos una clase para los estilos -->
+  </div>
+
+  <!-- Botón para obtener ubicación con el mismo estilo que el de registrar -->
+  <ion-button expand="block" color="primary" (click)="getLocationAndAddMarker()" style="margin: 16px;">
+    Obtener ubicación
+  </ion-button>
+
+  <!-- Botón para registrar ubicación -->
+  <ion-button expand="block" color="success" (click)="registrarUbicacion()" style="margin: 16px;">
+    Registrar ubicación
+  </ion-button>
+</ion-content>

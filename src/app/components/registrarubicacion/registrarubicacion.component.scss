@@ -1,0 +1,44 @@
+/* Estilos principales */
+ion-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;  /* Espacio entre los elementos */
+  padding: 16px;  /* Agrega un padding general */
+}
+
+ion-item {
+  --padding-start: 0;  /* Elimina el padding izquierdo en los elementos */
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 767px) {
+  .map-container {
+    height: 300px;  /* Hacemos el mapa más pequeño en pantallas pequeñas */
+  }
+
+  ion-button {
+    margin: 8px 0;  /* Menos margen entre botones en pantallas pequeñas */
+  }
+}
+
+/* Estilos para pantallas medianas (tabletas) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .map-container {
+    height: 400px;  /* Ajustamos el tamaño del mapa en pantallas medianas */
+  }
+
+  ion-button {
+    margin: 12px 0;  /* Un poco más de espacio entre los botones */
+  }
+}
+
+/* Estilos para pantallas grandes (computadoras de escritorio) */
+@media (min-width: 1025px) {
+  .map-container {
+    height: 500px;  /* Mapa más grande en pantallas grandes */
+  }
+
+  ion-button {
+    margin: 16px 0;  /* Más espacio entre los botones en pantallas grandes */
+  }
+}

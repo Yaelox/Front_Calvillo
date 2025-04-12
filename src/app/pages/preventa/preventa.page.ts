@@ -157,25 +157,19 @@ export class PreventaPage   implements OnInit {
     }
   } 
   private initMap(): void {
-    // Inicializar el mapa
     this.map = L.map('map', { zoomControl: true }).setView(this.aguascalientesCoords, 12);
-
-    // Cargar el mapa base
+  
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors',
     }).addTo(this.map);
-
-    // Agregar el marcador dorado en Calvillo
+  
     L.marker(this.calvilloCoords)
       .addTo(this.map)
       .bindPopup('<b>Matriz</b><br>Mi Crush de Calvillo');
-
-    // Recalcular el tamaño del mapa después de cargar
-    setTimeout(() => {
-      this.map?.invalidateSize();
-    }, 100);
+  
+    this.map.invalidateSize(); // Recalcular inmediatamente el tamaño
   }
-
+  
    // Función para resetear el mapa a las coordenadas iniciales
    resetMap(): void {
     if (this.map) {

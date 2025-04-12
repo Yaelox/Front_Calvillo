@@ -72,6 +72,26 @@
       </ion-card-content>
     </ion-card>
 
+
+   <!-- Selección de Tienda / Ubicación -->
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Seleccionar Tienda</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-item>
+      <ion-label>Ubicación</ion-label>
+      <ion-select [(ngModel)]="ubicacionSeleccionada" interface="popover" name="id_ubicacion">
+        <ion-select-option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion">
+          {{ ubicacion.nombre_tienda }}
+        </ion-select-option>
+      </ion-select>      
+    </ion-item>
+    
+  </ion-card-content>
+</ion-card>
+
+
     <!-- Sección Comentarios -->
     <ion-card>
       <ion-card-header>

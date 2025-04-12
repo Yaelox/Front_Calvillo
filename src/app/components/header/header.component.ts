@@ -68,7 +68,7 @@ export class HeaderComponent implements OnInit {
   }
 
   goToPreventa() {
-    this.navCtrl.navigateForward('/preventa');
+    this.navCtrl.navigateForward('/ubicacion');
   }
 
   goToContacto() {
