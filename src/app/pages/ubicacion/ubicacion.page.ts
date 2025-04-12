@@ -48,16 +48,18 @@ export class UbicacionPage implements OnInit, AfterViewInit {
     const agsLat = 21.8818;
     const agsLon = -102.2910;
   
-    this.map = L.map('map').setView([agsLat, agsLon], 12);
+    this.map = L.map('map', {
+      center: [agsLat, agsLon],
+      zoom: 12,
+    });
   
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors',
     }).addTo(this.map);
   
-    // ⚠️ Asegúrate que invalidateSize se llame después de un pequeño delay
     setTimeout(() => {
       this.map?.invalidateSize();
-    }, 300); // Ajusta el tiempo si es necesario
+    }, 300);
   
     this.loadUbicaciones();
   }
@@ -159,23 +161,67 @@ export class UbicacionPage implements OnInit, AfterViewInit {
         return 'blue';
     }
   }
+  abrirRutaEnGoogleMaps(): void {
+    if (!navigator.geolocation) {
+      alert('La geolocalización no es compatible con este dispositivo.');
+      return;
+    }
+  
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const currentLat = position.coords.latitude;
+        const currentLon = position.coords.longitude;
+        const origin = `${currentLat},${currentLon}`;
+  
+        this.ubicacionesService.getUbicacionesConMotivo().subscribe({
+          next: (ubicaciones) => {
+            if (ubicaciones.length < 1) {
+              alert('No hay ubicaciones suficientes para trazar una ruta.');
+              return;
+            }
+  
+            const destination = `${ubicaciones[ubicaciones.length - 1].latitud},${ubicaciones[ubicaciones.length - 1].longitud}`;
+            
+            const waypoints = ubicaciones
+              .slice(0, -1)
+              .map(u => `${u.latitud},${u.longitud}`)
+              .join('|');
+  
+            const url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&waypoints=${waypoints}`;
+            window.open(url, '_blank');
+          },
+          error: (err) => {
+            console.error('Error obteniendo ubicaciones para Google Maps:', err);
+          }
+        });
+      },
+      (error) => {
+        console.error('Error obteniendo la ubicación actual:', error);
+        alert('No se pudo obtener tu ubicación actual.');
+      }
+    );
+  }
+  
   
   loadUbicaciones(): void {
     this.ubicacionesService.getUbicacionesConMotivo().subscribe({
       next: (ubicaciones) => {
         // Borrar los marcadores previos (excepto el tile layer base)
         this.map?.eachLayer((layer) => {
-          if (layer instanceof L.Marker) {
+          if (layer instanceof L.Marker || layer instanceof L.Polyline) {
             this.map?.removeLayer(layer);
           }
         });
   
-        // Agregar los nuevos marcadores
+        // Declarar 'coordinates' como un arreglo de tuplas [number, number]
+        const coordinates: [number, number][] = [];  // Tipo explícito
+  
+        // Agregar los nuevos marcadores y coordinar las ubicaciones para la ruta
         ubicaciones.forEach((ubicacion) => {
           const googleMapsUrl = `https://www.google.com/maps?q=${ubicacion.latitud},${ubicacion.longitud}`;
-  
           const iconColor = this.getIconUrlByMotivo(ubicacion.motivo);
-          
+  
+          // Crear el marcador
           const marker = L.marker([ubicacion.latitud, ubicacion.longitud], {
             icon: L.icon({
               iconUrl: iconColor,
@@ -184,12 +230,28 @@ export class UbicacionPage implements OnInit, AfterViewInit {
             }),
           }).addTo(this.map!);
   
+          // Agregar el popup con el enlace a Google Maps
           marker.bindPopup(`
             <strong>${ubicacion.nombre_tienda}</strong><br>
             <strong>${new Date(ubicacion.fecha_registro).toLocaleString()}</strong><br>
-            <a href="${googleMapsUrl}" target="_blank">Ver en Google Maps</a>
+            <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer">Ver en Google Maps</a>
           `);
+  
+          // Agregar las coordenadas de la ubicación al arreglo de coordenadas
+          coordinates.push([ubicacion.latitud, ubicacion.longitud]);
         });
+  
+        // Dibujar la ruta si hay al menos 2 ubicaciones
+        if (coordinates.length > 1) {
+          const route = L.polyline(coordinates, {
+            color: 'blue', // Puedes cambiar el color de la ruta aquí
+            weight: 4,     // Grosor de la línea
+            opacity: 0.7,  // Opacidad de la línea
+          }).addTo(this.map!);
+  
+          // Ajustar el mapa para que la ruta completa se vea
+          this.map?.fitBounds(route.getBounds());
+        }
       },
       error: (err) => {
         console.error('Error al cargar las ubicaciones con motivo:', err);
@@ -197,3 +259,4 @@ export class UbicacionPage implements OnInit, AfterViewInit {
     });
   }
 }  
+
