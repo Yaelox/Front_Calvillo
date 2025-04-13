@@ -36,10 +36,11 @@
           <p>Usuarios</p> 
         </ion-item>
         
+        <!---
         <ion-item *ngIf="isAdmin" button (click)="goToTienda()">
           <ion-icon name="storefront" slot="start"></ion-icon>
           <p> Tiendas </p> 
-        </ion-item>
+        </ion-item> -->
         
         <ion-item *ngIf="isAdmin || isEmpleado" button (click)="goToPedidos()">
           <ion-icon name="boat" slot="start"></ion-icon> 
