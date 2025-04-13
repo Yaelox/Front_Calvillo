@@ -23,16 +23,16 @@
       </ion-button> -->
 
 
-      <ion-button *ngIf="isEmpleado|| isAdmin" fill="clear" (click)="goToFotos()" class="header-button">
+      <ion-button *ngIf="isRepartidor|| isAdmin" fill="clear" (click)="goToFotos()" class="header-button">
         <ion-icon name="camera-outline" slot="start"></ion-icon> Subir-fotos
       </ion-button>
 
-      <ion-button *ngIf="isEmpleado|| isAdmin" fill="clear" (click)="goToPreventa()" class="header-button">
+      <ion-button *ngIf="isRepartidor|| isAdmin" fill="clear" (click)="goToPreventa()" class="header-button">
         <ion-icon name="storefront" slot="start"></ion-icon> Tiendas
       </ion-button>
 
     
-      <ion-button *ngIf="isEmpleado || isAdmin || isCliente" fill="clear" (click)="goToTienda()" class="header-button">
+      <ion-button *ngIf="isRepartidor|| isAdmin " fill="clear" (click)="goToTienda()" class="header-button">
         <ion-icon name="storefront" slot="start"></ion-icon> Pedidos
       </ion-button> 
 
