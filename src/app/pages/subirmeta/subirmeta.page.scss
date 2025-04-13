@@ -1,0 +1,34 @@
+/* Contenedor del botón */
+.reload-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px;
+  }
+  
+  /* Estilo del botón */
+  .reload-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 200px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Efecto de hover */
+  .reload-button:hover {
+    background-color: #007bff;
+    transform: scale(1.05);
+  }
+  
+  /* Estilos para pantallas más pequeñas */
+  @media (max-width: 768px) {
+    .reload-button {
+      font-size: 14px;
+      padding: 8px 16px;
+      max-width: 180px;
+    }
+  }

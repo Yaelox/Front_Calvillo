@@ -126,6 +126,10 @@ const routes: Routes = [
     path: 'subirmeta',
     loadChildren: () => import('./pages/subirmeta/subirmeta.module').then( m => m.SubirmetaPageModule)
   },
+  {
+    path: 'actualizar',
+    loadChildren: () => import('./pages/actualizar/actualizar.module').then( m => m.ActualizarPageModule)
+  },
 ];
 
 @NgModule({

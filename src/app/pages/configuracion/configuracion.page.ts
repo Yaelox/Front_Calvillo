@@ -26,6 +26,9 @@ export class ConfiguracionPage implements OnInit {
     fecha_registro: ''
   };
 
+  recargarPagina() {
+    window.location.reload();
+  }
   isEditing: boolean = false;
   isLoading: boolean = false;
   updateSuccess: boolean = false;

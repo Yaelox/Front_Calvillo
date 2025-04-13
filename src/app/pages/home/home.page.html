@@ -2,11 +2,9 @@
   <app-header></app-header>
   <!-- Encabezado de la página -->
 
-
   <!-- Información de la tienda -->
   <div class="store-info">
     <img src="assets/images/logo-final.jpeg" alt="Mi Crush de Guayaba" class="store-image" />
-
     <h1>Bienvenido a Mi Crush de Guayaba</h1>
     <p>
       ¡Descubre los dulces más deliciosos y tradicionales de Calvillo! 
@@ -64,6 +62,13 @@
       </ion-card-content>
     </ion-card>
   </div>
+
+  <!-- Botón de recargar página -->
+<div class="reload-container">
+  <ion-button class="reload-button" (click)="recargarPagina()">
+    Recargar Página
+  </ion-button>
+</div>
 
   <app-footer></app-footer>
 </ion-content>

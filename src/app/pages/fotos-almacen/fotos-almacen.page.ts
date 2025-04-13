@@ -45,6 +45,10 @@ export class FotosAlmacenPage implements OnInit {
     await modal.present();
   }
 
+  recargarPagina() {
+    window.location.reload();
+  }
+  
   onFechaSeleccionada(valor: string | string[]) {
     const fecha = Array.isArray(valor) ? valor[0] : valor;
     console.log('Fecha seleccionada:', fecha);  // Verifica qué fecha estás recibiendo
@@ -64,3 +68,4 @@ export class FotosAlmacenPage implements OnInit {
     }
   }
 }
+

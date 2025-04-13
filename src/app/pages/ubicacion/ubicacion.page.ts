@@ -202,6 +202,9 @@ export class UbicacionPage implements OnInit, AfterViewInit {
     );
   }
   
+  recargarPagina() {
+    window.location.reload();
+  }
   
   loadUbicaciones(): void {
     this.ubicacionesService.getUbicacionesConMotivo().subscribe({

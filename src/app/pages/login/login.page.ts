@@ -39,6 +39,12 @@ export class LoginPage {
   goToRegister() {
     this.navCtrl.navigateForward('/register'); // Redirige a la página de registro
   }
+
+    // Función para navegar a la página de registro
+    goToActualizar() {
+      this.navCtrl.navigateForward('/actualizar'); // Redirige a la página de registro
+    }
+
 // Función de login utilizando Axios
 async onLogin() {
   if (this.loginForm.valid) {

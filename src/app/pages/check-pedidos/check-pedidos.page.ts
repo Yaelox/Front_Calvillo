@@ -111,7 +111,9 @@ productosSeleccionados: any[] = [];
     if (!latitud || !longitud) return '';
     return `https://www.google.com/maps?q=${latitud},${longitud}`;
   }
-
+  recargarPagina() {
+    window.location.reload();
+  }
   // Método para generar la ruta desde Calvillo hasta el pedido
   generarRutaGoogleMaps(lat: number, lon: number): string {
     const [latitud, longitud] = this.calvilloCoords;

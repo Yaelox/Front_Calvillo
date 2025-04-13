@@ -49,6 +49,10 @@ export class TiendaOnlinePage implements OnInit {
     }
   }
 
+  recargarPagina() {
+    window.location.reload();
+  }
+  
   addToCart(product: any) {
     console.log('Producto añadido al carrito:', product);  // Depuración del producto que se añade
     this.cartService.addToCart(product);  // Llamada al servicio para agregar el producto al carrito

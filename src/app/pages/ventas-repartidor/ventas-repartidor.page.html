@@ -2,6 +2,13 @@
 
 <app-header></app-header>
 
+    <!-- Botón de recargar página -->
+    <div class="reload-container">
+      <ion-button class="reload-button" (click)="recargarPagina()">
+        Recargar Página
+      </ion-button>
+    </div>
+    
   <form (ngSubmit)="registrarVenta()" #ventaForm="ngForm">
     <ion-card>
       <ion-card-header>

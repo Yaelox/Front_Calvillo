@@ -1,6 +1,15 @@
 <ion-content [fullscreen]="true" class="content-wrapper">
 
 <app-header></app-header>
+
+
+  <!-- Botón de recargar página -->
+  <div style="text-align: center; margin-top: 20px;">
+    <ion-button color="primary" (click)="recargarPagina()">
+      Recargar Página
+    </ion-button>
+  </div>
+
   <ion-list>
     <ion-item *ngFor="let product of products" lines="none" class="product-card">
       <ion-thumbnail slot="start">

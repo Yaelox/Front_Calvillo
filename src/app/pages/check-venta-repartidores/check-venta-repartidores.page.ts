@@ -115,6 +115,9 @@ export class CheckVentaRepartidoresPage implements OnInit {
     this.obtenerVentasPorUsuario(id);
   }
 
+  recargarPagina() {
+    window.location.reload();
+  }
   // Abre el modal con los detalles de la venta
   openVentaDetalles(venta: Venta) {
     this.ventaSeleccionada = venta; // Guarda la venta seleccionada

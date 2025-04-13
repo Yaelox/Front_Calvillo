@@ -31,6 +31,10 @@ export class InventarioPage implements OnInit {
     this.loadProducts();
   }
 
+  
+  recargarPagina() {
+    window.location.reload();
+  }
   // Abrir modal para agregar producto
   async openAddProductModal() {
     const modal = await this.modalCtrl.create({

@@ -42,6 +42,10 @@ export class SubirmetaPage implements OnInit {
     });
   }
 
+  recargarPagina() {
+    window.location.reload();
+  }
+  
   guardarMeta() {
     if (this.nuevaMeta == null || this.nuevaMeta <= 0) {
       this.mensaje = 'Ingresa una meta válida';

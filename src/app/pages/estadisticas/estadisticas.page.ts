@@ -48,7 +48,9 @@ export class EstadisticasPage implements OnInit {
     this.loadProductoMasVendido();
   }
 
-
+  recargarPagina() {
+    window.location.reload();
+  }
   /** 
   loadVentasPorZona() {
     this.estadisticasService.getVentasPorZona().subscribe((data) => {

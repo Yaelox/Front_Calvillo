@@ -16,4 +16,8 @@ export class HomePage {
 
   constructor() {}
 
+  recargarPagina() {
+    window.location.reload();
+  }
+  
 }

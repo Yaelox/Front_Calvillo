@@ -299,7 +299,9 @@ export class VentasRepartidorPage implements OnInit {
       }
     );
   }
-  
+  recargarPagina() {
+    window.location.reload();
+  }
   motivosRojo: string[] = [
     'No tiene espacio en el mostrador',
     'No se vende este tipo de dulce aquí',

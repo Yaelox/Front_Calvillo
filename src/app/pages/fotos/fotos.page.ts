@@ -119,6 +119,10 @@ export class FotosPage implements OnInit {
     }
   }
 
+  recargarPagina() {
+    window.location.reload();
+  }
+  
   editarFoto(foto: Foto) {
     this.fotoEditando = { ...foto };
     this.titulo = this.fotoEditando.titulo;

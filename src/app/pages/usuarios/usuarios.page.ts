@@ -102,6 +102,9 @@ export class UsuariosPage implements OnInit {
     }
   }
 
+  recargarPagina() {
+    window.location.reload();
+  }
   async openEditModal(usuario: any) {
     console.log("🟢 Intentando abrir modal de edición para usuario:", usuario);
 
