@@ -1,0 +1,22 @@
+<app-header></app-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Meta del Día</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-text *ngIf="metaExistente" color="success">
+        <p>{{ mensaje }}</p>
+      </ion-text>
+
+      <div *ngIf="!metaExistente">
+        <ion-item>
+          <ion-label position="floating">Meta de contenedores</ion-label>
+          <ion-input type="number" [(ngModel)]="nuevaMeta"></ion-input>
+        </ion-item>
+        <ion-button expand="block" (click)="guardarMeta()">Guardar Meta</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

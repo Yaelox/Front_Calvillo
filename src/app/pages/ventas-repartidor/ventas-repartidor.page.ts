@@ -221,7 +221,6 @@ export class VentasRepartidorPage implements OnInit {
       this.router.navigate(['/home']);
     }
   }
-
   registrarVenta() {
     // Validar si los campos esenciales están completos
     if (this.total <= 0 || this.carrito.length === 0 || !this.descripcionRechazo) {
@@ -276,16 +275,10 @@ export class VentasRepartidorPage implements OnInit {
         this.descripcionRechazo = '';
         this.motivoSeleccionado = '';
   
+        // Ahora solo mostramos la modal sin necesidad de pasarle props
         try {
-          const metaData = await this.metaService.getMetaDelDia().toPromise();
-  
           const modal = await this.modalcontroller.create({
-            component: MetaDiaComponent,
-            componentProps: {
-              meta: metaData?.meta,
-              vendidos: metaData?.vendidos,
-              progreso: metaData?.progreso
-            }
+            component: MetaDiaComponent, // Solo abrimos la modal
           });
   
           await modal.present();
@@ -296,7 +289,7 @@ export class VentasRepartidorPage implements OnInit {
           }
   
         } catch (error) {
-          console.error('Error al obtener los datos de la meta:', error);
+          console.error('Error al mostrar la modal de meta:', error);
           this.router.navigate(['/home']);
         }
       },
@@ -306,9 +299,6 @@ export class VentasRepartidorPage implements OnInit {
       }
     );
   }
-  
-
-  
   
   motivosRojo: string[] = [
     'No tiene espacio en el mostrador',

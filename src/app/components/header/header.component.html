@@ -16,6 +16,10 @@
         <ion-icon name="settings" slot="start"></ion-icon> Configuración
       </ion-button>
 
+      <ion-button *ngIf="isAdmin" fill="clear" (click)="goToMeta()" class="header-button">
+        <ion-icon name="flag" slot="start"></ion-icon> Meta-del-Dia
+      </ion-button>
+
     
       <!---
       <ion-button *ngIf="isEmpleado|| isAdmin" fill="clear" (click)="goToRechazos()" class="header-button">

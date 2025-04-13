@@ -19,4 +19,9 @@ export class MetaService {
   getMetaDelDia(): Observable<MetaVentaResponse> {
     return this.http.get<MetaVentaResponse>(`${this.apiUrl}/meta`);
   }
+
+  // Establecer la meta del día
+  postMetadeldia(meta_contenedores: number): Observable<any> {
+    return this.http.post(`${this.apiUrl}/meta`, { meta_contenedores });
+  }
 }

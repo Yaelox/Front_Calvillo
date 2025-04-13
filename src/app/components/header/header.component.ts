@@ -71,6 +71,10 @@ export class HeaderComponent implements OnInit {
     this.navCtrl.navigateForward('/ubicacion');
   }
 
+  
+  goToMeta() {
+    this.navCtrl.navigateForward('/subirmeta');
+  }
   goToContacto() {
     this.navCtrl.navigateForward('/contacto');
   }

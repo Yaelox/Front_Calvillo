@@ -111,10 +111,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/rechazos/rechazos.module').then( m => m.RechazosPageModule)
   },
   {
-    path: 'meta-del-dia',
-    loadChildren: () => import('./pages/meta-del-dia/meta-del-dia.module').then( m => m.MetaDelDiaPageModule)
-  },
-  {
     path: 'fotos',
     loadChildren: () => import('./pages/fotos/fotos-routing.module').then( m => m.FotosPageRoutingModule)
   },
@@ -125,7 +121,11 @@ const routes: Routes = [
   {
     path: 'ubicacion',
     loadChildren: () => import('./pages/ubicacion/ubicacion.module').then( m => m.UbicacionPageModule)
-  }
+  },
+  {
+    path: 'subirmeta',
+    loadChildren: () => import('./pages/subirmeta/subirmeta.module').then( m => m.SubirmetaPageModule)
+  },
 ];
 
 @NgModule({

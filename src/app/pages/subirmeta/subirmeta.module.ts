@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MetaDelDiaPageRoutingModule } from './meta-del-dia-routing.module';
+import { SubirmetaPageRoutingModule } from './subirmeta-routing.module';
 
-import { MetaDelDiaPage } from './meta-del-dia.page';
+import { SubirmetaPage } from './subirmeta.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MetaDelDiaPageRoutingModule
+    SubirmetaPageRoutingModule
   ],
   declarations: []
 })
-export class MetaDelDiaPageModule {}
+export class SubirmetaPageModule {}

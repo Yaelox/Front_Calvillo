@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MetaDelDiaPage } from './meta-del-dia.page';
+import { SubirmetaPage } from './subirmeta.page';
 
-describe('MetaDelDiaPage', () => {
-  let component: MetaDelDiaPage;
-  let fixture: ComponentFixture<MetaDelDiaPage>;
+describe('SubirmetaPage', () => {
+  let component: SubirmetaPage;
+  let fixture: ComponentFixture<SubirmetaPage>;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MetaDelDiaPage);
+    fixture = TestBed.createComponent(SubirmetaPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

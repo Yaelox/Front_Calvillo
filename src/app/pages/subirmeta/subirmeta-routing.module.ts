@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { MetaDelDiaPage } from './meta-del-dia.page';
+import { SubirmetaPage } from './subirmeta.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: MetaDelDiaPage
+    component: SubirmetaPage
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class MetaDelDiaPageRoutingModule {}
+export class SubirmetaPageRoutingModule {}

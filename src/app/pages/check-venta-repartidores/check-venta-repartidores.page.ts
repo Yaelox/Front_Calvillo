@@ -15,9 +15,11 @@ import { ProductService, Producto } from 'src/app/services/product.service';
 })
 export class CheckVentaRepartidoresPage implements OnInit {
   repartidores: any[] = [];
+  administradores: any[] = [];  // Agregamos un array para los administradores
   productos: Producto[] = [];
-  ventas: Venta[] = []; // Este array debe contener objetos de tipo 'Venta'
+  ventas: Venta[] = [];  // Este array debe contener objetos de tipo 'Venta'
   repartidorSeleccionado: number | null = null;
+  administradorSeleccionado: number | null = null;  // Para seleccionar un administrador
   loading: boolean = false;
   ventaDetalles: { [key: number]: boolean } = {};
   isModalOpen: boolean = false;
@@ -32,6 +34,7 @@ export class CheckVentaRepartidoresPage implements OnInit {
 
   ngOnInit() {
     this.obtenerRepartidores();
+    this.obtenerAdministradores();  // Llamada a la función para obtener administradores
     this.obtenerProductos();
   }
 
@@ -50,6 +53,18 @@ export class CheckVentaRepartidoresPage implements OnInit {
     );
   }
 
+  // Obtiene la lista de administradores
+  obtenerAdministradores() {
+    this.userService.getUsers().subscribe(
+      (data: User[]) => {
+        this.administradores = data.filter((user: User) => user.tipo_usuario === 'administrador');
+      },
+      error => {
+        console.error('Error al obtener los administradores:', error);
+      }
+    );
+  }
+
   // Fetch the products
   obtenerProductos() {
     this.productService.getProducts().subscribe(
@@ -61,43 +76,43 @@ export class CheckVentaRepartidoresPage implements OnInit {
       }
     );
   }
-
-  // Obtiene las ventas por repartidor seleccionado
-  obtenerVentasPorRepartidor(idRepartidor: number) {
+  obtenerVentasPorUsuario(idUsuario: number) {
     this.loading = true;
-    this.totalVentas = 0; // Reset totalVentas each time a new repartidor is selected
-
-    this.repartidorService.obtenerVentasPorRepartidor(idRepartidor).subscribe(
+    this.totalVentas = 0;
+  
+    this.repartidorService.obtenerVentasPorRepartidor(idUsuario).subscribe( // puede renombrarse en tu servicio
       (data: Venta[]) => {
         this.ventas = data;
-
-        // Mapear los detalles de las ventas para agregar el nombre del producto
+  
         this.ventas.forEach(venta => {
           venta.detalles.forEach(detalle => {
             const producto = this.productos.find(p => p.id_producto === detalle.producto_id);
             if (producto) {
-              detalle.nombre_producto = producto.nombre; // Agregar el nombre del producto al detalle
+              detalle.nombre_producto = producto.nombre;
             }
           });
-
-          // Sumar el total de ventas
           this.totalVentas += venta.total;
         });
-
-        this.loading = false; // Apaga el estado de carga
+  
+        this.loading = false;
       },
       (error) => {
-        console.error('Error al obtener las ventas:', error); // Loguea el error en la consola
-        this.loading = false; // Apaga el estado de carga
-        alert('Hubo un problema al cargar las ventas. Intenta de nuevo más tarde.'); // Muestra un mensaje de error al usuario
+        console.error('Error al obtener las ventas:', error);
+        this.loading = false;
+        alert('Hubo un problema al cargar las ventas.');
       }
     );
   }
-
-  // Maneja la selección de un repartidor
-  seleccionarRepartidor(idRepartidor: number) {
-    this.repartidorSeleccionado = idRepartidor;
-    this.obtenerVentasPorRepartidor(idRepartidor); // Llama al servicio para obtener ventas del repartidor
+  seleccionarRepartidor(id: number) {
+    this.repartidorSeleccionado = id;
+    this.administradorSeleccionado = null; // deseleccionar administrador
+    this.obtenerVentasPorUsuario(id);
+  }
+  
+  seleccionarAdministrador(id: number) {
+    this.administradorSeleccionado = id;
+    this.repartidorSeleccionado = null; // deseleccionar repartidor
+    this.obtenerVentasPorUsuario(id);
   }
 
   // Abre el modal con los detalles de la venta
