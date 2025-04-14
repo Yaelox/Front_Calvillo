@@ -69,7 +69,7 @@ ion-toolbar {
   }
 }
 
-/* Responsive styles que NO afectan el header */
+/* Responsive styles */
 @media (max-width: 1024px) {
   .header-button {
     font-size: 18px;
@@ -87,40 +87,37 @@ ion-toolbar {
 
 @media (max-width: 768px) {
   .header-right {
-    gap: 0.6rem;
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .header-button {
-    font-size: 20px;
-    padding: 0.5rem 0.9rem;
+  .header-button,
+  .logout-button,
+  .cart-button {
+    width: 100%;
+    justify-content: flex-start;
+    font-size: 18px;
+    padding: 0.6rem 1rem;
 
     ion-icon {
-      font-size: 22px;
+      font-size: 20px;
+      margin-right: 0.5rem;
     }
   }
 
-  .logout-button {
-    font-size: 20px;
-  }
-
   .cart-button ion-icon {
-    font-size: 26px;
+    font-size: 24px;
   }
 }
 
 @media (max-width: 480px) {
-  .header-button {
-    font-size: 22px;
-    padding: 0.6rem 1rem;
+  .header-button,
+  .logout-button,
+  .cart-button {
+    font-size: 20px;
 
     ion-icon {
-      margin-right: 0.4rem;
-      font-size: 24px;
+      font-size: 22px;
     }
-  }
-
-  .cart-button ion-icon,
-  .logout-button ion-icon {
-    font-size: 26px;
   }
 }
