@@ -61,7 +61,7 @@
           <p>Ventas-Representantes de Marca</p>
         </ion-item>
         
-        <ion-item *ngIf="isAdmin" button (click)="goToEstadisticas()">
+        <ion-item *ngIf="isAdmin || isEmpleado" button (click)="goToEstadisticas()">
           <ion-icon name="bar-chart" slot="start"></ion-icon>
           <p>Estadísticas</p>
         </ion-item>
