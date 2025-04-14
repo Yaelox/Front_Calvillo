@@ -60,25 +60,40 @@ export class EstadisticasPage implements OnInit {
   }
     */
 
+  // Cargar ventas por mes desde la API
   loadVentasPorMes() {
-    this.estadisticasService.getVentasPorMes().subscribe((data) => {
-      this.ventasMes = data;
-      this.checkDataLoaded();
-    });
+    this.estadisticasService.getVentasPorMes().subscribe(
+      (data) => {
+        // Verifica si 'data' tiene los datos correctamente
+        if (data && Array.isArray(data)) {
+          this.ventasMes = data;
+        } else {
+          this.ventasMes = [];  // En caso de que no haya datos válidos
+        }
+      },
+      (error) => {
+        console.error('Error al cargar las ventas por mes:', error);
+        this.ventasMes = [];  // En caso de error, mostramos un array vacío
+      }
+    )
   }
-
-  loadVentasPorSemana() {
-    this.estadisticasService.getVentasPorSemana().subscribe((data: VentasPorSemana[]) => {
-      this.ventasSemana = data.map(item => ({
-        mes: item.mes,
-        semanas: item.semanas.map(semana => ({
-          semana: semana.semana,
-          ventas: semana.ventas,
-        })),
-      }));
-      this.checkDataLoaded();
-    });
-  }
+// Cargar ventas por semana desde la API
+loadVentasPorSemana() {
+  this.estadisticasService.getVentasPorSemana().subscribe(
+    (data) => {
+      // Verifica si 'data' tiene los datos correctamente
+      if (data && Array.isArray(data)) {
+        this.ventasSemana = data;
+      } else {
+        this.ventasSemana = [];  // En caso de que no haya datos válidos
+      }
+    },
+    (error) => {
+      console.error('Error al cargar las ventas por semana:', error);
+      this.ventasSemana = [];  // En caso de error, mostramos un array vacío
+    }
+  );
+}
 
   loadVentasPorAnio() {
     this.estadisticasService.getVentasPorAño().subscribe((data) => {

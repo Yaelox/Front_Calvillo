@@ -32,59 +32,122 @@
 
     Ventas por Zona -->
 
-    <!-- Ventas por Mes -->
-    <section class="ventas-mes">
-      <h2>📆 Ventas por Mes</h2>
-      <table *ngIf="ventasMes?.length">
-        <thead>
-          <tr>
-            <th>Mes</th>
-            <th>Total Vendido</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let mes of ventasMes">
-            <td>{{ mes.mes }}</td>
-            <td><strong>${{ mes.total_ventas | number }}</strong></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+      <section class="ventas-dia">
+        <h2>📆 Ventas por Día</h2>
+      
+        <div *ngIf="ventasDia.length > 0; else sinVentas">
+          <div class="card-container">
+            <div class="card" *ngFor="let dia of ventasDia">
+              <h3>{{ dia?.dia_semana }} - {{ dia?.dia }}</h3>
+      
+              <table *ngIf="dia?.productos?.length > 0">
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let producto of dia.productos">
+                    <td>{{ producto?.producto }}</td>
+                    <td>{{ producto?.cantidad_vendida }}</td>
+                    <td><strong>${{ producto?.total_por_producto | number:'1.0-2' }}</strong></td>
+                  </tr>
+                </tbody>
+              </table>
+      
+              <p *ngIf="!dia?.productos?.length">No hay productos vendidos este día.</p>
+            </div>
+          </div>
+        </div>
+      
+        <ng-template #sinVentas>
+          <p>No hay datos de ventas para mostrar.</p>
+        </ng-template>
+      </section>
+      
+      <!-- Ventas por Mes y Producto -->
+<section class="ventas-mes-producto">
+  <h2>📊 Ventas por Mes y Producto</h2>
+  <table *ngIf="ventasMes.length > 0; else sinVentas">
+    <thead>
+      <tr>
+        <th>Mes</th>
+        <th>Producto</th>
+        <th>Unidades Vendidas</th>
+        <th>Total por Producto</th>
+        <th>Total General</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of ventasMes">
+        <td>{{ item.mes }} ({{ item.mes_numero }})</td>
+        <td>{{ item.producto }}</td>
+        <td>{{ item.total_unidades }}</td>
+        <td><strong>${{ item.total_por_producto | number }}</strong></td>
+        <td><strong>${{ item.total_ventas | number }}</strong></td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #sinVentas>
+    <p>No hay datos de ventas para mostrar.</p>
+  </ng-template>
+</section>
+<!-- Ventas por Semana y Producto -->
+<section class="ventas-semana">
+  <h2>📅 Ventas por Semana y Producto</h2>
+  
+  <table *ngIf="ventasSemana.length > 0; else sinVentas">
+    <thead>
+      <tr>
+        <th>Mes</th>
+        <th>Semana</th>
+        <th>Producto</th>
+        <th>Cantidad Vendida</th>
+        <th>Total por Producto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of ventasSemana">
+        <td [attr.rowspan]="item.semanas.length">
+          {{ item.mes }}
+        </td>
+        <ng-container *ngFor="let semana of item.semanas">
+          <td [attr.rowspan]="semana.productos.length">
+            {{ semana.semana }}
+          </td>
+          <ng-container *ngFor="let producto of semana.productos">
+            <td>{{ producto.producto }}</td>
+            <td>{{ producto.cantidad_vendida }}</td>
+            <td><strong>${{ producto.total_por_producto | number }}</strong></td>
+          </ng-container>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
 
-    <!-- Ventas por Semana -->
-    <section class="ventas-semana">
-      <h2>📅 Ventas por Semana</h2>
-      <table *ngIf="ventasSemana.length > 0">
-        <thead>
-          <tr>
-            <th>Mes</th>
-            <th>Semana</th>
-            <th>Ventas</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let mes of ventasSemana">
-            <td>{{ mes.mes }}</td>
-            <ng-container *ngFor="let semana of mes.semanas">
-              <td>{{ semana.semana }}</td>
-              <td><strong>${{ semana.ventas | number }}</strong></td>
-            </ng-container>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+  <ng-template #sinVentas>
+    <p>No hay datos de ventas para mostrar.</p>
+  </ng-template>
+</section>
 
-  <!-- Ventas por Año -->
+    <!-- Ventas por Año y Producto -->
     <section class="ventas-anio">
-      <h2>📈 Ventas por Año</h2>
+      <h2>📈 Ventas por Año y Producto</h2>
+
       <div class="card-container" *ngIf="ventasAnio.length > 0">
-        <div class="card" *ngFor="let anio of ventasAnio">
-          <h3>Año: {{ anio['año'] }}</h3>  <!-- Usé corchetes para acceder a 'año' -->
-          <p><strong>Total Vendido:</strong> ${{ anio.total_ventas | number }}</p>
+        <div class="card" *ngFor="let item of ventasAnio">
+          <h3>Año: {{ item.ano }}</h3>
+          <p><strong>Producto:</strong> {{ item.producto }}</p>
+          <p><strong>Cantidad Vendida:</strong> {{ item.cantidad_total }}</p>
+          <p><strong>Total por Producto:</strong> ${{ item.total_por_producto | number }}</p>
         </div>
       </div>
+
       <p *ngIf="ventasAnio.length === 0">No hay datos de ventas por año.</p>
     </section>
+
 
 
     <!-- Producto Más Vendido -->
