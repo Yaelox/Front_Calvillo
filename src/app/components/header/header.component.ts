@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     const userType = localStorage.getItem('tipo_usuario');
     this.isAdmin = userType === 'administrador';
-    this.isRepartidor = userType === 'repartidor';
+    this.isRepartidor = userType === 'representante_de_marca';
     this.isEmpleado = userType === 'empleado';
     this.isCliente = userType === 'cliente';
   

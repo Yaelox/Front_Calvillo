@@ -26,7 +26,7 @@ export class AppComponent {
   }, 100);
   setTimeout(() => {
     const userType = localStorage.getItem('tipo_usuario');
-    this.isEmpleado = userType === 'empleado';
+    this.isEmpleado = userType === 'representante_de_marca';
     console.log("Usuario logueado como:", userType);
   }, 100);  // Pequeño retraso para asegurarnos de obtener los datos correctos
 }

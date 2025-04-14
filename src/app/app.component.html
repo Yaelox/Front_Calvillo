@@ -66,7 +66,7 @@
           <p>Estadísticas</p>
         </ion-item>
         
-        <ion-item *ngIf="isAdmin" button (click)="goToFotos()">
+        <ion-item *ngIf="isAdmin || isEmpleado" button (click)="goToFotos()">
           <ion-icon name="image" slot="start"></ion-icon>
           <p>Fotos Almacén</p>
         </ion-item>
