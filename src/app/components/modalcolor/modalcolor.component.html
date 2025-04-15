@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Rechazos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Detalles de la Ubicación</ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <!-- Selector de ubicaciones -->
+      <ion-item>
+        <ion-label>Seleccionar Ubicación</ion-label>
+        <ion-select [(ngModel)]="ubicacionSeleccionada.id" (ionChange)="onUbicacionChange($event)" placeholder="Selecciona una ubicación">
+          <ion-select-option *ngFor="let ubicacion of ubicaciones" [value]="ubicacion.id">{{ ubicacion.nombre_tienda }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <!-- Mostrar detalles de la ubicación seleccionada -->
+      <div class="ubicacion-detalles">
+        <p><strong>Nombre Tienda:</strong> {{ ubicacionSeleccionada?.nombre_tienda }}</p>
+        <p><strong>Fecha Registro:</strong> {{ ubicacionSeleccionada?.fecha_registro | date }}</p>
+        <p><strong>Latitud:</strong> {{ ubicacionSeleccionada?.latitud }}</p>
+        <p><strong>Longitud:</strong> {{ ubicacionSeleccionada?.longitud }}</p>
+      </div>
+
+      <!-- Selección del motivo de rechazo -->
+      <ion-item lines="full">
+        <ion-label>Motivo de rechazo</ion-label>
+        <ion-select [(ngModel)]="razonSeleccionada" interface="popover" placeholder="Seleccionar motivo">
+          <ion-select-option value="espacio">No tiene espacio en el mostrador</ion-select-option>
+          <ion-select-option value="no_dulces_tipo">No se vende este tipo de dulce aquí</ion-select-option>
+          <ion-select-option value="no_venta">No se vendió el producto aquí</ion-select-option>
+          <ion-select-option value="compra_barato">Aquí la gente compra de 1 peso</ion-select-option>
+          <ion-select-option value="caro">Le parece caro el producto</ion-select-option>
+          <ion-select-option value="no_sueltos">No vende dulces sueltos</ion-select-option>
+          <ion-select-option value="no_mano">No vende dulces que se tiene que meter la mano</ion-select-option>
+          <ion-select-option value="no_interesa">No le interesa</ion-select-option>
+          <ion-select-option value="traspaso">Va a traspasar la tienda</ion-select-option>
+          <ion-select-option value="cerrar">Va a quitar la tienda</ion-select-option>
+          <ion-select-option value="proveedor">Ya tienen proveedor</ion-select-option>
+          <ion-select-option value="roban">Se los roba la gente</ion-select-option>
+          <ion-select-option value="tardaron">Se tardaron en regresar</ion-select-option>
+        </ion-select>
+      </ion-item>
+      
+
+      <!-- Botón para guardar -->
+      <div class="button-container">
+        <ion-button expand="block" color="primary" (click)="guardarMotivo()">Guardar</ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -10,23 +10,24 @@
     Obtener ubicación
   </ion-button>
 
-   <!-- Botón para obtener ubicación con el mismo estilo que el de registrar -->
-   <ion-button expand="block" color="primary" (click)="getMotivo()" style="margin: 16px;">
-    Motivo Venta
-  </ion-button>
-
   <!-- Botón para registrar ubicación -->
   <ion-button expand="block" color="success" (click)="registrarUbicacion()" style="margin: 16px;">
     Registrar ubicación
   </ion-button>
 
-  <ion-button expand="block" color="success"  (click)="abrirRutaEnGoogleMaps()" style="margin: 16px;">
+  <!-- Botón para ver la ruta en Google Maps -->
+  <ion-button expand="block" color="success" (click)="abrirRutaEnGoogleMaps()" style="margin: 16px;">
     Ver Ruta en Google Maps
   </ion-button>
-  
 
-  <ion-button expand="block" color="success"  class="reload-button" (click)="recargarPagina()" style="margin: 16px;">
+  <!-- Botón para abrir modal con los datos de la última ubicación -->
+  <ion-button expand="block" color="warning" (click)="abrirModalRechazo()" style="margin: 16px;">
+    NO VENTA
+  </ion-button>
+
+  <!-- Botón para recargar la página -->
+  <ion-button expand="block" color="success" class="reload-button" (click)="recargarPagina()" style="margin: 16px;">
     Recargar Página
   </ion-button>
-  
+
 </ion-content>

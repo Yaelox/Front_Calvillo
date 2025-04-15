@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { RegistrarUbicacionComponent } from 'src/app/components/registrarubicacion/registrarubicacion.component';
 import { UbicacionesService, Ubicacion } from 'src/app/services/ubicacion.service';
 import { HeaderComponent } from 'src/app/components/header/header.component';
+import { ModalcolorComponent } from 'src/app/components/modalcolor/modalcolor.component';
 
 @Component({
   selector: 'app-ubicacion',
@@ -16,10 +17,10 @@ import { HeaderComponent } from 'src/app/components/header/header.component';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class UbicacionPage implements OnInit, AfterViewInit {
-  private map: L.Map | undefined;
-  private currentLat!: number;
-  private currentLon!: number;
-  ubicaciones: any[] = [];
+  private map!: L.Map;
+  currentLat!: number;
+  currentLon!: number;
+  ubicaciones: Ubicacion[] = [];
 
   constructor(
     private modalController: ModalController,
@@ -27,70 +28,59 @@ export class UbicacionPage implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    this.ubicacionesService.getUbicacionesConMotivo().subscribe({
-      next: (data) => {
-        this.ubicaciones = data;
-      },
-      error: (err) => {
-        console.error('Error cargando ubicaciones con motivo', err);
-      }
-    });
+    this.cargarUbicaciones();
   }
 
-  ngAfterViewInit(): void {
-    setTimeout(() => this.initMap(), 0); // Usar un pequeño retraso para asegurar que el DOM esté listo
+  ngAfterViewInit() {
+    setTimeout(() => this.initMap(), 0);
   }
+
   private initMap(): void {
     if (this.map) {
       this.map.remove();
     }
-  
-    const agsLat = 21.8818;
-    const agsLon = -102.2910;
-  
+
+    const center: L.LatLngExpression = [21.8818, -102.2910];
+
     this.map = L.map('map', {
-      center: [agsLat, agsLon],
-      zoom: 12,
+      center,
+      zoom: 12
     });
-  
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors',
+      attribution: '&copy; OpenStreetMap contributors'
     }).addTo(this.map);
-  
-    setTimeout(() => {
-      this.map?.invalidateSize();
-    }, 300);
-  
-    this.loadUbicaciones();
+
+    setTimeout(() => this.map.invalidateSize(), 300);
   }
-  
+
   getLocationAndAddMarker(): void {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          this.currentLat = position.coords.latitude;
-          this.currentLon = position.coords.longitude;
-
-          L.marker([this.currentLat, this.currentLon], {
-            icon: L.icon({
-              iconUrl: 'assets/images/blue_marker.png', // Marcador azul
-              iconSize: [40, 50],
-              iconAnchor: [20, 50],
-            }),
-          })
-            .addTo(this.map!)
-            .bindPopup('Tu ubicación actual')
-            .openPopup();
-
-          this.map?.setView([this.currentLat, this.currentLon], 14);
-        },
-        (error) => {
-          console.error('Error obteniendo la ubicación:', error);
-        }
-      );
-    } else {
+    if (!navigator.geolocation) {
       alert('Geolocalización no soportada.');
+      return;
     }
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        this.currentLat = pos.coords.latitude;
+        this.currentLon = pos.coords.longitude;
+
+        L.marker([this.currentLat, this.currentLon], {
+          icon: L.icon({
+            iconUrl: 'assets/images/blue_marker.png',
+            iconSize: [40, 50],
+            iconAnchor: [20, 50],
+          })
+        }).addTo(this.map)
+          .bindPopup('Tu ubicación actual')
+          .openPopup();
+
+        this.map.setView([this.currentLat, this.currentLon], 14);
+      },
+      (err) => {
+        console.error('Error obteniendo ubicación:', err);
+      }
+    );
   }
 
   async registrarUbicacion() {
@@ -103,39 +93,140 @@ export class UbicacionPage implements OnInit, AfterViewInit {
       component: RegistrarUbicacionComponent,
       componentProps: {
         lat: this.currentLat,
-        lon: this.currentLon,
-      },
+        lon: this.currentLon
+      }
     });
 
     await modal.present();
     const { data } = await modal.onDidDismiss();
 
     if (data?.confirmado) {
-      const { nombre_tienda, lat, lon } = data.data;
-
-      // Crear objeto para enviar
       const nuevaUbicacion: Ubicacion = {
-        nombre_tienda: nombre_tienda,
-        latitud: lat,
-        longitud: lon,
+        nombre_tienda: data.data.nombre_tienda,
+        latitud: data.data.lat,
+        longitud: data.data.lon,
+        motivo: 'Motivo_Azul', // Por defecto
+        fecha_registro: new Date().toISOString()
       };
 
-      // Consumir servicio para registrar en la base de datos
       this.ubicacionesService.postUbicacion(nuevaUbicacion).subscribe({
-        next: (respuesta) => {
-          console.log('Ubicación registrada en BD:', respuesta);
-
-          // Cargar las ubicaciones nuevamente después de registrar
-          this.loadUbicaciones();
-        },
-        error: (err) => {
-          console.error('Error al registrar ubicación en BD:', err);
-        },
+        next: () => this.cargarUbicaciones(),
+        error: (err) => console.error('Error al registrar ubicación:', err)
       });
     }
   }
+
+  async abrirModalRechazo() {
+    const modal = await this.modalController.create({
+      component: ModalcolorComponent,
+      componentProps: { ubicaciones: this.ubicaciones }
+    });
+
+    modal.onDidDismiss().then((res) => {
+      if (res.data?.confirmado) {
+        this.cambiarColorMarcador(res.data.ubicacion, res.data.motivo);
+      }
+    });
+
+    await modal.present();
+  }
+
+  cambiarColorMarcador(ubicacion: Ubicacion, motivo: string) {
+    const iconUrl = this.getIconUrlByMotivo(motivo);
+
+    this.map.eachLayer((layer) => {
+      if (layer instanceof L.Marker &&
+          layer.getLatLng().equals([ubicacion.latitud, ubicacion.longitud])) {
+        const newIcon = L.icon({
+          iconUrl,
+          iconSize: [40, 50],
+          iconAnchor: [20, 50]
+        });
+        layer.setIcon(newIcon);
+      }
+    });
+  }
+
+  abrirRutaEnGoogleMaps() {
+    if (!navigator.geolocation) {
+      alert('Geolocalización no disponible.');
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const origin = `${pos.coords.latitude},${pos.coords.longitude}`;
+      const destinos = [...this.ubicaciones];
+
+      if (destinos.length < 1) {
+        alert('No hay ubicaciones para trazar ruta.');
+        return;
+      }
+
+      const destination = `${destinos[destinos.length - 1].latitud},${destinos[destinos.length - 1].longitud}`;
+      const waypoints = destinos.slice(0, -1)
+        .map(u => `${u.latitud},${u.longitud}`)
+        .join('|');
+
+      const url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&waypoints=${waypoints}`;
+      window.open(url, '_blank');
+    });
+  }
+
+  recargarPagina() {
+    window.location.reload();
+    this.cargarUbicaciones();
+  }
+
+  cargarUbicaciones(): void {
+    this.ubicacionesService.getUbicacionesConMotivo().subscribe({
+      next: (ubicaciones) => {
+        console.log('Ubicaciones cargadas:', ubicaciones); // Verifica las ubicaciones y sus motivos
+        this.ubicaciones = ubicaciones;
+  
+        // Limpiar marcadores previos
+        this.map.eachLayer((layer) => {
+          if (layer instanceof L.Marker || layer instanceof L.Polyline) {
+            this.map.removeLayer(layer);
+          }
+        });
+  
+        const coordenadas: [number, number][] = [];
+  
+        ubicaciones.forEach((ubicacion) => {
+          console.log('Motivo recibido para marcador:', ubicacion.motivo_final);  // Verifica el motivo_final
+          const iconUrl = this.getIconUrlByMotivo(ubicacion.motivo_final); // Asegúrate de usar motivo_final
+          const marcador = L.marker([ubicacion.latitud, ubicacion.longitud], {
+            icon: L.icon({
+              iconUrl,
+              iconSize: [40, 50],
+              iconAnchor: [20, 50],
+            }),
+          }).addTo(this.map);
+  
+          marcador.bindPopup(`
+            <strong>${ubicacion.nombre_tienda}</strong><br>
+            <strong>${new Date(ubicacion.fecha_registro).toLocaleString()}</strong><br>
+            <a href="https://www.google.com/maps?q=${ubicacion.latitud},${ubicacion.longitud}" target="_blank">Ver en Google Maps</a>
+          `);
+        });
+  
+        if (coordenadas.length > 1) {
+          const ruta = L.polyline(coordenadas, {
+            color: 'blue',
+            weight: 4,
+            opacity: 0.7
+          }).addTo(this.map);
+          this.map.fitBounds(ruta.getBounds());
+        }
+      },
+      error: (err) => {
+        console.error('Error al cargar ubicaciones:', err);
+      }
+    });
+  }
   
   getIconUrlByMotivo(motivo: string): string {
+    console.log('Motivo recibido:', motivo);  // Verifica el motivo que se recibe
     switch (motivo) {
       case 'Motivo_Rojo':
         return 'assets/images/red.png';
@@ -143,127 +234,8 @@ export class UbicacionPage implements OnInit, AfterViewInit {
         return 'assets/images/amarillo.png';
       case 'Motivo_Verde':
         return 'assets/images/verde.png';
-      case 'Motivo_Azul':
       default:
-        return 'assets/images/blue.png';
+        return 'assets/images/blue.png';  // Azul por defecto
     }
-  }
-  
-  getTextColorByMotivo(motivo: string): string {
-    switch (motivo) {
-      case 'Motivo_Rojo':
-        return 'red';
-      case 'Motivo_Naranja':
-        return 'orange';
-      case 'Motivo_Verde':
-        return 'green';
-      default:
-        return 'blue';
-    }
-  }
-  abrirRutaEnGoogleMaps(): void {
-    if (!navigator.geolocation) {
-      alert('La geolocalización no es compatible con este dispositivo.');
-      return;
-    }
-  
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const currentLat = position.coords.latitude;
-        const currentLon = position.coords.longitude;
-        const origin = `${currentLat},${currentLon}`;
-  
-        this.ubicacionesService.getUbicacionesConMotivo().subscribe({
-          next: (ubicaciones) => {
-            if (ubicaciones.length < 1) {
-              alert('No hay ubicaciones suficientes para trazar una ruta.');
-              return;
-            }
-  
-            const destination = `${ubicaciones[ubicaciones.length - 1].latitud},${ubicaciones[ubicaciones.length - 1].longitud}`;
-            
-            const waypoints = ubicaciones
-              .slice(0, -1)
-              .map(u => `${u.latitud},${u.longitud}`)
-              .join('|');
-  
-            const url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&waypoints=${waypoints}`;
-            window.open(url, '_blank');
-          },
-          error: (err) => {
-            console.error('Error obteniendo ubicaciones para Google Maps:', err);
-          }
-        });
-      },
-      (error) => {
-        console.error('Error obteniendo la ubicación actual:', error);
-        alert('No se pudo obtener tu ubicación actual.');
-      }
-    );
-  }
-  
-  recargarPagina() {
-    window.location.reload();
-  }
-  
-  getMotivo(){
-
-  }
-  
-  loadUbicaciones(): void {
-    this.ubicacionesService.getUbicacionesConMotivo().subscribe({
-      next: (ubicaciones) => {
-        // Borrar los marcadores previos (excepto el tile layer base)
-        this.map?.eachLayer((layer) => {
-          if (layer instanceof L.Marker || layer instanceof L.Polyline) {
-            this.map?.removeLayer(layer);
-          }
-        });
-  
-        // Declarar 'coordinates' como un arreglo de tuplas [number, number]
-        const coordinates: [number, number][] = [];  // Tipo explícito
-  
-        // Agregar los nuevos marcadores y coordinar las ubicaciones para la ruta
-        ubicaciones.forEach((ubicacion) => {
-          const googleMapsUrl = `https://www.google.com/maps?q=${ubicacion.latitud},${ubicacion.longitud}`;
-          const iconColor = this.getIconUrlByMotivo(ubicacion.motivo);
-  
-          // Crear el marcador
-          const marker = L.marker([ubicacion.latitud, ubicacion.longitud], {
-            icon: L.icon({
-              iconUrl: iconColor,
-              iconSize: [40, 50],
-              iconAnchor: [20, 50],
-            }),
-          }).addTo(this.map!);
-  
-          // Agregar el popup con el enlace a Google Maps
-          marker.bindPopup(`
-            <strong>${ubicacion.nombre_tienda}</strong><br>
-            <strong>${new Date(ubicacion.fecha_registro).toLocaleString()}</strong><br>
-            <a href="${googleMapsUrl}" target="_blank" rel="noopener noreferrer">Ver en Google Maps</a>
-          `);
-  
-          // Agregar las coordenadas de la ubicación al arreglo de coordenadas
-          coordinates.push([ubicacion.latitud, ubicacion.longitud]);
-        });
-  
-        // Dibujar la ruta si hay al menos 2 ubicaciones
-        if (coordinates.length > 1) {
-          const route = L.polyline(coordinates, {
-            color: 'blue', // Puedes cambiar el color de la ruta aquí
-            weight: 4,     // Grosor de la línea
-            opacity: 0.7,  // Opacidad de la línea
-          }).addTo(this.map!);
-  
-          // Ajustar el mapa para que la ruta completa se vea
-          this.map?.fitBounds(route.getBounds());
-        }
-      },
-      error: (err) => {
-        console.error('Error al cargar las ubicaciones con motivo:', err);
-      },
-    });
   }
 }  
-

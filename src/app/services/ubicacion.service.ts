@@ -8,15 +8,22 @@ export interface Ubicacion {
   latitud: number;
   longitud: number;
   fecha_registro?:string;
+  motivo?: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class UbicacionesService {
-  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/ubi'; // Reemplaza con tu URL real
+  private apiUrl = 'https://tiendacalvillo-production.up.railway.app/api/ubi';
+  private BaseUrl = 'https://tiendacalvillo-production.up.railway.app/api/ubicacion';  // Reemplaza con tu URL real
 
   constructor(private http: HttpClient) {}
+
+  // Método para actualizar el motivo de una ubicación
+  actualizarMotivo(id: number, motivo: string): Observable<any> {
+    return this.http.put(`${this.BaseUrl}/${id}`, { motivo });
+  }
 
   // Obtener todas las ubicaciones
   getUbicaciones(): Observable<Ubicacion[]> {
