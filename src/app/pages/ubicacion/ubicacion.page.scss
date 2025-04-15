@@ -8,6 +8,12 @@ ion-item {
   --padding-start: 0;
 }
 
+ion-button{
+  font-size: 25px;
+  color: white;
+  font-weight: bold;
+}
+
 /* Estilos para el contenedor del mapa */
 /* Asegurarse de que el contenedor del mapa ocupe todo el espacio disponible */
 .map-container {

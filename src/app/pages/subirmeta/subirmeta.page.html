@@ -12,9 +12,9 @@
 
       <div *ngIf="!metaExistente">
         <ion-item>
-          <ion-label position="floating">Meta de contenedores</ion-label>
+          <ion-label position="floating" class="title">Meta de contenedores</ion-label><br>
           <ion-input type="number" [(ngModel)]="nuevaMeta"></ion-input>
-        </ion-item>
+        </ion-item><br>
         <ion-button expand="block" (click)="guardarMeta()">Guardar Meta</ion-button>
       </div>
 

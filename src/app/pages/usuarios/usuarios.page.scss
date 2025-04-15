@@ -68,7 +68,7 @@ ion-content {
 .ticket-title {
   font-size: 24px;
   font-weight: bold;
-  color: var(--text-color);
+  color: white;
   text-transform: uppercase;
 }
 
@@ -84,43 +84,6 @@ ion-content {
   margin: 12px 0;
 }
 
-// --- Page Banner ---
-.page-banner {
-  text-align: center;
-  padding: 2rem 1rem;
-  background: red;
-  color: white;
-  border-radius: 0 0 20px 20px;
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem;
-  animation: fadeInDown 1s ease-in-out;
-
-  h1 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 2.2rem;
-    margin: 0;
-    font-weight: bold;
-  }
-
-  p {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.2rem;
-    margin: 0.5rem 0 0;
-  }
-}
-
-// --- Animación ---
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 // --- Ticket Info ---
 .ticket-info {
   list-style: none;
@@ -129,8 +92,10 @@ ion-content {
   font-size: 20px;
 
   li {
-    font-size: 18px;
+    font-size: 30px;
     padding: 8px 0;
+    color: white;
+    font-size: 25px;
     border-bottom: 1px solid var(--ticket-border);
     display: flex;
     justify-content: space-between;

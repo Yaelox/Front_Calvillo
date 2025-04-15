@@ -20,36 +20,36 @@
 
         <ion-item button (click)="goToHome()">
           <ion-icon name="home" slot="start"></ion-icon> 
-          <p>Home</p>
+          <h2>Home</h2>
         </ion-item>        
 
 
         <!----
         <ion-item button (click)="goToMisPedidos()">
-          <ion-icon name="person" slot="start"></ion-icon> Mis Pedidos
+          <ion-icon name="h2erson" slot="start"></ion-icon> Mis Pedidos
         </ion-item>
         -->
         
 
         <ion-item *ngIf="isAdmin" button (click)="goToUser()">
           <ion-icon name="person" slot="start"></ion-icon>
-          <p>Usuarios</p> 
+          <h2>Usuarios</h2> 
         </ion-item>
         
         <!---
         <ion-item *ngIf="isAdmin" button (click)="goToTienda()">
           <ion-icon name="storefront" slot="start"></ion-icon>
-          <p> Tiendas </p> 
+          <h2> Tiendas </h2> 
         </ion-item> -->
         
         <ion-item *ngIf="isAdmin || isEmpleado" button (click)="goToPedidos()">
           <ion-icon name="boat" slot="start"></ion-icon> 
-          <p>Pedidos</p>
+          <h2>Pedidos</h2>
         </ion-item> 
         
              <!---
-        <ion-item *ngIf="isAdmin || isEmpleado" button (click)="goToContacto()">
-          <ion-icon name="person" slot="start"></ion-icon> Contáctanos
+        <ion-item *ngIf="isAdmin || isEmh2leado" button (click)="goToContacto()">
+          <ion-icon name="h2erson" slot="start"></ion-icon> Contáctanos
         </ion-item> -->
         
         <!--
@@ -58,30 +58,30 @@
         </ion-item> -->
         <ion-item *ngIf="isAdmin" button (click)="goToRepartidorVentas()">
           <ion-icon name="person" slot="start"></ion-icon>
-          <p>Ventas-Representantes de Marca</p>
+          <h2>Ventas-Representantes de Marca</h2>
         </ion-item>
         
         <ion-item *ngIf="isAdmin " button (click)="goToEstadisticas()">
           <ion-icon name="bar-chart" slot="start"></ion-icon>
-          <p>Estadísticas</p>
+          <h2>Estadísticas</h2>
         </ion-item>
         
         <ion-item *ngIf="isAdmin || isEmpleado" button (click)="goToFotos()">
           <ion-icon name="image" slot="start"></ion-icon>
-          <p>Fotos Almacén</p>
+          <h2>Fotos Almacén</h2>
         </ion-item>
         
         <ion-item button (click)="goToConfiguracion()">
           <ion-icon name="settings" slot="start"></ion-icon>
-          <p>Configuración</p>
+          <h2>Configuración</h2>
         </ion-item>
         
     
         <!--<ion-item button (click)="goToPoster()">
-          <ion-icon name="map" slot="start"></ion-icon> Poster
+          <ion-icon name="mah2" slot="start"></ion-icon> Poster
         </ion-item>
         <ion-item button (click)="goToEventos()">
-          <ion-icon name="map" slot="start"></ion-icon> Eventos
+          <ion-icon name="mah2" slot="start"></ion-icon> Eventos
         </ion-item>
       -->
         </ion-list>

@@ -148,21 +148,21 @@ ion-icon {
 
 /* Colores personalizados */
 .rojo {
-  --ion-item-background: #ffe5e5;
+  --ion-item-background: red;
   ion-label {
     color: #d32f2f;
   }
 }
 
 .amarillo {
-  --ion-item-background: #fff8e1;
+  --ion-item-background: orange;
   ion-label {
     color: #f9a825;
   }
 }
 
 .verde {
-  --ion-item-background: #e8f5e9;
+  --ion-item-background: green;
   ion-label {
     color: #388e3c;
   }
