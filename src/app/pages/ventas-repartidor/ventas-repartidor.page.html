@@ -106,7 +106,7 @@
       </ion-card-header>
       <ion-card-content class="ion-padding">
 
-        <!-- ROJO -->
+      <!-- 
         <ng-container *ngIf="(!rechazoAmarillo && !rechazoVerde) || rechazoRojo">
           <ion-item class="rojo">
             <ion-label class="rojo-label">Rechazo definitivo</ion-label>
@@ -117,7 +117,7 @@
           <ion-item *ngIf="rechazoRojo === 'Otra causa de rechazo.'" class="rojo">
             <ion-input [(ngModel)]="comentarioRojo" name="comentarioRojo" placeholder="Escribe el motivo..."></ion-input>
           </ion-item>
-        </ng-container>
+        </ng-container>  -->
 
         <!-- AMARILLO -->
         <br>
@@ -135,6 +135,7 @@
 
         <!-- VERDE -->
         <br>
+        
         <ng-container *ngIf="(!rechazoRojo && !rechazoAmarillo) || rechazoVerde">
           <ion-item class="verde">
             <ion-label class="verde-label">Es seguro que van a comprar.</ion-label>

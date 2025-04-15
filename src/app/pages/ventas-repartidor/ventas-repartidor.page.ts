@@ -334,7 +334,6 @@ export class VentasRepartidorPage implements OnInit {
   motivosVerde: string[] = [
     'Mucho interés',
     'Interés',
-    'Poco interés, le va calar',
     'Puedes dejarnos un comentario aquí...'
   ];
 
